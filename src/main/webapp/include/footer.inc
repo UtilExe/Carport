@@ -8,16 +8,16 @@
                 <div class="card bg-light mb-3" style="max-width: 50%">
                     <div class="card-body">
                         <p style="text-align: left; font-size: 10px">
-                            <b>Fog </b>
+                            <b>Johannes Fog A/S</b>
                             <br>
-                            Adresse
+                            Adresse: Firskovvej 20 - 2800 Lyngby
                             <br>
-                            Land
+                            CVR-nr.: 16314439
                             <br>
-                            Tlf.:
+                            Tlf.: +45 32-70-54-40
                             <br>
                             <br>
-                            <b>Vores email:</b>
+                            <b>Vores email: info@johannesfog.dk</b>
                             <a href="#"></a>
                         </p>
                     </div>

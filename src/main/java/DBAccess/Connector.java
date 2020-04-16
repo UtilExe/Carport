@@ -6,9 +6,9 @@ import java.sql.SQLException;
 
 public class Connector {
 
-    private static final String URL = "jdbc:mysql://localhost:3306/useradmin";
-    private static final String USERNAME = "root";
-    private static final String PASSWORD = "root";
+    private static String URL;
+    private static String USERNAME;
+    private static String PASSWORD;
 
     private static Connection singleton;
 
@@ -17,11 +17,31 @@ public class Connector {
     }
 
     public static Connection connection() throws ClassNotFoundException, SQLException {
-        if ( singleton == null ) {
+        if ( singleton == null || singleton.isClosed() ) {
+            setDBCredentials();
+
             Class.forName( "com.mysql.cj.jdbc.Driver" );
             singleton = DriverManager.getConnection( URL, USERNAME, PASSWORD );
         }
         return singleton;
+    }
+
+    public static void setDBCredentials() {
+        String deployed = System.getenv("DEPLOYED");
+
+        if(deployed != null) {
+            // Prod: hent variabler fra setenv.sh
+            URL = System.getenv("JDBC_CONNECTION_STRING");
+            USERNAME = System.getenv("JDBC_USER");
+            PASSWORD = System.getenv("JDBC_PASSWORD");
+        } else {
+            // Localhost
+            URL = "jdbc:mysql://localhost:3306/cupcake?serverTimezone=CET&useSSL=false&useUnicode=true&characterEncoding=UTF-8";
+            USERNAME = DBLogin.username;
+            PASSWORD = DBLogin.password;
+            System.out.println("Du har ikke ordentlig forbindelse til dine setenv.sh fil.");
+        }
+
     }
 
 }

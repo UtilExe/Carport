@@ -1,4 +1,4 @@
-DROP DATABASE `carport`;
+DROP DATABASE IF EXISTS `carport`;
 CREATE SCHEMA `carport`;
 USE `carport`;
 

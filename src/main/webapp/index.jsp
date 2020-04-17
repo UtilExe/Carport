@@ -8,7 +8,6 @@
 <body>
 
 
-
 <nav class="navbar navbar-expand-lg navbar-light">
     <a class="navbar-brand" href="#"> <img src="./images/logo.png" width="100" height="100" alt="Logo"></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
@@ -25,17 +24,20 @@
                 </div>
                 <li class="nav-item">
                     <ul class="navbar-nav mr-5 mt-20 mt-lg-0">
-                        <a class="nav-link text-white" href="FrontController?target=redirect&destination=cupcakes"><h3>Cupcakes</h3></a>
+                        <a class="nav-link text-white" href="FrontController?target=redirect&destination=cupcakes"><h3>
+                            Cupcakes</h3></a>
                         </li>
                         <li class="nav-item">
                             <ul class="navbar-nav mr-5 mt-20 mt-lg-0">
-                                <a class="nav-link text-white" href="FrontController?target=redirect&destination=contact"><h3>
+                                <a class="nav-link text-white"
+                                   href="FrontController?target=redirect&destination=contact"><h3>
                                     Kontakt</h3></a>
                                 </li>
                                 <li class="nav-item">
                                     <ul class="navbar-nav mr-5 mt-20 mt-lg-0">
                                         <div class="col-lg-5">
-                                            <a class="nav-link text-white" href="FrontController?target=redirect&destination=cart">
+                                            <a class="nav-link text-white"
+                                               href="FrontController?target=redirect&destination=cart">
                                                 <h3>Kurv</h3></a>
                                         </div>
                                         </li>
@@ -69,16 +71,22 @@
             På den måde sikrer du, at du får netop din ønskede Carport!</p>
         <p>Vælg din ønskede Carport type for at starte med at designe den:</p>
 
+        <div class="row">
+        <div class="col">
         <a href="FrontController?target=redirect&destination=fladttag">
-        <p>Carport med fladt tag</p>
-        <img src="images/fladttag.png" class="img-fluid mx-auto d-block carport-billeder"  alt="Carport med fladt tag"/>
-    </a>
-
-        <a href="FrontController?target=redirect&destination=medrejsning">
-            <p>Carport med rejsning</p>
-            <img src="images/rejsning.png" class="img-fluid mx-auto d-block carport-billeder"  alt="Carport med rejsning"/>
+            <p class="carport-text">Carport med fladt tag</p>
+            <img src="images/fladttag.png" class="img-fluid mx-auto d-block carport-billeder"
+                 alt="Carport med fladt tag"/>
         </a>
-
+        </div>
+        <div class="col">
+        <a href="FrontController?target=redirect&destination=medrejsning">
+            <p class="carport-text">Carport med rejsning</p>
+            <img src="images/rejsning.png" class="img-fluid mx-auto d-block carport-billeder"
+                 alt="Carport med rejsning"/>
+        </a>
+        </div>
+        </div>
 
     </div>
 

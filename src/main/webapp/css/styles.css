@@ -161,3 +161,7 @@
     border-radius: 50%;
     border: 3px solid black;
 }
+
+.carport-billeder {
+    height: 350px !important;
+}

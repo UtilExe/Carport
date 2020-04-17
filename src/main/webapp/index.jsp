@@ -64,6 +64,20 @@
 <div class="container jumbotron ">
 
     <div class="jumbotron mr-5 mt-20 mt-lg-0">
+        <h3> Byg din egen carport</h3>
+        <p> Her kan du designe og udvikle din egen ønskede Carport med egne mål.
+            På den måde sikrer du, at du får netop din ønskede Carport!</p>
+        <p>Vælg din ønskede Carport type for at starte med at designe den:</p>
+
+        <a href="FrontController?target=redirect&destination=fladttag">
+        <p>Carport med fladt tag</p>
+        <img src="images/fladttag.png" class="img-fluid mx-auto d-block carport-billeder"  alt="Carport med fladt tag"/>
+    </a>
+
+        <a href="FrontController?target=redirect&destination=medrejsning">
+            <p>Carport med rejsning</p>
+            <img src="images/rejsning.png" class="img-fluid mx-auto d-block carport-billeder"  alt="Carport med rejsning"/>
+        </a>
 
 
     </div>

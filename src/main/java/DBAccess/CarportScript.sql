@@ -9,8 +9,42 @@ CREATE TABLE `carport`.`carport_measures` (
   );
 -- Indsæt data i tabellen:
 INSERT INTO carport_measures (`description`, `measures`) VALUES ('bredde', 240);
+INSERT INTO carport_measures (`description`, `measures`) VALUES ('bredde', 270);
+INSERT INTO carport_measures (`description`, `measures`) VALUES ('bredde', 300);
+INSERT INTO carport_measures (`description`, `measures`) VALUES ('bredde', 330);
+INSERT INTO carport_measures (`description`, `measures`) VALUES ('bredde', 360);
+INSERT INTO carport_measures (`description`, `measures`) VALUES ('bredde', 390);
+INSERT INTO carport_measures (`description`, `measures`) VALUES ('bredde', 420);
+INSERT INTO carport_measures (`description`, `measures`) VALUES ('bredde', 450);
+INSERT INTO carport_measures (`description`, `measures`) VALUES ('bredde', 480);
+INSERT INTO carport_measures (`description`, `measures`) VALUES ('bredde', 510);
+INSERT INTO carport_measures (`description`, `measures`) VALUES ('bredde', 540);
+INSERT INTO carport_measures (`description`, `measures`) VALUES ('bredde', 570);
+INSERT INTO carport_measures (`description`, `measures`) VALUES ('bredde', 600);
+INSERT INTO carport_measures (`description`, `measures`) VALUES ('bredde', 630);
+INSERT INTO carport_measures (`description`, `measures`) VALUES ('bredde', 660);
+INSERT INTO carport_measures (`description`, `measures`) VALUES ('bredde', 690);
+INSERT INTO carport_measures (`description`, `measures`) VALUES ('bredde', 720);
 INSERT INTO carport_measures (`description`, `measures`) VALUES ('bredde', 750);
+
 INSERT INTO carport_measures (`description`, `measures`) VALUES ('længde', 240);
+INSERT INTO carport_measures (`description`, `measures`) VALUES ('længde', 270);
+INSERT INTO carport_measures (`description`, `measures`) VALUES ('længde', 300);
+INSERT INTO carport_measures (`description`, `measures`) VALUES ('længde', 330);
+INSERT INTO carport_measures (`description`, `measures`) VALUES ('længde', 360);
+INSERT INTO carport_measures (`description`, `measures`) VALUES ('længde', 390);
+INSERT INTO carport_measures (`description`, `measures`) VALUES ('længde', 420);
+INSERT INTO carport_measures (`description`, `measures`) VALUES ('længde', 450);
+INSERT INTO carport_measures (`description`, `measures`) VALUES ('længde', 480);
+INSERT INTO carport_measures (`description`, `measures`) VALUES ('længde', 510);
+INSERT INTO carport_measures (`description`, `measures`) VALUES ('længde', 540);
+INSERT INTO carport_measures (`description`, `measures`) VALUES ('længde', 570);
+INSERT INTO carport_measures (`description`, `measures`) VALUES ('længde', 600);
+INSERT INTO carport_measures (`description`, `measures`) VALUES ('længde', 630);
+INSERT INTO carport_measures (`description`, `measures`) VALUES ('længde', 660);
+INSERT INTO carport_measures (`description`, `measures`) VALUES ('længde', 690);
+INSERT INTO carport_measures (`description`, `measures`) VALUES ('længde', 720);
+INSERT INTO carport_measures (`description`, `measures`) VALUES ('længde', 750);
 INSERT INTO carport_measures (`description`, `measures`) VALUES ('længde', 780);
   
 CREATE TABLE `carport`.`roof_data` (
@@ -27,9 +61,21 @@ INSERT INTO roof_data (`roof_degree`) VALUES (40);
 INSERT INTO roof_data (`roof_degree`) VALUES (45);
 
 -- indsæt materiale:
-INSERT INTO roof_data (`roof_material`) VALUES ('Betontagsten');
-INSERT INTO roof_data (`roof_material`) VALUES ('Eternittag B6');
-INSERT INTO roof_data (`roof_material`) VALUES ('Eternittag B7');
+INSERT INTO roof_data (`roof_material`) VALUES ('Betontagsten - Rød');
+INSERT INTO roof_data (`roof_material`) VALUES ('Betontagsten - Teglrød');
+INSERT INTO roof_data (`roof_material`) VALUES ('Betontagsten - Brun');
+INSERT INTO roof_data (`roof_material`) VALUES ('Betontagsten - Sort');
+INSERT INTO roof_data (`roof_material`) VALUES ('Eternittag B6 - Grå');
+INSERT INTO roof_data (`roof_material`) VALUES ('Eternittag B6 - Sort');
+INSERT INTO roof_data (`roof_material`) VALUES ('Eternittag B6 - Mokka (brun)');
+INSERT INTO roof_data (`roof_material`) VALUES ('Eternittag B6 - Rødbrun');
+INSERT INTO roof_data (`roof_material`) VALUES ('Eternittag B6 - Teglrød');
+INSERT INTO roof_data (`roof_material`) VALUES ('Eternittag B7 - Grå');
+INSERT INTO roof_data (`roof_material`) VALUES ('Eternittag B7 - Sort');
+INSERT INTO roof_data (`roof_material`) VALUES ('Eternittag B7 - Mokka (brun)');
+INSERT INTO roof_data (`roof_material`) VALUES ('Eternittag B7 - Rødbrun');
+INSERT INTO roof_data (`roof_material`) VALUES ('Eternittag B7 - Teglrød');
+INSERT INTO roof_data (`roof_material`) VALUES ('Eternittag B7 - Rødflammet');
   
 CREATE TABLE `carport`.`shed_measures` (
   `description` VARCHAR(45) NOT NULL,

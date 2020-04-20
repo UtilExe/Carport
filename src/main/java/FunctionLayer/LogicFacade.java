@@ -32,4 +32,14 @@ public class LogicFacade {
         return carportRoof;
     }
 
+    public static ArrayList<Integer> getShedLength() {
+        ArrayList<Integer> shedLength = CarportMapper.getShedMeasure("længde");
+        return shedLength;
+    }
+
+    public static ArrayList<Integer> getShedWidth() {
+        ArrayList<Integer> shedWidth = CarportMapper.getShedMeasure("bredde");
+        return shedWidth;
+    }
+
 }

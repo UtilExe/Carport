@@ -42,4 +42,22 @@ public class CarportMapper {
         }
         return types;
     }
+
+    public static ArrayList<Integer> getShedMeasure(String description) {
+        ArrayList<Integer> measure = new ArrayList<>();
+        try {
+            Connection con = Connector.connection();
+            String SQL = "SELECT measures FROM carport.shed_measures WHERE description=? ORDER BY measures ASC;";
+            PreparedStatement ps = con.prepareStatement(SQL);
+            ps.setString(1,description);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()) {
+                int unit = rs.getInt("measures");
+                measure.add(unit);
+            }
+        } catch (SQLException | ClassNotFoundException ex) {
+            ex.printStackTrace();
+        }
+        return measure;
+    }
 }

@@ -19,7 +19,7 @@
 
 <%
     request.setAttribute("carport_lengths", Initialisation.getLengths());
-    request.setAttribute("carport_width", Initialisation.getWidths());
+    request.setAttribute("carport_width", Initialisation.getCarportWidths());
     request.setAttribute("carport_roofs", Initialisation.getRoofs());
 %>
 

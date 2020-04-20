@@ -79,6 +79,39 @@
             <div class="col-3"></div>
         </div>
 
+        Med redskabsrum: <input type="checkbox" id="myCheck"  onclick="myFunction()">
+
+        <div class="row" id="shed">
+            <div class="col-3">
+                <select class="form-control-smaller">
+                    <option value="">Vælg Skurlængde</option>
+                    <c:forEach var="tmpShedLength" items="${requestScope.shed_lengths}">
+                        <option name="shedLength">${tmpShedLength}</option>
+                    </c:forEach>
+                </select>
+            </div>
+            <div class="col-3">
+                <select class="form-control-smaller">
+                    <option value="">Vælg Skurbredde</option>
+                    <c:forEach var="tmpShedWidth" items="${requestScope.shed_widths}">
+                        <option name="shedWidth">${tmpShedWidth}</option>
+                    </c:forEach>
+                </select>
+            </div>
+        </div>
+
+
+        <script>
+            function myFunction() {
+                var checkBox = document.getElementById("myCheck");
+                var shed = document.getElementById("shed");
+                if (checkBox.checked == true){
+                    shed.style.display = "block";
+                } else {
+                    shed.style.display = "none";
+                }
+            }
+        </script>
 
 
 

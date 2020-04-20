@@ -2,7 +2,7 @@
 <%@include file="../include/header.inc" %>
 <link rel="stylesheet" href="css/styles.css">
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
-    <title>Carport med Fladt tag</title>
+<title>Carport med Fladt tag</title>
 </head>
 <body>
 
@@ -17,7 +17,8 @@
             <ul class="navbar-nav mr-5 mt-60 mt-lg-0">
                 <div class="col-lg-auto">
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="FrontController?target=redirect&destination=index"><h3>Forside</h3></a>
+                        <a class="nav-link text-white" href="FrontController?target=redirect&destination=index"><h3>
+                            Forside</h3></a>
                     </li>
                 </div>
             </ul>
@@ -51,27 +52,37 @@
         <p>Nedenunder kan du tilpasse mål og materialer efter egne ønsker</p>
 
         <div class="row">
-            <div class="col-2"></div>
-            <div class="col-4">
+            <div class="col-3">
                 <select class="form-control-smaller">
                     <option value="">Vælg Længde</option>
-                    <c:forEach var="tmpLength" items="${carport_lengths}">
+                    <c:forEach var="tmpLength" items="${requestScope.carport_lengths}">
                         <option name="length">${tmpLength}</option>
                     </c:forEach>
                 </select>
             </div>
-            <div class="col-4">
+            <div class="col-3">
                 <select class="form-control-smaller">
                     <option value="">Vælg Bredde</option>
-                    <c:forEach var="tmpWidth" items="${carport_width}">
+                    <c:forEach var="tmpWidth" items="${requestScope.carport_width}">
                         <option name="width">${tmpWidth}</option>
                     </c:forEach>
                 </select>
             </div>
-            <div class="col-2"></div>
+            <div class="col-3">
+                <select class="form-control-smaller">
+                    <option value="">Vælg Tag</option>
+                    <c:forEach var="tmpRoof" items="${requestScope.carport_roofs}">
+                        <option name="roof">${tmpRoof}</option>
+                    </c:forEach>
+                </select>
+            </div>
+            <div class="col-3"></div>
         </div>
+
+
+
 
     </div>
 </div>
 
-<%@include file="../include/footer.inc"%>
+<%@include file="../include/footer.inc" %>

@@ -27,4 +27,9 @@ public class LogicFacade {
         return carportWidth;
     }
 
+    public static ArrayList<String> getCarportRoof() {
+        ArrayList<String> carportRoof = CarportMapper.getCarportRoof();
+        return carportRoof;
+    }
+
 }

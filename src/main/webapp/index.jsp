@@ -13,12 +13,14 @@
     public void jspInit(){
         Initialisation.initLengths();
         Initialisation.initWidth();
+        Initialisation.initRoof();
     }
 %>
 
 <%
     request.setAttribute("carport_lengths", Initialisation.getLengths());
     request.setAttribute("carport_width", Initialisation.getWidths());
+    request.setAttribute("carport_roofs", Initialisation.getRoofs());
 %>
 
 <nav class="navbar navbar-expand-lg navbar-light">

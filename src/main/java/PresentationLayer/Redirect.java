@@ -16,6 +16,7 @@ public class Redirect extends Command{
         if(destination.equals("fladttag")) {
             request.setAttribute("carport_lengths", Initialisation.getLengths());
             request.setAttribute("carport_widths", Initialisation.getWidths());
+            request.setAttribute("carport_roofs", Initialisation.getRoofs());
         }
 
         return destination;

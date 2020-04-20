@@ -22,44 +22,14 @@
                         <a class="nav-link text-white" href="#"><h3>Forside</h3> <span class="sr-only">(current)</span></a>
                     </li>
                 </div>
-                <li class="nav-item">
-                    <ul class="navbar-nav mr-5 mt-20 mt-lg-0">
-                        <a class="nav-link text-white" href="FrontController?target=redirect&destination=cupcakes"><h3>
-                            Cupcakes</h3></a>
-                        </li>
-                        <li class="nav-item">
-                            <ul class="navbar-nav mr-5 mt-20 mt-lg-0">
-                                <a class="nav-link text-white"
-                                   href="FrontController?target=redirect&destination=contact"><h3>
-                                    Kontakt</h3></a>
-                                </li>
-                                <li class="nav-item">
-                                    <ul class="navbar-nav mr-5 mt-20 mt-lg-0">
-                                        <div class="col-lg-5">
-                                            <a class="nav-link text-white"
-                                               href="FrontController?target=redirect&destination=cart">
-                                                <h3>Kurv</h3></a>
-                                        </div>
-                                        </li>
-                                    </ul>
-                            </ul>
-                    </ul>
             </ul>
         </ul>
-
         <span class="navbar-text mr-5">
             ${sessionScope.email}
         </span>
         <%@include file="/include/dropdownMenu.inc" %>
     </div>
 </nav>
-
-<c:if test="${requestScope.error!= null}">
-<div class="fejlbesked" style="margin-bottom: 10px; text-align: center;">
-    <h2>Fejl!</h2>
-        ${requestScope.error}
-</div>
-</c:if>
 
 <img src="images/header.jpeg" class="img-fluid mx-auto d-block" alt="Responsive header image"/>
 
@@ -89,7 +59,6 @@
         </div>
 
     </div>
-
 
 </div>
 

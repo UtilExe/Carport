@@ -79,9 +79,14 @@
             <div class="col-3"></div>
         </div>
 
+        <br>
+
         Med redskabsrum: <input type="checkbox" id="myCheck"  onclick="myFunction()">
 
-        <div class="row" id="shed" style="display: none;">
+        <br>
+        <br>
+
+        <div class="row" id="shed" style="visibility: hidden;">
             <div class="col-3">
                 <select class="form-control-smaller">
                     <option value="">Vælg Skurlængde</option>
@@ -98,6 +103,7 @@
                     </c:forEach>
                 </select>
             </div>
+            <div class="col-6"></div>
         </div>
 
 
@@ -106,9 +112,9 @@
                 var checkBox = document.getElementById("myCheck");
                 var shed = document.getElementById("shed");
                 if (checkBox.checked == true){
-                    shed.style.display = "block";
+                    shed.style.visibility = "visible";
                 } else {
-                    shed.style.display = "none";
+                    shed.style.visibility = "hidden";
                 }
             }
         </script>

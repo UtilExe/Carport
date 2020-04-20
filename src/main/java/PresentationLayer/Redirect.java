@@ -17,6 +17,8 @@ public class Redirect extends Command{
             request.setAttribute("carport_lengths", Initialisation.getLengths());
             request.setAttribute("carport_widths", Initialisation.getWidths());
             request.setAttribute("carport_roofs", Initialisation.getRoofs());
+            request.setAttribute("shed_lengths", Initialisation.getShedLengths());
+            request.setAttribute("shed_widths", Initialisation.getShedWidths());
         }
 
         return destination;

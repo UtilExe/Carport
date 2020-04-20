@@ -9,7 +9,8 @@ public class Initialisation {
     private static ArrayList<Integer> lengths;
     private static ArrayList<Integer> widths;
     private static ArrayList<String> roofs;
-
+    private static ArrayList<Integer> shedLengths;
+    private static ArrayList<Integer> shedWidths;
 
     //Inits
     public static void initLengths() {
@@ -30,8 +31,24 @@ public class Initialisation {
         }
     }
 
+    public static void initShedLengths() {
+        if(shedLengths == null) {
+            shedLengths = LogicFacade.getShedLength();
+        }
+    }
+
+    public static void initShedWidths() {
+        if(shedWidths == null) {
+            shedWidths = LogicFacade.getShedWidth();
+        }
+    }
+
+
+
     //Get lists
     public static ArrayList<Integer>getLengths() {return lengths;}
     public static ArrayList<Integer> getWidths() {return widths;}
     public static ArrayList<String> getRoofs() {return roofs;}
+    public static ArrayList<Integer>getShedLengths() {return shedLengths;}
+    public static ArrayList<Integer>getShedWidths() {return shedWidths;}
 }

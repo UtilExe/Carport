@@ -84,8 +84,41 @@ CREATE TABLE `carport`.`shed_measures` (
   );
 -- Indsæt data i tabellen:
 INSERT INTO shed_measures (`description`, `measures`) VALUES ('bredde', 210);
+INSERT INTO shed_measures (`description`, `measures`) VALUES ('bredde', 240);
+INSERT INTO shed_measures (`description`, `measures`) VALUES ('bredde', 270);
+INSERT INTO shed_measures (`description`, `measures`) VALUES ('bredde', 300);
+INSERT INTO shed_measures (`description`, `measures`) VALUES ('bredde', 330);
+INSERT INTO shed_measures (`description`, `measures`) VALUES ('bredde', 360);
+INSERT INTO shed_measures (`description`, `measures`) VALUES ('bredde', 390);
+INSERT INTO shed_measures (`description`, `measures`) VALUES ('bredde', 420);
+INSERT INTO shed_measures (`description`, `measures`) VALUES ('bredde', 450);
+INSERT INTO shed_measures (`description`, `measures`) VALUES ('bredde', 480);
+INSERT INTO shed_measures (`description`, `measures`) VALUES ('bredde', 510);
+INSERT INTO shed_measures (`description`, `measures`) VALUES ('bredde', 540);
+INSERT INTO shed_measures (`description`, `measures`) VALUES ('bredde', 570);
+INSERT INTO shed_measures (`description`, `measures`) VALUES ('bredde', 600);
+INSERT INTO shed_measures (`description`, `measures`) VALUES ('bredde', 630);
+INSERT INTO shed_measures (`description`, `measures`) VALUES ('bredde', 660);
+INSERT INTO shed_measures (`description`, `measures`) VALUES ('bredde', 690);
 INSERT INTO shed_measures (`description`, `measures`) VALUES ('bredde', 720);
 INSERT INTO shed_measures (`description`, `measures`) VALUES ('længde', 150);
+INSERT INTO shed_measures (`description`, `measures`) VALUES ('længde', 180);
+INSERT INTO shed_measures (`description`, `measures`) VALUES ('længde', 210);
+INSERT INTO shed_measures (`description`, `measures`) VALUES ('længde', 240);
+INSERT INTO shed_measures (`description`, `measures`) VALUES ('længde', 270);
+INSERT INTO shed_measures (`description`, `measures`) VALUES ('længde', 300);
+INSERT INTO shed_measures (`description`, `measures`) VALUES ('længde', 330);
+INSERT INTO shed_measures (`description`, `measures`) VALUES ('længde', 360);
+INSERT INTO shed_measures (`description`, `measures`) VALUES ('længde', 390);
+INSERT INTO shed_measures (`description`, `measures`) VALUES ('længde', 420);
+INSERT INTO shed_measures (`description`, `measures`) VALUES ('længde', 450);
+INSERT INTO shed_measures (`description`, `measures`) VALUES ('længde', 480);
+INSERT INTO shed_measures (`description`, `measures`) VALUES ('længde', 510);
+INSERT INTO shed_measures (`description`, `measures`) VALUES ('længde', 540);
+INSERT INTO shed_measures (`description`, `measures`) VALUES ('længde', 570);
+INSERT INTO shed_measures (`description`, `measures`) VALUES ('længde', 600);
+INSERT INTO shed_measures (`description`, `measures`) VALUES ('længde', 630);
+INSERT INTO shed_measures (`description`, `measures`) VALUES ('længde', 660);
 INSERT INTO shed_measures (`description`, `measures`) VALUES ('længde', 690);
 
   

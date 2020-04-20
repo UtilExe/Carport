@@ -1,6 +1,9 @@
 package FunctionLayer;
 
+import DBAccess.CarportMapper;
 import DBAccess.UserMapper;
+
+import java.util.ArrayList;
 
 public class LogicFacade {
 
@@ -12,6 +15,11 @@ public class LogicFacade {
         User user = new User(email, password, "customer");
         UserMapper.createUser( user );
         return user;
+    }
+
+    public static ArrayList<Integer> getCarportLength() {
+        ArrayList<Integer> carportLength = CarportMapper.getCarportLength();
+        return carportLength;
     }
 
 }

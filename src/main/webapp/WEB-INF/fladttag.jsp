@@ -7,7 +7,7 @@
 <body>
 
 <nav class="navbar navbar-expand-lg navbar-light">
-    <a class="navbar-brand" href="#"> <img src="../images/logo.png" width="100" height="100" alt="Logo"></a>
+    <a class="navbar-brand" href="#"> <img src="./images/logo.png" width="100" height="100" alt="Logo"></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
             aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -28,5 +28,44 @@
         <%@include file="/include/dropdownMenu.inc" %>
     </div>
 </nav>
+
+<div class="container jumbotron ">
+
+    <div class="jumbotron mr-5 mt-20 mt-lg-0">
+
+        <div class="row">
+            <div class="col-9">
+                <h2>Caport med fladt tag</h2>
+                <p>En carport med fladt tag giver mange muligheder –
+                    selv på ejendomme med knap så meget plads mellem hus og skel.
+                    Ud over at fremstå enkel og minimalistisk, giver en carport med fladt tag,
+                    mulighed for at bygge helt i skel, og stadig overholde grænsen for maksimal højde.
+                </p>
+            </div>
+            <div class="col-3">
+                <img src="images/fladttag.png" class="img-fluid mx-auto d-block" alt="Carport med fladt tag"/>
+            </div>
+        </div>
+
+        <h3>Byg din egen Carport</h3>
+        <p>Nedenunder kan du tilpasse mål og materialer efter egne ønsker</p>
+
+        <div class="row">
+            <div class="col-2"></div>
+            <div class="col-4">
+                <select>
+                    <c:forEach var="tmpLength" items="${carport_lengths}">
+                        <option name="length">${tmpLength}</option>
+                    </c:forEach>
+                </select>
+            </div>
+            <div class="col-4">
+                Dropdown Bredde
+            </div>
+            <div class="col-2"></div>
+        </div>
+
+    </div>
+</div>
 
 <%@include file="../include/footer.inc"%>

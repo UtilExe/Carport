@@ -1,3 +1,4 @@
+<%@ page import="FunctionLayer.Initialisation" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@include file="include/header.inc" %>
 <link rel="stylesheet" href="css/styles.css">
@@ -7,6 +8,16 @@
 </head>
 <body>
 
+<%!
+    @Override
+    public void jspInit(){
+        Initialisation.initLengths();
+    }
+%>
+
+<%
+    request.setAttribute("carport_lengths", Initialisation.getLengths());
+%>
 
 <nav class="navbar navbar-expand-lg navbar-light">
     <a class="navbar-brand" href="#"> <img src="./images/logo.png" width="100" height="100" alt="Logo"></a>
@@ -45,8 +56,7 @@
         <div class="col">
         <a href="FrontController?target=redirect&destination=fladttag">
             <p class="carport-text">Carport med fladt tag</p>
-            <img src="images/fladttag.png" class="img-fluid mx-auto d-block carport-billeder"
-                 alt="Carport med fladt tag"/>
+            <img src="images/fladttag.png" class="img-fluid mx-auto d-block carport-billeder" alt="Carport med fladt tag"/>
         </a>
         </div>
         <div class="col">

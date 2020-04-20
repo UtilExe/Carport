@@ -39,7 +39,7 @@ public class Connector {
             URL = "jdbc:mysql://localhost:3306/cupcake?serverTimezone=CET&useSSL=false&useUnicode=true&characterEncoding=UTF-8";
             USERNAME = DBLogin.username;
             PASSWORD = DBLogin.password;
-            System.out.println("Du har ikke ordentlig forbindelse til dine setenv.sh fil.");
+            //System.out.println("Du har ikke ordentlig forbindelse til dine setenv.sh fil.");
         }
 
     }

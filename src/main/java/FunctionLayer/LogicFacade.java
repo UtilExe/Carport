@@ -42,4 +42,9 @@ public class LogicFacade {
         return shedWidth;
     }
 
+    public static ArrayList<Integer> getRoofPitch() {
+        ArrayList<Integer> roofPitch = CarportMapper.getRoofPitch();
+        return roofPitch;
+    }
+
 }

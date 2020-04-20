@@ -16,6 +16,7 @@
         Initialisation.initRoof();
         Initialisation.initShedLengths();
         Initialisation.initShedWidths();
+        Initialisation.initRoofPitch();
     }
 %>
 
@@ -25,6 +26,7 @@
     request.setAttribute("carport_roofs", Initialisation.getRoofs());
     request.setAttribute("shed_lengths", Initialisation.getShedLengths());
     request.setAttribute("shed_widths", Initialisation.getShedWidths());
+    request.setAttribute("roof_pitch", Initialisation.getRoofPitch());
 %>
 
 <nav class="navbar navbar-expand-lg navbar-light">
@@ -68,7 +70,7 @@
         </a>
         </div>
         <div class="col">
-        <a href="FrontController?target=redirect&destination=medrejsning">
+        <a href="FrontController?target=redirect&destination=rejsningtag">
             <p class="carport-text">Carport med rejsning</p>
             <img src="images/rejsning.png" class="img-fluid mx-auto d-block carport-billeder"
                  alt="Carport med rejsning"/>

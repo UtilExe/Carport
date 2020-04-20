@@ -60,4 +60,21 @@ public class CarportMapper {
         }
         return measure;
     }
+
+    public static ArrayList<Integer> getRoofPitch() {
+        ArrayList<Integer> pitch = new ArrayList<>();
+        try {
+            Connection con = Connector.connection();
+            String SQL = "SELECT roof_pitch FROM carport.roof_data WHERE roof_pitch IS NOT NULL;";
+            PreparedStatement ps = con.prepareStatement(SQL);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()) {
+                int roofPitch = rs.getInt("roof_pitch");
+                pitch.add(roofPitch);
+            }
+        } catch (SQLException | ClassNotFoundException ex) {
+            ex.printStackTrace();
+        }
+        return pitch;
+    }
 }

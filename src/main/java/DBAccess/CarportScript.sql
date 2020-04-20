@@ -48,17 +48,17 @@ INSERT INTO carport_measures (`description`, `measures`) VALUES ('længde', 750)
 INSERT INTO carport_measures (`description`, `measures`) VALUES ('længde', 780);
   
 CREATE TABLE `carport`.`roof_data` (
-  `roof_degree` INT NULL,
+  `roof_pitch` INT NULL,
   `roof_material` VARCHAR(45) NULL
   );
 -- indsæt hældningsdata:
-INSERT INTO roof_data (`roof_degree`) VALUES (15);
-INSERT INTO roof_data (`roof_degree`) VALUES (20);
-INSERT INTO roof_data (`roof_degree`) VALUES (25);
-INSERT INTO roof_data (`roof_degree`) VALUES (30);
-INSERT INTO roof_data (`roof_degree`) VALUES (35);
-INSERT INTO roof_data (`roof_degree`) VALUES (40);
-INSERT INTO roof_data (`roof_degree`) VALUES (45);
+INSERT INTO roof_data (`roof_pitch`) VALUES (15);
+INSERT INTO roof_data (`roof_pitch`) VALUES (20);
+INSERT INTO roof_data (`roof_pitch`) VALUES (25);
+INSERT INTO roof_data (`roof_pitch`) VALUES (30);
+INSERT INTO roof_data (`roof_pitch`) VALUES (35);
+INSERT INTO roof_data (`roof_pitch`) VALUES (40);
+INSERT INTO roof_data (`roof_pitch`) VALUES (45);
 
 -- indsæt materiale:
 INSERT INTO roof_data (`roof_material`) VALUES ('Betontagsten - Rød');
@@ -131,7 +131,7 @@ INSERT INTO shed_measures (`description`, `measures`) VALUES ('længde', 690);
   `shedIsFullWidth` TINYINT NULL,
   `shedLength` INT NULL,
   `roofIsFlat` TINYINT NULL,
-  `roof_degree` INT NULL,
+  `roof_pitch` INT NULL,
   `roof_material` VARCHAR(45) NULL,
   `price` INT NULL,
   PRIMARY KEY (`orderID`));

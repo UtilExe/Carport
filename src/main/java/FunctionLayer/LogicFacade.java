@@ -18,8 +18,13 @@ public class LogicFacade {
     }
 
     public static ArrayList<Integer> getCarportLength() {
-        ArrayList<Integer> carportLength = CarportMapper.getCarportLength();
+        ArrayList<Integer> carportLength = CarportMapper.getCarportMeasure("længde");
         return carportLength;
+    }
+
+    public static ArrayList<Integer> getCarportWidth() {
+        ArrayList<Integer> carportWidth = CarportMapper.getCarportMeasure("bredde");
+        return carportWidth;
     }
 
 }

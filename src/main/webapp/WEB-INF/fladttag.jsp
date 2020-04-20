@@ -53,14 +53,20 @@
         <div class="row">
             <div class="col-2"></div>
             <div class="col-4">
-                <select>
+                <select class="form-control-smaller">
+                    <option value="">Vælg Længde</option>
                     <c:forEach var="tmpLength" items="${carport_lengths}">
                         <option name="length">${tmpLength}</option>
                     </c:forEach>
                 </select>
             </div>
             <div class="col-4">
-                Dropdown Bredde
+                <select class="form-control-smaller">
+                    <option value="">Vælg Bredde</option>
+                    <c:forEach var="tmpWidth" items="${carport_width}">
+                        <option name="width">${tmpWidth}</option>
+                    </c:forEach>
+                </select>
             </div>
             <div class="col-2"></div>
         </div>

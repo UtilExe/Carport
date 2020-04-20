@@ -8,21 +8,21 @@ import java.util.ArrayList;
 
 public class CarportMapper {
 
-    public static ArrayList<Integer> getCarportLength() {
-        ArrayList<Integer> lengths = new ArrayList<>();
+    public static ArrayList<Integer> getCarportMeasure(String description) {
+        ArrayList<Integer> measure = new ArrayList<>();
         try {
             Connection con = Connector.connection();
-            String SQL = "SELECT measures FROM carport.carport_measures WHERE description='længde' ORDER BY measures ASC;";
+            String SQL = "SELECT measures FROM carport.carport_measures WHERE description=? ORDER BY measures ASC;";
             PreparedStatement ps = con.prepareStatement(SQL);
+            ps.setString(1,description);
             ResultSet rs = ps.executeQuery();
             while(rs.next()) {
                 int length = rs.getInt("measures");
-                lengths.add(length);
+                measure.add(length);
             }
-            return lengths;
         } catch (SQLException | ClassNotFoundException ex) {
             ex.printStackTrace();
         }
-        return lengths;
+        return measure;
     }
 }

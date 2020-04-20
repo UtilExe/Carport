@@ -14,13 +14,17 @@
         Initialisation.initLengths();
         Initialisation.initWidth();
         Initialisation.initRoof();
+        Initialisation.initShedLengths();
+        Initialisation.initShedWidths();
     }
 %>
 
 <%
-    request.setAttribute("carport_lengths", Initialisation.getLengths());
+    request.setAttribute("carport_lengths", Initialisation.getCarportLengths());
     request.setAttribute("carport_width", Initialisation.getCarportWidths());
     request.setAttribute("carport_roofs", Initialisation.getRoofs());
+    request.setAttribute("shed_lengths", Initialisation.getShedLengths());
+    request.setAttribute("shed_widths", Initialisation.getShedWidths());
 %>
 
 <nav class="navbar navbar-expand-lg navbar-light">

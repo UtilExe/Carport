@@ -81,7 +81,7 @@
 
         Med redskabsrum: <input type="checkbox" id="myCheck"  onclick="myFunction()">
 
-        <div class="row" id="shed">
+        <div class="row" id="shed" style="display: none;">
             <div class="col-3">
                 <select class="form-control-smaller">
                     <option value="">Vælg Skurlængde</option>

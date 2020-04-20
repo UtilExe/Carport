@@ -17,8 +17,8 @@ public class CarportMapper {
             ps.setString(1,description);
             ResultSet rs = ps.executeQuery();
             while(rs.next()) {
-                int length = rs.getInt("measures");
-                measure.add(length);
+                int unit = rs.getInt("measures");
+                measure.add(unit);
             }
         } catch (SQLException | ClassNotFoundException ex) {
             ex.printStackTrace();

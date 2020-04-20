@@ -1,5 +1,4 @@
 <%@ page import="FunctionLayer.Initialisation" %>
-<%@ page import="javax.ejb.Init" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@include file="include/header.inc" %>
 <link rel="stylesheet" href="css/styles.css">
@@ -19,7 +18,7 @@
 
 <%
     request.setAttribute("carport_lengths", Initialisation.getLengths());
-    request.setAttribute("carport_width", Initialisation.getWidth());
+    request.setAttribute("carport_width", Initialisation.getWidths());
 %>
 
 <nav class="navbar navbar-expand-lg navbar-light">

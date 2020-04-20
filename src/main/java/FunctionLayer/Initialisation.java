@@ -7,7 +7,7 @@ import java.util.ArrayList;
 public class Initialisation {
     //Creating lists
     private static ArrayList<Integer> lengths;
-    private static ArrayList<Integer> width;
+    private static ArrayList<Integer> widths;
 
 
     //Inits
@@ -18,13 +18,13 @@ public class Initialisation {
     }
 
     public static void initWidth() {
-        if(lengths == null) {
-            lengths = LogicFacade.getCarportWidth();
+        if(widths == null) {
+            widths = LogicFacade.getCarportWidth();
         }
     }
 
 
     //Get lists
     public static ArrayList<Integer>getLengths() {return lengths;}
-    public static ArrayList<Integer>getWidth() {return width;}
+    public static ArrayList<Integer> getWidths() {return widths;}
 }

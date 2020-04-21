@@ -57,7 +57,7 @@
         <div class="row">
             <div class="col-3">
 
-                    <select class="form-control">
+                    <select class="form-control" name="length">
                     <option value="">Vælg Længde</option>
                     <c:forEach var="tmpLength" items="${requestScope.carport_lengths}">
                         <option name="length">${tmpLength}</option>
@@ -65,7 +65,7 @@
                 </select>
             </div>
             <div class="col-3">
-                <select class="form-control">
+                <select class="form-control" name="width">
                     <option value="">Vælg Bredde</option>
                     <c:forEach var="tmpWidth" items="${requestScope.carport_widths}">
                         <option name="width">${tmpWidth}</option>
@@ -73,7 +73,7 @@
                 </select>
             </div>
             <div class="col-3">
-                <select class="form-control">
+                <select class="form-control" name="roof">
                     <option value="">Vælg Tag</option>
                     <c:forEach var="tmpRoof" items="${requestScope.carport_roofs}">
                         <option name="roof">${tmpRoof}</option>
@@ -92,7 +92,7 @@
 
         <div class="row" id="shed" style="visibility: hidden;">
             <div class="col-3">
-                <select class="form-control">
+                <select class="form-control" name="shedLength">
                     <option value="">Vælg Skurlængde</option>
                     <c:forEach var="tmpShedLength" items="${requestScope.shed_lengths}">
                         <option name="shedLength">${tmpShedLength}</option>
@@ -100,7 +100,7 @@
                 </select>
             </div>
             <div class="col-4">
-                <select class="form-control">
+                <select class="form-control" name="shedWidth">
                     <option value="">Vælg Skurbredde</option>
                     <c:forEach var="tmpShedWidth" items="${requestScope.shed_widths}">
                         <option name="shedWidth">${tmpShedWidth}</option>

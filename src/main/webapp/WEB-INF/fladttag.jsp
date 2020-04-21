@@ -52,7 +52,7 @@
         <p>Nedenunder kan du tilpasse mål og materialer efter egne ønsker</p>
 
         <form action="FrontController" method="post">
-            <input type="hidden" name="target" value="FladtTag">
+            <input type="hidden" name="target" value="fladttag">
 
         <div class="row">
             <div class="col-3">
@@ -85,7 +85,7 @@
 
         <br>
 
-        Med redskabsrum: <input type="checkbox" id="myCheck"  onclick="myFunction()">
+        Med redskabsrum: <input name="checkboxShed" type="checkbox" id="myCheck" onclick="myFunction()">
 
         <br>
         <br>
@@ -111,6 +111,7 @@
         </div>
 
         <div class="text-left mt-4">
+
             <button class="btn btn-primary" type="submit">Indtast</button>
         </div>
         </form>

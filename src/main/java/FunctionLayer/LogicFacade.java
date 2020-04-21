@@ -47,4 +47,8 @@ public class LogicFacade {
         return roofPitch;
     }
 
+    public static void addFlatCarportToCustOrder(int carportLength, int carportWidth, boolean hasShed, int shedWidth, int shedLength, String roofMaterial, int price) {
+        CarportMapper.addFlatCarportToCustOrder(carportLength, carportWidth, hasShed, shedWidth, shedLength, roofMaterial, price);
+    }
+
 }

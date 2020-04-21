@@ -132,18 +132,17 @@ CREATE TABLE `carport`.`users` (
   
 INSERT INTO `users` (`name`, `email`, `password`, `mobilNr`, `saldo`) VALUES ('Admin', 'admin@admin.com', 'admin', 10101010, 10000);
 
-  /*
+  
   CREATE TABLE `carport`.`cust_order` (
   `orderID` INT NOT NULL AUTO_INCREMENT,
-  `carport_height` INT NOT NULL,
   `carport_length` INT NOT NULL,
   `carport_width` INT NOT NULL,
   `hasShed` TINYINT NULL,
-  `shedIsFullWidth` TINYINT NULL,
+  `shedWidth` INT NULL,
   `shedLength` INT NULL,
   `roofIsFlat` TINYINT NULL,
   `roof_pitch` INT NULL,
   `roof_material` VARCHAR(45) NULL,
   `price` INT NULL,
   PRIMARY KEY (`orderID`));
-  */
+  

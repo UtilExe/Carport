@@ -1,5 +1,7 @@
 package DBAccess;
 
+import FunctionLayer.LoginSampleException;
+
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -73,5 +75,30 @@ public class CarportMapper {
             ex.printStackTrace();
         }
         return pitch;
+    }
+
+    public static void addFlatCarportToCustOrder(int carportLength, int carportWidth, boolean hasShed, int shedWidth, int shedLength, String roofMaterial, int price) {
+        try {
+            Connection con = Connector.connection();
+            String SQL = "INSERT INTO carport.cust_order (carport_length, carport_width, hasShed, shedWidth, " +
+                    "shedLength, roofIsFlat, roof_pitch, roof_material, price) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            PreparedStatement ps = con.prepareStatement( SQL, Statement.RETURN_GENERATED_KEYS );
+            ps.setInt(1, carportLength);
+            ps.setInt( 2, carportWidth);
+            ps.setBoolean( 3, hasShed);
+            ps.setInt(4, shedWidth);
+            ps.setInt(5, shedLength);
+            ps.setBoolean(6, true);
+            ps.setInt(7, 0);
+            ps.setString(8, roofMaterial);
+            ps.setInt(9, price);
+
+            ps.executeUpdate();
+            ResultSet ids = ps.getGeneratedKeys();
+            ids.next();
+        } catch ( SQLException | ClassNotFoundException ex ) {
+            ex.printStackTrace();
+        }
+
     }
 }

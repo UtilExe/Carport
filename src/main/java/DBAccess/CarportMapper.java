@@ -77,7 +77,7 @@ public class CarportMapper {
         return pitch;
     }
 
-    public static void addFlatCarportToCustOrder(int carportLength, int carportWidth, boolean hasShed, int shedWidth, int shedLength, String roofMaterial, int price) {
+    public static void addCarportToCustOrder(int carportLength, int carportWidth, boolean hasShed, int shedWidth, int shedLength, boolean roofIsFlat, int roofPitch, String roofMaterial, int price) {
         try {
             Connection con = Connector.connection();
             String SQL = "INSERT INTO carport.cust_order (carport_length, carport_width, hasShed, shedWidth, " +
@@ -88,8 +88,8 @@ public class CarportMapper {
             ps.setBoolean( 3, hasShed);
             ps.setInt(4, shedWidth);
             ps.setInt(5, shedLength);
-            ps.setBoolean(6, true);
-            ps.setInt(7, 0);
+            ps.setBoolean(6, roofIsFlat);
+            ps.setInt(7, roofPitch);
             ps.setString(8, roofMaterial);
             ps.setInt(9, price);
 
@@ -99,6 +99,5 @@ public class CarportMapper {
         } catch ( SQLException | ClassNotFoundException ex ) {
             ex.printStackTrace();
         }
-
     }
 }

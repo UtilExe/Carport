@@ -50,12 +50,12 @@
         <p>Nedenunder kan du tilpasse mål og materialer efter egne ønsker</p>
 
         <form action="FrontController" method="post">
-            <input type="hidden" name="target" value="FladtTag">
+            <input type="hidden" name="target" value="carportDesign">
 
             <div class="row">
                 <div class="col-3">
 
-                    <select class="form-control">
+                    <select class="form-control" name="length">
                         <option value="">Vælg Længde</option>
                         <c:forEach var="tmpLength" items="${requestScope.carport_lengths}">
                             <option name="length">${tmpLength}</option>
@@ -63,7 +63,7 @@
                     </select>
                 </div>
                 <div class="col-3">
-                    <select class="form-control">
+                    <select class="form-control" name="width">
                         <option value="">Vælg Bredde</option>
                         <c:forEach var="tmpWidth" items="${requestScope.carport_widths}">
                             <option name="width">${tmpWidth}</option>
@@ -71,7 +71,7 @@
                     </select>
                 </div>
                 <div class="col-3">
-                    <select class="form-control">
+                    <select class="form-control" name="roof">
                         <option value="">Vælg Tag</option>
                         <c:forEach var="tmpRoof" items="${requestScope.carport_roofs}">
                             <option name="roof">${tmpRoof}</option>
@@ -79,7 +79,7 @@
                     </select>
                 </div>
                 <div class="col-3">
-                    <select class="form-control">
+                    <select class="form-control" name="roofPitch">
                         <option value="">Vælg Taghældning</option>
                         <c:forEach var="tmpRoofPitch" items="${requestScope.roof_pitch}">
                             <option name="roofPitch">${tmpRoofPitch}</option>
@@ -93,14 +93,14 @@
 
 
 
-            Med redskabsrum: <input type="checkbox" id="myCheck"  onclick="myFunction()">
+            Med redskabsrum: <input name="checkboxShed" type="checkbox" id="myCheck" onclick="myFunction()">
 
             <br>
             <br>
 
             <div class="row" id="shed" style="visibility: hidden;">
                 <div class="col-3">
-                    <select class="form-control">
+                    <select class="form-control" name="shedLength">
                         <option value="">Vælg Skurlængde</option>
                         <c:forEach var="tmpShedLength" items="${requestScope.shed_lengths}">
                             <option name="shedLength">${tmpShedLength}</option>
@@ -108,7 +108,7 @@
                     </select>
                 </div>
                 <div class="col-3">
-                    <select class="form-control">
+                    <select class="form-control" name="shedWidth">
                         <option value="">Vælg Skurbredde</option>
                         <c:forEach var="tmpShedWidth" items="${requestScope.shed_widths}">
                             <option name="shedWidth">${tmpShedWidth}</option>

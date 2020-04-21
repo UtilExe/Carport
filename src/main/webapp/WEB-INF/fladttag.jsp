@@ -52,7 +52,7 @@
         <p>Nedenunder kan du tilpasse mål og materialer efter egne ønsker</p>
 
         <form action="FrontController" method="post">
-            <input type="hidden" name="target" value="fladttag">
+            <input type="hidden" name="target" value="carportDesign">
 
         <div class="row">
             <div class="col-3">

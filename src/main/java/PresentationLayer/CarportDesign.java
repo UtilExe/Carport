@@ -11,7 +11,7 @@ import javax.servlet.http.HttpSession;
 
 
 
-public class FladtTag extends Command {
+public class CarportDesign extends Command {
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException {
         HttpSession session = request.getSession();
@@ -22,8 +22,10 @@ public class FladtTag extends Command {
         String tmpShedWidth = "";
         int shedWidth = 0;
         String roofMaterial = request.getParameter("roof");
-        Boolean hasShed = false;
+        boolean hasShed = false;
+        boolean roofIsFlat = false;
         int price = 0;
+        int roofPitch = 0;
 
         if (request.getParameter("checkboxShed") != null) {
             tmpShedLength = request.getParameter("shedLength");
@@ -35,8 +37,17 @@ public class FladtTag extends Command {
 
         int carportLength = Validation.getInteger(tmpCarportLength);
         int carportWidth = Validation.getInteger(tmpCarportWidth);
+        if (request.getParameter("roofPitch") != null) {
+            String tmpRoofPitch = request.getParameter("roofPitch");
+            roofPitch = Validation.getInteger(tmpRoofPitch);
+            request.setAttribute("roof_pitch", Initialisation.getRoofPitch());
+        }
 
-        LogicFacade.addFlatCarportToCustOrder(carportLength, carportWidth, hasShed, shedWidth, shedLength, roofMaterial, price);
+        if (roofPitch <= 0) {
+            roofIsFlat = true;
+        }
+
+        LogicFacade.addCarportToCustOrder(carportLength, carportWidth, hasShed, shedWidth, shedLength, roofIsFlat, roofPitch, roofMaterial, price);
 
         request.setAttribute("carport_lengths", Initialisation.getCarportLengths());
         request.setAttribute("carport_widths", Initialisation.getCarportWidths());
@@ -44,6 +55,9 @@ public class FladtTag extends Command {
         request.setAttribute("shed_lengths", Initialisation.getShedLengths());
         request.setAttribute("shed_widths", Initialisation.getShedWidths());
 
-        return "fladttag";
+        if (roofIsFlat) {
+            return "fladttag";
+        }
+        return "rejsningtag";
     }
 }

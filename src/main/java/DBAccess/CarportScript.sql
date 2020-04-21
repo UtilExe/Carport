@@ -122,15 +122,15 @@ INSERT INTO shed_measures (`description`, `measures`) VALUES ('længde', 660);
 INSERT INTO shed_measures (`description`, `measures`) VALUES ('længde', 690);
 
 CREATE TABLE `carport`.`users` (
-  `username` VARCHAR(16) NULL,
+  `name` VARCHAR(16) NULL,
   `email` VARCHAR(255) NOT NULL,
   `password` VARCHAR(32) NOT NULL,
-  `mobilNr` INT(8) ZEROFILL,
+  `mobilNr` INT(8) NOT NULL,
   `create_time` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
   `saldo` INT(6) NOT NULL DEFAULT 500,
   PRIMARY KEY (`email`));
   
-INSERT INTO `users` (`username`, `email`, `password`, `saldo`) VALUES ('Admin', 'admin@admin.com', 'admin', 10000);
+INSERT INTO `users` (`name`, `email`, `password`, `mobilNr`, `saldo`) VALUES ('Admin', 'admin@admin.com', 'admin', 10101010, 10000);
 
   /*
   CREATE TABLE `carport`.`cust_order` (

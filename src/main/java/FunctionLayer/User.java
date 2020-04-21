@@ -1,23 +1,38 @@
 package FunctionLayer;
 
 public class User {
+    private String name;
+    private String email;
+    private String password;
+    private int mobilNr;
+    private String dateCreated;
+    private int saldo;
 
-    public User( String email, String password, String role ) {
+    public User(String name, String email, String password, int mobilNr) {
+        this.name = name;
         this.email = email;
         this.password = password;
-        this.role = role;
+        this.mobilNr = mobilNr;
     }
 
-    private int id; // just used to demo retrieval of autogen keys in UserMapper
-    private String email;
-    private String password; // Should be hashed and secured
-    private String role;
+    public User(String email, String password) {
+        this.email = email;
+        this.password = password;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public String getEmail() {
         return email;
     }
 
-    public void setEmail( String email ) {
+    public void setEmail(String email) {
         this.email = email;
     }
 
@@ -25,24 +40,31 @@ public class User {
         return password;
     }
 
-    public void setPassword( String password ) {
+    public void setPassword(String password) {
         this.password = password;
     }
 
-    public String getRole() {
-        return role;
+    public int getMobilNr() {
+        return mobilNr;
     }
 
-    public void setRole( String role ) {
-        this.role = role;
+    public void setMobilNr(int mobilNr) {
+        this.mobilNr = mobilNr;
     }
 
-    public int getId() {
-        return id;
+    public String getDateCreated() {
+        return dateCreated;
     }
 
-    public void setId( int id ) {
-        this.id = id;
+    public void setDateCreated(String dateCreated) {
+        this.dateCreated = dateCreated;
     }
 
+    public int getSaldo() {
+        return saldo;
+    }
+
+    public void setSaldo(int saldo) {
+        this.saldo = saldo;
+    }
 }

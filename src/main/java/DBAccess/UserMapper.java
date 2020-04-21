@@ -2,7 +2,6 @@ package DBAccess;
 
 import FunctionLayer.LoginSampleException;
 import FunctionLayer.User;
-import FunctionLayer.tmpUser;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -12,12 +11,12 @@ import java.sql.Statement;
 
 public class UserMapper {
 
-    public static void createUser(tmpUser user) throws LoginSampleException {
+    public static void createUser(User user) throws LoginSampleException {
         try {
             Connection con = Connector.connection();
-            String SQL = "INSERT INTO carport.users (username, email, password, mobilNr) VALUES (?, ?, ?, ?)";
+            String SQL = "INSERT INTO carport.users (name, email, password, mobilNr) VALUES (?, ?, ?, ?)";
             PreparedStatement ps = con.prepareStatement( SQL, Statement.RETURN_GENERATED_KEYS );
-            ps.setString(1, user.getUsername());
+            ps.setString(1, user.getName());
             ps.setString( 2, user.getEmail());
             ps.setString( 3, user.getPassword());
             ps.setInt(4, user.getMobilNr());
@@ -30,7 +29,7 @@ public class UserMapper {
         }
     }
 
-    public static User login( String email, String password ) throws LoginSampleException {
+    public static User login(String email, String password ) throws LoginSampleException {
         try {
             Connection con = Connector.connection();
             String SQL = "SELECT id, role FROM Users "
@@ -40,10 +39,9 @@ public class UserMapper {
             ps.setString( 2, password );
             ResultSet rs = ps.executeQuery();
             if ( rs.next() ) {
-                String role = rs.getString( "role" );
-                int id = rs.getInt( "id" );
-                User user = new User( email, password, role );
-                user.setId( id );
+                String name = rs.getString("name");
+                int mobilNr = rs.getInt("mobilNr");
+                User user = new User(name, email, password, mobilNr);
                 return user;
             } else {
                 throw new LoginSampleException( "Could not validate user" );

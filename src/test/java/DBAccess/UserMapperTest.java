@@ -1,11 +1,13 @@
 package DBAccess;
 
 import FunctionLayer.LoginSampleException;
-import FunctionLayer.User;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
+
+import FunctionLayer.User;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import org.junit.Before;
@@ -69,19 +71,12 @@ public class UserMapperTest {
     }
 
     @Test
-    public void testLogin03() throws LoginSampleException {
-        // Jens is supposed to be a customer
-        User user = UserMapper.login( "jens@somewhere.com", "jensen" );
-        assertEquals( "customer", user.getRole() );
-    }
-
-    @Test
     public void testCreateUser01() throws LoginSampleException {
         // Can we create a new user - Notice, if login fails, this will fail
         // but so would login01, so this is OK
-        User original = new User( "king@kong.com", "uhahvorhemmeligt", "konge" );
-        UserMapper.createUser( original );
-        User retrieved = UserMapper.login( "king@kong.com", "uhahvorhemmeligt" );
-        assertEquals( "konge", retrieved.getRole() );
+        User original = new User("test", "test@test.com", "test", 87416585);
+        UserMapper.createUser(original);
+        User retrieved = UserMapper.login("test", "test");
+        assertEquals( "test@test.com", retrieved.getEmail());
     }
 }

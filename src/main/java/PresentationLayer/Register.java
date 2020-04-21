@@ -11,20 +11,32 @@ public class Register extends Command {
 
     @Override
     String execute( HttpServletRequest request, HttpServletResponse response ) throws LoginSampleException {
+        String username = request.getParameter( "username" );
         String email = request.getParameter( "email" );
-        String password1 = request.getParameter( "password1" );
-        String password2 = request.getParameter( "password2" );
-       if ( password1.equals( password2 ) ) {
-            User user = LogicFacade.createUser( email, password1 );
-            HttpSession session = request.getSession();
+        String password = request.getParameter( "password" );
+        String tmpMobilNr = (request.getParameter("mobilNr")).replace(" ", "");
+        int mobilNr = 0;
 
-            session.setAttribute("email",email);
-            session.setAttribute( "user", user );
-            session.setAttribute( "role", user.getRole() );
-            return user.getRole() + "page";
+        if(!(tmpMobilNr.equals(""))) {
+            mobilNr = Integer.parseInt(tmpMobilNr);
         } else {
-            throw new LoginSampleException( "the two passwords did not match" );
+            request.setAttribute("createAccountBesked1", "Du har ikke udfyldt alle felter");
+            return "createAccount";
         }
-    }
 
+        if(username.equals("") | email.equals("") | password.equals("") | mobilNr == 0) {
+            request.setAttribute("createAccountBesked1", "Du har ikke udfyldt alle felter");
+            return "createAccount";
+        }
+
+        try {
+            User user = LogicFacade.createUser(username, email, password, mobilNr);
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+        }
+
+        request.setAttribute("createAccountBesked2", "Du er nu oprettet!");
+
+        return "createAccount";
+    }
 }

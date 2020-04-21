@@ -121,7 +121,18 @@ INSERT INTO shed_measures (`description`, `measures`) VALUES ('længde', 630);
 INSERT INTO shed_measures (`description`, `measures`) VALUES ('længde', 660);
 INSERT INTO shed_measures (`description`, `measures`) VALUES ('længde', 690);
 
+CREATE TABLE `carport`.`users` (
+  `username` VARCHAR(16) NULL,
+  `email` VARCHAR(255) NOT NULL,
+  `password` VARCHAR(32) NOT NULL,
+  `mobilNr` INT(8) ZEROFILL,
+  `create_time` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
+  `saldo` INT(6) NOT NULL DEFAULT 500,
+  PRIMARY KEY (`email`));
   
+INSERT INTO `users` (`username`, `email`, `password`, `saldo`) VALUES ('Admin', 'admin@admin.com', 'admin', 10000);
+
+  /*
   CREATE TABLE `carport`.`cust_order` (
   `orderID` INT NOT NULL AUTO_INCREMENT,
   `carport_height` INT NOT NULL,
@@ -135,4 +146,4 @@ INSERT INTO shed_measures (`description`, `measures`) VALUES ('længde', 690);
   `roof_material` VARCHAR(45) NULL,
   `price` INT NULL,
   PRIMARY KEY (`orderID`));
-  
+  */

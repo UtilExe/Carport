@@ -1,0 +1,62 @@
+@startuml
+Title Domain Model
+
+
+    Carport "1" --{ "1" Shed
+    Carport "1" --{ "1" Roof
+    Roof "1" --{ "1" RoofFlat
+    Roof "1" --{ "1" RoofPitched
+    User "1" --{ "*" Order
+    Order "1" --{ "*" Orderlines
+
+
+class Carport {
+    width;
+    length;
+}
+
+class Shed {
+    width;
+    length;
+}
+
+abstract class Roof {
+    roofMaterial;
+}
+
+class RoofFlat {
+    roofMaterial;
+    roofPitch;
+}
+
+class RoofPitched {
+    roofMaterial;
+}
+
+class User {
+    username;
+    email;
+    password;
+    mobilNr;
+    saldo;
+}
+
+class Order {
+    ID;
+    date;
+    email;
+    price;
+}
+
+class Orderlines {
+    OrderlinesID;
+    OrderID;
+    carportDescription;
+    carportPrice;
+    shedDescription;
+    shedPrice;
+    roofDescription;
+    roofPrice;
+}
+
+@enduml

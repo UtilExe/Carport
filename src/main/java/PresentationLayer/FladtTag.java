@@ -25,7 +25,7 @@ public class FladtTag extends Command {
         Boolean hasShed = false;
         int price = 0;
 
-        if(request.getParameter("checkboxShed").equals("on")) {
+        if (request.getParameter("checkboxShed") != null) {
             tmpShedLength = request.getParameter("shedLength");
             tmpShedWidth = request.getParameter("shedWidth");
             shedLength = Validation.getInteger(tmpShedLength);

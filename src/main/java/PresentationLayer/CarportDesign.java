@@ -1,14 +1,11 @@
 package PresentationLayer;
 
-import FunctionLayer.Initialisation;
-import FunctionLayer.LogicFacade;
-import FunctionLayer.LoginSampleException;
-import FunctionLayer.Validation;
+import FunctionLayer.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
+import java.util.ArrayList;
 
 
 public class CarportDesign extends Command {
@@ -48,6 +45,10 @@ public class CarportDesign extends Command {
         }
 
         LogicFacade.addCarportToCustOrder(carportLength, carportWidth, hasShed, shedWidth, shedLength, roofIsFlat, roofPitch, roofMaterial, price);
+        ArrayList<Carport> tmpCart = new ArrayList<>();
+        Cart cart = new Cart(tmpCart);
+        Carport carport = new Carport(carportLength, carportWidth, hasShed, shedWidth, shedLength, roofIsFlat, roofPitch, roofMaterial);
+        cart.addToCart(tmpCart, carport);
 
         request.setAttribute("carport_lengths", Initialisation.getCarportLengths());
         request.setAttribute("carport_widths", Initialisation.getCarportWidths());

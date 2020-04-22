@@ -176,3 +176,7 @@
     font-weight: bold;
     font-size: 24px;
 }
+
+.nbText {
+    opacity: 0.6;
+}

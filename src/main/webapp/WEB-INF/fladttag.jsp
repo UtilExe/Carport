@@ -49,7 +49,8 @@
         </div>
 
         <h3>Byg din egen Carport</h3>
-        <p>Nedenunder kan du tilpasse mål og materialer efter egne ønsker</p>
+        <p class="mb-0">Nedenunder kan du tilpasse mål og materialer efter egne ønsker.</p>
+        <p class="nbText">NB: Nedenstående mål er i centimeter.</p>
 
         <form action="FrontController" method="post">
             <input type="hidden" name="target" value="carportDesign">
@@ -58,17 +59,17 @@
             <div class="col-3">
 
                     <select class="form-control" name="length">
-                    <option value="">Vælg Længde</option>
+                    <option value="">Vælg Længde (i cm)</option>
                     <c:forEach var="tmpLength" items="${requestScope.carport_lengths}">
-                        <option name="length">${tmpLength} cm</option>
+                        <option name="length">${tmpLength}</option>
                     </c:forEach>
                 </select>
             </div>
             <div class="col-3">
                 <select class="form-control" name="width">
-                    <option value="">Vælg Bredde</option>
+                    <option value="">Vælg Bredde (i cm)</option>
                     <c:forEach var="tmpWidth" items="${requestScope.carport_widths}">
-                        <option name="width">${tmpWidth} cm</option>
+                        <option name="width">${tmpWidth}</option>
                     </c:forEach>
                 </select>
             </div>
@@ -93,17 +94,17 @@
         <div class="row" id="shed" style="visibility: hidden;">
             <div class="col-3">
                 <select class="form-control" name="shedLength">
-                    <option value="">Vælg Skurlængde</option>
+                    <option value="">Vælg Skurlængde (i cm)</option>
                     <c:forEach var="tmpShedLength" items="${requestScope.shed_lengths}">
-                        <option name="shedLength">${tmpShedLength} cm</option>
+                        <option name="shedLength">${tmpShedLength}</option>
                     </c:forEach>
                 </select>
             </div>
-            <div class="col-4">
+            <div class="col-3">
                 <select class="form-control" name="shedWidth">
-                    <option value="">Vælg Skurbredde</option>
+                    <option value="">Vælg Skurbredde (i cm)</option>
                     <c:forEach var="tmpShedWidth" items="${requestScope.shed_widths}">
-                        <option name="shedWidth">${tmpShedWidth} cm</option>
+                        <option name="shedWidth">${tmpShedWidth}</option>
                     </c:forEach>
                 </select>
             </div>

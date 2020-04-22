@@ -49,6 +49,7 @@ public class CarportDesign extends Command {
         Cart cart = new Cart(tmpCart);
         Carport carport = new Carport(carportLength, carportWidth, hasShed, shedWidth, shedLength, roofIsFlat, roofPitch, roofMaterial);
         cart.addToCart(tmpCart, carport);
+        System.out.println(cart.toString());
 
         request.setAttribute("carport_lengths", Initialisation.getCarportLengths());
         request.setAttribute("carport_widths", Initialisation.getCarportWidths());

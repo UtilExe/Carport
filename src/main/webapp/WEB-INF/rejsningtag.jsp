@@ -58,7 +58,7 @@
                     <select class="form-control" name="length">
                         <option value="">Vælg Længde</option>
                         <c:forEach var="tmpLength" items="${requestScope.carport_lengths}">
-                            <option name="length">${tmpLength}</option>
+                            <option name="length">${tmpLength} cm</option>
                         </c:forEach>
                     </select>
                 </div>
@@ -66,7 +66,7 @@
                     <select class="form-control" name="width">
                         <option value="">Vælg Bredde</option>
                         <c:forEach var="tmpWidth" items="${requestScope.carport_widths}">
-                            <option name="width">${tmpWidth}</option>
+                            <option name="width">${tmpWidth} cm</option>
                         </c:forEach>
                     </select>
                 </div>
@@ -82,7 +82,7 @@
                     <select class="form-control" name="roofPitch">
                         <option value="">Vælg Taghældning</option>
                         <c:forEach var="tmpRoofPitch" items="${requestScope.roof_pitch}">
-                            <option name="roofPitch">${tmpRoofPitch}</option>
+                            <option name="roofPitch">${tmpRoofPitch} grader</option>
                         </c:forEach>
                     </select>
                 </div>
@@ -103,7 +103,7 @@
                     <select class="form-control" name="shedLength">
                         <option value="">Vælg Skurlængde</option>
                         <c:forEach var="tmpShedLength" items="${requestScope.shed_lengths}">
-                            <option name="shedLength">${tmpShedLength}</option>
+                            <option name="shedLength">${tmpShedLength} cm</option>
                         </c:forEach>
                     </select>
                 </div>
@@ -111,7 +111,7 @@
                     <select class="form-control" name="shedWidth">
                         <option value="">Vælg Skurbredde</option>
                         <c:forEach var="tmpShedWidth" items="${requestScope.shed_widths}">
-                            <option name="shedWidth">${tmpShedWidth}</option>
+                            <option name="shedWidth">${tmpShedWidth} cm</option>
                         </c:forEach>
                     </select>
                 </div>

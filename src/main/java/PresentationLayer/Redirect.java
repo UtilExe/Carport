@@ -16,6 +16,7 @@ public class Redirect extends Command{
         if(destination.equals("fladttag")) {
             request.setAttribute("carport_lengths", Initialisation.getCarportLengths());
             request.setAttribute("carport_widths", Initialisation.getCarportWidths());
+            request.setAttribute("carport_heights", Initialisation.getCarportHeights());
             request.setAttribute("carport_roofs", Initialisation.getRoofs());
             request.setAttribute("shed_lengths", Initialisation.getShedLengths());
             request.setAttribute("shed_widths", Initialisation.getShedWidths());
@@ -23,6 +24,7 @@ public class Redirect extends Command{
         if(destination.equals("rejsningtag")) {
             request.setAttribute("carport_lengths", Initialisation.getCarportLengths());
             request.setAttribute("carport_widths", Initialisation.getCarportWidths());
+            request.setAttribute("carport_heights", Initialisation.getCarportHeights());
             request.setAttribute("carport_roofs", Initialisation.getRoofs());
             request.setAttribute("shed_lengths", Initialisation.getShedLengths());
             request.setAttribute("shed_widths", Initialisation.getShedWidths());

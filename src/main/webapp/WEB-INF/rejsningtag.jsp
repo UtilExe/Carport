@@ -105,8 +105,7 @@
 
             <br>
 
-
-
+            <p class="beskedRød">${requestScope.fejl}</p>
             Med redskabsrum: <input name="checkboxShed" type="checkbox" id="myCheck" onclick="myFunction()">
 
             <br>

@@ -95,8 +95,8 @@
 
         <br>
 
+            <p class="beskedRød">${requestScope.fejl}</p>
         Med redskabsrum: <input name="checkboxShed" type="checkbox" id="myCheck" onclick="myFunction()">
-
         <br>
         <br>
 
@@ -125,7 +125,6 @@
             <button class="btn btn-primary" type="submit">Indtast</button>
         </div>
         </form>
-
 
         <script>
             function myFunction() {

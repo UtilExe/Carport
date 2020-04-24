@@ -24,6 +24,7 @@ public class CarportDesign extends Command {
         boolean roofIsFlat = false;
         int price = 0;
         int roofPitch = 0;
+        boolean invalidInput = false;
 
         if (request.getParameter("checkboxShed") != null) {
             tmpShedLength = request.getParameter("shedLength");
@@ -46,12 +47,19 @@ public class CarportDesign extends Command {
             roofIsFlat = true;
         }
 
-        LogicFacade.addCarportToCustOrder(carportLength, carportWidth, carportHeight, hasShed, shedWidth, shedLength, roofIsFlat, roofPitch, roofMaterial, price);
-        ArrayList<Carport> tmpCart = new ArrayList<>();
-        Cart cart = new Cart(tmpCart);
-        Carport carport = new Carport(carportLength, carportWidth, carportHeight, hasShed, shedWidth, shedLength, roofIsFlat, roofPitch, roofMaterial);
-        cart.addToCart(tmpCart, carport);
-        System.out.println(cart.toString());
+        if (shedWidth > carportWidth || shedLength > carportLength) {
+            request.setAttribute("fejl", "Skurrets bredde er større end carporten! Prøv igen med korrekte værdier");
+            invalidInput = true;
+        }
+
+        if (invalidInput != true) {
+            LogicFacade.addCarportToCustOrder(carportLength, carportWidth, carportHeight, hasShed, shedWidth, shedLength, roofIsFlat, roofPitch, roofMaterial, price);
+            ArrayList<Carport> tmpCart = new ArrayList<>();
+            Cart cart = new Cart(tmpCart);
+            Carport carport = new Carport(carportLength, carportWidth, carportHeight, hasShed, shedWidth, shedLength, roofIsFlat, roofPitch, roofMaterial);
+            cart.addToCart(tmpCart, carport);
+            System.out.println(cart.toString());
+        }
 
         request.setAttribute("carport_lengths", Initialisation.getCarportLengths());
         request.setAttribute("carport_widths", Initialisation.getCarportWidths());
@@ -62,7 +70,8 @@ public class CarportDesign extends Command {
 
         if (roofIsFlat) {
             return "fladttag";
+        } else {
+            return "rejsningtag";
         }
-        return "rejsningtag";
     }
 }

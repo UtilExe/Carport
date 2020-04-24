@@ -72,6 +72,19 @@
                     </select>
                 </div>
                 <div class="col-3">
+                    <select class="form-control" name="height">
+                        <option value="">Vælg Højde (i cm)</option>
+                        <c:forEach var="tmpHeight" items="${requestScope.carport_heights}">
+                            <option name="height">${tmpHeight}</option>
+                        </c:forEach>
+                    </select>
+                </div>
+            </div>
+
+            <br>
+
+            <div class="row">
+                <div class="col-3">
                     <select class="form-control" name="roof">
                         <option value="">Vælg Tag</option>
                         <c:forEach var="tmpRoof" items="${requestScope.carport_roofs}">
@@ -87,7 +100,7 @@
                         </c:forEach>
                     </select>
                 </div>
-                <div class="col-3"></div>
+                <div class="col-6"></div>
             </div>
 
             <br>

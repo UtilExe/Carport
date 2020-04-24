@@ -7,8 +7,52 @@ CREATE TABLE `carport`.`carport_measures` (
   `measures` INT NOT NULL,
   `units` VARCHAR(45) DEFAULT 'cm'
   );
--- Indsæt data i tabellen:
-INSERT INTO carport_measures (`description`, `measures`) VALUES ('bredde', 240);
+  
+CREATE TABLE `carport`.`roof_data` (
+  `roof_pitch` INT NULL,
+  `roof_material` VARCHAR(45) NULL
+  );
+  
+CREATE TABLE `carport`.`shed_measures` (
+  `description` VARCHAR(45) NOT NULL,
+  `measures` INT NULL,
+  `units` VARCHAR(45) DEFAULT 'cm'
+  );
+
+CREATE TABLE `carport`.`users` (
+  `name` VARCHAR(16) NULL,
+  `email` VARCHAR(255) NOT NULL,
+  `password` VARCHAR(32) NOT NULL,
+  `mobilNr` INT(8) NOT NULL,
+  `create_time` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
+  `saldo` INT(6) NOT NULL DEFAULT 500,
+  PRIMARY KEY (`email`));
+  
+INSERT INTO `users` (`name`, `email`, `password`, `mobilNr`, `saldo`) VALUES ('Admin', 'admin@admin.com', 'admin', 10101010, 10000);
+
+CREATE TABLE carport.material_list (
+Category VARCHAR(45) NOT NULL,
+Price_Unit int(8) NOT NUll,
+Unit VARCHAR(45) NOT NULL,
+Description VARCHAR(45) NOT NULL
+);
+  
+  CREATE TABLE `carport`.`cust_order` (
+  `orderID` INT NOT NULL AUTO_INCREMENT,
+  `carport_length` INT NOT NULL,
+  `carport_width` INT NOT NULL,
+  `carport_height` INT NOT NULL,
+  `hasShed` TINYINT NULL,
+  `shedWidth` INT NULL,
+  `shedLength` INT NULL,
+  `roofIsFlat` TINYINT NULL,
+  `roof_pitch` INT NULL,
+  `roof_material` VARCHAR(45) NULL,
+  `price` INT NULL,
+  PRIMARY KEY (`orderID`));
+  
+  -- Indsæt data i tabellen:
+  INSERT INTO carport_measures (`description`, `measures`) VALUES ('bredde', 240);
 INSERT INTO carport_measures (`description`, `measures`) VALUES ('bredde', 270);
 INSERT INTO carport_measures (`description`, `measures`) VALUES ('bredde', 300);
 INSERT INTO carport_measures (`description`, `measures`) VALUES ('bredde', 330);
@@ -53,12 +97,7 @@ INSERT INTO carport_measures (`description`, `measures`) VALUES ('højde', 340);
 INSERT INTO carport_measures (`description`, `measures`) VALUES ('højde', 360);
 INSERT INTO carport_measures (`description`, `measures`) VALUES ('højde', 380);
 
-  
-CREATE TABLE `carport`.`roof_data` (
-  `roof_pitch` INT NULL,
-  `roof_material` VARCHAR(45) NULL
-  );
--- indsæt hældningsdata:
+-- Indsæt hældningsdata:
 INSERT INTO roof_data (`roof_pitch`) VALUES (15);
 INSERT INTO roof_data (`roof_pitch`) VALUES (20);
 INSERT INTO roof_data (`roof_pitch`) VALUES (25);
@@ -67,7 +106,7 @@ INSERT INTO roof_data (`roof_pitch`) VALUES (35);
 INSERT INTO roof_data (`roof_pitch`) VALUES (40);
 INSERT INTO roof_data (`roof_pitch`) VALUES (45);
 
--- indsæt materiale:
+-- Indsæt materiale:
 INSERT INTO roof_data (`roof_material`) VALUES ('Betontagsten - Rød');
 INSERT INTO roof_data (`roof_material`) VALUES ('Betontagsten - Teglrød');
 INSERT INTO roof_data (`roof_material`) VALUES ('Betontagsten - Brun');
@@ -83,12 +122,7 @@ INSERT INTO roof_data (`roof_material`) VALUES ('Eternittag B7 - Mokka (brun)');
 INSERT INTO roof_data (`roof_material`) VALUES ('Eternittag B7 - Rødbrun');
 INSERT INTO roof_data (`roof_material`) VALUES ('Eternittag B7 - Teglrød');
 INSERT INTO roof_data (`roof_material`) VALUES ('Eternittag B7 - Rødflammet');
-  
-CREATE TABLE `carport`.`shed_measures` (
-  `description` VARCHAR(45) NOT NULL,
-  `measures` INT NULL,
-  `units` VARCHAR(45) DEFAULT 'cm'
-  );
+
 -- Indsæt data i tabellen:
 INSERT INTO shed_measures (`description`, `measures`) VALUES ('bredde', 210);
 INSERT INTO shed_measures (`description`, `measures`) VALUES ('bredde', 240);
@@ -128,29 +162,4 @@ INSERT INTO shed_measures (`description`, `measures`) VALUES ('længde', 630);
 INSERT INTO shed_measures (`description`, `measures`) VALUES ('længde', 660);
 INSERT INTO shed_measures (`description`, `measures`) VALUES ('længde', 690);
 
-CREATE TABLE `carport`.`users` (
-  `name` VARCHAR(16) NULL,
-  `email` VARCHAR(255) NOT NULL,
-  `password` VARCHAR(32) NOT NULL,
-  `mobilNr` INT(8) NOT NULL,
-  `create_time` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
-  `saldo` INT(6) NOT NULL DEFAULT 500,
-  PRIMARY KEY (`email`));
-  
-INSERT INTO `users` (`name`, `email`, `password`, `mobilNr`, `saldo`) VALUES ('Admin', 'admin@admin.com', 'admin', 10101010, 10000);
-
-  
-  CREATE TABLE `carport`.`cust_order` (
-  `orderID` INT NOT NULL AUTO_INCREMENT,
-  `carport_length` INT NOT NULL,
-  `carport_width` INT NOT NULL,
-  `carport_height` INT NOT NULL,
-  `hasShed` TINYINT NULL,
-  `shedWidth` INT NULL,
-  `shedLength` INT NULL,
-  `roofIsFlat` TINYINT NULL,
-  `roof_pitch` INT NULL,
-  `roof_material` VARCHAR(45) NULL,
-  `price` INT NULL,
-  PRIMARY KEY (`orderID`));
-  
+-- Indsæt materiale i listen

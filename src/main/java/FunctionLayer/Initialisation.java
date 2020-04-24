@@ -6,6 +6,7 @@ public class Initialisation {
     //Creating lists
     private static ArrayList<Integer> carportLengths;
     private static ArrayList<Integer> carportWidths;
+    private static ArrayList<Integer> carportHeights;
     private static ArrayList<String> roofs;
     private static ArrayList<Integer> shedLengths;
     private static ArrayList<Integer> shedWidths;
@@ -21,6 +22,12 @@ public class Initialisation {
     public static void initWidth() {
         if(carportWidths == null) {
             carportWidths = LogicFacade.getCarportWidth();
+        }
+    }
+
+    public static void initHeight() {
+        if(carportHeights == null) {
+            carportHeights = LogicFacade.getCarportHeight();
         }
     }
 
@@ -53,6 +60,7 @@ public class Initialisation {
     //Get lists
     public static ArrayList<Integer>getCarportLengths() {return carportLengths;}
     public static ArrayList<Integer> getCarportWidths() {return carportWidths;}
+    public static ArrayList<Integer> getCarportHeights() {return carportHeights;}
     public static ArrayList<String> getRoofs() {return roofs;}
     public static ArrayList<Integer> getShedLengths() {return shedLengths;}
     public static ArrayList<Integer>getShedWidths() {return shedWidths;}

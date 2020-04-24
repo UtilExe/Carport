@@ -4,6 +4,7 @@ public class Carport {
 
     private int carportLength;
     private int carportWidth;
+    private int carportHeight;
     private boolean hasShed;
     private int shedWidth;
     private int shedLength;
@@ -11,10 +12,11 @@ public class Carport {
     private int roofPitch;
     private String roofMaterial;
 
-    public Carport(int carportLength, int carportWidth, boolean hasShed, int shedWidth,
+    public Carport(int carportLength, int carportWidth, int carportHeight, boolean hasShed, int shedWidth,
                    int shedLength, boolean roofIsFlat, int roofPitch, String roofMaterial) {
         this.carportLength = carportLength;
         this.carportWidth = carportWidth;
+        this.carportHeight = carportHeight;
         this.hasShed = hasShed;
         this.shedWidth = shedWidth;
         this.shedLength = shedLength;
@@ -30,6 +32,8 @@ public class Carport {
     public int getCarportWidth() {
         return carportWidth;
     }
+
+    public int getCarportHeight() { return carportHeight; }
 
     public boolean isHasShed() {
         return hasShed;

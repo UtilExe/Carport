@@ -77,21 +77,22 @@ public class CarportMapper {
         return pitch;
     }
 
-    public static void addCarportToCustOrder(int carportLength, int carportWidth, boolean hasShed, int shedWidth, int shedLength, boolean roofIsFlat, int roofPitch, String roofMaterial, int price) {
+    public static void addCarportToCustOrder(int carportLength, int carportWidth, int carportHeight, boolean hasShed, int shedWidth, int shedLength, boolean roofIsFlat, int roofPitch, String roofMaterial, int price) {
         try {
             Connection con = Connector.connection();
-            String SQL = "INSERT INTO carport.cust_order (carport_length, carport_width, hasShed, shedWidth, " +
-                    "shedLength, roofIsFlat, roof_pitch, roof_material, price) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            String SQL = "INSERT INTO carport.cust_order (carport_length, carport_width, carport_height, hasShed, shedWidth, " +
+                    "shedLength, roofIsFlat, roof_pitch, roof_material, price) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement ps = con.prepareStatement( SQL, Statement.RETURN_GENERATED_KEYS );
             ps.setInt(1, carportLength);
             ps.setInt( 2, carportWidth);
-            ps.setBoolean( 3, hasShed);
-            ps.setInt(4, shedWidth);
-            ps.setInt(5, shedLength);
-            ps.setBoolean(6, roofIsFlat);
-            ps.setInt(7, roofPitch);
-            ps.setString(8, roofMaterial);
-            ps.setInt(9, price);
+            ps.setInt( 3, carportHeight);
+            ps.setBoolean( 4, hasShed);
+            ps.setInt(5, shedWidth);
+            ps.setInt(6, shedLength);
+            ps.setBoolean(7, roofIsFlat);
+            ps.setInt(8, roofPitch);
+            ps.setString(9, roofMaterial);
+            ps.setInt(10, price);
 
             ps.executeUpdate();
             ResultSet ids = ps.getGeneratedKeys();

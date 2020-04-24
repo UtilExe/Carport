@@ -27,6 +27,11 @@ public class LogicFacade {
         return carportWidth;
     }
 
+    public static ArrayList<Integer> getCarportHeight() {
+        ArrayList<Integer> carportHeight = CarportMapper.getCarportMeasure("højde");
+        return carportHeight;
+    }
+
     public static ArrayList<String> getCarportRoof() {
         ArrayList<String> carportRoof = CarportMapper.getCarportRoof();
         return carportRoof;
@@ -47,8 +52,8 @@ public class LogicFacade {
         return roofPitch;
     }
 
-    public static void addCarportToCustOrder(int carportLength, int carportWidth, boolean hasShed, int shedWidth, int shedLength, boolean roofIsFlat, int roofPitch, String roofMaterial, int price) {
-        CarportMapper.addCarportToCustOrder(carportLength, carportWidth, hasShed, shedWidth, shedLength, roofIsFlat, roofPitch, roofMaterial, price);
+    public static void addCarportToCustOrder(int carportLength, int carportWidth, int carportHeight, boolean hasShed, int shedWidth, int shedLength, boolean roofIsFlat, int roofPitch, String roofMaterial, int price) {
+        CarportMapper.addCarportToCustOrder(carportLength, carportWidth, carportHeight, hasShed, shedWidth, shedLength, roofIsFlat, roofPitch, roofMaterial, price);
     }
 
 }

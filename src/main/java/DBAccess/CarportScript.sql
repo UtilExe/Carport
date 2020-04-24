@@ -46,6 +46,13 @@ INSERT INTO carport_measures (`description`, `measures`) VALUES ('længde', 690)
 INSERT INTO carport_measures (`description`, `measures`) VALUES ('længde', 720);
 INSERT INTO carport_measures (`description`, `measures`) VALUES ('længde', 750);
 INSERT INTO carport_measures (`description`, `measures`) VALUES ('længde', 780);
+
+INSERT INTO carport_measures (`description`, `measures`) VALUES ('højde', 300);
+INSERT INTO carport_measures (`description`, `measures`) VALUES ('højde', 320);
+INSERT INTO carport_measures (`description`, `measures`) VALUES ('højde', 340);
+INSERT INTO carport_measures (`description`, `measures`) VALUES ('højde', 360);
+INSERT INTO carport_measures (`description`, `measures`) VALUES ('højde', 380);
+
   
 CREATE TABLE `carport`.`roof_data` (
   `roof_pitch` INT NULL,
@@ -137,6 +144,7 @@ INSERT INTO `users` (`name`, `email`, `password`, `mobilNr`, `saldo`) VALUES ('A
   `orderID` INT NOT NULL AUTO_INCREMENT,
   `carport_length` INT NOT NULL,
   `carport_width` INT NOT NULL,
+  `carport_height` INT NOT NULL,
   `hasShed` TINYINT NULL,
   `shedWidth` INT NULL,
   `shedLength` INT NULL,

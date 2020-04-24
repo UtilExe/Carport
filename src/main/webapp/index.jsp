@@ -13,6 +13,7 @@
     public void jspInit(){
         Initialisation.initLengths();
         Initialisation.initWidth();
+        Initialisation.initHeight();
         Initialisation.initRoof();
         Initialisation.initShedLengths();
         Initialisation.initShedWidths();
@@ -22,7 +23,8 @@
 
 <%
     request.setAttribute("carport_lengths", Initialisation.getCarportLengths());
-    request.setAttribute("carport_width", Initialisation.getCarportWidths());
+    request.setAttribute("carport_widths", Initialisation.getCarportWidths());
+    request.setAttribute("carport_heights", Initialisation.getCarportHeights());
     request.setAttribute("carport_roofs", Initialisation.getRoofs());
     request.setAttribute("shed_lengths", Initialisation.getShedLengths());
     request.setAttribute("shed_widths", Initialisation.getShedWidths());

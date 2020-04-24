@@ -14,6 +14,7 @@ public class CarportDesign extends Command {
         HttpSession session = request.getSession();
         String tmpCarportLength = request.getParameter("length");
         String tmpCarportWidth = request.getParameter("width");
+        String tmpCarportHeight = request.getParameter("height");
         String tmpShedLength = "";
         int shedLength = 0;
         String tmpShedWidth = "";
@@ -34,6 +35,7 @@ public class CarportDesign extends Command {
 
         int carportLength = Validation.getInteger(tmpCarportLength);
         int carportWidth = Validation.getInteger(tmpCarportWidth);
+        int carportHeight = Validation.getInteger(tmpCarportHeight);
         if (request.getParameter("roofPitch") != null) {
             String tmpRoofPitch = request.getParameter("roofPitch");
             roofPitch = Validation.getInteger(tmpRoofPitch);
@@ -44,15 +46,16 @@ public class CarportDesign extends Command {
             roofIsFlat = true;
         }
 
-        LogicFacade.addCarportToCustOrder(carportLength, carportWidth, hasShed, shedWidth, shedLength, roofIsFlat, roofPitch, roofMaterial, price);
+        LogicFacade.addCarportToCustOrder(carportLength, carportWidth, carportHeight, hasShed, shedWidth, shedLength, roofIsFlat, roofPitch, roofMaterial, price);
         ArrayList<Carport> tmpCart = new ArrayList<>();
         Cart cart = new Cart(tmpCart);
-        Carport carport = new Carport(carportLength, carportWidth, hasShed, shedWidth, shedLength, roofIsFlat, roofPitch, roofMaterial);
+        Carport carport = new Carport(carportLength, carportWidth, carportHeight, hasShed, shedWidth, shedLength, roofIsFlat, roofPitch, roofMaterial);
         cart.addToCart(tmpCart, carport);
         System.out.println(cart.toString());
 
         request.setAttribute("carport_lengths", Initialisation.getCarportLengths());
         request.setAttribute("carport_widths", Initialisation.getCarportWidths());
+        request.setAttribute("carport_heights", Initialisation.getCarportHeights());
         request.setAttribute("carport_roofs", Initialisation.getRoofs());
         request.setAttribute("shed_lengths", Initialisation.getShedLengths());
         request.setAttribute("shed_widths", Initialisation.getShedWidths());

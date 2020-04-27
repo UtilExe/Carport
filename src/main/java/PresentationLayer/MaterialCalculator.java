@@ -1,10 +1,12 @@
 package PresentationLayer;
 
 import FunctionLayer.*;
+import com.sun.prism.Material;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class MaterialCalculator extends Command {
@@ -94,5 +96,29 @@ public class MaterialCalculator extends Command {
 
     // ANTAGELSE: Uanset carport-mål skal afstanden fra det yderste
     // af carport til rem være 35 cm på hver side (30 cm bagtil).
+
+
+    public void getStolper(double højde, double længde) {
+        ArrayList<Double> stolper = new ArrayList<Double>();
+        //if(skur)
+
+        //if(ikke skur)
+
+
+        int pillars = calcPillarAmount((int)længde);
+        double stolpeLength1st = højde;
+        stolper.add(stolpeLength1st);
+
+        double tmpStolpeHeight = højde;
+        for(int i=0; i < pillars; i++) {
+            tmpStolpeHeight = tmpStolpeHeight + Math.tan((2*Math.PI)/180)*300;
+            stolper.add(tmpStolpeHeight);
+        }
+
+        for(double d: stolper) {
+            System.out.println(d);
+        }
+
+    }
 
 }

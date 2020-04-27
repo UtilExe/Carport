@@ -171,7 +171,6 @@ INSERT INTO material_list (`category`, `price_unit`, `unit`, `type`, `descriptio
 INSERT INTO material_list (`category`, `price_unit`, `unit`, `type`, `description`) VALUES ('træ og tagplader', '2', 'cm', 'reglar', '45x95 mm., ub.');
 INSERT INTO material_list (`category`, `price_unit`, `unit`, `type`, `description`) VALUES ('træ og tagplader', '2', 'cm', 'spærtræ', '45x195 mm., ubh.');
 INSERT INTO material_list (`category`, `price_unit`, `unit`, `type`, `description`) VALUES ('træ og tagplader', '2', 'cm', 'stolpe', '97x97 mm., trykimp.');
-INSERT INTO material_list (`category`, `price_unit`, `unit`, `type`, `description`) VALUES ('træ og tagplader', '2', 'cm', 'stolpe', '45x195 mm., ubh.');
 INSERT INTO material_list (`category`, `price_unit`, `unit`, `type`, `description`) VALUES ('træ og tagplader', '250', 'stk', 'trapezplade', '100x400 cm., blåtonet');
 INSERT INTO material_list (`category`, `price_unit`, `unit`, `type`, `description`) VALUES ('beslag og skruer', '109', 'pakke', 'bundskruer', 'bundskruer, 100 stk');
 INSERT INTO material_list (`category`, `price_unit`, `unit`, `type`, `description`) VALUES ('beslag og skruer', '87', 'rulle', 'hulbånd', '1x20 mm. 10 m.');

@@ -10,15 +10,17 @@ public class main {
         //System.out.println(user.getName());
 
         MaterialCalculator calcTest = new MaterialCalculator();
+        double carportHeight = 180;
         int carportLengthCM = 780;
         int carportWidthCM = 600;
         //System.out.println(calcTest.calcPillarAmount(carportLengthCM));
         //System.out.println(calcTest.calcRaftAmount(carportLengthCM));
-        System.out.println();
+        /*System.out.println();
         int[] result = calcTest.calcBandAmount(carportLengthCM, carportWidthCM);
         for (int i : result) {
             System.out.println(i);
-        }
+        }*/
 
+        calcTest.getStolper(carportHeight, carportLengthCM);
     }
 }

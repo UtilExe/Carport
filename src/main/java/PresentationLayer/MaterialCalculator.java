@@ -98,19 +98,18 @@ public class MaterialCalculator extends Command {
     // af carport til rem være 35 cm på hver side (30 cm bagtil).
 
 
-    public void getStolper(double højde, double længde) {
+    public void getStolper(double stolpeHøjde, double længde) {
         ArrayList<Double> stolper = new ArrayList<Double>();
         //if(skur)
 
         //if(ikke skur)
 
+        int pillars = (calcPillarAmount((int)længde))/2;
+        double første = stolpeHøjde + Math.tan((2*Math.PI)/180)*30;
+        stolper.add(første);
 
-        int pillars = calcPillarAmount((int)længde);
-        double stolpeLength1st = højde;
-        stolper.add(stolpeLength1st);
-
-        double tmpStolpeHeight = højde;
-        for(int i=0; i < pillars; i++) {
+        double tmpStolpeHeight = stolpeHøjde;
+        for(int i=1; i < pillars; i++) {
             tmpStolpeHeight = tmpStolpeHeight + Math.tan((2*Math.PI)/180)*300;
             stolper.add(tmpStolpeHeight);
         }

@@ -31,10 +31,11 @@ CREATE TABLE `carport`.`users` (
 INSERT INTO `users` (`name`, `email`, `password`, `mobilNr`, `saldo`) VALUES ('Admin', 'admin@admin.com', 'admin', 10101010, 10000);
 
 CREATE TABLE carport.material_list (
-Category VARCHAR(45) NOT NULL,
-Price_Unit int(8) NOT NUll,
-Unit VARCHAR(45) NOT NULL,
-Description VARCHAR(45) NOT NULL
+`category` VARCHAR(45) NOT NULL,
+`price_unit` int(8) NOT NUll,
+`unit` VARCHAR(45) NOT NULL,
+`type` VARCHAR(45) NOT NULL,
+`description` VARCHAR(45) NOT NULL
 );
   
   CREATE TABLE `carport`.`cust_order` (
@@ -163,3 +164,30 @@ INSERT INTO shed_measures (`description`, `measures`) VALUES ('længde', 660);
 INSERT INTO shed_measures (`description`, `measures`) VALUES ('længde', 690);
 
 -- Indsæt materiale i listen
+INSERT INTO material_list (`category`, `price_unit`, `unit`, `type`, `description`) VALUES ('træ og tagplader', '2', 'cm', 'brædt', '25x200 mm., trykimp.');
+INSERT INTO material_list (`category`, `price_unit`, `unit`, `type`, `description`) VALUES ('træ og tagplader', '2', 'cm', 'brædt', '25x125 mm., trykimp.');
+INSERT INTO material_list (`category`, `price_unit`, `unit`, `type`, `description`) VALUES ('træ og tagplader', '2', 'cm', 'brædt', '19x100 mm., trykimp.');
+INSERT INTO material_list (`category`, `price_unit`, `unit`, `type`, `description`) VALUES ('træ og tagplader', '2', 'cm', 'lægte', '38x73 mm., ubh.');
+INSERT INTO material_list (`category`, `price_unit`, `unit`, `type`, `description`) VALUES ('træ og tagplader', '2', 'cm', 'reglar', '45x95 mm., ub.');
+INSERT INTO material_list (`category`, `price_unit`, `unit`, `type`, `description`) VALUES ('træ og tagplader', '2', 'cm', 'spærtræ', '45x195 mm., ubh.');
+INSERT INTO material_list (`category`, `price_unit`, `unit`, `type`, `description`) VALUES ('træ og tagplader', '2', 'cm', 'stolpe', '97x97 mm., trykimp.');
+INSERT INTO material_list (`category`, `price_unit`, `unit`, `type`, `description`) VALUES ('træ og tagplader', '2', 'cm', 'stolpe', '45x195 mm., ubh.');
+INSERT INTO material_list (`category`, `price_unit`, `unit`, `type`, `description`) VALUES ('træ og tagplader', '250', 'stk', 'trapezplade', '100x400 cm., blåtonet');
+INSERT INTO material_list (`category`, `price_unit`, `unit`, `type`, `description`) VALUES ('beslag og skruer', '109', 'pakke', 'bundskruer', 'bundskruer, 100 stk');
+INSERT INTO material_list (`category`, `price_unit`, `unit`, `type`, `description`) VALUES ('beslag og skruer', '87', 'rulle', 'hulbånd', '1x20 mm. 10 m.');
+INSERT INTO material_list (`category`, `price_unit`, `unit`, `type`, `description`) VALUES ('beslag og skruer', '32', 'stk', 'beslag', '190 mm, universal');
+INSERT INTO material_list (`category`, `price_unit`, `unit`, `type`, `description`) VALUES ('beslag og skruer', '200', 'pakke', 'skruer', '4.5x60mm., 200 stk.');
+INSERT INTO material_list (`category`, `price_unit`, `unit`, `type`, `description`) VALUES ('beslag og skruer', '220', 'pakke', 'skruer', '4.5x70 mm., 200 stk.');
+INSERT INTO material_list (`category`, `price_unit`, `unit`, `type`, `description`) VALUES ('beslag og skruer', '155', 'pakke', 'skruer', '4x50 mm., 150 stk.');
+INSERT INTO material_list (`category`, `price_unit`, `unit`, `type`, `description`) VALUES ('beslag og skruer', '230', 'pakke', 'beslagskruer', '4x50 mm., 250 stk.');
+INSERT INTO material_list (`category`, `price_unit`, `unit`, `type`, `description`) VALUES ('beslag og skruer', '3', 'stk', 'bræddebolt', '10x120 mm., 1 stk.');
+INSERT INTO material_list (`category`, `price_unit`, `unit`, `type`, `description`) VALUES ('beslag og skruer', '4', 'stk', 'firkantskiver', '40x40x11 mm., 1 stk.');
+INSERT INTO material_list (`category`, `price_unit`, `unit`, `type`, `description`) VALUES ('beslag og skruer', '110', 'sæt', 'stalddørsgreb', '50x75 mm., 1 sæt');
+INSERT INTO material_list (`category`, `price_unit`, `unit`, `type`, `description`) VALUES ('beslag og skruer', '35', 'stk', 't-hængsel', '390 mm., 1 stk.');
+INSERT INTO material_list (`category`, `price_unit`, `unit`, `type`, `description`) VALUES ('beslag og skruer', '3', 'stk', 'vinkelbeslag', '35 mm., 1 stk.');
+
+
+
+
+
+

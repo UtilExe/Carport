@@ -33,6 +33,7 @@ INSERT INTO `users` (`name`, `email`, `password`, `mobilNr`, `saldo`) VALUES ('A
 CREATE TABLE carport.material_list (
 `category` VARCHAR(45) NOT NULL,
 `price_unit` int(8) NOT NUll,
+`amount_pr_unit` int(8) NULL,
 `unit` VARCHAR(45) NOT NULL,
 `type` VARCHAR(45) NOT NULL,
 `description` VARCHAR(45) NOT NULL
@@ -172,18 +173,20 @@ INSERT INTO material_list (`category`, `price_unit`, `unit`, `type`, `descriptio
 INSERT INTO material_list (`category`, `price_unit`, `unit`, `type`, `description`) VALUES ('træ og tagplader', '2', 'cm', 'spærtræ', '45x195 mm., ubh.');
 INSERT INTO material_list (`category`, `price_unit`, `unit`, `type`, `description`) VALUES ('træ og tagplader', '2', 'cm', 'stolpe', '97x97 mm., trykimp.');
 INSERT INTO material_list (`category`, `price_unit`, `unit`, `type`, `description`) VALUES ('træ og tagplader', '250', 'stk', 'trapezplade', '100x400 cm., blåtonet');
-INSERT INTO material_list (`category`, `price_unit`, `unit`, `type`, `description`) VALUES ('beslag og skruer', '109', 'pakke', 'bundskruer', 'bundskruer, 100 stk');
-INSERT INTO material_list (`category`, `price_unit`, `unit`, `type`, `description`) VALUES ('beslag og skruer', '87', 'rulle', 'hulbånd', '1x20 mm. 10 m.');
+
+
+INSERT INTO material_list (`category`, `price_unit`,`amount_pr_unit`, `unit`, `type`, `description`) VALUES ('beslag og skruer', '109', '100', 'pakke', 'bundskruer', 'bundskruer, stk');
+INSERT INTO material_list (`category`, `price_unit`, `amount_pr_unit`, `unit`, `type`, `description`) VALUES ('beslag og skruer', '87', '10', 'rulle', 'hulbånd', '1x20 mm., meter');
 INSERT INTO material_list (`category`, `price_unit`, `unit`, `type`, `description`) VALUES ('beslag og skruer', '32', 'stk', 'beslag', '190 mm, universal');
-INSERT INTO material_list (`category`, `price_unit`, `unit`, `type`, `description`) VALUES ('beslag og skruer', '200', 'pakke', 'skruer', '4.5x60mm., 200 stk.');
-INSERT INTO material_list (`category`, `price_unit`, `unit`, `type`, `description`) VALUES ('beslag og skruer', '220', 'pakke', 'skruer', '4.5x70 mm., 200 stk.');
-INSERT INTO material_list (`category`, `price_unit`, `unit`, `type`, `description`) VALUES ('beslag og skruer', '155', 'pakke', 'skruer', '4x50 mm., 150 stk.');
-INSERT INTO material_list (`category`, `price_unit`, `unit`, `type`, `description`) VALUES ('beslag og skruer', '230', 'pakke', 'beslagskruer', '4x50 mm., 250 stk.');
-INSERT INTO material_list (`category`, `price_unit`, `unit`, `type`, `description`) VALUES ('beslag og skruer', '3', 'stk', 'bræddebolt', '10x120 mm., 1 stk.');
-INSERT INTO material_list (`category`, `price_unit`, `unit`, `type`, `description`) VALUES ('beslag og skruer', '4', 'stk', 'firkantskiver', '40x40x11 mm., 1 stk.');
-INSERT INTO material_list (`category`, `price_unit`, `unit`, `type`, `description`) VALUES ('beslag og skruer', '110', 'sæt', 'stalddørsgreb', '50x75 mm., 1 sæt');
-INSERT INTO material_list (`category`, `price_unit`, `unit`, `type`, `description`) VALUES ('beslag og skruer', '35', 'stk', 't-hængsel', '390 mm., 1 stk.');
-INSERT INTO material_list (`category`, `price_unit`, `unit`, `type`, `description`) VALUES ('beslag og skruer', '3', 'stk', 'vinkelbeslag', '35 mm., 1 stk.');
+INSERT INTO material_list (`category`, `price_unit`, `amount_pr_unit`, `unit`, `type`, `description`) VALUES ('beslag og skruer', '200', '200', 'pakke', 'skruer', '4.5x60mm., stk.');
+INSERT INTO material_list (`category`, `price_unit`, `amount_pr_unit`, `unit`, `type`, `description`) VALUES ('beslag og skruer', '220', '200', 'pakke', 'skruer', '4.5x70 mm., stk.');
+INSERT INTO material_list (`category`, `price_unit`, `amount_pr_unit`, `unit`, `type`, `description`) VALUES ('beslag og skruer', '155', '150', 'pakke', 'skruer', '4x50 mm., stk.');
+INSERT INTO material_list (`category`, `price_unit`, `amount_pr_unit`, `unit`, `type`, `description`) VALUES ('beslag og skruer', '230', '250', 'pakke', 'beslagskruer', '4x50 mm., stk.');
+INSERT INTO material_list (`category`, `price_unit`, `amount_pr_unit`, `unit`, `type`, `description`) VALUES ('beslag og skruer', '3', '1', 'stk', 'bræddebolt', '10x120 mm., stk.');
+INSERT INTO material_list (`category`, `price_unit`, `amount_pr_unit`, `unit`, `type`, `description`) VALUES ('beslag og skruer', '4', '1', 'stk', 'firkantskiver', '40x40x11 mm., stk.');
+INSERT INTO material_list (`category`, `price_unit`, `amount_pr_unit`, `unit`, `type`, `description`) VALUES ('beslag og skruer', '110', '1', 'sæt', 'stalddørsgreb', '50x75 mm., sæt');
+INSERT INTO material_list (`category`, `price_unit`, `amount_pr_unit`, `unit`, `type`, `description`) VALUES ('beslag og skruer', '35', '1', 'stk', 't-hængsel', '390 mm., stk.');
+INSERT INTO material_list (`category`, `price_unit`, `amount_pr_unit`, `unit`, `type`, `description`) VALUES ('beslag og skruer', '3', '1', 'stk', 'vinkelbeslag', '35 mm., stk.');
 
 
 

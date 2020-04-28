@@ -11,7 +11,7 @@ public class main {
     public static void main(String[] args) throws LoginSampleException {
         //User user = LogicFacade.createUser("test", "test@gmail.com", "test", 12345678);
         //System.out.println(user.getName());
-        double carportHeight = 180;
+        int carportHeight = 220;
         int carportLengthCM = 780;
         int carportWidthCM = 600;
         final int AMOUNT_OF_HEADS = 2;
@@ -21,6 +21,7 @@ public class main {
         int rolesOfBand;
         final int RAFT_ID = 6;
         final int BAND_ID = 10;
+        final int FASCIA_ID = 1;
 
 
 
@@ -34,6 +35,7 @@ public class main {
         ArrayList<String> heads = MaterialMapper.getRemOrRaftData(RAFT_ID, carportLengthCM, AMOUNT_OF_HEADS );
         ArrayList<String> rafts = MaterialMapper.getRemOrRaftData(RAFT_ID, carportWidthCM, amountOfRafts);
         ArrayList<String> bands = MaterialMapper.getBandData(BAND_ID, bandLength, rolesOfBand);
+
         System.out.println("Info om rem:" + heads);
         System.out.println("Info om spær:" + rafts);
         System.out.println("Info om hulbånd:" + bands);
@@ -48,6 +50,6 @@ public class main {
             System.out.println(i);
         }*/
 
-        //calcTest.getStolper(carportHeight, carportLengthCM);
+        calcTest.getPillarHeight(carportHeight, carportLengthCM);
     }
 }

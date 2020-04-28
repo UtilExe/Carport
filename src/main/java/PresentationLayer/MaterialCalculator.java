@@ -108,26 +108,42 @@ public class MaterialCalculator extends Command {
     // af carport til rem være 35 cm på hver side (30 cm bagtil).
 
 
-    public void getStolper(double stolpeHøjde, double længde) {
+    public ArrayList<Double> getPillarHeight(int carportHeight, double længde) {
         ArrayList<Double> stolper = new ArrayList<Double>();
+        final int HEAD_ID = 6;
+        final int FACIA_ID = 1;
+        final int GROUND_DEPTH = 90;
+        final int DIST_BEHIND_CARPORT = 30;
+        double headHeight = MaterialMapper.getHeadHeightFromDimensionMeasureInCM(HEAD_ID);
+        double fasciaBoardHeight = MaterialMapper.getHeadHeightFromDimensionMeasureInCM(FACIA_ID);
+        double pillarHeight = carportHeight - headHeight - fasciaBoardHeight;
+
+
         //if(skur)
 
         //if(ikke skur)
 
         int pillars = (calcPillarAmount((int)længde))/2;
-        double første = stolpeHøjde + Math.tan((2*Math.PI)/180)*30;
+        double første = pillarHeight + Math.tan((2*Math.PI)/180)*DIST_BEHIND_CARPORT;
+        første = roundToTwo(første);
+        første += GROUND_DEPTH;
         stolper.add(første);
 
-        double tmpStolpeHeight = stolpeHøjde;
+        double tmpStolpeHeight = pillarHeight;
         for(int i=1; i < pillars; i++) {
             tmpStolpeHeight = tmpStolpeHeight + Math.tan((2*Math.PI)/180)*300;
-            stolper.add(tmpStolpeHeight);
+            double roundedNum = roundToTwo(tmpStolpeHeight);
+            roundedNum += GROUND_DEPTH;
+            stolper.add(roundedNum);
         }
+        return stolper;
+    }
 
-        for(double d: stolper) {
-            System.out.println(d);
-        }
-
+    public double roundToTwo(double number) {
+        String rounder = String.format("%1.2f", number);
+        rounder = rounder.replace(',', '.');
+        number = Double.valueOf(rounder);
+        return number;
     }
 
 }

@@ -48,7 +48,7 @@ public class MaterialMapper {
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 amountPrUnit = rs.getString("amount_pr_unit");
-                splittedArr = splitter(amountPrUnit);
+                splittedArr = splitter(amountPrUnit, ", ");
                 resultAmount = Integer.parseInt(splittedArr[0]);
             }
 
@@ -75,7 +75,7 @@ public class MaterialMapper {
                 String description = rs.getString("description");
                 String unit = rs.getString("unit");
                 String amountPrUnit = rs.getString("amount_pr_unit");
-                amountPrUnitSplitted = splitter(amountPrUnit);
+                amountPrUnitSplitted = splitter(amountPrUnit, ", ");
                 int amountPrUnitNumber = Integer.parseInt(amountPrUnitSplitted[0]);
                 String amountPrUnitType = amountPrUnitSplitted[1];
                 data.add(category);
@@ -91,10 +91,39 @@ public class MaterialMapper {
         return data;
     }
 
-    public static String[] splitter(String strFromDB) {
+    public static String[] splitter(String strFromDB, String regex) {
         String[] splittedString = new String[2];
-        splittedString = strFromDB.split(", ");
+        splittedString = strFromDB.split(regex);
         return splittedString;
+    }
+
+    public static double getHeadHeightFromDimensionMeasureInCM(int ID) {
+        String description = "";
+        double result = 0;
+        String isolatingHeight = "";
+        String writingHeight = "";
+        String[] descriptionSplitted = new String[2];
+
+        try {
+            Connection con = Connector.connection();
+            String SQL = "SELECT `description` FROM carport.material_list WHERE `ID`=?;";
+            PreparedStatement ps = con.prepareStatement(SQL);
+            ps.setInt(1, ID);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                description = rs.getString("description");
+                descriptionSplitted = splitter(description, "x");
+                isolatingHeight = descriptionSplitted[1];
+                descriptionSplitted = splitter(isolatingHeight, " ");
+                isolatingHeight = descriptionSplitted[0];
+                result = Double.parseDouble(isolatingHeight);
+                result /= 10;
+            }
+
+        } catch (SQLException | ClassNotFoundException ex) {
+            ex.printStackTrace();
+        }
+        return result;
     }
 
 

@@ -31,13 +31,14 @@ CREATE TABLE `carport`.`users` (
 INSERT INTO `users` (`name`, `email`, `password`, `mobilNr`, `saldo`) VALUES ('Admin', 'admin@admin.com', 'admin', 10101010, 10000);
 
 CREATE TABLE `carport`.`material_list` (
+`ID` INT AUTO_INCREMENT,
 `category` VARCHAR(45) NOT NULL,
 `price_unit` int(8) NOT NUll,
 `amount_pr_unit` VARCHAR(45) NULL,
 `unit` VARCHAR(45) NOT NULL,
 `type` VARCHAR(45) NOT NULL,
-`description` VARCHAR(45) NOT NULL
-);
+`description` VARCHAR(45) NOT NULL,
+PRIMARY KEY (`ID`));
   
   CREATE TABLE `carport`.`cust_order` (
   `orderID` INT NOT NULL AUTO_INCREMENT,

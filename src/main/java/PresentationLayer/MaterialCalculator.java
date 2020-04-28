@@ -97,7 +97,8 @@ public class MaterialCalculator extends Command {
 
     public int getRolesAmountBand(int bandLength){
         int result;
-        final int BAND_PR_ROLES = MaterialMapper.getAmountPrUnit("hulbånd");
+        final int BAND_ID = 10;
+        final int BAND_PR_ROLES = MaterialMapper.getAmountPrUnit(BAND_ID);
         double bandLengthToM = bandLength/100.0;
         result = (int) Math.ceil(bandLengthToM/BAND_PR_ROLES);
         return result;

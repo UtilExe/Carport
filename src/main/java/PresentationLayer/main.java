@@ -19,6 +19,9 @@ public class main {
         int bandLength;
         int[] band = new int[4];
         int rolesOfBand;
+        final int RAFT_ID = 6;
+        final int BAND_ID = 10;
+
 
 
 
@@ -28,9 +31,9 @@ public class main {
         rolesOfBand = calcTest.getRolesAmountBand(bandLength);
         amountOfRafts = calcTest.calcRaftAmount(carportLengthCM);
 
-        ArrayList<String> heads = MaterialMapper.getRemOrRaftData("spærtræ", carportLengthCM, AMOUNT_OF_HEADS );
-        ArrayList<String> rafts = MaterialMapper.getRemOrRaftData("spærtræ", carportWidthCM, amountOfRafts);
-        ArrayList<String> bands = MaterialMapper.getBandData("hulbånd", bandLength, rolesOfBand);
+        ArrayList<String> heads = MaterialMapper.getRemOrRaftData(RAFT_ID, carportLengthCM, AMOUNT_OF_HEADS );
+        ArrayList<String> rafts = MaterialMapper.getRemOrRaftData(RAFT_ID, carportWidthCM, amountOfRafts);
+        ArrayList<String> bands = MaterialMapper.getBandData(BAND_ID, bandLength, rolesOfBand);
         System.out.println("Info om rem:" + heads);
         System.out.println("Info om spær:" + rafts);
         System.out.println("Info om hulbånd:" + bands);

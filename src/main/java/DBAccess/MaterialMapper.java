@@ -7,20 +7,20 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class MaterialMapper {
-    public static ArrayList<String> getRemOrRaftData(String type, int carportMeasure, int tmpAmount) {
+    public static ArrayList<String> getRemOrRaftData(int ID, int carportMeasure, int tmpAmount) {
         ArrayList<String> data = new ArrayList<>();
         String amount = String.valueOf(tmpAmount);
         String carpMeasure = String.valueOf(carportMeasure);
 
         try {
             Connection con = Connector.connection();
-            String SQL = "SELECT `category`, `type`, `description` FROM carport.material_list WHERE `type`=?;";
+            String SQL = "SELECT `category`, `type`, `description` FROM carport.material_list WHERE `ID`=?;";
             PreparedStatement ps = con.prepareStatement(SQL);
-            ps.setString(1, type);
+            ps.setInt(1, ID);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 String category = rs.getString("category");
-                type = rs.getString("type");
+                String type = rs.getString("type");
                 String description = rs.getString("description");
                 data.add(category);
                 data.add(type);
@@ -35,16 +35,16 @@ public class MaterialMapper {
     }
 
 
-    public static int getAmountPrUnit(String type) {
+    public static int getAmountPrUnit(int ID) {
         String amountPrUnit = "";
         int resultAmount = 0;
         String[] splittedArr = new String[2];
 
         try {
             Connection con = Connector.connection();
-            String SQL = "SELECT `amount_pr_unit` FROM carport.material_list WHERE `type`=?;";
+            String SQL = "SELECT `amount_pr_unit` FROM carport.material_list WHERE `ID`=?;";
             PreparedStatement ps = con.prepareStatement(SQL);
-            ps.setString(1, type);
+            ps.setInt(1, ID);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 amountPrUnit = rs.getString("amount_pr_unit");
@@ -58,20 +58,20 @@ public class MaterialMapper {
         return resultAmount;
     }
 
-    public static ArrayList<String> getBandData(String type, int bandLength, int rolesOfBand) {
+    public static ArrayList<String> getBandData(int ID, int bandLength, int rolesOfBand) {
         ArrayList<String> data = new ArrayList<>();
         double bandLengthToMeters = bandLength / 100.0;
         String[] amountPrUnitSplitted = new String[2];
 
         try {
             Connection con = Connector.connection();
-            String SQL = "SELECT `category`, `unit`, `amount_pr_unit`, `type`, `description` FROM carport.material_list WHERE `type`=?;";
+            String SQL = "SELECT `category`, `unit`, `amount_pr_unit`, `type`, `description` FROM carport.material_list WHERE `ID`=?;";
             PreparedStatement ps = con.prepareStatement(SQL);
-            ps.setString(1, type);
+            ps.setInt(1, ID);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 String category = rs.getString("category");
-                type = rs.getString("type");
+                String type = rs.getString("type");
                 String description = rs.getString("description");
                 String unit = rs.getString("unit");
                 String amountPrUnit = rs.getString("amount_pr_unit");

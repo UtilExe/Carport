@@ -126,6 +126,36 @@ public class MaterialMapper {
         return result;
     }
 
+    public static ArrayList<String> getPillarData(int ID, int pillarAmount) {
+        ArrayList<String> data = new ArrayList<>();
+        String[] descriptionSplitted = new String[2];
+
+        try {
+            Connection con = Connector.connection();
+            String SQL = "SELECT `category`, `type`, `description` FROM carport.material_list WHERE `ID`=?;";
+            PreparedStatement ps = con.prepareStatement(SQL);
+            ps.setInt(1, ID);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                String category = rs.getString("category");
+                String type = rs.getString("type");
+                String description = rs.getString("description");
+
+                data.add(category);
+                data.add(type);
+                data.add(description);
+                data.add("Antal stolper: " + pillarAmount);
+                for(int i = 1; i < pillarAmount; i++) {
+                    data.add("Stolpe " + i + ": " +);
+                    // GØR LIGESOM I PDF MED ANTAL I FORHOLD TIL MÅL (2 STOLPER AF 271.55 OG 2 STOLPER AF 280.98)
+                }
+            }
+        } catch (SQLException | ClassNotFoundException ex) {
+            ex.printStackTrace();
+        }
+        return data;
+    }
+
 
 }
 

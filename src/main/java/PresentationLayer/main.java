@@ -22,6 +22,8 @@ public class main {
         final int RAFT_ID = 6;
         final int BAND_ID = 10;
         final int FASCIA_ID = 1;
+        final int PILLAR_ID = 7;
+        int pillarAmount;
 
 
 
@@ -31,10 +33,12 @@ public class main {
         bandLength = band[3];
         rolesOfBand = calcTest.getRolesAmountBand(bandLength);
         amountOfRafts = calcTest.calcRaftAmount(carportLengthCM);
+        pillarAmount = calcTest.calcPillarAmount(carportLengthCM);
 
         ArrayList<String> heads = MaterialMapper.getRemOrRaftData(RAFT_ID, carportLengthCM, AMOUNT_OF_HEADS );
         ArrayList<String> rafts = MaterialMapper.getRemOrRaftData(RAFT_ID, carportWidthCM, amountOfRafts);
         ArrayList<String> bands = MaterialMapper.getBandData(BAND_ID, bandLength, rolesOfBand);
+        ArrayList<String> pillars = MaterialMapper.getPillarData(PILLAR_ID, pillarAmount);
 
         System.out.println("Info om rem:" + heads);
         System.out.println("Info om spær:" + rafts);

@@ -1,5 +1,6 @@
 package PresentationLayer;
 
+import DBAccess.MaterialMapper;
 import FunctionLayer.*;
 import com.sun.prism.Material;
 
@@ -94,13 +95,11 @@ public class MaterialCalculator extends Command {
         return result;
     }
 
-    public int getPackagesAmountBand(int bandLength){
+    public int getRolesAmountBand(int bandLength){
         int result;
-        final int BAND_PR_PACKAGE = 10;
+        final int BAND_PR_ROLES = MaterialMapper.getAmountPrUnit("hulbånd");
         double bandLengthToM = bandLength/100.0;
-        result = (int) Math.ceil(bandLengthToM/BAND_PR_PACKAGE);
-
-
+        result = (int) Math.ceil(bandLengthToM/BAND_PR_ROLES);
         return result;
     }
 

@@ -18,24 +18,22 @@ public class main {
         int amountOfRafts;
         int bandLength;
         int[] band = new int[4];
-        int packagesOfBand;
+        int rolesOfBand;
 
 
 
         MaterialCalculator calcTest = new MaterialCalculator();
         band = calcTest.calcBandAmount(carportLengthCM, carportWidthCM);
         bandLength = band[3];
-        packagesOfBand = calcTest.getPackagesAmountBand(bandLength);
-
-
-
+        rolesOfBand = calcTest.getRolesAmountBand(bandLength);
         amountOfRafts = calcTest.calcRaftAmount(carportLengthCM);
 
-        ArrayList<String> a = MaterialMapper.getRemOrRaftData("spærtræ", carportLengthCM, AMOUNT_OF_HEADS );
-        ArrayList<String> b = MaterialMapper.getRemOrRaftData("spærtræ", carportWidthCM, amountOfRafts);
-        System.out.println(a);
-        System.out.println(b);
-        System.out.println(packagesOfBand);
+        ArrayList<String> heads = MaterialMapper.getRemOrRaftData("spærtræ", carportLengthCM, AMOUNT_OF_HEADS );
+        ArrayList<String> rafts = MaterialMapper.getRemOrRaftData("spærtræ", carportWidthCM, amountOfRafts);
+        ArrayList<String> bands = MaterialMapper.getBandData("hulbånd", bandLength, rolesOfBand);
+        System.out.println("Info om rem:" + heads);
+        System.out.println("Info om spær:" + rafts);
+        System.out.println("Info om hulbånd:" + bands);
 
 
 
@@ -47,6 +45,6 @@ public class main {
             System.out.println(i);
         }*/
 
-        calcTest.getStolper(carportHeight, carportLengthCM);
+        //calcTest.getStolper(carportHeight, carportLengthCM);
     }
 }

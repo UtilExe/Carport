@@ -94,6 +94,16 @@ public class MaterialCalculator extends Command {
         return result;
     }
 
+    public int getPackagesAmountBand(int bandLength){
+        int result;
+        final int BAND_PR_PACKAGE = 10;
+        double bandLengthToM = bandLength/100.0;
+        result = (int) Math.ceil(bandLengthToM/BAND_PR_PACKAGE);
+
+
+        return result;
+    }
+
     // ANTAGELSE: Uanset carport-mål skal afstanden fra det yderste
     // af carport til rem være 35 cm på hver side (30 cm bagtil).
 

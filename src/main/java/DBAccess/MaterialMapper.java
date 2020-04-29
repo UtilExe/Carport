@@ -14,13 +14,15 @@ public class MaterialMapper {
 
         try {
             Connection con = Connector.connection();
-            String SQL = "SELECT `category`, `type`, `description` FROM carport.material_list WHERE `ID`=?;";
+            String SQL = "SELECT `material_list`.`category`, `material_type`.`type_name`, `material_list`.`description` " +
+                    "FROM material_list INNER JOIN `material_type` ON `material_type`.`typeID` = `material_list`.`type_id` " +
+                    "WHERE `material_list`.`productID`=?;";
             PreparedStatement ps = con.prepareStatement(SQL);
             ps.setInt(1, ID);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 String category = rs.getString("category");
-                String type = rs.getString("type");
+                String type = rs.getString("material_type.type_name");
                 String description = rs.getString("description");
                 data.add(category);
                 data.add(type);
@@ -42,7 +44,7 @@ public class MaterialMapper {
 
         try {
             Connection con = Connector.connection();
-            String SQL = "SELECT `amount_pr_unit` FROM carport.material_list WHERE `ID`=?;";
+            String SQL = "SELECT `amount_pr_unit` FROM carport.material_list WHERE `productID`=?;";
             PreparedStatement ps = con.prepareStatement(SQL);
             ps.setInt(1, ID);
             ResultSet rs = ps.executeQuery();
@@ -65,13 +67,17 @@ public class MaterialMapper {
 
         try {
             Connection con = Connector.connection();
-            String SQL = "SELECT `category`, `unit`, `amount_pr_unit`, `type`, `description` FROM carport.material_list WHERE `ID`=?;";
+            String SQL =
+                    "SELECT `material_list`.`category`, `material_list`.`unit`, `material_list`.`amount_pr_unit`, " +
+                    "`material_type`.`type_name`, `material_list`.`description` FROM material_list INNER JOIN `material_type` ON " +
+                    "`material_type`.`typeID` = `material_list`.`type_id`" +
+                    " WHERE `material_list`.`productID`=?;";
             PreparedStatement ps = con.prepareStatement(SQL);
             ps.setInt(1, ID);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 String category = rs.getString("category");
-                String type = rs.getString("type");
+                String type = rs.getString("material_type.type_name");
                 String description = rs.getString("description");
                 String unit = rs.getString("unit");
                 String amountPrUnit = rs.getString("amount_pr_unit");
@@ -106,7 +112,7 @@ public class MaterialMapper {
 
         try {
             Connection con = Connector.connection();
-            String SQL = "SELECT `description` FROM carport.material_list WHERE `ID`=?;";
+            String SQL = "SELECT `description` FROM carport.material_list WHERE `productID`=?;";
             PreparedStatement ps = con.prepareStatement(SQL);
             ps.setInt(1, ID);
             ResultSet rs = ps.executeQuery();
@@ -132,14 +138,16 @@ public class MaterialMapper {
 
         try {
             Connection con = Connector.connection();
-            String SQL = "SELECT `category`, `unit`, `type`, `description` FROM carport.material_list WHERE `ID`=?;";
+            String SQL = "SELECT `material_list`.`category`, `material_list`.`unit`, `material_type`.`type_name`, " +
+                    "`material_list`.`description` FROM carport.material_list INNER JOIN `material_type` ON " +
+                    "`material_type`.`typeID` = `material_list`.`type_id` WHERE `material_list`.`productID`=?;";
             PreparedStatement ps = con.prepareStatement(SQL);
             ps.setInt(1, ID);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 String category = rs.getString("category");
                 String unit = rs.getString("unit");
-                String type = rs.getString("type");
+                String type = rs.getString("material_type.type_name");
                 String description = rs.getString("description");
 
                 data.add(category);

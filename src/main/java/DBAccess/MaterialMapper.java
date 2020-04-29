@@ -126,18 +126,19 @@ public class MaterialMapper {
         return result;
     }
 
-    public static ArrayList<String> getPillarData(int ID, int pillarAmount) {
+    public static ArrayList<String> getPillarData(int ID, int pillarAmount, ArrayList<Double> pillarLengths) {
         ArrayList<String> data = new ArrayList<>();
         String[] descriptionSplitted = new String[2];
 
         try {
             Connection con = Connector.connection();
-            String SQL = "SELECT `category`, `type`, `description` FROM carport.material_list WHERE `ID`=?;";
+            String SQL = "SELECT `category`, `unit`, `type`, `description` FROM carport.material_list WHERE `ID`=?;";
             PreparedStatement ps = con.prepareStatement(SQL);
             ps.setInt(1, ID);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 String category = rs.getString("category");
+                String unit = rs.getString("unit");
                 String type = rs.getString("type");
                 String description = rs.getString("description");
 
@@ -145,8 +146,8 @@ public class MaterialMapper {
                 data.add(type);
                 data.add(description);
                 data.add("Antal stolper: " + pillarAmount);
-                for(int i = 1; i < pillarAmount; i++) {
-                    data.add("Stolpe " + i + ": " +);
+                for(int i = 1; i <= pillarAmount/2; i++) {
+                    data.add("Højde på stolpe-par " + i + ": " + pillarLengths.get(i-1) + unit);
                     // GØR LIGESOM I PDF MED ANTAL I FORHOLD TIL MÅL (2 STOLPER AF 271.55 OG 2 STOLPER AF 280.98)
                 }
             }

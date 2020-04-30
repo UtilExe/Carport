@@ -1,9 +1,11 @@
 package PresentationLayer;
 
+import DBAccess.IDMapper;
 import DBAccess.MaterialMapper;
 import FunctionLayer.LoginSampleException;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class main {
     public static void main(String[] args) throws LoginSampleException {
@@ -15,22 +17,26 @@ public class main {
         final int AMOUNT_OF_HEADS = 2;
         int amountOfRafts;
         int bandLength;
+        int pillarAmount;
         int[] band = new int[4];
         int rolesOfBand;
         int amountOfTiles;
         int amountOfScrews;
-        final int RAFT_ID = 6;
-        final int BAND_ID = 10;
-        final int PILLAR_ID = 7;
-        final int PLANK_ID = 1;
-        final int WATERPLANK_ID = 3;
-        int pillarAmount;
+
         final int AMOUNT_OF_FRONT_BACK_UNDERPLANKS = 2;
         final int AMOUNT_OF_SIDE_UNDERPLANKS = 2;
         final int AMOUNT_OF_FRONT_OVERPLANKS = 1;
         final int AMOUNT_OF_SIDE_OVERPLANKS = 2;
         final int AMOUNT_OF_SIDE_WATERPLANKS = 2;
         final int AMOUNT_OF_FRONT_WATERPLANKS = 1;
+
+        HashMap<String, Integer> productIDs = IDMapper.getIDs();
+
+        final int RAFT_ID = 6;
+        final int BAND_ID = 10;
+        final int PILLAR_ID = 7;
+        final int PLANK_ID = 1;
+        final int WATERPLANK_ID = 3;
         final int TILE_ID = 8;
         final int BOTTOMSCREW_ID = 9;
         final int UNIVERSALSCREW_ID = 11;

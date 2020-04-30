@@ -157,6 +157,16 @@ public class MaterialCalculator extends Command {
         return roofTileAmount;
     }
 
-    public
+    public int getRoofScrewAmount(int carportLength, int carportWidth){
+        int roofArea = carportLength * carportWidth;
+        final int SCREW_PR_M2 = 12;
+        final int CM_TO_M2 = 10000;
+        double AMOUNT_OF_SCREWS_PR_PACKAGE = 200;
+
+        double tmpResult = ((roofArea / CM_TO_M2) * SCREW_PR_M2) / AMOUNT_OF_SCREWS_PR_PACKAGE;
+        int result = (int) Math.ceil(tmpResult);
+
+        return result;
+    }
 
 }

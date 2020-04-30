@@ -18,6 +18,7 @@ public class main {
         int[] band = new int[4];
         int rolesOfBand;
         int amountOfTiles;
+        int amountOfScrews;
         final int RAFT_ID = 6;
         final int BAND_ID = 10;
         final int PILLAR_ID = 7;
@@ -31,6 +32,7 @@ public class main {
         final int AMOUNT_OF_SIDE_WATERPLANKS = 2;
         final int AMOUNT_OF_FRONT_WATERPLANKS = 1;
         final int TILE_ID = 8;
+        final int BOTTOMSCREW_ID = 9;
 
         ArrayList<Double> pillarLengths;
 
@@ -45,6 +47,7 @@ public class main {
         pillarAmount = calcTest.calcPillarAmount(carportLengthCM);
         pillarLengths = calcTest.getPillarHeight(carportHeight, carportLengthCM);
         amountOfTiles = calcTest.getRoofTileAmount(carportLengthCM, carportWidthCM);
+        amountOfScrews = calcTest.getRoofScrewAmount(carportLengthCM, carportWidthCM);
 
         ArrayList<String> heads = MaterialMapper.getRoofData(RAFT_ID, carportLengthCM, AMOUNT_OF_HEADS );
         ArrayList<String> rafts = MaterialMapper.getRoofData(RAFT_ID, carportWidthCM, amountOfRafts);
@@ -57,6 +60,7 @@ public class main {
         ArrayList<String> sidewaterplanks = MaterialMapper.getRoofData(WATERPLANK_ID, carportLengthCM, AMOUNT_OF_SIDE_WATERPLANKS);
         ArrayList<String> frontwaterplanks = MaterialMapper.getRoofData(WATERPLANK_ID, carportWidthCM, AMOUNT_OF_FRONT_WATERPLANKS);
         ArrayList<String> tiles = MaterialMapper.getRoofTileData(TILE_ID, amountOfTiles);
+        ArrayList<String> roofBottomScrew = MaterialMapper.getRoofTileData(BOTTOMSCREW_ID, amountOfScrews);
 
         System.out.println("Info om rem:" + heads);
         System.out.println("Info om spær:" + rafts);
@@ -69,6 +73,7 @@ public class main {
         System.out.println("Info om vandbræt til siderne: " + sidewaterplanks);
         System.out.println("Info om vandbræt til forenden: " + frontwaterplanks);
         System.out.println("Info om tagplader: " + tiles);
+        System.out.println("Info om bundskruer til tagplader: " + roofBottomScrew);
 
 
 

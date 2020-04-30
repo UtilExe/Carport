@@ -42,7 +42,7 @@ public class MaterialMapper {
 
         try {
             Connection con = Connector.connection();
-            String SQL = "SELECT `material_list`.`category`, `material_type`.`type_name`, `material_list`.`description` " +
+            String SQL = "SELECT `material_list`.`category`, `material_type`.`type_name`, `material_list`.`description`, `material_list`.`unit` " +
                     "FROM material_list INNER JOIN `material_type` ON `material_type`.`typeID` = `material_list`.`type_id` " +
                     "WHERE `material_list`.`productID`=?;";
             PreparedStatement ps = con.prepareStatement(SQL);
@@ -52,10 +52,12 @@ public class MaterialMapper {
                 String category = rs.getString("category");
                 String type = rs.getString("material_type.type_name");
                 String description = rs.getString("description");
+                String unit = rs.getString("unit");
                 data.add(category);
                 data.add(type);
                 data.add(description);
-                data.add(amount + " stk.");
+                data.add(amount);
+                data.add(unit);
             }
         } catch (SQLException | ClassNotFoundException ex) {
             ex.printStackTrace();

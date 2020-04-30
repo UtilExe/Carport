@@ -48,7 +48,7 @@ public class CarportDesign extends Command {
         }
 
         if (shedWidth > carportWidth || shedLength > carportLength) {
-            request.setAttribute("fejl", "Skurrets bredde er større end carporten! Prøv igen med korrekte værdier");
+            request.setAttribute("fejl", "Skurrets mål er større end carporten! Prøv igen med korrekte værdier");
             invalidInput = true;
         }
 

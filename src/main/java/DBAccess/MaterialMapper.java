@@ -36,7 +36,7 @@ public class MaterialMapper {
         return data;
     }
 
-    public static ArrayList<String> getRoofTileData(int ID, int tmpAmount) {
+    public static ArrayList<String> getScrewsAndTilesData(int ID, int tmpAmount) {
         ArrayList<String> data = new ArrayList<>();
         String amount = String.valueOf(tmpAmount);
 

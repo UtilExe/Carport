@@ -33,6 +33,7 @@ public class main {
         final int AMOUNT_OF_FRONT_WATERPLANKS = 1;
         final int TILE_ID = 8;
         final int BOTTOMSCREW_ID = 9;
+        final int UNIVERSALSCREW_ID = 11;
 
         ArrayList<Double> pillarLengths;
 
@@ -48,6 +49,9 @@ public class main {
         pillarLengths = calcTest.getPillarHeight(carportHeight, carportLengthCM);
         amountOfTiles = calcTest.getRoofTileAmount(carportLengthCM, carportWidthCM);
         amountOfScrews = calcTest.getRoofScrewAmount(carportLengthCM, carportWidthCM);
+        int amountOfUniversalScrews = calcTest.getUniversalScrews(carportLengthCM);
+
+
 
         ArrayList<String> heads = MaterialMapper.getRoofData(RAFT_ID, carportLengthCM, AMOUNT_OF_HEADS );
         ArrayList<String> rafts = MaterialMapper.getRoofData(RAFT_ID, carportWidthCM, amountOfRafts);
@@ -59,8 +63,9 @@ public class main {
         ArrayList<String> sideoverplanks = MaterialMapper.getRoofData(PLANK_ID, carportLengthCM, AMOUNT_OF_SIDE_OVERPLANKS);
         ArrayList<String> sidewaterplanks = MaterialMapper.getRoofData(WATERPLANK_ID, carportLengthCM, AMOUNT_OF_SIDE_WATERPLANKS);
         ArrayList<String> frontwaterplanks = MaterialMapper.getRoofData(WATERPLANK_ID, carportWidthCM, AMOUNT_OF_FRONT_WATERPLANKS);
-        ArrayList<String> tiles = MaterialMapper.getRoofTileData(TILE_ID, amountOfTiles);
-        ArrayList<String> roofBottomScrew = MaterialMapper.getRoofTileData(BOTTOMSCREW_ID, amountOfScrews);
+        ArrayList<String> tiles = MaterialMapper.getScrewsAndTilesData(TILE_ID, amountOfTiles);
+        ArrayList<String> roofBottomScrew = MaterialMapper.getScrewsAndTilesData(BOTTOMSCREW_ID, amountOfScrews);
+        ArrayList<String> universalScrews = MaterialMapper.getScrewsAndTilesData(UNIVERSALSCREW_ID, amountOfUniversalScrews);
 
         System.out.println("Info om rem:" + heads);
         System.out.println("Info om spær:" + rafts);
@@ -74,6 +79,7 @@ public class main {
         System.out.println("Info om vandbræt til forenden: " + frontwaterplanks);
         System.out.println("Info om tagplader: " + tiles);
         System.out.println("Info om bundskruer til tagplader: " + roofBottomScrew);
+        System.out.println("Info om universal skruer til remmen: " + universalScrews);
 
 
 

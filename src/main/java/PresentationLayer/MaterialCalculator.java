@@ -117,7 +117,7 @@ public class MaterialCalculator extends Command {
         double pillarHeight = carportHeight - headHeight - fasciaBoardHeight;
 
 
-        //if(skur)
+        //TODO if(skur)
 
         //if(ikke skur)
 
@@ -167,6 +167,11 @@ public class MaterialCalculator extends Command {
         int result = (int) Math.ceil(tmpResult);
 
         return result;
+    }
+
+    public int getUniversalScrews(int carportLength) {
+        //Vi antager at der skrues en skrue i hver side af hvert spær
+        return calcRaftAmount(carportLength) * 2;
     }
 
 }

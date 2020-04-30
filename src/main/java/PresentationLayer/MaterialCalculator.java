@@ -2,12 +2,10 @@ package PresentationLayer;
 
 import DBAccess.MaterialMapper;
 import FunctionLayer.*;
-import com.sun.prism.Material;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class MaterialCalculator extends Command {
@@ -114,8 +112,8 @@ public class MaterialCalculator extends Command {
         final int FACIA_ID = 1;
         final int GROUND_DEPTH = 90;
         final int DIST_BEHIND_CARPORT = 30;
-        double headHeight = MaterialMapper.getHeadHeightFromDimensionMeasureInCM(HEAD_ID);
-        double fasciaBoardHeight = MaterialMapper.getHeadHeightFromDimensionMeasureInCM(FACIA_ID);
+        double headHeight = MaterialMapper.getWidthHeightFromDimensionMeasureInCM(HEAD_ID).get(1);
+        double fasciaBoardHeight = MaterialMapper.getWidthHeightFromDimensionMeasureInCM(FACIA_ID).get(1);
         double pillarHeight = carportHeight - headHeight - fasciaBoardHeight;
 
 
@@ -145,5 +143,20 @@ public class MaterialCalculator extends Command {
         number = Double.valueOf(rounder);
         return number;
     }
+
+    public int getRoofTileAmount(int carportLength, int carportWidth){
+        final int ROOF_TILE_ID= 8;
+        double roofTileLength = MaterialMapper.getWidthHeightFromDimensionMeasureInCM(ROOF_TILE_ID).get(1);
+        double roofTileWidth = MaterialMapper.getWidthHeightFromDimensionMeasureInCM(ROOF_TILE_ID).get(0);
+        final int TILE_OVERLAP = 20;
+        roofTileWidth -= TILE_OVERLAP;
+        double roofTileArea = roofTileWidth * roofTileLength;
+        int roofArea = carportLength * carportWidth;
+        int roofTileAmount = (int) Math.ceil(roofArea/roofTileArea);
+
+        return roofTileAmount;
+    }
+
+    public
 
 }

@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class MaterialMapper {
-    public static ArrayList<String> getRemOrRaftData(int ID, int carportMeasure, int tmpAmount) {
+    public static ArrayList<String> getRoofData(int ID, int carportMeasure, int tmpAmount) {
         ArrayList<String> data = new ArrayList<>();
         String amount = String.valueOf(tmpAmount);
         String carpMeasure = String.valueOf(carportMeasure);
@@ -29,6 +29,33 @@ public class MaterialMapper {
                 data.add(description);
                 data.add(amount + " stk.");
                 data.add(carpMeasure + " cm.");
+            }
+        } catch (SQLException | ClassNotFoundException ex) {
+            ex.printStackTrace();
+        }
+        return data;
+    }
+
+    public static ArrayList<String> getRoofTileData(int ID, int tmpAmount) {
+        ArrayList<String> data = new ArrayList<>();
+        String amount = String.valueOf(tmpAmount);
+
+        try {
+            Connection con = Connector.connection();
+            String SQL = "SELECT `material_list`.`category`, `material_type`.`type_name`, `material_list`.`description` " +
+                    "FROM material_list INNER JOIN `material_type` ON `material_type`.`typeID` = `material_list`.`type_id` " +
+                    "WHERE `material_list`.`productID`=?;";
+            PreparedStatement ps = con.prepareStatement(SQL);
+            ps.setInt(1, ID);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                String category = rs.getString("category");
+                String type = rs.getString("material_type.type_name");
+                String description = rs.getString("description");
+                data.add(category);
+                data.add(type);
+                data.add(description);
+                data.add(amount + " stk.");
             }
         } catch (SQLException | ClassNotFoundException ex) {
             ex.printStackTrace();
@@ -103,11 +130,9 @@ public class MaterialMapper {
         return splittedString;
     }
 
-    public static double getHeadHeightFromDimensionMeasureInCM(int ID) {
+    public static ArrayList<Double> getWidthHeightFromDimensionMeasureInCM(int ID) {
+        ArrayList<Double> widthHeightMeasure = new ArrayList<>();
         String description = "";
-        double result = 0;
-        String isolatingHeight = "";
-        String writingHeight = "";
         String[] descriptionSplitted = new String[2];
 
         try {
@@ -119,17 +144,20 @@ public class MaterialMapper {
             while (rs.next()) {
                 description = rs.getString("description");
                 descriptionSplitted = splitter(description, "x");
-                isolatingHeight = descriptionSplitted[1];
-                descriptionSplitted = splitter(isolatingHeight, " ");
-                isolatingHeight = descriptionSplitted[0];
-                result = Double.parseDouble(isolatingHeight);
-                result /= 10;
+                double width = Double.parseDouble(descriptionSplitted[0]);
+                width /= 10;
+                widthHeightMeasure.add(width);
+                descriptionSplitted = splitter(descriptionSplitted[1], " ");
+                double height = Double.parseDouble(descriptionSplitted[0]);
+                height /= 10;
+                widthHeightMeasure.add(height);
+
             }
 
         } catch (SQLException | ClassNotFoundException ex) {
             ex.printStackTrace();
         }
-        return result;
+        return widthHeightMeasure;
     }
 
     public static ArrayList<String> getPillarData(int ID, int pillarAmount, ArrayList<Double> pillarLengths) {
@@ -165,6 +193,34 @@ public class MaterialMapper {
         return data;
     }
 
+    public static ArrayList<String> getPlankData(int ID, int carportMeasure, int tmpAmount) {
+        ArrayList<String> data = new ArrayList<>();
+        String amount = String.valueOf(tmpAmount);
+        String carpMeasure = String.valueOf(carportMeasure);
+
+        try {
+            Connection con = Connector.connection();
+            String SQL = "SELECT `material_list`.`category`, `material_type`.`type_name`, `material_list`.`description` " +
+                    "FROM material_list INNER JOIN `material_type` ON `material_type`.`typeID` = `material_list`.`type_id` " +
+                    "WHERE `material_list`.`productID`=?;";
+            PreparedStatement ps = con.prepareStatement(SQL);
+            ps.setInt(1, ID);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                String category = rs.getString("category");
+                String type = rs.getString("material_type.type_name");
+                String description = rs.getString("description");
+                data.add(category);
+                data.add(type);
+                data.add(description);
+                data.add(amount + " stk.");
+                data.add(carpMeasure + " cm.");
+            }
+        } catch (SQLException | ClassNotFoundException ex) {
+            ex.printStackTrace();
+        }
+        return data;
+    }
 
 }
 

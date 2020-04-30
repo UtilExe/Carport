@@ -174,4 +174,13 @@ public class MaterialCalculator extends Command {
         return calcRaftAmount(carportLength) * 2;
     }
 
+    public int getPlankAndWaterScrews() {
+        /*
+        Vi antager at antallet af skruer aldrig bliver mere end 200stk(1 pakke) da der vil være 3 sternbrædder
+        med en skrue i hver side.
+        På vandbrædderne skal der bruges samme antal skruer. Dermed overstiger vi stadig ikke de 200stk.
+        */
+        return 1;
+    }
+
 }

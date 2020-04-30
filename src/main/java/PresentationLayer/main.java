@@ -40,6 +40,7 @@ public class main {
         final int TILE_ID = 8;
         final int BOTTOMSCREW_ID = 9;
         final int UNIVERSALSCREW_ID = 11;
+        final int PLANK_WATERSCREW_ID = 12;
 
         ArrayList<Double> pillarLengths;
 
@@ -56,6 +57,7 @@ public class main {
         amountOfTiles = calcTest.getRoofTileAmount(carportLengthCM, carportWidthCM);
         amountOfScrews = calcTest.getRoofScrewAmount(carportLengthCM, carportWidthCM);
         int amountOfUniversalScrews = calcTest.getUniversalScrews(carportLengthCM);
+        int amountOfPlankWaterScrews = calcTest.getPlankAndWaterScrews();
 
 
 
@@ -72,6 +74,7 @@ public class main {
         ArrayList<String> tiles = MaterialMapper.getScrewsAndTilesData(TILE_ID, amountOfTiles);
         ArrayList<String> roofBottomScrew = MaterialMapper.getScrewsAndTilesData(BOTTOMSCREW_ID, amountOfScrews);
         ArrayList<String> universalScrews = MaterialMapper.getScrewsAndTilesData(UNIVERSALSCREW_ID, amountOfUniversalScrews);
+        ArrayList<String> plankWaterScrews = MaterialMapper.getScrewsAndTilesData(PLANK_WATERSCREW_ID, amountOfPlankWaterScrews);
 
         System.out.println("Info om rem:" + heads);
         System.out.println("Info om spær:" + rafts);
@@ -86,6 +89,7 @@ public class main {
         System.out.println("Info om tagplader: " + tiles);
         System.out.println("Info om bundskruer til tagplader: " + roofBottomScrew);
         System.out.println("Info om universal skruer til remmen: " + universalScrews);
+        System.out.println("Info om skruer til stern og vandbrædt: " + plankWaterScrews);
 
 
 

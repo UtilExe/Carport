@@ -14,6 +14,10 @@ public class main {
         int carportHeight = 220;
         int carportLengthCM = 780;
         int carportWidthCM = 600;
+        int shedLength = 220;
+        int shedWidth = 530;
+        int shedHeight = (int) (carportHeight - MaterialMapper.getWidthHeightFromDimensionMeasureInCM(6).get(1));
+
         final int AMOUNT_OF_HEADS = 2;
         int amountOfRafts;
         int bandLength;
@@ -41,6 +45,10 @@ public class main {
         final int BOTTOMSCREW_ID = 9;
         final int UNIVERSALSCREW_ID = 11;
         final int PLANK_WATERSCREW_ID = 12;
+        final int BRACKETSCEW_ID = 15;
+        final int CARRIAGEBOLT_ID = 16;
+        final int SQUAREWASHER_ID = 17;
+
 
         ArrayList<Double> pillarLengths;
 
@@ -58,6 +66,8 @@ public class main {
         amountOfScrews = calcTest.getRoofScrewAmount(carportLengthCM, carportWidthCM);
         int amountOfUniversalScrews = calcTest.getUniversalScrews(carportLengthCM);
         int amountOfPlankWaterScrews = calcTest.getPlankAndWaterScrews();
+        int amountOfBracketScrews = calcTest.getBracketScrews(carportLengthCM);
+        int amountOfCarriageBolts = calcTest.getCarriageBolts(carportLengthCM);
 
 
 
@@ -75,6 +85,9 @@ public class main {
         ArrayList<String> roofBottomScrew = MaterialMapper.getScrewsAndTilesData(BOTTOMSCREW_ID, amountOfScrews);
         ArrayList<String> universalScrews = MaterialMapper.getScrewsAndTilesData(UNIVERSALSCREW_ID, amountOfUniversalScrews);
         ArrayList<String> plankWaterScrews = MaterialMapper.getScrewsAndTilesData(PLANK_WATERSCREW_ID, amountOfPlankWaterScrews);
+        ArrayList<String> bracketScrews = MaterialMapper.getScrewsAndTilesData(BRACKETSCEW_ID, amountOfBracketScrews);
+        ArrayList<String> carriageBolts = MaterialMapper.getScrewsAndTilesData(CARRIAGEBOLT_ID, amountOfCarriageBolts);
+        ArrayList<String> squareWashers = MaterialMapper.getScrewsAndTilesData(SQUAREWASHER_ID, amountOfCarriageBolts);
 
         System.out.println("Info om rem:" + heads);
         System.out.println("Info om spær:" + rafts);
@@ -90,8 +103,10 @@ public class main {
         System.out.println("Info om bundskruer til tagplader: " + roofBottomScrew);
         System.out.println("Info om universal skruer til remmen: " + universalScrews);
         System.out.println("Info om skruer til stern og vandbrædt: " + plankWaterScrews);
-
-
+        System.out.println("Info om skruer til beslag for spærg: " + bracketScrews);
+        System.out.println("Info om skruer til montering af rem på stolper: " + carriageBolts);
+        //Dette her er antal firkantskiver, men da det altid vil være samme antal som carriageBolts er det mere logisk og bruge den metode.
+        System.out.println("Info om firkantskirver til montering af rem på stolper: " + squareWashers);
 
 
         //System.out.println(calcTest.calcPillarAmount(carportLengthCM));

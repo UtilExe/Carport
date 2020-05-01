@@ -15,34 +15,46 @@ public class MaterialCalculator extends Command {
     String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException {
 
         HttpSession session = request.getSession();
-        String tmpCarportLength = request.getParameter("length");
+        /*String tmpCarportLength = request.getParameter("length");
         String tmpCarportWidth = request.getParameter("width");
-        String tmpCarportHeight = request.getParameter("height");
+        String tmpCarportHeight = request.getParameter("height");*/
 
         int carportLength = Validation.getInteger(tmpCarportLength);
         int carportWidth = Validation.getInteger(tmpCarportWidth);
         int carportHeight = Validation.getInteger(tmpCarportHeight);
 
 
+        boolean hasShed = true;
+
 
         return "tmpList";
     }
 
-    public int calcPillarAmount(int carportLength) {
+    public int calcPillarAmount(int carportLength, boolean hasShed, int shedLenght) {
         int result;
-        double tmpResult;
-        double tmpCarportLength = carportLength / 100.0;
-        // Beregning af antal stolper (skal være et i hver side pr. 300 cm af carportens længde).
         final double PILLAR_AT_METER = 3.0;
-        tmpResult = (tmpCarportLength / PILLAR_AT_METER);
-        tmpResult = Math.floor(tmpResult);
-        result = ((int) tmpResult) * 2;
-        if(result <= 4) {
-            result = 4;
+        double tmpResult;
+        if (hasShed) {
+            double tmpLength = carportLength - shedLenght;
+            double tmpCarportLength = carportLength / 100.0;
+            tmpResult = (tmpCarportLength / PILLAR_AT_METER);
+            tmpResult = Math.floor(tmpResult);
+            result = (int) (tmpResult * 2);
+            result += 8; //Vi antager at et skur skal bruge 6 stolper (en i hvert hjørne + 2 i midten) og 2 til hver side af døren.
+        } else {
+            double tmpCarportLength = carportLength / 100.0;
+            // Beregning af antal stolper (skal være et i hver side pr. 300 cm af carportens længde).
+            tmpResult = (tmpCarportLength / PILLAR_AT_METER);
+            tmpResult = Math.floor(tmpResult);
+            result = ((int) tmpResult) * 2;
+            if (result <= 4) {
+                result = 4;
+            }
         }
         return result;
     }
 
+    //Vi antager at mængde af spær ikke ændre sig med skur eller ej
     public int calcRaftAmount(int carportLength) {
         int result;
         double tmpResult;
@@ -55,6 +67,7 @@ public class MaterialCalculator extends Command {
         return result;
     }
 
+    //Antal spær -2 i stedet for 70% ind? TODO
     public int[] calcBandAmount(int carportLength, int carportWidth) {
         int[] result = new int[4];
 
@@ -86,19 +99,19 @@ public class MaterialCalculator extends Command {
         double lengthOfSquare = tmpIntResultBand2Length - DIST_BET_RAFTS;
         final double HEAD_TO_HEAD_PERCENT = 88.3333 / 100.0;
         double widthOfSquare = (carportWidth * HEAD_TO_HEAD_PERCENT);
-        final double CALC_DIAGONAL = Math.sqrt((lengthOfSquare*lengthOfSquare) + (widthOfSquare*widthOfSquare));
+        final double CALC_DIAGONAL = Math.sqrt((lengthOfSquare * lengthOfSquare) + (widthOfSquare * widthOfSquare));
         int diagonalToInt = (int) (CALC_DIAGONAL * 2.0);
         result[3] = diagonalToInt;
 
         return result;
     }
-
-    public int getRolesAmountBand(int bandLength){
+    //TODO efter calcBandAmount
+    public int getRolesAmountBand(int bandLength) {
         int result;
         final int BAND_ID = 10;
         final int BAND_PR_ROLES = MaterialMapper.getAmountPrUnit(BAND_ID);
-        double bandLengthToM = bandLength/100.0;
-        result = (int) Math.ceil(bandLengthToM/BAND_PR_ROLES);
+        double bandLengthToM = bandLength / 100.0;
+        result = (int) Math.ceil(bandLengthToM / BAND_PR_ROLES);
         return result;
     }
 
@@ -121,19 +134,20 @@ public class MaterialCalculator extends Command {
 
         //if(ikke skur)
 
-        int pillars = (calcPillarAmount((int)længde))/2;
-        double første = pillarHeight + Math.tan((2*Math.PI)/180)*DIST_BEHIND_CARPORT;
+        int pillars = (calcPillarAmount((int) længde)) / 2;
+        double første = pillarHeight + Math.tan((2 * Math.PI) / 180) * DIST_BEHIND_CARPORT;
         første = roundToTwo(første);
         første += GROUND_DEPTH;
         stolper.add(første);
 
         double tmpStolpeHeight = pillarHeight;
-        for(int i=1; i < pillars; i++) {
-            tmpStolpeHeight = tmpStolpeHeight + Math.tan((2*Math.PI)/180)*300;
+        for (int i = 1; i < pillars; i++) {
+            tmpStolpeHeight = tmpStolpeHeight + Math.tan((2 * Math.PI) / 180) * 300;
             double roundedNum = roundToTwo(tmpStolpeHeight);
-            roundedNum += GROUND_DEPTH;
+            roundedNum += GROUND_DEPTH; //TODO Tjek om den tilføjer 180 til tredje stolpe, ellers tilføj de 90 cm senere hen.
             stolper.add(roundedNum);
         }
+
         return stolper;
     }
 
@@ -144,20 +158,20 @@ public class MaterialCalculator extends Command {
         return number;
     }
 
-    public int getRoofTileAmount(int carportLength, int carportWidth){
-        final int ROOF_TILE_ID= 8;
+    public int getRoofTileAmount(int carportLength, int carportWidth) {
+        final int ROOF_TILE_ID = 8;
         double roofTileLength = MaterialMapper.getWidthHeightFromDimensionMeasureInCM(ROOF_TILE_ID).get(1);
         double roofTileWidth = MaterialMapper.getWidthHeightFromDimensionMeasureInCM(ROOF_TILE_ID).get(0);
         final int TILE_OVERLAP = 20;
         roofTileWidth -= TILE_OVERLAP;
         double roofTileArea = roofTileWidth * roofTileLength;
         int roofArea = carportLength * carportWidth;
-        int roofTileAmount = (int) Math.ceil(roofArea/roofTileArea);
+        int roofTileAmount = (int) Math.ceil(roofArea / roofTileArea);
 
         return roofTileAmount;
     }
 
-    public int getRoofScrewAmount(int carportLength, int carportWidth){
+    public int getRoofScrewAmount(int carportLength, int carportWidth) {
         int roofArea = carportLength * carportWidth;
         final int SCREW_PR_M2 = 12;
         final int CM_TO_M2 = 10000;
@@ -176,6 +190,7 @@ public class MaterialCalculator extends Command {
 
     public int getPlankAndWaterScrews() {
         /*
+        OBS!! Der vil altid kun være 3 sternbrææder
         Vi antager at antallet af skruer aldrig bliver mere end 200stk(1 pakke) da der vil være 3 sternbrædder
         med en skrue i hver side.
         På vandbrædderne skal der bruges samme antal skruer. Dermed overstiger vi stadig ikke de 200stk.
@@ -183,4 +198,20 @@ public class MaterialCalculator extends Command {
         return 1;
     }
 
+    public int getBracketScrews(int carportLength) {
+        /*
+        Vi antager at der skrues 2 beslag på hver side af et spær i begge ender. Derved ganger vi spær med 4 og derefter
+        med 6 da der går 6 skruer til 1 beslag.
+
+        Vi antager at beskrivelse om montering af hulbånd allerede er dækket af vores beregning.
+        */
+        int amountOfRafts = calcRaftAmount(carportLength);
+        int amountOfScrews = amountOfRafts * 4 * 6;
+        double amountOfPacks = Math.ceil(amountOfScrews / 250.0);
+        return (int) amountOfPacks;
+    }
+
+    public int getCarriageBolts(int carportLength) {
+        return calcPillarAmount(carportLength) * 2;
+    }
 }

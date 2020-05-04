@@ -6,7 +6,10 @@ import FunctionLayer.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 public class MaterialCalculator extends Command {
 
@@ -218,6 +221,46 @@ public class MaterialCalculator extends Command {
 
     public int getCarriageBolts(int carportLength, boolean hasShed, int shedLength) {
         return calcPillarAmount(carportLength, hasShed, shedLength) * 2;
+    }
+
+    public int[] getTransomsLengthFrontAndBack(int shedWidth) {
+        /* Vi antager, at der er 3 løsholte fra bunden til toppen på skurets for- og bagside samt 2 løsholte
+         fra bunden til toppen på skurets sider. */
+
+        // HashMappet består af int = antal løsholter samt double = længde på de løsholter:
+        int[] result = new int[4];
+        final int TRANSOMS_ON_SIDES = 3;
+        // Vi antager at dørens bredde er 80 cm, da det virker som en dør-standard bredde:
+        final int DOOR_WIDTH = 80;
+        int transomLength = shedWidth / 2;
+        int transomLengthWithDoor = (shedWidth / 2) - DOOR_WIDTH;
+        // Her ganges hver side, der ikke har en dør, med antal løsholter på en side:
+        int regularTransomAmount = TRANSOMS_ON_SIDES * 3;
+        int transomAmountWithDoor = TRANSOMS_ON_SIDES * 1;
+
+        result[0] = regularTransomAmount;
+        result[1] = transomLength;
+        result[2] = transomAmountWithDoor;
+        result[3] = transomLengthWithDoor;
+
+        return result;
+    }
+
+    public int[] getTransomsLengthSides(int shedLength) {
+        /* Vi antager, at der er 3 løsholte fra bunden til toppen på skurets for- og bagside samt 2 løsholte
+         fra bunden til toppen på skurets sider. */
+
+        // HashMappet består af int = antal løsholter samt double = længde på de løsholter:
+        int[] result = new int[2];
+        final int TRANSOMS_ON_SIDES = 2;
+        int transomLength = shedLength;
+        // Her ganges hver side, der ikke har en dør, med antal løsholter på en side:
+        int transomAmount = TRANSOMS_ON_SIDES * 2;
+
+        result[0] = transomAmount;
+        result[1] = transomLength;
+
+        return result;
     }
 
 

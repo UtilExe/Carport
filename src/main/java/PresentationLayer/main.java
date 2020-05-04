@@ -6,6 +6,7 @@ import FunctionLayer.LoginSampleException;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 public class main {
     public static void main(String[] args) throws LoginSampleException {
@@ -27,6 +28,8 @@ public class main {
         int rolesOfBand;
         int amountOfTiles;
         int amountOfScrews;
+        int[] transomSides;
+        int[] transomFrontAndBack;
 
         final int AMOUNT_OF_FRONT_BACK_UNDERPLANKS = 2;
         final int AMOUNT_OF_SIDE_UNDERPLANKS = 2;
@@ -51,6 +54,7 @@ public class main {
         final int CARRIAGEBOLT_ID = 16;
         final int SQUAREWASHER_ID = 17;
         final int BATTERN_ID = 4;
+        final int TRANSOM_ID = 5;
 
 
         ArrayList<Double> pillarLengths;
@@ -70,6 +74,8 @@ public class main {
         int amountOfPlankWaterScrews = calcTest.getPlankAndWaterScrews();
         int amountOfBracketScrews = calcTest.getBracketScrews(carportLengthCM);
         int amountOfCarriageBolts = calcTest.getCarriageBolts(carportLengthCM, hasShed, shedLength);
+        transomSides = calcTest.getTransomsLengthSides(shedLength);
+        transomFrontAndBack = calcTest.getTransomsLengthFrontAndBack(shedWidth);
 
 
 
@@ -91,7 +97,10 @@ public class main {
         ArrayList<String> bracketScrews = MaterialMapper.getScrewsAndTilesData(BRACKETSCEW_ID, amountOfBracketScrews);
         ArrayList<String> carriageBolts = MaterialMapper.getScrewsAndTilesData(CARRIAGEBOLT_ID, amountOfCarriageBolts);
         ArrayList<String> squareWashers = MaterialMapper.getScrewsAndTilesData(SQUAREWASHER_ID, amountOfCarriageBolts);
-        ArrayList<String> battern = MaterialMapper.getPlankData(BATTERN_ID, BATTERNLENGTH_DOOR, 1);
+        ArrayList<String> battern = MaterialMapper.getRoofData(BATTERN_ID, BATTERNLENGTH_DOOR, 1);
+        ArrayList<String> transomSidesInfo = MaterialMapper.getTransomData(TRANSOM_ID, transomSides);
+        ArrayList<String> transomFrontAndBackInfo = MaterialMapper.getTransomData(TRANSOM_ID, transomFrontAndBack);
+
 
 
         System.out.println("Info om rem:" + heads);
@@ -112,9 +121,10 @@ public class main {
         System.out.println("Info om skruer til montering af rem på stolper: " + carriageBolts);
         //Dette her er antal firkantskiver, men da det altid vil være samme antal som carriageBolts er det mere logisk og bruge den metode.
         System.out.println("Info om firkantskirver til montering af rem på stolper: " + squareWashers);
-        System.out.println("Med skur: ");
+        System.out.println("Ekstra med skur: ");
         System.out.println("Info om lægte til bagside af døren: " + battern);
-
+        System.out.println("Info om løsholte til siderne af skuret: " + transomSidesInfo);
+        System.out.println("Info om løsholte til skurets gavle: " + transomFrontAndBackInfo);
 
 
 

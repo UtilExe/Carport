@@ -5,6 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 public class MaterialMapper {
     public static ArrayList<String> getRoofData(int ID, int carportMeasure, int tmpAmount) {
@@ -165,7 +167,6 @@ public class MaterialMapper {
     public static ArrayList<String> getPillarData(int ID, int pillarAmount, ArrayList<Double> pillarLengths) {
         ArrayList<String> data = new ArrayList<>();
         String[] descriptionSplitted = new String[2];
-        System.out.println(pillarAmount);
 
         try {
             Connection con = Connector.connection();
@@ -196,34 +197,37 @@ public class MaterialMapper {
         return data;
     }
 
-    public static ArrayList<String> getPlankData(int ID, int carportMeasure, int tmpAmount) {
+
+    public static ArrayList<String> getTransomData(int ID, int[] transoms) {
         ArrayList<String> data = new ArrayList<>();
-        String amount = String.valueOf(tmpAmount);
-        String carpMeasure = String.valueOf(carportMeasure);
+        String[] descriptionSplitted = new String[2];
 
         try {
             Connection con = Connector.connection();
-            String SQL = "SELECT `material_list`.`category`, `material_type`.`type_name`, `material_list`.`description` " +
-                    "FROM material_list INNER JOIN `material_type` ON `material_type`.`typeID` = `material_list`.`type_id` " +
-                    "WHERE `material_list`.`productID`=?;";
+            String SQL = "SELECT `material_list`.`category`, `material_list`.`unit`, `material_type`.`type_name`, " +
+                    "`material_list`.`description` FROM carport.material_list INNER JOIN `material_type` ON " +
+                    "`material_type`.`typeID` = `material_list`.`type_id` WHERE `material_list`.`productID`=?;";
             PreparedStatement ps = con.prepareStatement(SQL);
             ps.setInt(1, ID);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 String category = rs.getString("category");
+                String unit = rs.getString("unit");
                 String type = rs.getString("material_type.type_name");
                 String description = rs.getString("description");
                 data.add(category);
                 data.add(type);
                 data.add(description);
-                data.add(amount + " stk.");
-                data.add(carpMeasure + " cm.");
+                for(int i = 0; i < transoms.length-1; i+=2) {
+                    data.add(transoms[i] + " stk.: " + transoms[i+1] + " cm.");
+                }
             }
         } catch (SQLException | ClassNotFoundException ex) {
             ex.printStackTrace();
         }
         return data;
     }
+
 
 }
 

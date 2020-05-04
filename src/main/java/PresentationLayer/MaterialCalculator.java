@@ -66,41 +66,17 @@ public class MaterialCalculator extends Command {
         return result;
     }
 
-    //Antal spær -2 i stedet for 70% ind? TODO
-    public int[] calcBandAmount(int carportLength, int carportWidth) {
-        int[] result = new int[4];
-
-        // Beregning af første placering af hulbånd (skal side på det første spær)
-        // Det første spær er altid 55 cm fra carportens længdes start.
-        final double BAND1_START_METER = 0.55;
-        double tmpResultBand1Double = 0.55 * 100.0;
-        int tmpResultBand1Int = (int) tmpResultBand1Double;
-        result[0] = tmpResultBand1Int;
-
-        // Beregning af andet hulbåndsplacering
-        // (skal være på det spær, der rundes op til at være tættest på 73% af carportens længde).
-        final double BAND2_END_PERCENT = 70.51 / 100.0;
-        double tmpResultBand2Double = carportLength * BAND2_END_PERCENT;
-        // står i cm:
-        final double DIST_BET_RAFTS = 55.0;
-        // Vi plusser 1, da udregningen ikke tager det 1. spær med i bektræktning.
-        double theRaftThatHasThe2ndBand = Math.ceil(tmpResultBand2Double / DIST_BET_RAFTS);
-        double theRaftThatHasThe2ndBandWithFirstRaft = theRaftThatHasThe2ndBand + 1.0;
-        int tmpIntResultBand2Length = (int) (theRaftThatHasThe2ndBand * DIST_BET_RAFTS);
-        // Tilføj længde til andet punkt af hulbåndet af den samlede carport længde.
-        result[1] = tmpIntResultBand2Length;
-
-        // Beregn og tilføj hvilket spær andet punkt af hulbåndet skal monteres på.
-        int tmpIntResultBand2Raft = (int) theRaftThatHasThe2ndBand;
-        result[2] = tmpIntResultBand2Raft;
-
-        // Beregn hulbåndets længde fra punkt 1 (top venstre til bund højre) til punkt 2 (top venstre til bund højre).
-        double lengthOfSquare = tmpIntResultBand2Length - DIST_BET_RAFTS;
-        final double HEAD_TO_HEAD_PERCENT = 88.3333 / 100.0;
-        double widthOfSquare = (carportWidth * HEAD_TO_HEAD_PERCENT);
+    public int calcBandAmount(int carportLength, int carportWidth) {
+        // Beregner mål på firkanten hvor hulbåndet skal sidde (altid et spær inde i begge sider)
+        final double lengthOfSquare = carportLength-110;
+        // Beregner mål på firkanten hvor hulbåndet skal sidde (altid et spær inde i begge sider)
+        final double widthOfSquare = carportWidth-70;
+        // Derefter beregner vi længden af hulbåndet vha. pytagoros.
         final double CALC_DIAGONAL = Math.sqrt((lengthOfSquare * lengthOfSquare) + (widthOfSquare * widthOfSquare));
+
+        // Da vi nu har længden på et hulbånd ganger vi med 2 for at få totalen
         int diagonalToInt = (int) (CALC_DIAGONAL * 2.0);
-        result[3] = diagonalToInt;
+        int result = diagonalToInt;
 
         return result;
     }

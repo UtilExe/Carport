@@ -23,7 +23,7 @@ public class main {
         int amountOfRafts;
         int bandLength;
         int pillarAmount;
-        int[] band = new int[4];
+        int band;
         int rolesOfBand;
         int amountOfTiles;
         int amountOfScrews;
@@ -60,8 +60,7 @@ public class main {
 
         MaterialCalculator calcTest = new MaterialCalculator();
         band = calcTest.calcBandAmount(carportLengthCM, carportWidthCM);
-        bandLength = band[3];
-        rolesOfBand = calcTest.getRolesAmountBand(bandLength);
+        rolesOfBand = calcTest.getRolesAmountBand(band);
         amountOfRafts = calcTest.calcRaftAmount(carportLengthCM);
         pillarAmount = calcTest.calcPillarAmount(carportLengthCM, hasShed, shedLength);
         pillarLengths = calcTest.getPillarHeight(carportHeight, carportLengthCM, hasShed, shedLength);
@@ -77,7 +76,7 @@ public class main {
 
         ArrayList<String> heads = MaterialMapper.getRoofData(RAFT_ID, carportLengthCM, AMOUNT_OF_HEADS );
         ArrayList<String> rafts = MaterialMapper.getRoofData(RAFT_ID, carportWidthCM, amountOfRafts);
-        ArrayList<String> bands = MaterialMapper.getBandData(BAND_ID, bandLength, rolesOfBand);
+        ArrayList<String> bands = MaterialMapper.getBandData(BAND_ID, band, rolesOfBand);
         ArrayList<String> pillars = MaterialMapper.getPillarData(PILLAR_ID, pillarAmount, pillarLengths);
         ArrayList<String> frontbackunderplanks = MaterialMapper.getRoofData(PLANK_ID, carportWidthCM, AMOUNT_OF_FRONT_BACK_UNDERPLANKS);
         ArrayList<String> sideunderplanks = MaterialMapper.getRoofData(PLANK_ID, carportLengthCM, AMOUNT_OF_SIDE_UNDERPLANKS);

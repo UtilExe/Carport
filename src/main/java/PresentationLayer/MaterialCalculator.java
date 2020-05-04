@@ -19,23 +19,22 @@ public class MaterialCalculator extends Command {
         String tmpCarportWidth = request.getParameter("width");
         String tmpCarportHeight = request.getParameter("height");*/
 
-        int carportLength = Validation.getInteger(tmpCarportLength);
+        /*int carportLength = Validation.getInteger(tmpCarportLength);
         int carportWidth = Validation.getInteger(tmpCarportWidth);
         int carportHeight = Validation.getInteger(tmpCarportHeight);
+        */
 
-
-        boolean hasShed = true;
 
 
         return "tmpList";
     }
 
-    public int calcPillarAmount(int carportLength, boolean hasShed, int shedLenght) {
+    public int calcPillarAmount(int carportLength, boolean hasShed, int shedLength) {
         int result;
         final double PILLAR_AT_METER = 3.0;
         double tmpResult;
         if (hasShed) {
-            double tmpLength = carportLength - shedLenght;
+            double tmpLength = carportLength - shedLength;
             double tmpCarportLength = carportLength / 100.0;
             tmpResult = (tmpCarportLength / PILLAR_AT_METER);
             tmpResult = Math.floor(tmpResult);
@@ -119,7 +118,7 @@ public class MaterialCalculator extends Command {
     // af carport til rem være 35 cm på hver side (30 cm bagtil).
 
 
-    public ArrayList<Double> getPillarHeight(int carportHeight, double længde) {
+    public ArrayList<Double> getPillarHeight(int carportHeight, double carportLength, boolean hasShed, int shedLength) {
         ArrayList<Double> stolper = new ArrayList<Double>();
         final int HEAD_ID = 6;
         final int FACIA_ID = 1;
@@ -134,7 +133,7 @@ public class MaterialCalculator extends Command {
 
         //if(ikke skur)
 
-        int pillars = (calcPillarAmount((int) længde)) / 2;
+        int pillars = (calcPillarAmount((int) carportLength, hasShed, shedLength)) / 2;
         double første = pillarHeight + Math.tan((2 * Math.PI) / 180) * DIST_BEHIND_CARPORT;
         første = roundToTwo(første);
         første += GROUND_DEPTH;
@@ -211,7 +210,9 @@ public class MaterialCalculator extends Command {
         return (int) amountOfPacks;
     }
 
-    public int getCarriageBolts(int carportLength) {
-        return calcPillarAmount(carportLength) * 2;
+    public int getCarriageBolts(int carportLength, boolean hasShed, int shedLength) {
+        return calcPillarAmount(carportLength, hasShed, shedLength) * 2;
     }
+
+
 }

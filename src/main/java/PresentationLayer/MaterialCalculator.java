@@ -25,7 +25,6 @@ public class MaterialCalculator extends Command {
         */
 
 
-
         return "tmpList";
     }
 
@@ -34,11 +33,11 @@ public class MaterialCalculator extends Command {
         final double PILLAR_AT_METER = 3.0;
         double tmpResult;
         if (hasShed) {
-            double tmpLength = carportLength - shedLength;
-            double tmpCarportLength = carportLength / 100.0;
-            tmpResult = (tmpCarportLength / PILLAR_AT_METER);
+            double tmpLength = (carportLength - shedLength) / 100.0;
+            tmpResult = (tmpLength / PILLAR_AT_METER);
             tmpResult = Math.floor(tmpResult);
             result = (int) (tmpResult * 2);
+            System.out.println(result);
             result += 8; //Vi antager at et skur skal bruge 6 stolper (en i hvert hjørne + 2 i midten) og 2 til hver side af døren.
         } else {
             double tmpCarportLength = carportLength / 100.0;
@@ -66,21 +65,31 @@ public class MaterialCalculator extends Command {
         return result;
     }
 
-    public int calcBandAmount(int carportLength, int carportWidth) {
+    public int calcBandAmount(int carportLength, int carportWidth, boolean hasShed, int shedLength) {
+        double lengthOfSquare = 0.0;
+        double widthOfSquare;
+        double calcDiagonal;
+
+        if (!hasShed) {
+            // Beregner mål på firkanten hvor hulbåndet skal sidde (altid et spær inde i begge sider)
+            lengthOfSquare = carportLength - 110;
+        } else {
+            //Hvis carporten har et skud, går hulbåndet fra et spær inde til første spær skuret rammer.
+            lengthOfSquare = carportLength - (shedLength + 55);
+        }
         // Beregner mål på firkanten hvor hulbåndet skal sidde (altid et spær inde i begge sider)
-        final double lengthOfSquare = carportLength-110;
-        // Beregner mål på firkanten hvor hulbåndet skal sidde (altid et spær inde i begge sider)
-        final double widthOfSquare = carportWidth-70;
+        widthOfSquare = carportWidth - 70;
         // Derefter beregner vi længden af hulbåndet vha. pytagoros.
-        final double CALC_DIAGONAL = Math.sqrt((lengthOfSquare * lengthOfSquare) + (widthOfSquare * widthOfSquare));
+        calcDiagonal = Math.sqrt((lengthOfSquare * lengthOfSquare) + (widthOfSquare * widthOfSquare));
 
         // Da vi nu har længden på et hulbånd ganger vi med 2 for at få totalen
-        int diagonalToInt = (int) (CALC_DIAGONAL * 2.0);
+        int diagonalToInt = (int) (calcDiagonal * 2.0);
         int result = diagonalToInt;
 
         return result;
+
     }
-    //TODO efter calcBandAmount
+
     public int getRolesAmountBand(int bandLength) {
         int result;
         final int BAND_ID = 10;
@@ -100,6 +109,7 @@ public class MaterialCalculator extends Command {
         final int FACIA_ID = 1;
         final int GROUND_DEPTH = 90;
         final int DIST_BEHIND_CARPORT = 30;
+        int pillars = 0;
         double headHeight = MaterialMapper.getWidthHeightFromDimensionMeasureInCM(HEAD_ID).get(1);
         double fasciaBoardHeight = MaterialMapper.getWidthHeightFromDimensionMeasureInCM(FACIA_ID).get(1);
         double pillarHeight = carportHeight - headHeight - fasciaBoardHeight;
@@ -108,8 +118,15 @@ public class MaterialCalculator extends Command {
         //TODO if(skur)
 
         //if(ikke skur)
+        if (!hasShed) {
+            pillars = (calcPillarAmount((int) carportLength, hasShed, shedLength)) / 2;
+        } else {
+            pillars = (calcPillarAmount((int) carportLength, hasShed, shedLength)) - 8;
+            System.out.println(pillars);
+            pillars = pillars / 2;
 
-        int pillars = (calcPillarAmount((int) carportLength, hasShed, shedLength)) / 2;
+        }
+
         double første = pillarHeight + Math.tan((2 * Math.PI) / 180) * DIST_BEHIND_CARPORT;
         første = roundToTwo(første);
         første += GROUND_DEPTH;
@@ -119,7 +136,7 @@ public class MaterialCalculator extends Command {
         for (int i = 1; i < pillars; i++) {
             tmpStolpeHeight = tmpStolpeHeight + Math.tan((2 * Math.PI) / 180) * 300;
             double roundedNum = roundToTwo(tmpStolpeHeight);
-            roundedNum += GROUND_DEPTH; //TODO Tjek om den tilføjer 180 til tredje stolpe, ellers tilføj de 90 cm senere hen.
+            roundedNum += GROUND_DEPTH;
             stolper.add(roundedNum);
         }
 

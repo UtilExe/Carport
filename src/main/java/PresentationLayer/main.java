@@ -59,7 +59,7 @@ public class main {
 
 
         MaterialCalculator calcTest = new MaterialCalculator();
-        band = calcTest.calcBandAmount(carportLengthCM, carportWidthCM);
+        band = calcTest.calcBandAmount(carportLengthCM, carportWidthCM, hasShed, shedLength);
         rolesOfBand = calcTest.getRolesAmountBand(band);
         amountOfRafts = calcTest.calcRaftAmount(carportLengthCM);
         pillarAmount = calcTest.calcPillarAmount(carportLengthCM, hasShed, shedLength);

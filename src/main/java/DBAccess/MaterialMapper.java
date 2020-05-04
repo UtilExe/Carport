@@ -228,6 +228,36 @@ public class MaterialMapper {
     }
 
 
+
+    public static ArrayList<String> getPlankForShedData(int ID, int shedHeight, int plankForShedAmount) {
+        ArrayList<String> data = new ArrayList<>();
+
+        try {
+            Connection con = Connector.connection();
+            String SQL = "SELECT `material_list`.`category`, `material_list`.`unit`, `material_type`.`type_name`, " +
+                    "`material_list`.`description` FROM carport.material_list INNER JOIN `material_type` ON " +
+                    "`material_type`.`typeID` = `material_list`.`type_id` WHERE `material_list`.`productID`=?;";
+            PreparedStatement ps = con.prepareStatement(SQL);
+            ps.setInt(1, ID);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                String category = rs.getString("category");
+                String unit = rs.getString("unit");
+                String type = rs.getString("material_type.type_name");
+                String description = rs.getString("description");
+                data.add(category);
+                data.add(type);
+                data.add(description);
+                data.add(plankForShedAmount + " stk.");
+                data.add(shedHeight + " cm.");
+            }
+        } catch (SQLException | ClassNotFoundException ex) {
+            ex.printStackTrace();
+        }
+        return data;
+    }
+
+
 }
 
 

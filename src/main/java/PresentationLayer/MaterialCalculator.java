@@ -275,5 +275,23 @@ public class MaterialCalculator extends Command {
         return result;
     }
 
+    public int getPlanksForShed(int shedLength, int shedWidth) {
+        int result;
+        // ID til brædtet, der skal bruges:
+        final int PLANK_ID = 3;
+        // Vi antager, at der er et overlap på beklædningen af 2,5 cm i hver side af brædtet.
+        final double OVERLAP = 2.5;
+        ArrayList<Double> dimensionsOfPlank = MaterialMapper.getWidthHeightFromDimensionMeasureInCM(PLANK_ID);
+        double tmpPlankWidth = dimensionsOfPlank.get(1);
+        double plankWidthAfterOverlap = tmpPlankWidth - OVERLAP;
+        int plankWidth = (int) Math.ceil(plankWidthAfterOverlap);
+        double sides = (shedLength / plankWidthAfterOverlap) * 2;
+        double frontBack = (shedWidth / plankWidthAfterOverlap) * 2;
+        double tmpResult = sides + frontBack;
+        result = (int) Math.ceil(tmpResult);
+
+        return result;
+    }
+
 
 }

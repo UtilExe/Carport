@@ -12,7 +12,7 @@ public class main {
         //User user = LogicFacade.createUser("test", "test@gmail.com", "test", 12345678);
         //System.out.println(user.getName());
         int carportHeight = 220;
-        int carportLengthCM = 1200;
+        int carportLengthCM = 780;
         int carportWidthCM = 600;
         int shedLength = 220;
         int shedWidth = 530;
@@ -30,6 +30,7 @@ public class main {
         int[] transomSides;
         int[] transomFrontAndBack;
         int[] headsInShed;
+        int planksForShedAmount;
 
         final int AMOUNT_OF_FRONT_BACK_UNDERPLANKS = 2;
         final int AMOUNT_OF_SIDE_UNDERPLANKS = 2;
@@ -45,7 +46,7 @@ public class main {
         final int BAND_ID = 10;
         final int PILLAR_ID = 7;
         final int PLANK_ID = 1;
-        final int WATERPLANK_ID = 3;
+        final int WATERPLANK_AND_SHEDPLANK_ID = 3;
         final int TILE_ID = 8;
         final int BOTTOMSCREW_ID = 9;
         final int UNIVERSALSCREW_ID = 11;
@@ -77,6 +78,7 @@ public class main {
         transomSides = calcTest.getTransomsLengthSides(shedLength);
         transomFrontAndBack = calcTest.getTransomsLengthFrontAndBack(shedWidth);
         headsInShed = calcTest.getHeadsInShed(shedLength);
+        planksForShedAmount = calcTest.getPlanksForShed(shedLength, shedWidth);
 
 
 
@@ -89,8 +91,8 @@ public class main {
         ArrayList<String> sideunderplanks = MaterialMapper.getRoofData(PLANK_ID, carportLengthCM, AMOUNT_OF_SIDE_UNDERPLANKS);
         ArrayList<String> frontoverplanks = MaterialMapper.getRoofData(PLANK_ID, carportWidthCM, AMOUNT_OF_FRONT_OVERPLANKS);
         ArrayList<String> sideoverplanks = MaterialMapper.getRoofData(PLANK_ID, carportLengthCM, AMOUNT_OF_SIDE_OVERPLANKS);
-        ArrayList<String> sidewaterplanks = MaterialMapper.getRoofData(WATERPLANK_ID, carportLengthCM, AMOUNT_OF_SIDE_WATERPLANKS);
-        ArrayList<String> frontwaterplanks = MaterialMapper.getRoofData(WATERPLANK_ID, carportWidthCM, AMOUNT_OF_FRONT_WATERPLANKS);
+        ArrayList<String> sidewaterplanks = MaterialMapper.getRoofData(WATERPLANK_AND_SHEDPLANK_ID, carportLengthCM, AMOUNT_OF_SIDE_WATERPLANKS);
+        ArrayList<String> frontwaterplanks = MaterialMapper.getRoofData(WATERPLANK_AND_SHEDPLANK_ID, carportWidthCM, AMOUNT_OF_FRONT_WATERPLANKS);
         ArrayList<String> tiles = MaterialMapper.getScrewsAndTilesData(TILE_ID, amountOfTiles);
         ArrayList<String> roofBottomScrew = MaterialMapper.getScrewsAndTilesData(BOTTOMSCREW_ID, amountOfScrews);
         ArrayList<String> universalScrews = MaterialMapper.getScrewsAndTilesData(UNIVERSALSCREW_ID, amountOfUniversalScrews);
@@ -102,6 +104,7 @@ public class main {
         ArrayList<String> transomSidesInfo = MaterialMapper.getTransomAndHeadInShedData(TRANSOM_ID, transomSides);
         ArrayList<String> transomFrontAndBackInfo = MaterialMapper.getTransomAndHeadInShedData(TRANSOM_ID, transomFrontAndBack);
         ArrayList<String> headsInShedInfo = MaterialMapper.getTransomAndHeadInShedData(RAFT_AND_HEAD_ID, headsInShed);
+        ArrayList<String> planksInShedInfo = MaterialMapper.getPlankForShedData(WATERPLANK_AND_SHEDPLANK_ID, shedHeight, planksForShedAmount);
 
 
         System.out.println("Info om rem:" + heads);
@@ -127,6 +130,7 @@ public class main {
         System.out.println("Info om løsholte til siderne af skuret: " + transomSidesInfo);
         System.out.println("Info om løsholte til skurets gavle: " + transomFrontAndBackInfo);
         System.out.println("Info om rem i skuret: " + headsInShedInfo);
+        System.out.println("Info om brædt til skurbeklædning: " + planksInShedInfo);
 
 
 

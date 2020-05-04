@@ -12,7 +12,7 @@ public class main {
         //User user = LogicFacade.createUser("test", "test@gmail.com", "test", 12345678);
         //System.out.println(user.getName());
         int carportHeight = 220;
-        int carportLengthCM = 780;
+        int carportLengthCM = 1200;
         int carportWidthCM = 600;
         int shedLength = 220;
         int shedWidth = 530;

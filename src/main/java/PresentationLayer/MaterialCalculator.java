@@ -37,7 +37,9 @@ public class MaterialCalculator extends Command {
             tmpResult = (tmpLength / PILLAR_AT_METER);
             tmpResult = Math.floor(tmpResult);
             result = (int) (tmpResult * 2);
-            System.out.println(result);
+            if (result < 4) {
+                result = 4;
+            }
             result += 8; //Vi antager at et skur skal bruge 6 stolper (en i hvert hjørne + 2 i midten) og 2 til hver side af døren.
         } else {
             double tmpCarportLength = carportLength / 100.0;
@@ -45,11 +47,12 @@ public class MaterialCalculator extends Command {
             tmpResult = (tmpCarportLength / PILLAR_AT_METER);
             tmpResult = Math.floor(tmpResult);
             result = ((int) tmpResult) * 2;
-            if (result <= 4) {
+            if (result < 4) {
                 result = 4;
             }
         }
         return result;
+
     }
 
     //Vi antager at mængde af spær ikke ændre sig med skur eller ej
@@ -121,24 +124,34 @@ public class MaterialCalculator extends Command {
         if (!hasShed) {
             pillars = (calcPillarAmount((int) carportLength, hasShed, shedLength)) / 2;
         } else {
-            pillars = (calcPillarAmount((int) carportLength, hasShed, shedLength)) - 8;
-            System.out.println(pillars);
+            pillars = calcPillarAmount((int) carportLength, hasShed, shedLength) - 8;
             pillars = pillars / 2;
-
         }
 
-        double første = pillarHeight + Math.tan((2 * Math.PI) / 180) * DIST_BEHIND_CARPORT;
-        første = roundToTwo(første);
-        første += GROUND_DEPTH;
-        stolper.add(første);
+        double firstPillar = pillarHeight + Math.tan((2 * Math.PI) / 180) * DIST_BEHIND_CARPORT;
+        firstPillar = roundToTwo(firstPillar);
+        firstPillar += GROUND_DEPTH;
+        stolper.add(firstPillar);
+
 
         double tmpStolpeHeight = pillarHeight;
+        // Looper igennem carportens stolper (med varierende højde grundet hældning).
         for (int i = 1; i < pillars; i++) {
             tmpStolpeHeight = tmpStolpeHeight + Math.tan((2 * Math.PI) / 180) * 300;
             double roundedNum = roundToTwo(tmpStolpeHeight);
             roundedNum += GROUND_DEPTH;
             stolper.add(roundedNum);
         }
+
+        // Looper igennem skurets 8 stolper (med skurets højde).
+        final int SHED_PILLARS = 8;
+        for (int i = 1; i < SHED_PILLARS; i++) {
+            stolper.add(firstPillar);
+        }
+
+
+
+
 
         return stolper;
     }

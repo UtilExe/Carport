@@ -263,5 +263,17 @@ public class MaterialCalculator extends Command {
         return result;
     }
 
+    public int[] getHeadsInShed(int shedLength) {
+        int headsLength = shedLength;
+        // Der er 1 rem i hver side (derfor, 2 i alt):
+        final int HEADS_AMOUNT = 2;
+
+        int[] result = new int[2];
+        result[0] = HEADS_AMOUNT;
+        result[1] = headsLength;
+
+        return result;
+    }
+
 
 }

@@ -6,7 +6,6 @@ import FunctionLayer.LoginSampleException;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.LinkedHashMap;
 
 public class main {
     public static void main(String[] args) throws LoginSampleException {
@@ -30,6 +29,7 @@ public class main {
         int amountOfScrews;
         int[] transomSides;
         int[] transomFrontAndBack;
+        int[] headsInShed;
 
         final int AMOUNT_OF_FRONT_BACK_UNDERPLANKS = 2;
         final int AMOUNT_OF_SIDE_UNDERPLANKS = 2;
@@ -41,7 +41,7 @@ public class main {
 
         HashMap<String, Integer> productIDs = IDMapper.getIDs();
 
-        final int RAFT_ID = 6;
+        final int RAFT_AND_HEAD_ID = 6;
         final int BAND_ID = 10;
         final int PILLAR_ID = 7;
         final int PLANK_ID = 1;
@@ -76,12 +76,13 @@ public class main {
         int amountOfCarriageBolts = calcTest.getCarriageBolts(carportLengthCM, hasShed, shedLength);
         transomSides = calcTest.getTransomsLengthSides(shedLength);
         transomFrontAndBack = calcTest.getTransomsLengthFrontAndBack(shedWidth);
+        headsInShed = calcTest.getHeadsInShed(shedLength);
 
 
 
 
-        ArrayList<String> heads = MaterialMapper.getRoofData(RAFT_ID, carportLengthCM, AMOUNT_OF_HEADS );
-        ArrayList<String> rafts = MaterialMapper.getRoofData(RAFT_ID, carportWidthCM, amountOfRafts);
+        ArrayList<String> heads = MaterialMapper.getRoofData(RAFT_AND_HEAD_ID, carportLengthCM, AMOUNT_OF_HEADS );
+        ArrayList<String> rafts = MaterialMapper.getRoofData(RAFT_AND_HEAD_ID, carportWidthCM, amountOfRafts);
         ArrayList<String> bands = MaterialMapper.getBandData(BAND_ID, band, rolesOfBand);
         ArrayList<String> pillars = MaterialMapper.getPillarData(PILLAR_ID, pillarAmount, pillarLengths);
         ArrayList<String> frontbackunderplanks = MaterialMapper.getRoofData(PLANK_ID, carportWidthCM, AMOUNT_OF_FRONT_BACK_UNDERPLANKS);
@@ -98,9 +99,9 @@ public class main {
         ArrayList<String> carriageBolts = MaterialMapper.getScrewsAndTilesData(CARRIAGEBOLT_ID, amountOfCarriageBolts);
         ArrayList<String> squareWashers = MaterialMapper.getScrewsAndTilesData(SQUAREWASHER_ID, amountOfCarriageBolts);
         ArrayList<String> battern = MaterialMapper.getRoofData(BATTERN_ID, BATTERNLENGTH_DOOR, 1);
-        ArrayList<String> transomSidesInfo = MaterialMapper.getTransomData(TRANSOM_ID, transomSides);
-        ArrayList<String> transomFrontAndBackInfo = MaterialMapper.getTransomData(TRANSOM_ID, transomFrontAndBack);
-
+        ArrayList<String> transomSidesInfo = MaterialMapper.getTransomAndHeadInShedData(TRANSOM_ID, transomSides);
+        ArrayList<String> transomFrontAndBackInfo = MaterialMapper.getTransomAndHeadInShedData(TRANSOM_ID, transomFrontAndBack);
+        ArrayList<String> headsInShedInfo = MaterialMapper.getTransomAndHeadInShedData(RAFT_AND_HEAD_ID, headsInShed);
 
 
         System.out.println("Info om rem:" + heads);
@@ -125,6 +126,7 @@ public class main {
         System.out.println("Info om lægte til bagside af døren: " + battern);
         System.out.println("Info om løsholte til siderne af skuret: " + transomSidesInfo);
         System.out.println("Info om løsholte til skurets gavle: " + transomFrontAndBackInfo);
+        System.out.println("Info om rem i skuret: " + headsInShedInfo);
 
 
 

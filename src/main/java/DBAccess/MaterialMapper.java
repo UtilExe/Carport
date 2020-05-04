@@ -198,9 +198,8 @@ public class MaterialMapper {
     }
 
 
-    public static ArrayList<String> getTransomData(int ID, int[] transoms) {
+    public static ArrayList<String> getTransomAndHeadInShedData(int ID, int[] transomsOrHeads) {
         ArrayList<String> data = new ArrayList<>();
-        String[] descriptionSplitted = new String[2];
 
         try {
             Connection con = Connector.connection();
@@ -218,8 +217,8 @@ public class MaterialMapper {
                 data.add(category);
                 data.add(type);
                 data.add(description);
-                for(int i = 0; i < transoms.length-1; i+=2) {
-                    data.add(transoms[i] + " stk.: " + transoms[i+1] + " cm.");
+                for(int i = 0; i < transomsOrHeads.length-1; i+=2) {
+                    data.add(transomsOrHeads[i] + " stk.: " + transomsOrHeads[i+1] + " cm.");
                 }
             }
         } catch (SQLException | ClassNotFoundException ex) {

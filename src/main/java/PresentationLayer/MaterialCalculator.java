@@ -179,11 +179,11 @@ public class MaterialCalculator extends Command {
         return roofTileAmount;
     }
 
-    public int getRoofScrewAmount(int carportLength, int carportWidth) {
+    public int getRoofScrewAmount(int carportLength, int carportWidth, int ID) {
         int roofArea = carportLength * carportWidth;
         final int SCREW_PR_M2 = 12;
         final int CM_TO_M2 = 10000;
-        double AMOUNT_OF_SCREWS_PR_PACKAGE = 200;
+        final double AMOUNT_OF_SCREWS_PR_PACKAGE = MaterialMapper.getAmountPrUnit(ID);
 
         double tmpResult = ((roofArea / CM_TO_M2) * SCREW_PR_M2) / AMOUNT_OF_SCREWS_PR_PACKAGE;
         int result = (int) Math.ceil(tmpResult);
@@ -293,5 +293,40 @@ public class MaterialCalculator extends Command {
         return result;
     }
 
+    public int getOuterScrewsShed(int shedLength, int shedWidth, int ID){
+        int result;
+        int planksForShed =  getPlanksForShed(shedLength, shedWidth);
+        // Vi antager, at der skal bruges 2 skruer pr. ydre bræt.
+        final int AMOUNT_OF_OUTERSCREW_PR_PLANK = 2;
+        double amountOfScrewPrPackage = MaterialMapper.getAmountPrUnit(ID);
+        double tmpResult = (planksForShed * AMOUNT_OF_OUTERSCREW_PR_PLANK) / amountOfScrewPrPackage;
+        result =(int) Math.ceil(tmpResult);
+        return result;
+
+    }
+    public int getInnerScrewsShed(int shedLength, int shedWidth, int ID){
+        int result;
+        // Vi antager, at der bruges 4 skruer pr. løsholte.
+        final int AMOUNT_OF_SCREWS_PR_TRANSOM = 4;
+        final int AMOUNT_OF_SCREWS_ON_DOOR = 50;
+        double amountOfScewPrPackage = MaterialMapper.getAmountPrUnit(ID);
+        int transomAmountFrontBack =  getTransomsLengthFrontAndBack(shedWidth)[0] + getTransomsLengthFrontAndBack(shedWidth)[2];
+        int transomAmountSides = getTransomsLengthSides(shedLength)[0];
+        double tmpResult = ((transomAmountFrontBack * AMOUNT_OF_SCREWS_PR_TRANSOM) + (transomAmountSides * AMOUNT_OF_SCREWS_ON_DOOR) + AMOUNT_OF_SCREWS_ON_DOOR) / amountOfScewPrPackage;
+        result = (int) Math.ceil(tmpResult);
+
+
+        return result;
+    }
+
+    public int getAngleMount(int shedLength, int shedWidth){
+        int result;
+        // Vi antager, at der bruges 2 vinkelbeslag pr. løsholt(én i hver ende)
+        final int ANGLE_MOUNT_PR_TRANSOM = 2;
+        int transomAmountFrontBack =  getTransomsLengthFrontAndBack(shedWidth)[0] + getTransomsLengthFrontAndBack(shedWidth)[2];
+        int transomAmountSides = getTransomsLengthSides(shedLength)[0];
+        result = (transomAmountFrontBack + transomAmountSides) * 2;
+        return result;
+    }
 
 }

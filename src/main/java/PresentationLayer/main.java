@@ -39,6 +39,8 @@ public class main {
         final int AMOUNT_OF_SIDE_WATERPLANKS = 2;
         final int AMOUNT_OF_FRONT_WATERPLANKS = 1;
         final int BATTERNLENGTH_DOOR = 420;
+        final int DOOR_GRIB = 1;
+        final int T_HINGE = 2;
 
         HashMap<String, Integer> productIDs = IDMapper.getIDs();
 
@@ -56,6 +58,11 @@ public class main {
         final int SQUAREWASHER_ID = 17;
         final int BATTERN_ID = 4;
         final int TRANSOM_ID = 5;
+        final int OUTERSCREW_ID = 13;
+        final int INNERSCREW_ID = 12;
+        final int DOORGRIB_ID = 18;
+        final int THINGE_ID = 19;
+        final int ANGLEMOUNT_ID = 20;
 
 
         ArrayList<Double> pillarLengths;
@@ -70,7 +77,7 @@ public class main {
         pillarAmount = calcTest.calcPillarAmount(carportLengthCM, hasShed, shedLength);
         pillarLengths = calcTest.getPillarHeight(carportHeight, carportLengthCM, hasShed, shedLength);
         amountOfTiles = calcTest.getRoofTileAmount(carportLengthCM, carportWidthCM);
-        amountOfScrews = calcTest.getRoofScrewAmount(carportLengthCM, carportWidthCM);
+        amountOfScrews = calcTest.getRoofScrewAmount(carportLengthCM, carportWidthCM, BOTTOMSCREW_ID);
         int amountOfUniversalScrews = calcTest.getUniversalScrews(carportLengthCM);
         int amountOfPlankWaterScrews = calcTest.getPlankAndWaterScrews();
         int amountOfBracketScrews = calcTest.getBracketScrews(carportLengthCM);
@@ -79,6 +86,10 @@ public class main {
         transomFrontAndBack = calcTest.getTransomsLengthFrontAndBack(shedWidth);
         headsInShed = calcTest.getHeadsInShed(shedLength);
         planksForShedAmount = calcTest.getPlanksForShed(shedLength, shedWidth);
+        int packageOfOuterScrews = calcTest.getOuterScrewsShed(shedLength, shedWidth, OUTERSCREW_ID);
+        int packageOfInnerScrews = calcTest.getInnerScrewsShed(shedLength, shedWidth, INNERSCREW_ID);
+        int amountOfAngleMount = calcTest.getAngleMount(shedLength, shedWidth);
+
 
 
 
@@ -105,6 +116,12 @@ public class main {
         ArrayList<String> transomFrontAndBackInfo = MaterialMapper.getTransomAndHeadInShedData(TRANSOM_ID, transomFrontAndBack);
         ArrayList<String> headsInShedInfo = MaterialMapper.getTransomAndHeadInShedData(RAFT_AND_HEAD_ID, headsInShed);
         ArrayList<String> planksInShedInfo = MaterialMapper.getPlankForShedData(WATERPLANK_AND_SHEDPLANK_ID, shedHeight, planksForShedAmount);
+        ArrayList<String> outerScrewsInfo = MaterialMapper.getScrewsAndTilesData(OUTERSCREW_ID, packageOfOuterScrews);
+        ArrayList<String> innerScrewsInfo = MaterialMapper.getScrewsAndTilesData(INNERSCREW_ID, packageOfInnerScrews);
+        ArrayList<String> doorGribInfo = MaterialMapper.getScrewsAndTilesData(DOORGRIB_ID, DOOR_GRIB);
+        ArrayList<String> tHingeInfo = MaterialMapper.getScrewsAndTilesData(THINGE_ID, T_HINGE);
+        ArrayList<String> angleMountInfo = MaterialMapper.getScrewsAndTilesData(ANGLEMOUNT_ID, amountOfAngleMount);
+
 
 
         System.out.println("Info om rem:" + heads);
@@ -131,6 +148,12 @@ public class main {
         System.out.println("Info om løsholte til skurets gavle: " + transomFrontAndBackInfo);
         System.out.println("Info om rem i skuret: " + headsInShedInfo);
         System.out.println("Info om brædt til skurbeklædning: " + planksInShedInfo);
+        System.out.println("Info om skruer til ydre beklædning på skuret: " + outerScrewsInfo);
+        System.out.println("Info om skruer til indre beklædning på skuret: " + innerScrewsInfo);
+        System.out.println("Info om stalddørsgreb: " + doorGribInfo);
+        System.out.println("Info om t-hængsel til dør: " + tHingeInfo);
+        System.out.println("Info om vinkelbeslag til løsholte: " + angleMountInfo);
+
 
 
 

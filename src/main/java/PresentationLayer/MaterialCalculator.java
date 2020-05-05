@@ -332,11 +332,10 @@ public class MaterialCalculator extends Command {
         return Math.ceil(totalTiles/300);
     }
 
-    public int getToplægte() {
+    public int getToplægte(int carportLength) {
         //En på hver side i bunden af rejsningen for at holde tagsten
         return 2;
     }
 
-    
 
-}
+ }

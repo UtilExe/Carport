@@ -109,53 +109,50 @@ public class MaterialCalculator extends Command {
     // af carport til rem være 35 cm på hver side (30 cm bagtil).
 
 
-    public ArrayList<Double> getPillarHeight(int carportHeight, double carportLength, boolean hasShed, int shedLength) {
+    public ArrayList<Double> getPillarHeight(int carportHeight, double carportLength, boolean hasShed, int shedLength, boolean hasPitch) {
         ArrayList<Double> stolper = new ArrayList<Double>();
         final int HEAD_ID = 6;
         final int FACIA_ID = 1;
         final int GROUND_DEPTH = 90;
         final int DIST_BEHIND_CARPORT = 30;
         int pillars = 0;
+        double firstPillar = 0.0;
         double headHeight = MaterialMapper.getWidthHeightFromDimensionMeasureInCM(HEAD_ID).get(1);
         double fasciaBoardHeight = MaterialMapper.getWidthHeightFromDimensionMeasureInCM(FACIA_ID).get(1);
         double pillarHeight = carportHeight - headHeight - fasciaBoardHeight;
 
-
-        //TODO if(skur)
-
-        //if(ikke skur)
-        if (!hasShed) {
-            pillars = (calcPillarAmount((int) carportLength, hasShed, shedLength)) / 2;
-        } else {
+        if (hasShed) {
             pillars = calcPillarAmount((int) carportLength, hasShed, shedLength) - 8;
             pillars = pillars / 2;
+        } else {
+            pillars = (calcPillarAmount((int) carportLength, hasShed, shedLength)) / 2;
         }
 
-        double firstPillar = pillarHeight + Math.tan((2 * Math.PI) / 180) * DIST_BEHIND_CARPORT;
-        firstPillar = roundToTwo(firstPillar);
-        firstPillar += GROUND_DEPTH;
-        stolper.add(firstPillar);
+        if (hasPitch) {
+            for (int i = 0; i < pillars; i++) {
+                stolper.add(pillarHeight);
+            }
+        } else {
+            firstPillar = pillarHeight + Math.tan((2 * Math.PI) / 180) * DIST_BEHIND_CARPORT;
+            firstPillar = roundToTwo(firstPillar);
+            firstPillar += GROUND_DEPTH;
+            stolper.add(firstPillar);
 
 
-        double tmpStolpeHeight = pillarHeight;
-        // Looper igennem carportens stolper (med varierende højde grundet hældning).
-        for (int i = 1; i < pillars; i++) {
-            tmpStolpeHeight = tmpStolpeHeight + Math.tan((2 * Math.PI) / 180) * 300;
-            double roundedNum = roundToTwo(tmpStolpeHeight);
-            roundedNum += GROUND_DEPTH;
-            stolper.add(roundedNum);
+            double tmpStolpeHeight = pillarHeight;
+            // Looper igennem carportens stolper (med varierende højde grundet hældning).
+            for (int i = 1; i < pillars; i++) {
+                tmpStolpeHeight = tmpStolpeHeight + Math.tan((2 * Math.PI) / 180) * 300;
+                double roundedNum = roundToTwo(tmpStolpeHeight);
+                roundedNum += GROUND_DEPTH;
+                stolper.add(roundedNum);
+            }
         }
-
         // Looper igennem skurets 8 stolper (med skurets højde).
         final int SHED_PILLARS = 8;
         for (int i = 1; i < SHED_PILLARS; i++) {
             stolper.add(firstPillar);
         }
-
-
-
-
-
         return stolper;
     }
 
@@ -293,24 +290,25 @@ public class MaterialCalculator extends Command {
         return result;
     }
 
-    public int getOuterScrewsShed(int shedLength, int shedWidth, int ID){
+    public int getOuterScrewsShed(int shedLength, int shedWidth, int ID) {
         int result;
-        int planksForShed =  getPlanksForShed(shedLength, shedWidth);
+        int planksForShed = getPlanksForShed(shedLength, shedWidth);
         // Vi antager, at der skal bruges 2 skruer pr. ydre bræt.
         final int AMOUNT_OF_OUTERSCREW_PR_PLANK = 2;
         double amountOfScrewPrPackage = MaterialMapper.getAmountPrUnit(ID);
         double tmpResult = (planksForShed * AMOUNT_OF_OUTERSCREW_PR_PLANK) / amountOfScrewPrPackage;
-        result =(int) Math.ceil(tmpResult);
+        result = (int) Math.ceil(tmpResult);
         return result;
 
     }
-    public int getInnerScrewsShed(int shedLength, int shedWidth, int ID){
+
+    public int getInnerScrewsShed(int shedLength, int shedWidth, int ID) {
         int result;
         // Vi antager, at der bruges 4 skruer pr. løsholte.
         final int AMOUNT_OF_SCREWS_PR_TRANSOM = 4;
         final int AMOUNT_OF_SCREWS_ON_DOOR = 50;
         double amountOfScewPrPackage = MaterialMapper.getAmountPrUnit(ID);
-        int transomAmountFrontBack =  getTransomsLengthFrontAndBack(shedWidth)[0] + getTransomsLengthFrontAndBack(shedWidth)[2];
+        int transomAmountFrontBack = getTransomsLengthFrontAndBack(shedWidth)[0] + getTransomsLengthFrontAndBack(shedWidth)[2];
         int transomAmountSides = getTransomsLengthSides(shedLength)[0];
         double tmpResult = ((transomAmountFrontBack * AMOUNT_OF_SCREWS_PR_TRANSOM) + (transomAmountSides * AMOUNT_OF_SCREWS_ON_DOOR) + AMOUNT_OF_SCREWS_ON_DOOR) / amountOfScewPrPackage;
         result = (int) Math.ceil(tmpResult);
@@ -319,14 +317,26 @@ public class MaterialCalculator extends Command {
         return result;
     }
 
-    public int getAngleMount(int shedLength, int shedWidth){
+    public int getAngleMount(int shedLength, int shedWidth) {
         int result;
         // Vi antager, at der bruges 2 vinkelbeslag pr. løsholt(én i hver ende)
         final int ANGLE_MOUNT_PR_TRANSOM = 2;
-        int transomAmountFrontBack =  getTransomsLengthFrontAndBack(shedWidth)[0] + getTransomsLengthFrontAndBack(shedWidth)[2];
+        int transomAmountFrontBack = getTransomsLengthFrontAndBack(shedWidth)[0] + getTransomsLengthFrontAndBack(shedWidth)[2];
         int transomAmountSides = getTransomsLengthSides(shedLength)[0];
         result = (transomAmountFrontBack + transomAmountSides) * 2;
         return result;
     }
+
+    public double getTile() {
+        double totalTiles = 6*24;
+        return Math.ceil(totalTiles/300);
+    }
+
+    public int getToplægte() {
+        //En på hver side i bunden af rejsningen for at holde tagsten
+        return 2;
+    }
+
+    
 
 }

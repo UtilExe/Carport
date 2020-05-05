@@ -18,6 +18,7 @@ public class main {
         int shedWidth = 530;
         int shedHeight = (int) (carportHeight - MaterialMapper.getWidthHeightFromDimensionMeasureInCM(6).get(1));
         boolean hasShed = true;
+        boolean hasPitch = false;
 
         final int AMOUNT_OF_HEADS = 2;
         int amountOfRafts;
@@ -75,7 +76,7 @@ public class main {
         rolesOfBand = calcTest.getRolesAmountBand(band);
         amountOfRafts = calcTest.calcRaftAmount(carportLengthCM);
         pillarAmount = calcTest.calcPillarAmount(carportLengthCM, hasShed, shedLength);
-        pillarLengths = calcTest.getPillarHeight(carportHeight, carportLengthCM, hasShed, shedLength);
+        pillarLengths = calcTest.getPillarHeight(carportHeight, carportLengthCM, hasShed, shedLength, hasPitch);
         amountOfTiles = calcTest.getRoofTileAmount(carportLengthCM, carportWidthCM);
         amountOfScrews = calcTest.getRoofScrewAmount(carportLengthCM, carportWidthCM, BOTTOMSCREW_ID);
         int amountOfUniversalScrews = calcTest.getUniversalScrews(carportLengthCM);
@@ -89,8 +90,6 @@ public class main {
         int packageOfOuterScrews = calcTest.getOuterScrewsShed(shedLength, shedWidth, OUTERSCREW_ID);
         int packageOfInnerScrews = calcTest.getInnerScrewsShed(shedLength, shedWidth, INNERSCREW_ID);
         int amountOfAngleMount = calcTest.getAngleMount(shedLength, shedWidth);
-
-
 
 
 

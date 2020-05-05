@@ -211,3 +211,14 @@ INSERT INTO material_list (`category`, `price_unit`, `amount_pr_unit`, `unit`, `
 INSERT INTO material_list (`category`, `price_unit`, `amount_pr_unit`, `unit`, `type_id`, `description`) VALUES ('beslag og skruer', '110', '1', 'sæt', '14', '50x75 mm.');
 INSERT INTO material_list (`category`, `price_unit`, `amount_pr_unit`, `unit`, `type_id`, `description`) VALUES ('beslag og skruer', '35', '1', 'stk', '15', '390 mm.');
 INSERT INTO material_list (`category`, `price_unit`, `amount_pr_unit`, `unit`, `type_id`, `description`) VALUES ('beslag og skruer', '3', '1', 'stk', '16', '35 mm.');
+
+INSERT INTO material_type (`type_name`) VALUES ('dobbelt');
+INSERT INTO material_type (`type_name`) VALUES ('rygsten');
+INSERT INTO material_type (`type_name`) VALUES ('toplægte holder');
+INSERT INTO material_type (`type_name`) VALUES ('rygstensbeslag');
+INSERT INTO material_type (`type_name`) VALUES ('tagstens bindere og nakkekroge');
+INSERT INTO material_list (`category`, `price_unit`, `unit`, `type_id`, `description`) VALUES ('tagpakken', '300', 'stk', '17', 'B & C Dobbelt');
+INSERT INTO material_list (`category`, `price_unit`, `unit`, `type_id`, `description`) VALUES ('tagpakken', '21', 'stk', '18', 'B & C Rygsten');
+INSERT INTO material_list (`category`, `price_unit`, `unit`, `type_id`, `description`) VALUES ('tagpakken', '8', 'stk', '19', 'B & C Toplægte holder');
+INSERT INTO material_list (`category`, `price_unit`, `unit`, `type_id`, `description`) VALUES ('tagpakken', '21', 'stk', '20', 'B & C Rygsten');
+INSERT INTO material_list (`category`, `price_unit`, `unit`, `type_id`, `description`) VALUES ('tagpakken', '2', 'pk', '21', 'B & C Rygsten');

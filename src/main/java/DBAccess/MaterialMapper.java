@@ -9,10 +9,10 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 
 public class MaterialMapper {
-    public static ArrayList<String> getRoofData(int ID, int carportMeasure, int tmpAmount) {
+    public static ArrayList<String> getRoofData(int ID, int measure, int tmpAmount) {
         ArrayList<String> data = new ArrayList<>();
         String amount = String.valueOf(tmpAmount);
-        String carpMeasure = String.valueOf(carportMeasure);
+        String carpMeasure = String.valueOf(measure);
 
         try {
             Connection con = Connector.connection();
@@ -229,7 +229,7 @@ public class MaterialMapper {
 
 
 
-    public static ArrayList<String> getPlankForShedData(int ID, int shedHeight, int plankForShedAmount) {
+    public static ArrayList<String> getPlankData(int ID, int height, int plankAmount) {
         ArrayList<String> data = new ArrayList<>();
 
         try {
@@ -248,8 +248,8 @@ public class MaterialMapper {
                 data.add(category);
                 data.add(type);
                 data.add(description);
-                data.add(plankForShedAmount + " stk.");
-                data.add(shedHeight + " cm.");
+                data.add(plankAmount + " stk.");
+                data.add(height + " cm.");
             }
         } catch (SQLException | ClassNotFoundException ex) {
             ex.printStackTrace();

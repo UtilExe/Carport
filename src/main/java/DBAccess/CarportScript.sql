@@ -222,7 +222,7 @@ INSERT INTO material_list (`category`, `price_unit`, `unit`, `type_id`, `descrip
 INSERT INTO material_list (`category`, `price_unit`, `unit`, `type_id`, `description`) VALUES ('tagpakken', '10', 'stk', '18', 'B & C');
 INSERT INTO material_list (`category`, `price_unit`, `unit`, `type_id`, `description`) VALUES ('tagpakken', '10', 'stk', '19', 'B & C');
 INSERT INTO material_list (`category`, `price_unit`, `unit`, `type_id`, `description`) VALUES ('tagpakken', '10', 'stk', '20', 'B & C');
-INSERT INTO material_list (`category`, `price_unit`, `unit`, `type_id`, `description`) VALUES ('tagpakken', '10', 'pk', '21', 'B & C');
+INSERT INTO material_list (`category`, `price_unit`, `unit`, `type_id`, `description`) VALUES ('tagpakken', '10', 'pakke', '21', 'B & C');
 INSERT INTO material_list (`category`, `price_unit`, `unit`, `type_id`, `description`) VALUES ('træ og tagplader', '5', 'sæt', '22', 'fædigskåret');
 INSERT INTO material_list (`category`, `price_unit`, `unit`, `type_id`, `description`) VALUES ('træ og tagplader', '2', 'sæt', '1', '25x50 mm., trykimp');
 INSERT INTO material_list (`category`, `price_unit`, `unit`, `type_id`, `description`) VALUES ('træ og tagplader', '35', 'stk', '2', '38x73 mm., taglægte');

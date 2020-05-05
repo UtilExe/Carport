@@ -59,13 +59,19 @@ public class MaterialCalculator extends Command {
     }
 
     //Vi antager at mængde af spær ikke ændre sig med skur eller ej
-    public int calcRaftAmount(int carportLength) {
+    public int calcRaftAmount(int carportLength, boolean hasPitch) {
         int result;
         double tmpResult;
         double tmpCarportLength = carportLength / 100.0;
-        // Beregning af antal spær; skal være et pr. 55 cm.
-        final double RAFT_AT_METER = 0.55;
-        tmpResult = (tmpCarportLength / RAFT_AT_METER);
+        double raftAtMeter;
+        if(hasPitch) {
+            // Beregning af antal spær; skal være ét pr. 89 cm.
+            raftAtMeter = 0.89;
+        } else {
+            // Beregning af antal spær; skal være ét pr. 55 cm.
+            raftAtMeter = 0.55;
+        }
+        tmpResult = (tmpCarportLength / raftAtMeter);
         tmpResult = Math.ceil(tmpResult);
         result = ((int) tmpResult);
         return result;
@@ -188,9 +194,9 @@ public class MaterialCalculator extends Command {
         return result;
     }
 
-    public int getUniversalScrews(int carportLength) {
+    public int getUniversalScrews(int carportLength, boolean hasPitch) {
         //Vi antager at der skrues en skrue i hver side af hvert spær
-        return calcRaftAmount(carportLength) * 2;
+        return calcRaftAmount(carportLength, hasPitch) * 2;
     }
 
     public int getPlankAndWaterScrews() {
@@ -203,14 +209,14 @@ public class MaterialCalculator extends Command {
         return 1;
     }
 
-    public int getBracketScrews(int carportLength) {
+    public int getBracketScrews(int carportLength, boolean hasPitch) {
         /*
         Vi antager at der skrues 2 beslag på hver side af et spær i begge ender. Derved ganger vi spær med 4 og derefter
         med 6 da der går 6 skruer til 1 beslag.
 
         Vi antager at beskrivelse om montering af hulbånd allerede er dækket af vores beregning.
         */
-        int amountOfRafts = calcRaftAmount(carportLength);
+        int amountOfRafts = calcRaftAmount(carportLength, hasPitch);
         int amountOfScrews = amountOfRafts * 4 * 6;
         double amountOfPacks = Math.ceil(amountOfScrews / 250.0);
         return (int) amountOfPacks;
@@ -327,15 +333,103 @@ public class MaterialCalculator extends Command {
         return result;
     }
 
-    public double getTile() {
-        double totalTiles = 6*24;
-        return Math.ceil(totalTiles/300);
+    public int getTilesForPitchedRoof() {
+        // 6 rækker af 24 sten på hver side af taget:
+        int totalTiles = (6*24) * 2;
+        //return (int) (Math.ceil(totalTiles/300));
+        return totalTiles;
     }
 
-    public int getToplægte(int carportLength) {
+    public int getAmountOfRooflaths(int carportLength) {
         //En på hver side i bunden af rejsningen for at holde tagsten
         return 2;
     }
+
+    public int getAmountOfToplathScrews(int amountOfRooflaths, int amountOfToplaths, int ID) {
+        // Vi antager, at der skal 8 skruer til én toplægte (4 på hver side):
+        final int AMOUNT_OF_SCREWS_PR_TOPLATH = 8;
+        // TODO Vi antager, at der skal __ skruer til én taglægte:
+        final int AMOUNT_OF_SCREWS_PR_ROOFLATH = 0;
+
+        double screwsPrUnit = MaterialMapper.getAmountPrUnit(ID);
+        int result = (AMOUNT_OF_SCREWS_PR_TOPLATH * amountOfToplaths) + (AMOUNT_OF_SCREWS_PR_ROOFLATH * amountOfRooflaths);
+        result = (int) (Math.ceil(result / screwsPrUnit));
+
+        return result;
+    }
+
+    public int getPackagesOfTileBindersAndHooks() {
+        // Vi antager, at der uanset tagstørrelse skal bruges 2 pakker tagstens bindere og nakkekroge
+        final int AMOUNT_OF_TILE_BINDERS_HOOKS = 2;
+
+        return AMOUNT_OF_TILE_BINDERS_HOOKS;
+    }
+
+    public int getAmountOfRoofTileStones(int carportLength) {
+        // Vi antager, at en rygsten har en længde på 50 cm.
+        final int ROOFTILE_STONE_LENGTH_CM = 50;
+        final int OVERLAP_CM = 10;
+
+        int result = carportLength / (ROOFTILE_STONE_LENGTH_CM - OVERLAP_CM);
+
+        return result;
+    }
+
+    public int getAmountOfRoofTileStoneBrackets(int amountOfRoofTileStones) {
+        // Der skal 1 rygstensbeslag til 1 rygsten.
+        int result = amountOfRoofTileStones;
+
+        return result;
+    }
+
+    public int getAmountOfToplathHolders(int amountOfRafts) {
+        // Der er 1 toplægteholder på hvert spær.
+        int result = amountOfRafts;
+
+        return result;
+    }
+
+    public int getGavlPlanksLength(int carportWidth, int carportPitch) {
+        double halfWidth = carportWidth / 2;
+        double middleHeight = Math.tan((carportPitch * Math.PI) / 180) * halfWidth;
+        double tmpResult = Math.sqrt((halfWidth * halfWidth) + (middleHeight * middleHeight));
+        int result = (int) (Math.ceil(tmpResult));
+
+        return result;
+    }
+
+    public int getAmountOfGavlPlanks() {
+        // Vi antager, at der altid er 4 gavl-brædt (2 foran og 2 bagved):
+        final int AMOUNT_OF_GAVL_PLANKS = 4;
+
+        return AMOUNT_OF_GAVL_PLANKS;
+    }
+
+    public int getAmountOfPlanksForGavlMount(int carportWidth) {
+        int result;
+        // ID til brædtet, der skal bruges:
+        final int PLANK_ID = 3;
+        // Vi antager, at der er et overlap på beklædningen af 2,5 cm i hver side af brædtet.
+        final double OVERLAP = 2.5;
+        ArrayList<Double> dimensionsOfPlank = MaterialMapper.getWidthHeightFromDimensionMeasureInCM(PLANK_ID);
+        double tmpPlankWidth = dimensionsOfPlank.get(1);
+        System.out.println(tmpPlankWidth);
+        double plankWidthAfterOverlap = tmpPlankWidth - OVERLAP;
+        int plankWidth = (int) Math.ceil(plankWidthAfterOverlap);
+        double amountOfPlanks = (carportWidth / plankWidthAfterOverlap) * 2;
+        result = (int) Math.ceil(amountOfPlanks);
+
+        return result;
+    }
+
+    public int getPlanksForGavlMountLength(int carportWidth, int carportPitch) {
+        double halfWidth = carportWidth / 2;
+        double middleHeight = Math.tan((carportPitch * Math.PI) / 180) * halfWidth;
+        int result = (int) (Math.ceil(middleHeight));
+
+        return result;
+    }
+
 
 
  }

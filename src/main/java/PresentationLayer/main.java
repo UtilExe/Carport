@@ -16,9 +16,10 @@ public class main {
         int carportWidthCM = 600;
         int shedLength = 220;
         int shedWidth = 530;
+        int carportPitch = 45;
         int shedHeight = (int) (carportHeight - MaterialMapper.getWidthHeightFromDimensionMeasureInCM(6).get(1));
         boolean hasShed = true;
-        boolean hasPitch = false;
+        boolean hasPitch = true;
 
         final int AMOUNT_OF_HEADS = 2;
         int amountOfRafts;
@@ -64,6 +65,11 @@ public class main {
         final int DOORGRIB_ID = 18;
         final int THINGE_ID = 19;
         final int ANGLEMOUNT_ID = 20;
+        final int TILES_PITCHED_ID = 21;
+        final int TILES_BINDERS_HOOKS_ID = 25;
+        final int ROOFTILE_STONES_ID = 22;
+        final int ROOFTILE_STONE_BRACKETS_ID = 24;
+        final int TOPLATH_HOLDER_ID = 23;
 
 
         ArrayList<Double> pillarLengths;
@@ -74,14 +80,14 @@ public class main {
         MaterialCalculator calcTest = new MaterialCalculator();
         band = calcTest.calcBandAmount(carportLengthCM, carportWidthCM, hasShed, shedLength);
         rolesOfBand = calcTest.getRolesAmountBand(band);
-        amountOfRafts = calcTest.calcRaftAmount(carportLengthCM);
+        amountOfRafts = calcTest.calcRaftAmount(carportLengthCM, hasPitch);
         pillarAmount = calcTest.calcPillarAmount(carportLengthCM, hasShed, shedLength);
         pillarLengths = calcTest.getPillarHeight(carportHeight, carportLengthCM, hasShed, shedLength, hasPitch);
         amountOfTiles = calcTest.getRoofTileAmount(carportLengthCM, carportWidthCM);
         amountOfScrews = calcTest.getRoofScrewAmount(carportLengthCM, carportWidthCM, BOTTOMSCREW_ID);
-        int amountOfUniversalScrews = calcTest.getUniversalScrews(carportLengthCM);
+        int amountOfUniversalScrews = calcTest.getUniversalScrews(carportLengthCM, hasPitch);
         int amountOfPlankWaterScrews = calcTest.getPlankAndWaterScrews();
-        int amountOfBracketScrews = calcTest.getBracketScrews(carportLengthCM);
+        int amountOfBracketScrews = calcTest.getBracketScrews(carportLengthCM, hasPitch);
         int amountOfCarriageBolts = calcTest.getCarriageBolts(carportLengthCM, hasShed, shedLength);
         transomSides = calcTest.getTransomsLengthSides(shedLength);
         transomFrontAndBack = calcTest.getTransomsLengthFrontAndBack(shedWidth);
@@ -90,6 +96,15 @@ public class main {
         int packageOfOuterScrews = calcTest.getOuterScrewsShed(shedLength, shedWidth, OUTERSCREW_ID);
         int packageOfInnerScrews = calcTest.getInnerScrewsShed(shedLength, shedWidth, INNERSCREW_ID);
         int amountOfAngleMount = calcTest.getAngleMount(shedLength, shedWidth);
+        int tilesForPitchedRoof = calcTest.getTilesForPitchedRoof();
+        int packagesOfTileBindersAndHooks = calcTest.getPackagesOfTileBindersAndHooks();
+        int amountOfRooftileStones = calcTest.getAmountOfRoofTileStones(carportLengthCM);
+        int amountOfRooftileStoneBrackets = calcTest.getAmountOfRoofTileStoneBrackets(amountOfRooftileStones);
+        int amountOfToplathHolders = calcTest.getAmountOfToplathHolders(amountOfRafts);
+        int gavlPlankLength = calcTest.getGavlPlanksLength(carportWidthCM, carportPitch);
+        int amountOfGavlPlank = calcTest.getAmountOfGavlPlanks();
+        int amountOfPlanksForGavlMount = calcTest.getAmountOfPlanksForGavlMount(carportWidthCM);
+        int planksForGavlMountLength = calcTest.getPlanksForGavlMountLength(carportWidthCM, carportPitch);
 
 
 
@@ -114,13 +129,19 @@ public class main {
         ArrayList<String> transomSidesInfo = MaterialMapper.getTransomAndHeadInShedData(TRANSOM_ID, transomSides);
         ArrayList<String> transomFrontAndBackInfo = MaterialMapper.getTransomAndHeadInShedData(TRANSOM_ID, transomFrontAndBack);
         ArrayList<String> headsInShedInfo = MaterialMapper.getTransomAndHeadInShedData(RAFT_AND_HEAD_ID, headsInShed);
-        ArrayList<String> planksInShedInfo = MaterialMapper.getPlankForShedData(WATERPLANK_AND_SHEDPLANK_ID, shedHeight, planksForShedAmount);
+        ArrayList<String> planksInShedInfo = MaterialMapper.getPlankData(WATERPLANK_AND_SHEDPLANK_ID, shedHeight, planksForShedAmount);
         ArrayList<String> outerScrewsInfo = MaterialMapper.getScrewsAndTilesData(OUTERSCREW_ID, packageOfOuterScrews);
         ArrayList<String> innerScrewsInfo = MaterialMapper.getScrewsAndTilesData(INNERSCREW_ID, packageOfInnerScrews);
         ArrayList<String> doorGribInfo = MaterialMapper.getScrewsAndTilesData(DOORGRIB_ID, DOOR_GRIB);
         ArrayList<String> tHingeInfo = MaterialMapper.getScrewsAndTilesData(THINGE_ID, T_HINGE);
         ArrayList<String> angleMountInfo = MaterialMapper.getScrewsAndTilesData(ANGLEMOUNT_ID, amountOfAngleMount);
-
+        ArrayList<String> tilesPitchedRoof = MaterialMapper.getScrewsAndTilesData(TILES_PITCHED_ID, tilesForPitchedRoof);
+        ArrayList<String> tileBindersHooks = MaterialMapper.getScrewsAndTilesData(TILES_BINDERS_HOOKS_ID, packagesOfTileBindersAndHooks);
+        ArrayList<String> rooftileStones = MaterialMapper.getScrewsAndTilesData(ROOFTILE_STONES_ID, amountOfRooftileStones);
+        ArrayList<String> rooftileStoneBracketsInfo = MaterialMapper.getScrewsAndTilesData(ROOFTILE_STONE_BRACKETS_ID, amountOfRooftileStoneBrackets);
+        ArrayList<String> toplathHoldersInfo = MaterialMapper.getScrewsAndTilesData(TOPLATH_HOLDER_ID, amountOfToplathHolders);
+        ArrayList<String> gavlPlankInfo = MaterialMapper.getRoofData(PLANK_ID, gavlPlankLength, amountOfGavlPlank);
+        ArrayList<String> gavlPlankMountInfo = MaterialMapper.getPlankData(WATERPLANK_AND_SHEDPLANK_ID, planksForGavlMountLength, amountOfPlanksForGavlMount);
 
 
         System.out.println("Info om rem:" + heads);
@@ -152,6 +173,14 @@ public class main {
         System.out.println("Info om stalddørsgreb: " + doorGribInfo);
         System.out.println("Info om t-hængsel til dør: " + tHingeInfo);
         System.out.println("Info om vinkelbeslag til løsholte: " + angleMountInfo);
+        System.out.println("Ekstra med rejsninstag: ");
+        System.out.println("Info om tagsten til rejsningstag: " + tilesPitchedRoof);
+        System.out.println("Info om tagstens bindere og nakkekroge: " + tileBindersHooks);
+        System.out.println("Info om rygsten: " + rooftileStones);
+        System.out.println("Info om rygstens beslag: " + rooftileStoneBracketsInfo);
+        System.out.println("Info om toplægte holdere: " + toplathHoldersInfo);
+        System.out.println("Info om gavl (vindskeder): " + gavlPlankInfo);
+        System.out.println("Info om gavl beklædning på tag: " + gavlPlankMountInfo);
 
 
 

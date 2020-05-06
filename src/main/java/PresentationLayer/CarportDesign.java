@@ -2,6 +2,7 @@ package PresentationLayer;
 
 import DBAccess.MaterialMapper;
 import FunctionLayer.*;
+import FunctionLayer.Objects.Carport;
 import FunctionLayer.Objects.CarportFlat;
 import FunctionLayer.Objects.CarportPitch;
 
@@ -83,7 +84,7 @@ public class CarportDesign extends Command {
             request.setAttribute("roof_pitch", Initialisation.getRoofPitch());
         }
 
-        if (carportPitch >= 0) {
+        if (carportPitch > 0) {
             hasPitch = true;
         }
 
@@ -96,14 +97,14 @@ public class CarportDesign extends Command {
             LogicFacade.addCarportToCustOrder(carportLengthCM, carportWidthCM, carportHeight, hasShed, shedWidth, shedLength, hasPitch, carportPitch, roofMaterial, price);
             ArrayList<Carport> tmpCart = new ArrayList<>();
             Cart cart = new Cart(tmpCart);
+            Carport carport;
             if (hasPitch) {
-                Carport carport = new CarportPitch (carportLengthCM, carportWidthCM, carportHeight, roofMaterial, hasShed, shedWidth, shedLength, hasPitch, carportPitch);
-                cart.addToCart(tmpCart, carport);
+                carport = new CarportPitch (carportLengthCM, carportWidthCM, carportHeight, roofMaterial, hasShed, shedWidth, shedLength, hasPitch, carportPitch);
             }
             else {
-                CarportFlat carport = new CarportFlat(carportLengthCM, carportWidthCM, carportHeight, roofMaterial, hasShed, shedWidth, shedLength);
-                cart.addToCart(tmpCart, carport);
+                carport = new CarportFlat(carportLengthCM, carportWidthCM, carportHeight, roofMaterial, hasShed, shedWidth, shedLength);
             }
+            cart.addToCart(tmpCart, carport);
 
             System.out.println(cart.toString());
         }

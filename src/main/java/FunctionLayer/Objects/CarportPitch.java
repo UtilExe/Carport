@@ -8,7 +8,6 @@ public class CarportPitch extends Carport {
     private boolean hasPitch;
     private int roofPitch;
 
-
     public CarportPitch(int carportLength, int carportWidth, int carportHeight, String roofMaterial, boolean hasShed,
                         int shedWidth, int shedLength, boolean hasPitch, int roofPitch) {
         super(carportLength, carportWidth, carportHeight, roofMaterial);

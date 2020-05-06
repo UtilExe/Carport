@@ -84,9 +84,7 @@
             <div class="col-3">
                 <select class="form-control" name="roof">
                     <option value="">Vælg Tag</option>
-                    <c:forEach var="tmpRoof" items="${requestScope.carport_roofs}">
-                        <option name="roof">${tmpRoof}</option>
-                    </c:forEach>
+                        <option name="roof"><p>Plasttrapezplader</p></option>
                 </select>
             </div>
             <!-- Slet nedenstående div, hvis den ikke har betydning. -->

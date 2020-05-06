@@ -6,7 +6,6 @@ public class CarportFlat extends Carport {
     private int shedWidth;
     private int shedLength;
 
-
     public CarportFlat(int carportLength, int carportWidth, int carportHeight, String roofMaterial, boolean hasShed, int
             shedWidth, int shedLength) {
         super(carportLength, carportWidth, carportHeight, roofMaterial);

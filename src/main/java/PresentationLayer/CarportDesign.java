@@ -30,6 +30,8 @@ public class CarportDesign extends Command {
             helper.setHasShed(true);
         }
 
+        // Problem: ArrayListerne i DataHelper bliver initialiseret før, at disse bliver kaldt,
+        // når DataHelper objektet bliver oprettet
         helper.setCarportLengthCM(Validation.getInteger(tmpCarportLength));
         helper.setCarportWidthCM(Validation.getInteger(tmpCarportWidth));
         helper.setCarportHeight(Validation.getInteger(tmpCarportHeight));
@@ -76,48 +78,7 @@ public class CarportDesign extends Command {
            // System.out.println(cart.toString());
         }
 
-        /*
-        System.out.println("Info om rem:" + heads);
-        System.out.println("Info om spær:" + rafts);
-        System.out.println("Info om hulbånd:" + bands);
-        System.out.println("Info om stolper: " + pillars);
-        System.out.println("Info om understernsbrædder til for- og bagende: " + frontbackunderplanks);
-        System.out.println("Info om understernsbrædder til siderne: " + sideunderplanks);
-        System.out.println("Info om oversternsbræt til forenden: " + frontoverplanks);
-        System.out.println("Info om oversternsbrædder til siderne: " + sideoverplanks);
-        System.out.println("Info om vandbræt til siderne: " + sidewaterplanks);
-        System.out.println("Info om vandbræt til forenden: " + frontwaterplanks);
-        System.out.println("Info om tagplader: " + tiles);
-        System.out.println("Info om bundskruer til tagplader: " + roofBottomScrew);
-        System.out.println("Info om universal skruer til remmen: " + universalScrews);
-        System.out.println("Info om skruer til stern og vandbrædt: " + plankWaterScrews);
-        System.out.println("Info om skruer til beslag for spærg: " + bracketScrews);
-        System.out.println("Info om skruer til montering af rem på stolper: " + carriageBolts);
-        //Dette her er antal firkantskiver, men da det altid vil være samme antal som carriageBolts er det mere logisk og bruge den metode.
-        System.out.println("Info om firkantskirver til montering af rem på stolper: " + squareWashers);
-        System.out.println("Ekstra med skur: ");
-        System.out.println("Info om lægte til bagside af døren: " + battern);
-        System.out.println("Info om løsholte til siderne af skuret: " + transomSidesInfo);
-        System.out.println("Info om løsholte til skurets gavle: " + transomFrontAndBackInfo);
-        System.out.println("Info om rem i skuret: " + headsInShedInfo);
-        System.out.println("Info om brædt til skurbeklædning: " + planksInShedInfo);
-        System.out.println("Info om skruer til ydre beklædning på skuret: " + outerScrewsInfo);
-        System.out.println("Info om skruer til indre beklædning på skuret: " + innerScrewsInfo);
-        System.out.println("Info om stalddørsgreb: " + doorGribInfo);
-        System.out.println("Info om t-hængsel til dør: " + tHingeInfo);
-        System.out.println("Info om vinkelbeslag til løsholte: " + angleMountInfo);
-        System.out.println("Ekstra med rejsninstag: ");
-        System.out.println("Info om tagsten til rejsningstag: " + tilesPitchedRoof);
-        System.out.println("Info om tagstens bindere og nakkekroge: " + tileBindersHooks);
-        System.out.println("Info om rygsten: " + rooftileStones);
-        System.out.println("Info om rygstens beslag: " + rooftileStoneBracketsInfo);
-        System.out.println("Info om toplægte holdere: " + toplathHoldersInfo);
-        System.out.println("Info om gavl (vindskeder): " + gavlPlankInfo);
-        System.out.println("Info om gavl beklædning på tag: " + gavlPlankMountInfo);
-        System.out.println("Info om taglægter: " + rooflathsInfo);
-        System.out.println("Info om skruer til taglægter: " + rooflathScrewsInfo);
-        System.out.println(finalPrice);
-        */
+        System.out.println("DEEEEEEEBUG:" + finalPrice);
 
         helper.test();
 

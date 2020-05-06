@@ -122,7 +122,7 @@ public class MaterialCalculator extends Command {
         final int GROUND_DEPTH = 90;
         final int DIST_BEHIND_CARPORT = 30;
         int pillars = 0;
-        double firstPillar = 0.0;
+        double firstPillar;
         double headHeight = MaterialMapper.getWidthHeightFromDimensionMeasureInCM(HEAD_ID).get(1);
         double fasciaBoardHeight = MaterialMapper.getWidthHeightFromDimensionMeasureInCM(FACIA_ID).get(1);
         double pillarHeight = carportHeight - headHeight - fasciaBoardHeight;
@@ -135,6 +135,8 @@ public class MaterialCalculator extends Command {
         }
 
         if (hasPitch) {
+            // Da rejsningstag ingen hældning har, er alle stolper samme længde som den første stolpe.
+            firstPillar = pillarHeight;
             for (int i = 0; i < pillars; i++) {
                 stolper.add(pillarHeight);
             }
@@ -413,7 +415,6 @@ public class MaterialCalculator extends Command {
         final double OVERLAP = 2.5;
         ArrayList<Double> dimensionsOfPlank = MaterialMapper.getWidthHeightFromDimensionMeasureInCM(PLANK_ID);
         double tmpPlankWidth = dimensionsOfPlank.get(1);
-        System.out.println(tmpPlankWidth);
         double plankWidthAfterOverlap = tmpPlankWidth - OVERLAP;
         int plankWidth = (int) Math.ceil(plankWidthAfterOverlap);
         double amountOfPlanks = (carportWidth / plankWidthAfterOverlap) * 2;
@@ -430,6 +431,34 @@ public class MaterialCalculator extends Command {
         return result;
     }
 
+    public int calcPricePrUnit(int unit, double pricePrUnit) {
+        int result = (int) (Math.ceil(unit * pricePrUnit));
+        return result;
+    }
+
+    public int calcPricePrUnitWithLength(int unit, double pricePrUnit, int amount) {
+        int result = (int) (Math.ceil((unit * pricePrUnit) * amount));
+        return result;
+    }
+
+    public int fullPrice(ArrayList<String> materialInfo) {
+        // Vi antager, at Fog tager 5000 kr. for carport-ydelsen ekls. materiale priser.
+        final int PRICE_FOR_SERVICE = 5000;
+        int prices;
+        int result = 0;
+        String priceIndex = "";
+        for (String s : materialInfo) {
+            String[] tmpPriceIndex = new String[2];
+            tmpPriceIndex = s.split(" ");
+            priceIndex = tmpPriceIndex[0];
+            prices = Integer.parseInt(priceIndex);
+            result += prices;
+        }
+
+        result += PRICE_FOR_SERVICE;
+
+        return result;
+    }
 
 
  }

@@ -38,7 +38,7 @@ PRIMARY KEY (`typeID`));
 CREATE TABLE `carport`.`material_list` (
 `productID` INT AUTO_INCREMENT,
 `category` VARCHAR(45) NOT NULL,
-`price_unit` int(8) NOT NUll,
+`price_unit` float(8) NOT NUll,
 `amount_pr_unit` VARCHAR(45) NULL,
 `unit` VARCHAR(45) NOT NULL,
 `type_id` INT NOT NULL,
@@ -190,14 +190,14 @@ INSERT INTO material_type (`type_name`) VALUES ('t-hængsel');
 INSERT INTO material_type (`type_name`) VALUES ('vinkelbeslag');
 
 -- Indsæt materiale i listen
-INSERT INTO material_list (`category`, `price_unit`, `unit`, `type_id`, `description`) VALUES ('træ og tagplader', '2', 'cm', '1', '25x200 mm., trykimp.');
-INSERT INTO material_list (`category`, `price_unit`, `unit`, `type_id`, `description`) VALUES ('træ og tagplader', '2', 'cm', '1', '25x125 mm., trykimp.');
-INSERT INTO material_list (`category`, `price_unit`, `unit`, `type_id`, `description`) VALUES ('træ og tagplader', '2', 'cm', '1', '19x100 mm., trykimp.');
-INSERT INTO material_list (`category`, `price_unit`, `unit`, `type_id`, `description`) VALUES ('træ og tagplader', '2', 'cm', '2', '38x73 mm., ubh.');
-INSERT INTO material_list (`category`, `price_unit`, `unit`, `type_id`, `description`) VALUES ('træ og tagplader', '2', 'cm', '3', '45x95 mm., ub.');
-INSERT INTO material_list (`category`, `price_unit`, `unit`, `type_id`, `description`) VALUES ('træ og tagplader', '2', 'cm', '4', '45x195 mm., ubh.');
-INSERT INTO material_list (`category`, `price_unit`, `unit`, `type_id`, `description`) VALUES ('træ og tagplader', '2', 'cm', '5', '97x97 mm., trykimp.');
-INSERT INTO material_list (`category`, `price_unit`, `unit`, `type_id`, `description`) VALUES ('træ og tagplader', '250', 'stk', '6', '1000x4000 mm., blåtonet');
+INSERT INTO material_list (`category`, `price_unit`, `unit`, `type_id`, `description`) VALUES ('træ og tagplader', '0.05', 'cm', '1', '25x200 mm., trykimp.');
+INSERT INTO material_list (`category`, `price_unit`, `unit`, `type_id`, `description`) VALUES ('træ og tagplader', '0.05', 'cm', '1', '25x125 mm., trykimp.');
+INSERT INTO material_list (`category`, `price_unit`, `unit`, `type_id`, `description`) VALUES ('træ og tagplader', '0.05', 'cm', '1', '19x100 mm., trykimp.');
+INSERT INTO material_list (`category`, `price_unit`, `unit`, `type_id`, `description`) VALUES ('træ og tagplader', '0.05', 'cm', '2', '38x73 mm., ubh.');
+INSERT INTO material_list (`category`, `price_unit`, `unit`, `type_id`, `description`) VALUES ('træ og tagplader', '0.05', 'cm', '3', '45x95 mm., ub.');
+INSERT INTO material_list (`category`, `price_unit`, `unit`, `type_id`, `description`) VALUES ('træ og tagplader', '0.05', 'cm', '4', '45x195 mm., ubh.');
+INSERT INTO material_list (`category`, `price_unit`, `unit`, `type_id`, `description`) VALUES ('træ og tagplader', '0.05', 'cm', '5', '97x97 mm., trykimp.');
+INSERT INTO material_list (`category`, `price_unit`, `unit`, `type_id`, `description`) VALUES ('træ og tagplader', '50', 'stk', '6', '1000x4000 mm., blåtonet');
 
 INSERT INTO material_list (`category`, `price_unit`,`amount_pr_unit`, `unit`, `type_id`, `description`) VALUES ('beslag og skruer', '109', '200, stk', 'pakke', '7', 'bundskruer');
 INSERT INTO material_list (`category`, `price_unit`, `amount_pr_unit`, `unit`, `type_id`, `description`) VALUES ('beslag og skruer', '87', '10, meter', 'rulle', '8', '1x20 mm.');

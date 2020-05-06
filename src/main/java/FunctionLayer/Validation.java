@@ -12,4 +12,14 @@ public class Validation {
         return result;
     }
 
+    public static boolean getBoolean(String value) {
+        int result;
+        if(value.equals("1")) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+
 }

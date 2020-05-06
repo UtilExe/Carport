@@ -18,14 +18,37 @@ public class MaterialCalculator extends Command {
     String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException {
 
         HttpSession session = request.getSession();
-        /*String tmpCarportLength = request.getParameter("length");
-        String tmpCarportWidth = request.getParameter("width");
-        String tmpCarportHeight = request.getParameter("height");*/
 
-        /*int carportLength = Validation.getInteger(tmpCarportLength);
+        // Vi får fat i parameterne.
+        String tmpCarportLength = request.getParameter("length");
+        String tmpCarportWidth = request.getParameter("width");
+        String tmpCarportHeight = request.getParameter("height");
+        String tmpHasShed = request.getParameter("checkboxShed");
+        String tmpShedWidth = request.getParameter("shedWidth");
+        String tmpShedLength = request.getParameter("shedLength");
+        String tmpRoofPitch = request.getParameter("roofPitch");
+        String roofMaterial = request.getParameter("roof");
+
+        // Vi validere om parameterne er null og giver dem en værdi.
+        int carportLength = Validation.getInteger(tmpCarportLength);
         int carportWidth = Validation.getInteger(tmpCarportWidth);
         int carportHeight = Validation.getInteger(tmpCarportHeight);
-        */
+        boolean hasShed = Validation.getBoolean(tmpHasShed);
+        int shedWidth = Validation.getInteger(tmpShedWidth);
+        int shedLength = Validation.getInteger(tmpShedLength);
+        boolean hasPitch;
+        if(!(tmpRoofPitch == null)) {
+            hasPitch = true;
+        } else {
+            hasPitch = false;
+            roofMaterial = "Plasttrapezplader";
+        }
+        int roofPitch = Validation.getInteger(tmpRoofPitch);
+
+        Carport carport = new Carport(carportLength, carportWidth, carportHeight, hasShed, shedWidth,
+                shedLength, hasPitch, roofPitch, roofMaterial);
+
+        
 
 
         return "tmpList";

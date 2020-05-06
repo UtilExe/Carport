@@ -11,48 +11,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 
-public class MaterialCalculator extends Command {
-
-
-    @Override
-    String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException {
-
-        HttpSession session = request.getSession();
-
-        // Vi får fat i parameterne.
-        String tmpCarportLength = request.getParameter("length");
-        String tmpCarportWidth = request.getParameter("width");
-        String tmpCarportHeight = request.getParameter("height");
-        String tmpHasShed = request.getParameter("checkboxShed");
-        String tmpShedWidth = request.getParameter("shedWidth");
-        String tmpShedLength = request.getParameter("shedLength");
-        String tmpRoofPitch = request.getParameter("roofPitch");
-        String roofMaterial = request.getParameter("roof");
-
-        // Vi validere om parameterne er null og giver dem en værdi.
-        int carportLength = Validation.getInteger(tmpCarportLength);
-        int carportWidth = Validation.getInteger(tmpCarportWidth);
-        int carportHeight = Validation.getInteger(tmpCarportHeight);
-        boolean hasShed = Validation.getBoolean(tmpHasShed);
-        int shedWidth = Validation.getInteger(tmpShedWidth);
-        int shedLength = Validation.getInteger(tmpShedLength);
-        boolean hasPitch;
-        if(!(tmpRoofPitch == null)) {
-            hasPitch = true;
-        } else {
-            hasPitch = false;
-            roofMaterial = "Plasttrapezplader";
-        }
-        int roofPitch = Validation.getInteger(tmpRoofPitch);
-
-        Carport carport = new Carport(carportLength, carportWidth, carportHeight, hasShed, shedWidth,
-                shedLength, hasPitch, roofPitch, roofMaterial);
-
-        
-
-
-        return "tmpList";
-    }
+public class MaterialCalculator {
 
     public int calcPillarAmount(int carportLength, boolean hasShed, int shedLength) {
         int result;
@@ -78,7 +37,6 @@ public class MaterialCalculator extends Command {
             }
         }
         return result;
-
     }
 
     //Vi antager at mængde af spær ikke ændre sig med skur eller ej
@@ -122,7 +80,6 @@ public class MaterialCalculator extends Command {
         int result = diagonalToInt;
 
         return result;
-
     }
 
     public int getRolesAmountBand(int bandLength) {
@@ -424,7 +381,7 @@ public class MaterialCalculator extends Command {
     }
 
     public int getAmountOfGavlPlanks() {
-        // Vi antager, at der altid er 4 gavl-brædt (2 foran og 2 bagved):
+        // Vi antager, at der altid er 4 gavl-bræt (2 foran og 2 bagved):
         final int AMOUNT_OF_GAVL_PLANKS = 4;
 
         return AMOUNT_OF_GAVL_PLANKS;
@@ -432,7 +389,7 @@ public class MaterialCalculator extends Command {
 
     public int getAmountOfPlanksForGavlMount(int carportWidth) {
         int result;
-        // ID til brædtet, der skal bruges:
+        // ID til brættet, der skal bruges:
         final int PLANK_ID = 3;
         // Vi antager, at der er et overlap på beklædningen af 2,5 cm i hver side af brædtet.
         final double OVERLAP = 2.5;

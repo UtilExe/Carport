@@ -16,7 +16,6 @@ abstract class Command {
         commands.put( "register",           new Register()           );
         commands.put( "redirect",           new Redirect()           );
         commands.put( "carportDesign",      new CarportDesign()      );
-        commands.put( "materialCalculator", new MaterialCalculator() );
         //commands.put( "cart",          new Cart()             );
     }
 

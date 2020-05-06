@@ -47,14 +47,13 @@ public class CarportDesign extends Command {
     private final int ROOFTILE_STONE_BRACKETS_ID = 24;
     private final int TOPLATH_HOLDER_ID = 23;
     private final int ROOFLATH_SCREWS_ID = 30;
-    
+
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException {
         String tmpCarportLength = request.getParameter("length");
         String tmpCarportWidth = request.getParameter("width");
         String tmpCarportHeight = request.getParameter("height");
         int shedLength = 0;
-        String tmpShedWidth = "";
         int shedWidth = 0;
         String roofMaterial = request.getParameter("roof");
         boolean hasShed = false;
@@ -66,7 +65,7 @@ public class CarportDesign extends Command {
 
         if (request.getParameter("checkboxShed") != null) {
             String tmpShedLength = request.getParameter("shedLength");
-            tmpShedWidth = request.getParameter("shedWidth");
+            String tmpShedWidth = request.getParameter("shedWidth");
             shedLength = Validation.getInteger(tmpShedLength);
             shedWidth = Validation.getInteger(tmpShedWidth);
             hasShed = true;
@@ -107,7 +106,6 @@ public class CarportDesign extends Command {
         request.setAttribute("shed_lengths", Initialisation.getShedLengths());
         request.setAttribute("shed_widths", Initialisation.getShedWidths());
 
-
         MaterialCalculator calcTest = new MaterialCalculator();
         int band = calcTest.calcBandAmount(carportLengthCM, carportWidthCM, hasShed, shedLength);
         int rolesOfBand = calcTest.getRolesAmountBand(band);
@@ -139,7 +137,7 @@ public class CarportDesign extends Command {
         int amountOfRooflaths = calcTest.getAmountOfRooflaths(carportWidthCM);
         int amountOfRooflathScrews = calcTest.getAmountOfToplathScrews(amountOfRooflaths, amountOfRafts, ROOFLATH_SCREWS_ID);
 
-        ArrayList<String> heads = MaterialMapper.getRoofData(RAFT_AND_HEAD_ID, carportLengthCM, AMOUNT_OF_HEADS );
+        ArrayList<String> heads = MaterialMapper.getRoofData(RAFT_AND_HEAD_ID, carportLengthCM, AMOUNT_OF_HEADS);
         ArrayList<String> rafts = MaterialMapper.getRoofData(RAFT_AND_HEAD_ID, carportWidthCM, amountOfRafts);
         ArrayList<String> bands = MaterialMapper.getBandData(BAND_ID, band, rolesOfBand);
         ArrayList<String> pillars = MaterialMapper.getPillarData(PILLAR_ID, pillarAmount, pillarLengths);
@@ -177,46 +175,52 @@ public class CarportDesign extends Command {
         ArrayList<String> rooflathScrewsInfo = MaterialMapper.getScrewsAndTilesData(ROOFLATH_SCREWS_ID, amountOfRooflathScrews);
 
         ArrayList<String> allPriceIndexes = new ArrayList<>();
-        allPriceIndexes.add(heads.get(heads.size()-1));
-        allPriceIndexes.add(rafts.get(rafts.size()-1));
-        allPriceIndexes.add(bands.get(bands.size()-1));
-        allPriceIndexes.add(pillars.get(pillars.size()-1));
-        allPriceIndexes.add(frontbackunderplanks.get(frontbackunderplanks.size()-1));
-        allPriceIndexes.add(sideunderplanks.get(sideunderplanks.size()-1));
-        allPriceIndexes.add(frontoverplanks.get(frontoverplanks.size()-1));
-        allPriceIndexes.add(sideoverplanks.get(sideoverplanks.size()-1));
-        allPriceIndexes.add(sidewaterplanks.get(sidewaterplanks.size()-1));
-        allPriceIndexes.add(frontwaterplanks.get(frontwaterplanks.size()-1));
-        allPriceIndexes.add(tiles.get(tiles.size()-1));
-        allPriceIndexes.add(roofBottomScrew.get(roofBottomScrew.size()-1));
-        allPriceIndexes.add(universalScrews.get(universalScrews.size()-1));
-        allPriceIndexes.add(plankWaterScrews.get(plankWaterScrews.size()-1));
-        allPriceIndexes.add(bracketScrews.get(bracketScrews.size()-1));
-        allPriceIndexes.add(carriageBolts.get(carriageBolts.size()-1));
-        allPriceIndexes.add(squareWashers.get(squareWashers.size()-1));
-        allPriceIndexes.add(battern.get(battern.size()-1));
-        allPriceIndexes.add(transomSidesInfo.get(transomSidesInfo.size()-1));
-        allPriceIndexes.add(transomFrontAndBackInfo.get(transomFrontAndBackInfo.size()-1));
-        allPriceIndexes.add(headsInShedInfo.get(headsInShedInfo.size()-1));
-        allPriceIndexes.add(planksInShedInfo.get(planksInShedInfo.size()-1));
-        allPriceIndexes.add(outerScrewsInfo.get(outerScrewsInfo.size()-1));
-        allPriceIndexes.add(innerScrewsInfo.get(innerScrewsInfo.size()-1));
-        allPriceIndexes.add(doorGribInfo.get(doorGribInfo.size()-1));
-        allPriceIndexes.add(tHingeInfo.get(tHingeInfo.size()-1));
-        allPriceIndexes.add(angleMountInfo.get(angleMountInfo.size()-1));
-        allPriceIndexes.add(tilesPitchedRoof.get(tilesPitchedRoof.size()-1));
-        allPriceIndexes.add(tileBindersHooks.get(tileBindersHooks.size()-1));
-        allPriceIndexes.add(rooftileStones.get(rooftileStones.size()-1));
-        allPriceIndexes.add(rooftileStoneBracketsInfo.get(rooftileStoneBracketsInfo.size()-1));
-        allPriceIndexes.add(toplathHoldersInfo.get(toplathHoldersInfo.size()-1));
-        allPriceIndexes.add(gavlPlankInfo.get(gavlPlankInfo.size()-1));
-        allPriceIndexes.add(gavlPlankMountInfo.get(gavlPlankMountInfo.size()-1));
-        allPriceIndexes.add(rooflathsInfo.get(rooflathsInfo.size()-1));
-        allPriceIndexes.add(rooflathScrewsInfo.get(rooflathScrewsInfo.size()-1));
+        allPriceIndexes.add(heads.get(heads.size() - 1));
+        allPriceIndexes.add(rafts.get(rafts.size() - 1));
+        allPriceIndexes.add(bands.get(bands.size() - 1));
+        allPriceIndexes.add(pillars.get(pillars.size() - 1));
+        allPriceIndexes.add(frontbackunderplanks.get(frontbackunderplanks.size() - 1));
+        allPriceIndexes.add(sideunderplanks.get(sideunderplanks.size() - 1));
+        allPriceIndexes.add(frontoverplanks.get(frontoverplanks.size() - 1));
+        allPriceIndexes.add(sideoverplanks.get(sideoverplanks.size() - 1));
+        allPriceIndexes.add(roofBottomScrew.get(roofBottomScrew.size() - 1));
+        allPriceIndexes.add(sidewaterplanks.get(sidewaterplanks.size() - 1));
+        allPriceIndexes.add(frontwaterplanks.get(frontwaterplanks.size() - 1));
+        allPriceIndexes.add(universalScrews.get(universalScrews.size() - 1));
+        allPriceIndexes.add(plankWaterScrews.get(plankWaterScrews.size() - 1));
+        allPriceIndexes.add(bracketScrews.get(bracketScrews.size() - 1));
+        allPriceIndexes.add(carriageBolts.get(carriageBolts.size() - 1));
+        allPriceIndexes.add(squareWashers.get(squareWashers.size() - 1));
+
+        if (hasPitch) {
+            allPriceIndexes.add(tilesPitchedRoof.get(tilesPitchedRoof.size() - 1));
+            allPriceIndexes.add(tileBindersHooks.get(tileBindersHooks.size() - 1));
+            allPriceIndexes.add(rooftileStones.get(rooftileStones.size() - 1));
+            allPriceIndexes.add(rooftileStoneBracketsInfo.get(rooftileStoneBracketsInfo.size() - 1));
+            allPriceIndexes.add(toplathHoldersInfo.get(toplathHoldersInfo.size() - 1));
+            allPriceIndexes.add(gavlPlankInfo.get(gavlPlankInfo.size() - 1));
+            allPriceIndexes.add(gavlPlankMountInfo.get(gavlPlankMountInfo.size() - 1));
+            allPriceIndexes.add(rooflathsInfo.get(rooflathsInfo.size() - 1));
+            allPriceIndexes.add(rooflathScrewsInfo.get(rooflathScrewsInfo.size() - 1));
+        } else {
+            allPriceIndexes.add(tiles.get(tiles.size() - 1));
+        }
+
+        if (hasShed) {
+            allPriceIndexes.add(battern.get(battern.size() - 1));
+            allPriceIndexes.add(transomSidesInfo.get(transomSidesInfo.size() - 1));
+            allPriceIndexes.add(transomFrontAndBackInfo.get(transomFrontAndBackInfo.size() - 1));
+            allPriceIndexes.add(headsInShedInfo.get(headsInShedInfo.size() - 1));
+            allPriceIndexes.add(planksInShedInfo.get(planksInShedInfo.size() - 1));
+            allPriceIndexes.add(outerScrewsInfo.get(outerScrewsInfo.size() - 1));
+            allPriceIndexes.add(innerScrewsInfo.get(innerScrewsInfo.size() - 1));
+            allPriceIndexes.add(doorGribInfo.get(doorGribInfo.size() - 1));
+            allPriceIndexes.add(tHingeInfo.get(tHingeInfo.size() - 1));
+            allPriceIndexes.add(angleMountInfo.get(angleMountInfo.size() - 1));
+        }
+
 
         int finalPrice = calcTest.fullPrice(allPriceIndexes);
-
-
 
         System.out.println("Info om rem:" + heads);
         System.out.println("Info om spær:" + rafts);
@@ -257,6 +261,8 @@ public class CarportDesign extends Command {
         System.out.println("Info om gavl beklædning på tag: " + gavlPlankMountInfo);
         System.out.println("Info om taglægter: " + rooflathsInfo);
         System.out.println("Info om skruer til taglægter: " + rooflathScrewsInfo);
+        System.out.println(finalPrice);
+
         if (hasPitch) {
             return "rejsningtag";
         } else {

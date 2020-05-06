@@ -342,19 +342,19 @@ public class MaterialCalculator extends Command {
         return totalTiles;
     }
 
-    public int getAmountOfRooflaths(int carportLength) {
-        //En på hver side i bunden af rejsningen for at holde tagsten
-        return 2;
+    public int getAmountOfRooflaths(int carportWidth) {
+        // Vi antager, at der er 35 cm mellem hver toplægte.
+        final int SPACE_BETWEEN = 35;
+        int result = carportWidth / SPACE_BETWEEN;
+        return result;
     }
 
-    public int getAmountOfToplathScrews(int amountOfRooflaths, int amountOfToplaths, int ID) {
-        // Vi antager, at der skal 8 skruer til én toplægte (4 på hver side):
-        final int AMOUNT_OF_SCREWS_PR_TOPLATH = 8;
-        // TODO Vi antager, at der skal __ skruer til én taglægte:
-        final int AMOUNT_OF_SCREWS_PR_ROOFLATH = 0;
+    public int getAmountOfToplathScrews(int amountOfRooflaths, int raftAmount, int ID) {
+        // Vi antager, at der skal én skrue til én taglægte pr. spær:
+        final int AMOUNT_OF_SCREWS_PR_ROOFLATH = raftAmount;
 
         double screwsPrUnit = MaterialMapper.getAmountPrUnit(ID);
-        int result = (AMOUNT_OF_SCREWS_PR_TOPLATH * amountOfToplaths) + (AMOUNT_OF_SCREWS_PR_ROOFLATH * amountOfRooflaths);
+        int result = (amountOfRooflaths * AMOUNT_OF_SCREWS_PR_ROOFLATH);
         result = (int) (Math.ceil(result / screwsPrUnit));
 
         return result;

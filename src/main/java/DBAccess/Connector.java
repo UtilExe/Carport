@@ -36,7 +36,7 @@ public class Connector {
             PASSWORD = System.getenv("JDBC_PASSWORD");
         } else {
             // Localhost
-            URL = "jdbc:mysql://localhost:3306/carport?serverTimezone=CET&useSSL=false&useUnicode=true&characterEncoding=UTF-8";
+            URL = "jdbc:mysql://localhost:3306/carport?serverTimezone=CET&useSSL=false&useUnicode=true&characterEncoding=UTF-8&allowPublicKeyRetrieval=true";
             USERNAME = DBLogin.username;
             PASSWORD = DBLogin.password;
             //System.out.println("Du har ikke ordentlig forbindelse til dine setenv.sh fil.");

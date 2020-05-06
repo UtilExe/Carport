@@ -55,7 +55,7 @@ REFERENCES `carport`.`material_type`(`typeID`));
   `hasShed` TINYINT NULL,
   `shedWidth` INT NULL,
   `shedLength` INT NULL,
-  `roofIsFlat` TINYINT NULL,
+  `hasPitch` TINYINT NULL,
   `roof_pitch` INT NULL,
   `roof_material` VARCHAR(45) NULL,
   `price` INT NULL,

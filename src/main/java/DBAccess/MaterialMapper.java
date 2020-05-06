@@ -150,7 +150,6 @@ public class MaterialMapper {
 
     public static ArrayList<Double> getWidthHeightFromDimensionMeasureInCM(int ID) {
         ArrayList<Double> widthHeightMeasure = new ArrayList<>();
-        String description = "";
         String[] descriptionSplitted = new String[2];
 
         try {
@@ -160,7 +159,7 @@ public class MaterialMapper {
             ps.setInt(1, ID);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                description = rs.getString("description");
+                String description = rs.getString("description");
                 descriptionSplitted = splitter(description, "x");
                 double width = Double.parseDouble(descriptionSplitted[0]);
                 width /= 10;

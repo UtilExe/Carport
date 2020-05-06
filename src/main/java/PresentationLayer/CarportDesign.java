@@ -1,20 +1,18 @@
 package PresentationLayer;
 
-import DBAccess.MaterialMapper;
 import FunctionLayer.*;
 import FunctionLayer.Objects.Carport;
 import FunctionLayer.Objects.CarportFlat;
 import FunctionLayer.Objects.CarportPitch;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 
 
 public class CarportDesign extends Command {
+
     private DataHelper helper = new DataHelper();
     private MaterialCalculator calcTest = new MaterialCalculator();
-
 
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException {
@@ -22,21 +20,19 @@ public class CarportDesign extends Command {
         String tmpCarportLength = request.getParameter("length");
         String tmpCarportWidth = request.getParameter("width");
         String tmpCarportHeight = request.getParameter("height");
-        int shedLength = 0;
-        int shedWidth = 0;
         String roofMaterial = request.getParameter("roof");
 
         if (request.getParameter("checkboxShed") != null) {
             String tmpShedLength = request.getParameter("shedLength");
             String tmpShedWidth = request.getParameter("shedWidth");
-            shedLength = Validation.getInteger(tmpShedLength);
-            shedWidth = Validation.getInteger(tmpShedWidth);
+            helper.setShedLength(Validation.getInteger(tmpShedLength));
+            helper.setShedWidth(Validation.getInteger(tmpShedWidth));
             helper.setHasShed(true);
         }
 
-        int carportLengthCM = Validation.getInteger(tmpCarportLength);
-        int carportWidthCM = Validation.getInteger(tmpCarportWidth);
-        int carportHeight = Validation.getInteger(tmpCarportHeight);
+        helper.setCarportLengthCM(Validation.getInteger(tmpCarportLength));
+        helper.setCarportWidthCM(Validation.getInteger(tmpCarportWidth));
+        helper.setCarportHeight(Validation.getInteger(tmpCarportHeight));
 
 
         if (request.getParameter("roofPitch") != null) {
@@ -49,7 +45,7 @@ public class CarportDesign extends Command {
             helper.setHasPitch(true);
         }
 
-        if (shedWidth > carportWidthCM || shedLength > carportLengthCM) {
+        if (helper.getShedWidth() > helper.getCarportWidthCM() || helper.getShedLength() > helper.getCarportLengthCM()) {
             request.setAttribute("fejl", "Skurrets mål er større end carporten! Prøv igen med korrekte værdier");
             helper.setInvalidInput(true);
         }
@@ -62,19 +58,18 @@ public class CarportDesign extends Command {
         request.setAttribute("shed_widths", Initialisation.getShedWidths());
 
         helper.initArrayList();
-        helper.hasPitchAndShedInitArray();
 
         int finalPrice = calcTest.fullPrice(helper.getAllPriceIndexes());
 
         if (!helper.isInvalidInput()) {
-            LogicFacade.addCarportToCustOrder(carportLengthCM, carportWidthCM, carportHeight, helper.isHasShed(), shedWidth, shedLength, helper.isHasPitch(), helper.getCarportPitch(), roofMaterial, finalPrice);
+            LogicFacade.addCarportToCustOrder(helper.getCarportLengthCM(), helper.getCarportWidthCM(), helper.getCarportHeight(), helper.isHasShed(), helper.getShedWidth(), helper.getShedLength(), helper.isHasPitch(), helper.getCarportPitch(), roofMaterial, finalPrice);
             ArrayList<Carport> tmpCart = new ArrayList<>();
             Cart cart = new Cart(tmpCart);
             Carport carport;
             if (helper.isHasPitch()) {
-                carport = new CarportPitch(carportLengthCM, carportWidthCM, carportHeight, roofMaterial, helper.isHasShed(), shedWidth, shedLength, helper.isHasPitch(), helper.getCarportPitch());
+                carport = new CarportPitch(helper.getCarportLengthCM(), helper.getCarportWidthCM(), helper.getCarportHeight(), roofMaterial, helper.isHasShed(), helper.getShedWidth(), helper.getShedLength(), helper.isHasPitch(), helper.getCarportPitch());
             } else {
-                carport = new CarportFlat(carportLengthCM, carportWidthCM, carportHeight, roofMaterial, helper.isHasShed(), shedWidth, shedLength);
+                carport = new CarportFlat(helper.getCarportLengthCM(), helper.getCarportWidthCM(), helper.getCarportHeight(), roofMaterial, helper.isHasShed(), helper.getShedWidth(), helper.getShedLength());
             }
             cart.addToCart(tmpCart, carport);
 

@@ -14,7 +14,42 @@ import java.util.ArrayList;
 
 public class CarportDesign extends Command {
 
+    private final int AMOUNT_OF_HEADS = 2;
+    private final int AMOUNT_OF_FRONT_BACK_UNDERPLANKS = 2;
+    private final int AMOUNT_OF_SIDE_UNDERPLANKS = 2;
+    private final int AMOUNT_OF_FRONT_OVERPLANKS = 1;
+    private final int AMOUNT_OF_SIDE_OVERPLANKS = 2;
+    private final int AMOUNT_OF_SIDE_WATERPLANKS = 2;
+    private final int AMOUNT_OF_FRONT_WATERPLANKS = 1;
+    private final int BATTERNLENGTH_DOOR = 420;
+    private final int DOOR_GRIB = 1;
+    private final int T_HINGE = 2;
 
+    private final int RAFT_AND_HEAD_ID = 6;
+    private final int BAND_ID = 10;
+    private final int PILLAR_ID = 7;
+    private final int PLANK_ID = 1;
+    private final int WATERPLANK_AND_SHEDPLANK_ID = 3;
+    private final int TILE_ID = 8;
+    private final int BOTTOMSCREW_ID = 9;
+    private final int UNIVERSALSCREW_ID = 11;
+    private final int PLANK_WATERSCREW_ID = 12;
+    private final int BRACKETSCEW_ID = 15;
+    private final int CARRIAGEBOLT_ID = 16;
+    private final int SQUAREWASHER_ID = 17;
+    private final int BATTERN_ROOFLATH_ID = 4;
+    private final int TRANSOM_ID = 5;
+    private final int OUTERSCREW_ID = 13;
+    private final int INNERSCREW_ID = 12;
+    private final int DOORGRIB_ID = 18;
+    private final int THINGE_ID = 19;
+    private final int ANGLEMOUNT_ID = 20;
+    private final int TILES_PITCHED_ID = 21;
+    private final int TILES_BINDERS_HOOKS_ID = 25;
+    private final int ROOFTILE_STONES_ID = 22;
+    private final int ROOFTILE_STONE_BRACKETS_ID = 24;
+    private final int TOPLATH_HOLDER_ID = 23;
+    private final int ROOFLATH_SCREWS_ID = 30;
 
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException {

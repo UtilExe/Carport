@@ -2,6 +2,8 @@ package PresentationLayer;
 
 import DBAccess.MaterialMapper;
 import FunctionLayer.*;
+import FunctionLayer.Objects.CarportFlat;
+import FunctionLayer.Objects.CarportPitch;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -94,8 +96,15 @@ public class CarportDesign extends Command {
             LogicFacade.addCarportToCustOrder(carportLengthCM, carportWidthCM, carportHeight, hasShed, shedWidth, shedLength, hasPitch, carportPitch, roofMaterial, price);
             ArrayList<Carport> tmpCart = new ArrayList<>();
             Cart cart = new Cart(tmpCart);
-            Carport carport = new Carport(carportLengthCM, carportWidthCM, carportHeight, hasShed, shedWidth, shedLength, hasPitch, carportPitch, roofMaterial);
-            cart.addToCart(tmpCart, carport);
+            if (hasPitch) {
+                Carport carport = new CarportPitch (carportLengthCM, carportWidthCM, carportHeight, roofMaterial, hasShed, shedWidth, shedLength, hasPitch, carportPitch);
+                cart.addToCart(tmpCart, carport);
+            }
+            else {
+                CarportFlat carport = new CarportFlat(carportLengthCM, carportWidthCM, carportHeight, roofMaterial, hasShed, shedWidth, shedLength);
+                cart.addToCart(tmpCart, carport);
+            }
+
             System.out.println(cart.toString());
         }
 

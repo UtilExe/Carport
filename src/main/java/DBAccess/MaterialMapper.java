@@ -2,10 +2,7 @@ package DBAccess;
 
 import PresentationLayer.MaterialCalculator;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -14,10 +11,31 @@ public class MaterialMapper {
 
     private static MaterialCalculator calcPrice = new MaterialCalculator();
 
+    public static ArrayList<Integer> getLengthsFromStorage(int ID, int materialMeasure) {
+        ArrayList<Integer> lengths = new ArrayList<>();
+        try {
+            Connection con = Connector.connection();
+            String SQL = "SELECT `length_cm` FROM `carport`.`storage` WHERE `storage`.`product_id`=?;";
+            PreparedStatement ps = con.prepareStatement(SQL);
+            ps.setInt(1, ID);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                int length = rs.getInt("length_cm");
+                lengths.add(length);
+            }
+        } catch (SQLException | ClassNotFoundException ex) {
+            ex.printStackTrace();
+        }
+        return lengths;
+
+    }
+
     public static ArrayList<String> getRoofData(int ID, int measure, int tmpAmount) {
         ArrayList<String> data = new ArrayList<>();
         String amount = String.valueOf(tmpAmount);
         String carpMeasure = String.valueOf(measure);
+        ArrayList<Integer> lengths = getLengthsFromStorage(ID, measure);
+        ArrayList<Integer> woodAmountAndLength = calcPrice.getWoodForMeasure(measure, lengths, tmpAmount);
 
         try {
             Connection con = Connector.connection();
@@ -32,12 +50,12 @@ public class MaterialMapper {
                 String type = rs.getString("material_type.type_name");
                 String description = rs.getString("description");
                 double priceUnit = rs.getDouble("price_unit");
-                int price = calcPrice.calcPricePrUnitWithLength(measure, priceUnit, tmpAmount);
+                int price = calcPrice.calcPricePrUnitWithLength(woodAmountAndLength.get(0), priceUnit, woodAmountAndLength.get(1));
                 data.add(category);
                 data.add(type);
                 data.add(description);
-                data.add(amount + " stk.");
-                data.add(carpMeasure + " cm.");
+                data.add(woodAmountAndLength.get(0) + " stk.");
+                data.add(woodAmountAndLength.get(1) + " cm.");
                 data.add(price + " kr.");
             }
         } catch (SQLException | ClassNotFoundException ex) {

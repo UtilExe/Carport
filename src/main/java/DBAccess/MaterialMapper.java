@@ -235,6 +235,21 @@ public class MaterialMapper {
 
     public static ArrayList<String> getTransomAndHeadInShedData(int ID, int[] transomsOrHeads) {
         ArrayList<String> data = new ArrayList<>();
+        int totalAmount = 0;
+        int totalLength = 0;
+
+        // Vi finder, den samlede mængde:
+        for(int i = 0; i < transomsOrHeads.length-1; i+=2) {
+            totalAmount += transomsOrHeads[i];
+        }
+
+        // Vi finder, den samlede længde:
+        for(int i = 1; i < transomsOrHeads.length-1; i+=2) {
+            totalLength += transomsOrHeads[i];
+        }
+
+        ArrayList<Integer> lengths = getLengthsFromStorage(ID, totalLength);
+        ArrayList<Integer> woodAmountAndLength = calcPrice.getWoodForMeasure(totalLength, lengths, totalAmount);
 
         try {
             Connection con = Connector.connection();
@@ -250,14 +265,12 @@ public class MaterialMapper {
                 String type = rs.getString("material_type.type_name");
                 String description = rs.getString("description");
                 double priceUnit = rs.getDouble("price_unit");
-                int price = 0;
+                int price = calcPrice.calcPricePrUnitWithLength(woodAmountAndLength.get(1), priceUnit, woodAmountAndLength.get(0));
                 data.add(category);
                 data.add(type);
                 data.add(description);
-                for(int i = 0; i < transomsOrHeads.length-1; i+=2) {
-                    data.add(transomsOrHeads[i] + " stk.: " + transomsOrHeads[i+1] + " cm.");
-                    price += calcPrice.calcPricePrUnitWithLength(transomsOrHeads[i+1], priceUnit, transomsOrHeads[i]);
-                }
+                data.add(woodAmountAndLength.get(0) + " stk.");
+                data.add(woodAmountAndLength.get(1) + " cm.");
                 data.add(price + " kr.");
             }
         } catch (SQLException | ClassNotFoundException ex) {

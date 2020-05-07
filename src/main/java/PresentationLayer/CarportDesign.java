@@ -37,15 +37,6 @@ public class CarportDesign extends Command {
             helper.setHasShed(true);
         }
 
-        // Problem: ArrayListerne i DataHelper bliver initialiseret før, at disse bliver kaldt,
-        // når DataHelper objektet bliver oprettet
-        /*helper.setCarportLengthCM(Validation.getInteger(tmpCarportLength));
-        helper.setCarportWidthCM(Validation.getInteger(tmpCarportWidth));
-        helper.setCarportHeight(Validation.getInteger(tmpCarportHeight));
-
-         */
-
-
         if (request.getParameter("roofPitch") != null) {
             String tmpRoofPitch = request.getParameter("roofPitch");
             helper.setCarportPitch(Validation.getInteger(tmpRoofPitch));
@@ -83,8 +74,6 @@ public class CarportDesign extends Command {
                 carport = new CarportFlat(helper.getCarportLengthCM(), helper.getCarportWidthCM(), helper.getCarportHeight(), roofMaterial, helper.isHasShed(), helper.getShedWidth(), helper.getShedLength());
             }
             cart.addToCart(tmpCart, carport);
-
-           // System.out.println(cart.toString());
         }
 
         System.out.println("DEEEEEEEBUG:" + finalPrice);

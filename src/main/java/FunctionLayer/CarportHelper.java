@@ -118,13 +118,8 @@ public class CarportHelper {
     private int shedWidth = 0;
     private boolean hasShed = false;
     private boolean hasPitch = false;
-    private int price = 0;
     private int carportPitch = 0;
     private boolean invalidInput = false;
-
-    // Carportlength mv. bliver sat fra CarportDesign. Men giver stadig problemer da den bliver sat til 0. hm.
-    // eller nej, den bliver korrekt sat til 390 fra carportdesign. problemet er vist, at array'et bliver initaliseret før det sker.
-    //  if (getCarportLengthCM() > 0 && getCarportWidthCM()  > 0)
 
     private int carportLengthCM;
     private int carportWidthCM;
@@ -239,18 +234,6 @@ public class CarportHelper {
         return carportHeight;
     }
 
-    public void setCarportLengthCM(int carportLengthCM) {
-        this.carportLengthCM = carportLengthCM;
-    }
-
-    public void setCarportWidthCM(int carportWidthCM) {
-        this.carportWidthCM = carportWidthCM;
-    }
-
-    public void setCarportHeight(int carportHeight) {
-        this.carportHeight = carportHeight;
-    }
-
     public void setShedLength(int shedLength) {
         this.shedLength = shedLength;
     }
@@ -277,10 +260,6 @@ public class CarportHelper {
 
     public void setCarportPitch(int carportPitch) {
         this.carportPitch = carportPitch;
-    }
-
-    public void setAllPriceIndexes(ArrayList<String> allPriceIndexes) {
-        this.allPriceIndexes = allPriceIndexes;
     }
 
     public ArrayList<String> getAllPriceIndexes() {

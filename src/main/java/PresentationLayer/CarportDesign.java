@@ -11,8 +11,7 @@ import java.util.ArrayList;
 
 public class CarportDesign extends Command {
 
-    private DataHelper helper = new DataHelper();
-    private MaterialCalculator calcTest = new MaterialCalculator();
+
 
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException {
@@ -21,6 +20,14 @@ public class CarportDesign extends Command {
         String tmpCarportWidth = request.getParameter("width");
         String tmpCarportHeight = request.getParameter("height");
         String roofMaterial = request.getParameter("roof");
+
+        int test1 = Integer.parseInt(tmpCarportLength);
+        int test2 = Integer.parseInt(tmpCarportWidth);
+        int test3 = Integer.parseInt(tmpCarportHeight);
+
+        MaterialCalculator calcTest = new MaterialCalculator();
+
+        CarportHelper helper = new CarportHelper(test1, test2, test3);
 
         if (request.getParameter("checkboxShed") != null) {
             String tmpShedLength = request.getParameter("shedLength");
@@ -32,9 +39,11 @@ public class CarportDesign extends Command {
 
         // Problem: ArrayListerne i DataHelper bliver initialiseret før, at disse bliver kaldt,
         // når DataHelper objektet bliver oprettet
-        helper.setCarportLengthCM(Validation.getInteger(tmpCarportLength));
+        /*helper.setCarportLengthCM(Validation.getInteger(tmpCarportLength));
         helper.setCarportWidthCM(Validation.getInteger(tmpCarportWidth));
         helper.setCarportHeight(Validation.getInteger(tmpCarportHeight));
+
+         */
 
 
         if (request.getParameter("roofPitch") != null) {

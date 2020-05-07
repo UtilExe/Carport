@@ -13,6 +13,12 @@ import java.util.LinkedHashMap;
 
 public class MaterialCalculator {
 
+    private int carportLength;
+
+    public MaterialCalculator(int carportLength) {
+        this.carportLength = carportLength;
+    }
+
     public int calcPillarAmount(int carportLength, boolean hasShed, int shedLength) {
         int result;
         final double PILLAR_AT_METER = 3.0;

@@ -4,13 +4,13 @@ import FunctionLayer.*;
 import FunctionLayer.Objects.Carport;
 import FunctionLayer.Objects.CarportFlat;
 import FunctionLayer.Objects.CarportPitch;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 
 
 public class CarportDesign extends Command {
-
 
 
     @Override
@@ -27,39 +27,26 @@ public class CarportDesign extends Command {
         int shedLength = 0;
         int shedWidth = 0;
         int carportPitch = 0;
-        String tmpShedLength = "";
-        String tmpShedWidth = "";
-        String tmpRoofPitch = "";
+        String tmpShedLength;
+        String tmpShedWidth;
+        String tmpRoofPitch;
 
         MaterialCalculator calcTest = new MaterialCalculator();
 
         if (request.getParameter("checkboxShed") != null) {
             tmpShedLength = request.getParameter("shedLength");
             tmpShedWidth = request.getParameter("shedWidth");
-            shedLength = Integer.parseInt(tmpShedLength);
-            shedWidth = Integer.parseInt(tmpShedWidth);
-          /*  helper.setShedLength(Validation.getInteger(tmpShedLength));
-            helper.setShedWidth(Validation.getInteger(tmpShedWidth));
-            helper.setHasShed(true); */
+            shedLength = Validation.getInteger(tmpShedLength);
+            shedWidth = Validation.getInteger(tmpShedWidth);
         }
-
 
         if (request.getParameter("roofPitch") != null) {
             tmpRoofPitch = request.getParameter("roofPitch");
-            carportPitch = Integer.parseInt(tmpRoofPitch);
+            carportPitch = Validation.getInteger(tmpRoofPitch);
             request.setAttribute("roof_pitch", Initialisation.getRoofPitch());
         }
 
-
         CarportHelper helper = new CarportHelper(carportLength, carportWidthCM, carportHeight, shedLength, shedWidth, carportPitch);
-
-        if(shedLength > 0 && shedWidth > 0) {
-            helper.setHasShed(true);
-        }
-
-        if (helper.getCarportPitch() > 0) {
-            helper.setHasPitch(true);
-        }
 
         if (helper.getShedWidth() > helper.getCarportWidthCM() || helper.getShedLength() > helper.getCarportLengthCM()) {
             request.setAttribute("fejl", "Skurrets mål er større end carporten! Prøv igen med korrekte værdier");
@@ -90,9 +77,10 @@ public class CarportDesign extends Command {
             cart.addToCart(tmpCart, carport);
         }
 
+        // remove when not needed anymore (debug console)
         System.out.println("DEEEEEEEBUG:" + finalPrice);
-
         helper.test();
+
 
         if (helper.isHasPitch()) {
             return "rejsningtag";

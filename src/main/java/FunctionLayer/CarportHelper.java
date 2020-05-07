@@ -114,21 +114,24 @@ public class CarportHelper {
     private ArrayList<String> rooflathScrewsInfo;
     private ArrayList<String> allPriceIndexes;
 
-    private int shedLength = 0;
-    private int shedWidth = 0;
     private boolean hasShed = false;
     private boolean hasPitch = false;
-    private int carportPitch = 0;
     private boolean invalidInput = false;
 
+    private int shedLength;
+    private int shedWidth;
+    private int carportPitch;
     private int carportLengthCM;
     private int carportWidthCM;
     private int carportHeight;
 
-    public CarportHelper(int carportLengthCM, int carportWidthCM, int carportHeight) {
+    public CarportHelper(int carportLengthCM, int carportWidthCM, int carportHeight, int shedLength, int shedWidth, int carportPitch) {
         this.carportLengthCM = carportLengthCM;
         this.carportWidthCM = carportWidthCM;
         this.carportHeight = carportHeight;
+        this.shedLength = shedLength;
+        this.shedWidth = shedWidth;
+        this.carportPitch = carportPitch;
 
         /// Initialize Variables
         this.calcTest = new MaterialCalculator();

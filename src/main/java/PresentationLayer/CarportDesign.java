@@ -21,26 +21,40 @@ public class CarportDesign extends Command {
         String tmpCarportHeight = request.getParameter("height");
         String roofMaterial = request.getParameter("roof");
 
-        int test1 = Integer.parseInt(tmpCarportLength);
-        int test2 = Integer.parseInt(tmpCarportWidth);
-        int test3 = Integer.parseInt(tmpCarportHeight);
+        int carportLength = Validation.getInteger(tmpCarportLength);
+        int carportWidthCM = Validation.getInteger(tmpCarportWidth);
+        int carportHeight = Validation.getInteger(tmpCarportHeight);
+        int shedLength = 0;
+        int shedWidth = 0;
+        int carportPitch = 0;
+        String tmpShedLength = "";
+        String tmpShedWidth = "";
+        String tmpRoofPitch = "";
 
         MaterialCalculator calcTest = new MaterialCalculator();
 
-        CarportHelper helper = new CarportHelper(test1, test2, test3);
-
         if (request.getParameter("checkboxShed") != null) {
-            String tmpShedLength = request.getParameter("shedLength");
-            String tmpShedWidth = request.getParameter("shedWidth");
-            helper.setShedLength(Validation.getInteger(tmpShedLength));
+            tmpShedLength = request.getParameter("shedLength");
+            tmpShedWidth = request.getParameter("shedWidth");
+            shedLength = Integer.parseInt(tmpShedLength);
+            shedWidth = Integer.parseInt(tmpShedWidth);
+          /*  helper.setShedLength(Validation.getInteger(tmpShedLength));
             helper.setShedWidth(Validation.getInteger(tmpShedWidth));
-            helper.setHasShed(true);
+            helper.setHasShed(true); */
         }
 
+
         if (request.getParameter("roofPitch") != null) {
-            String tmpRoofPitch = request.getParameter("roofPitch");
-            helper.setCarportPitch(Validation.getInteger(tmpRoofPitch));
+            tmpRoofPitch = request.getParameter("roofPitch");
+            carportPitch = Integer.parseInt(tmpRoofPitch);
             request.setAttribute("roof_pitch", Initialisation.getRoofPitch());
+        }
+
+
+        CarportHelper helper = new CarportHelper(carportLength, carportWidthCM, carportHeight, shedLength, shedWidth, carportPitch);
+
+        if(shedLength > 0 && shedWidth > 0) {
+            helper.setHasShed(true);
         }
 
         if (helper.getCarportPitch() > 0) {

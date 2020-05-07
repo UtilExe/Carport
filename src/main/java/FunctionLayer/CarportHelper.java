@@ -126,6 +126,13 @@ public class CarportHelper {
     private int carportHeight;
 
     public CarportHelper(int carportLengthCM, int carportWidthCM, int carportHeight, int shedLength, int shedWidth, int carportPitch) {
+        if(shedLength > 0 && shedWidth > 0) {
+            setHasShed(true);
+        }
+        if (carportPitch > 0) {
+            setHasPitch(true);
+        }
+
         this.carportLengthCM = carportLengthCM;
         this.carportWidthCM = carportWidthCM;
         this.carportHeight = carportHeight;
@@ -136,36 +143,36 @@ public class CarportHelper {
         /// Initialize Variables
         this.calcTest = new MaterialCalculator();
         this.shedHeight = (int) (carportHeight - MaterialMapper.getWidthHeightFromDimensionMeasureInCM(6).get(1));
-        this.band = calcTest.calcBandAmount(carportLengthCM, carportWidthCM, isHasShed(), getShedLength());
+        this.band = calcTest.calcBandAmount(carportLengthCM, carportWidthCM, hasShed, shedLength);
         this.rolesOfBand = calcTest.getRolesAmountBand(band);
-        this.amountOfRafts = calcTest.calcRaftAmount(carportLengthCM, isHasPitch());
-        this.pillarAmount = calcTest.calcPillarAmount(carportLengthCM, isHasShed(), getShedLength());
+        this.amountOfRafts = calcTest.calcRaftAmount(carportLengthCM, hasPitch);
+        this.pillarAmount = calcTest.calcPillarAmount(carportLengthCM, hasShed, shedLength);
         this.amountOfTiles = calcTest.getRoofTileAmount(carportLengthCM, carportWidthCM);
         this.amountOfScrews = calcTest.getRoofScrewAmount(carportLengthCM, carportWidthCM, BOTTOMSCREW_ID);
-        this.amountOfUniversalScrews = calcTest.getUniversalScrews(carportLengthCM, isHasPitch());
+        this.amountOfUniversalScrews = calcTest.getUniversalScrews(carportLengthCM, hasPitch);
         this.amountOfPlankWaterScrews = calcTest.getPlankAndWaterScrews();
-        this.amountOfBracketScrews = calcTest.getBracketScrews(carportLengthCM, isHasPitch());
-        this.amountOfCarriageBolts = calcTest.getCarriageBolts(carportLengthCM, isHasShed(), getShedLength());
-        this.transomSides = calcTest.getTransomsLengthSides(getShedLength());
-        this.transomFrontAndBack = calcTest.getTransomsLengthFrontAndBack(getShedWidth());
-        this.headsInShed = calcTest.getHeadsInShed(getShedLength());
-        this.planksForShedAmount = calcTest.getPlanksForShed(getShedLength(), getShedWidth());
-        this.packageOfOuterScrews = calcTest.getOuterScrewsShed(getShedLength(), getShedWidth(), OUTERSCREW_ID);
-        this.packageOfInnerScrews = calcTest.getInnerScrewsShed(getShedLength(), getShedWidth(), INNERSCREW_ID);
-        this.amountOfAngleMount = calcTest.getAngleMount(getShedLength(), getShedWidth());
+        this.amountOfBracketScrews = calcTest.getBracketScrews(carportLengthCM, hasPitch);
+        this.amountOfCarriageBolts = calcTest.getCarriageBolts(carportLengthCM, hasShed, shedLength);
+        this.transomSides = calcTest.getTransomsLengthSides(shedLength);
+        this.transomFrontAndBack = calcTest.getTransomsLengthFrontAndBack(shedWidth);
+        this.headsInShed = calcTest.getHeadsInShed(shedLength);
+        this.planksForShedAmount = calcTest.getPlanksForShed(shedLength, shedWidth);
+        this.packageOfOuterScrews = calcTest.getOuterScrewsShed(shedLength, shedWidth, OUTERSCREW_ID);
+        this.packageOfInnerScrews = calcTest.getInnerScrewsShed(shedLength, shedWidth, INNERSCREW_ID);
+        this.amountOfAngleMount = calcTest.getAngleMount(shedLength, shedWidth);
         this.tilesForPitchedRoof = calcTest.getTilesForPitchedRoof();
         this.packagesOfTileBindersAndHooks = calcTest.getPackagesOfTileBindersAndHooks();
         this.amountOfRooftileStones = calcTest.getAmountOfRoofTileStones(carportLengthCM);
         this.amountOfRooftileStoneBrackets = calcTest.getAmountOfRoofTileStoneBrackets(amountOfRooftileStones);
         this.amountOfToplathHolders = calcTest.getAmountOfToplathHolders(amountOfRafts);
-        this.gavlPlankLength = calcTest.getGavlPlanksLength(carportWidthCM, getCarportPitch());
+        this.gavlPlankLength = calcTest.getGavlPlanksLength(carportWidthCM, carportPitch);
         this.amountOfGavlPlank = calcTest.getAmountOfGavlPlanks();
         this.amountOfPlanksForGavlMount = calcTest.getAmountOfPlanksForGavlMount(carportWidthCM);
-        this.planksForGavlMountLength = calcTest.getPlanksForGavlMountLength(carportWidthCM, getCarportPitch());
+        this.planksForGavlMountLength = calcTest.getPlanksForGavlMountLength(carportWidthCM, carportPitch);
         this.amountOfRooflaths = calcTest.getAmountOfRooflaths(carportWidthCM);
         this.amountOfRooflathScrews = calcTest.getAmountOfToplathScrews(amountOfRooflaths, amountOfRafts, ROOFLATH_SCREWS_ID);
 
-        this.pillarLengths = calcTest.getPillarHeight(getCarportHeight(), carportLengthCM, isHasShed(), getShedLength(), isHasShed());
+        this.pillarLengths = calcTest.getPillarHeight(carportHeight, carportLengthCM, hasShed, shedLength, hasPitch);
         this.heads = MaterialMapper.getRoofData(RAFT_AND_HEAD_ID, carportLengthCM, AMOUNT_OF_HEADS);
         this.rafts = MaterialMapper.getRoofData(RAFT_AND_HEAD_ID, carportWidthCM, amountOfRafts);
         this.bands = MaterialMapper.getBandData(BAND_ID, band, rolesOfBand);

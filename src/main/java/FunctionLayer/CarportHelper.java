@@ -44,6 +44,75 @@ public class CarportHelper {
     private final int TOPLATH_HOLDER_ID = 23;
     private final int ROOFLATH_SCREWS_ID = 30;
 
+    MaterialCalculator calcTest;
+    private int shedHeight;
+    private int band;
+    private int rolesOfBand;
+    private int amountOfRafts;
+    private int pillarAmount;
+    private int amountOfTiles;
+    private int amountOfScrews;
+    private int amountOfUniversalScrews;
+    private int amountOfPlankWaterScrews;
+    private int amountOfBracketScrews;
+    private int amountOfCarriageBolts;
+    private int[] transomSides;
+    private int[] transomFrontAndBack;
+    private int[] headsInShed;
+    private int planksForShedAmount;
+    private int packageOfOuterScrews;
+    private int packageOfInnerScrews;
+    private int amountOfAngleMount;
+    private int tilesForPitchedRoof;
+    private int packagesOfTileBindersAndHooks;
+    private int amountOfRooftileStones;
+    private int amountOfRooftileStoneBrackets;
+    private int amountOfToplathHolders;
+    private int gavlPlankLength;
+    private int amountOfGavlPlank;
+    private int amountOfPlanksForGavlMount;
+    private int planksForGavlMountLength;
+    private int amountOfRooflaths;
+    private int amountOfRooflathScrews;
+
+    private ArrayList<Double> pillarLengths;
+    private ArrayList<String> heads;
+    private ArrayList<String> rafts;
+    private ArrayList<String> bands;
+    private ArrayList<String> pillars;
+    private ArrayList<String> frontbackunderplanks;
+    private ArrayList<String> sideunderplanks;
+    private ArrayList<String> frontoverplanks;
+    private ArrayList<String> sideoverplanks;
+    private ArrayList<String> sidewaterplanks;
+    private ArrayList<String> frontwaterplanks;
+    private ArrayList<String> tiles;
+    private ArrayList<String> roofBottomScrew;
+    private ArrayList<String> universalScrews;
+    private ArrayList<String> plankWaterScrews;
+    private ArrayList<String> bracketScrews;
+    private ArrayList<String> carriageBolts;
+    private ArrayList<String> squareWashers;
+    private ArrayList<String> battern;
+    private ArrayList<String> transomSidesInfo;
+    private ArrayList<String> transomFrontAndBackInfo;
+    private ArrayList<String> headsInShedInfo;
+    private ArrayList<String> planksInShedInfo;
+    private ArrayList<String> outerScrewsInfo;
+    private ArrayList<String> innerScrewsInfo;
+    private ArrayList<String> doorGribInfo;
+    private ArrayList<String> tHingeInfo;
+    private ArrayList<String> angleMountInfo;
+    private ArrayList<String> tilesPitchedRoof;
+    private ArrayList<String> tileBindersHooks;
+    private ArrayList<String> rooftileStones;
+    private ArrayList<String> rooftileStoneBracketsInfo;
+    private ArrayList<String> toplathHoldersInfo;
+    private ArrayList<String> gavlPlankInfo;
+    private ArrayList<String> gavlPlankMountInfo;
+    private ArrayList<String> rooflathsInfo;
+    private ArrayList<String> rooflathScrewsInfo;
+    private ArrayList<String> allPriceIndexes;
 
     private int shedLength = 0;
     private int shedWidth = 0;
@@ -65,6 +134,77 @@ public class CarportHelper {
         this.carportLengthCM = carportLengthCM;
         this.carportWidthCM = carportWidthCM;
         this.carportHeight = carportHeight;
+
+        /// Initialize Variables
+        this.calcTest = new MaterialCalculator();
+        this.shedHeight = (int) (carportHeight - MaterialMapper.getWidthHeightFromDimensionMeasureInCM(6).get(1));
+        this.band = calcTest.calcBandAmount(carportLengthCM, carportWidthCM, isHasShed(), getShedLength());
+        this.rolesOfBand = calcTest.getRolesAmountBand(band);
+        this.amountOfRafts = calcTest.calcRaftAmount(carportLengthCM, isHasPitch());
+        this.pillarAmount = calcTest.calcPillarAmount(carportLengthCM, isHasShed(), getShedLength());
+        this.amountOfTiles = calcTest.getRoofTileAmount(carportLengthCM, carportWidthCM);
+        this.amountOfScrews = calcTest.getRoofScrewAmount(carportLengthCM, carportWidthCM, BOTTOMSCREW_ID);
+        this.amountOfUniversalScrews = calcTest.getUniversalScrews(carportLengthCM, isHasPitch());
+        this.amountOfPlankWaterScrews = calcTest.getPlankAndWaterScrews();
+        this.amountOfBracketScrews = calcTest.getBracketScrews(carportLengthCM, isHasPitch());
+        this.amountOfCarriageBolts = calcTest.getCarriageBolts(carportLengthCM, isHasShed(), getShedLength());
+        this.transomSides = calcTest.getTransomsLengthSides(getShedLength());
+        this.transomFrontAndBack = calcTest.getTransomsLengthFrontAndBack(getShedWidth());
+        this.headsInShed = calcTest.getHeadsInShed(getShedLength());
+        this.planksForShedAmount = calcTest.getPlanksForShed(getShedLength(), getShedWidth());
+        this.packageOfOuterScrews = calcTest.getOuterScrewsShed(getShedLength(), getShedWidth(), OUTERSCREW_ID);
+        this.packageOfInnerScrews = calcTest.getInnerScrewsShed(getShedLength(), getShedWidth(), INNERSCREW_ID);
+        this.amountOfAngleMount = calcTest.getAngleMount(getShedLength(), getShedWidth());
+        this.tilesForPitchedRoof = calcTest.getTilesForPitchedRoof();
+        this.packagesOfTileBindersAndHooks = calcTest.getPackagesOfTileBindersAndHooks();
+        this.amountOfRooftileStones = calcTest.getAmountOfRoofTileStones(carportLengthCM);
+        this.amountOfRooftileStoneBrackets = calcTest.getAmountOfRoofTileStoneBrackets(amountOfRooftileStones);
+        this.amountOfToplathHolders = calcTest.getAmountOfToplathHolders(amountOfRafts);
+        this.gavlPlankLength = calcTest.getGavlPlanksLength(carportWidthCM, getCarportPitch());
+        this.amountOfGavlPlank = calcTest.getAmountOfGavlPlanks();
+        this.amountOfPlanksForGavlMount = calcTest.getAmountOfPlanksForGavlMount(carportWidthCM);
+        this.planksForGavlMountLength = calcTest.getPlanksForGavlMountLength(carportWidthCM, getCarportPitch());
+        this.amountOfRooflaths = calcTest.getAmountOfRooflaths(carportWidthCM);
+        this.amountOfRooflathScrews = calcTest.getAmountOfToplathScrews(amountOfRooflaths, amountOfRafts, ROOFLATH_SCREWS_ID);
+
+        this.pillarLengths = calcTest.getPillarHeight(getCarportHeight(), carportLengthCM, isHasShed(), getShedLength(), isHasShed());
+        this.heads = MaterialMapper.getRoofData(RAFT_AND_HEAD_ID, carportLengthCM, AMOUNT_OF_HEADS);
+        this.rafts = MaterialMapper.getRoofData(RAFT_AND_HEAD_ID, carportWidthCM, amountOfRafts);
+        this.bands = MaterialMapper.getBandData(BAND_ID, band, rolesOfBand);
+        this.pillars = MaterialMapper.getPillarData(PILLAR_ID, pillarAmount, pillarLengths);
+        this.frontbackunderplanks = MaterialMapper.getRoofData(PLANK_ID, carportWidthCM, AMOUNT_OF_FRONT_BACK_UNDERPLANKS);
+        this.sideunderplanks = MaterialMapper.getRoofData(PLANK_ID, carportLengthCM, AMOUNT_OF_SIDE_UNDERPLANKS);
+        this.frontoverplanks = MaterialMapper.getRoofData(PLANK_ID, carportWidthCM, AMOUNT_OF_FRONT_OVERPLANKS);
+        this.sideoverplanks = MaterialMapper.getRoofData(PLANK_ID, carportLengthCM, AMOUNT_OF_SIDE_OVERPLANKS);
+        this.sidewaterplanks = MaterialMapper.getRoofData(WATERPLANK_AND_SHEDPLANK_ID, carportLengthCM, AMOUNT_OF_SIDE_WATERPLANKS);
+        this.frontwaterplanks = MaterialMapper.getRoofData(WATERPLANK_AND_SHEDPLANK_ID, carportWidthCM, AMOUNT_OF_FRONT_WATERPLANKS);
+        this.tiles = MaterialMapper.getScrewsAndTilesData(TILE_ID, amountOfTiles);
+        this.roofBottomScrew = MaterialMapper.getScrewsAndTilesData(BOTTOMSCREW_ID, amountOfScrews);
+        this.universalScrews = MaterialMapper.getScrewsAndTilesData(UNIVERSALSCREW_ID, amountOfUniversalScrews);
+        this.plankWaterScrews = MaterialMapper.getScrewsAndTilesData(PLANK_WATERSCREW_ID, amountOfPlankWaterScrews);
+        this.bracketScrews = MaterialMapper.getScrewsAndTilesData(BRACKETSCEW_ID, amountOfBracketScrews);
+        this.carriageBolts = MaterialMapper.getScrewsAndTilesData(CARRIAGEBOLT_ID, amountOfCarriageBolts);
+        this.squareWashers = MaterialMapper.getScrewsAndTilesData(SQUAREWASHER_ID, amountOfCarriageBolts);
+        this.battern = MaterialMapper.getRoofData(BATTERN_ROOFLATH_ID, BATTERNLENGTH_DOOR, 1);
+        this.transomSidesInfo = MaterialMapper.getTransomAndHeadInShedData(TRANSOM_ID, transomSides);
+        this.transomFrontAndBackInfo = MaterialMapper.getTransomAndHeadInShedData(TRANSOM_ID, transomFrontAndBack);
+        this.headsInShedInfo = MaterialMapper.getTransomAndHeadInShedData(RAFT_AND_HEAD_ID, headsInShed);
+        this.planksInShedInfo = MaterialMapper.getPlankData(WATERPLANK_AND_SHEDPLANK_ID, shedHeight, planksForShedAmount);
+        this.outerScrewsInfo = MaterialMapper.getScrewsAndTilesData(OUTERSCREW_ID, packageOfOuterScrews);
+        this.innerScrewsInfo = MaterialMapper.getScrewsAndTilesData(INNERSCREW_ID, packageOfInnerScrews);
+        this.doorGribInfo = MaterialMapper.getScrewsAndTilesData(DOORGRIB_ID, DOOR_GRIB);
+        this.tHingeInfo = MaterialMapper.getScrewsAndTilesData(THINGE_ID, T_HINGE);
+        this.angleMountInfo = MaterialMapper.getScrewsAndTilesData(ANGLEMOUNT_ID, amountOfAngleMount);
+        this.tilesPitchedRoof = MaterialMapper.getScrewsAndTilesData(TILES_PITCHED_ID, tilesForPitchedRoof);
+        this.tileBindersHooks = MaterialMapper.getScrewsAndTilesData(TILES_BINDERS_HOOKS_ID, packagesOfTileBindersAndHooks);
+        this.rooftileStones = MaterialMapper.getScrewsAndTilesData(ROOFTILE_STONES_ID, amountOfRooftileStones);
+        this.rooftileStoneBracketsInfo = MaterialMapper.getScrewsAndTilesData(ROOFTILE_STONE_BRACKETS_ID, amountOfRooftileStoneBrackets);
+        this.toplathHoldersInfo = MaterialMapper.getScrewsAndTilesData(TOPLATH_HOLDER_ID, amountOfToplathHolders);
+        this.gavlPlankInfo = MaterialMapper.getRoofData(PLANK_ID, gavlPlankLength, amountOfGavlPlank);
+        this.gavlPlankMountInfo = MaterialMapper.getPlankData(WATERPLANK_AND_SHEDPLANK_ID, planksForGavlMountLength, amountOfPlanksForGavlMount);
+        this.rooflathsInfo = MaterialMapper.getRoofData(BATTERN_ROOFLATH_ID, carportLengthCM, amountOfRooflaths);
+        this.rooflathScrewsInfo = MaterialMapper.getScrewsAndTilesData(ROOFLATH_SCREWS_ID, amountOfRooflathScrews);
+        this.allPriceIndexes = new ArrayList<>();
     }
 
     public boolean isHasShed() {
@@ -98,79 +238,6 @@ public class CarportHelper {
     public int getCarportHeight() {
         return carportHeight;
     }
-
-    private int shedHeight = (int) (carportHeight - MaterialMapper.getWidthHeightFromDimensionMeasureInCM(6).get(1));
-    MaterialCalculator calcTest = new MaterialCalculator();
-    private int band = calcTest.calcBandAmount(carportLengthCM, carportWidthCM, isHasShed(), getShedLength());
-    private int rolesOfBand = calcTest.getRolesAmountBand(band);
-    private int amountOfRafts = calcTest.calcRaftAmount(carportLengthCM, isHasPitch());
-    private int pillarAmount = calcTest.calcPillarAmount(carportLengthCM, isHasShed(), getShedLength());
-    private int amountOfTiles = calcTest.getRoofTileAmount(carportLengthCM, carportWidthCM);
-    private int amountOfScrews = calcTest.getRoofScrewAmount(carportLengthCM, carportWidthCM, BOTTOMSCREW_ID);
-    private int amountOfUniversalScrews = calcTest.getUniversalScrews(carportLengthCM, isHasPitch());
-    private int amountOfPlankWaterScrews = calcTest.getPlankAndWaterScrews();
-    private int amountOfBracketScrews = calcTest.getBracketScrews(carportLengthCM, isHasPitch());
-    private int amountOfCarriageBolts = calcTest.getCarriageBolts(carportLengthCM, isHasShed(), getShedLength());
-    private int[] transomSides = calcTest.getTransomsLengthSides(getShedLength());
-    private int[] transomFrontAndBack = calcTest.getTransomsLengthFrontAndBack(getShedWidth());
-    private int[] headsInShed = calcTest.getHeadsInShed(getShedLength());
-    private int planksForShedAmount = calcTest.getPlanksForShed(getShedLength(), getShedWidth());
-    private int packageOfOuterScrews = calcTest.getOuterScrewsShed(getShedLength(), getShedWidth(), OUTERSCREW_ID);
-    private int packageOfInnerScrews = calcTest.getInnerScrewsShed(getShedLength(), getShedWidth(), INNERSCREW_ID);
-    private int amountOfAngleMount = calcTest.getAngleMount(getShedLength(), getShedWidth());
-    private int tilesForPitchedRoof = calcTest.getTilesForPitchedRoof();
-    private int packagesOfTileBindersAndHooks = calcTest.getPackagesOfTileBindersAndHooks();
-    private int amountOfRooftileStones = calcTest.getAmountOfRoofTileStones(carportLengthCM);
-    private int amountOfRooftileStoneBrackets = calcTest.getAmountOfRoofTileStoneBrackets(amountOfRooftileStones);
-    private int amountOfToplathHolders = calcTest.getAmountOfToplathHolders(amountOfRafts);
-    private int gavlPlankLength = calcTest.getGavlPlanksLength(carportWidthCM, getCarportPitch());
-    private int amountOfGavlPlank = calcTest.getAmountOfGavlPlanks();
-    private int amountOfPlanksForGavlMount = calcTest.getAmountOfPlanksForGavlMount(carportWidthCM);
-    private int planksForGavlMountLength = calcTest.getPlanksForGavlMountLength(carportWidthCM, getCarportPitch());
-    private int amountOfRooflaths = calcTest.getAmountOfRooflaths(carportWidthCM);
-    private int amountOfRooflathScrews = calcTest.getAmountOfToplathScrews(amountOfRooflaths, amountOfRafts, ROOFLATH_SCREWS_ID);
-
-    private ArrayList<Double> pillarLengths = calcTest.getPillarHeight(getCarportHeight(), carportLengthCM, isHasShed(), getShedLength(), isHasShed());
-    private ArrayList<String> heads = MaterialMapper.getRoofData(RAFT_AND_HEAD_ID, carportLengthCM, AMOUNT_OF_HEADS);
-    private ArrayList<String> rafts = MaterialMapper.getRoofData(RAFT_AND_HEAD_ID, carportWidthCM, amountOfRafts);
-    private ArrayList<String> bands = MaterialMapper.getBandData(BAND_ID, band, rolesOfBand);
-    private ArrayList<String> pillars = MaterialMapper.getPillarData(PILLAR_ID, pillarAmount, pillarLengths);
-    private ArrayList<String> frontbackunderplanks = MaterialMapper.getRoofData(PLANK_ID, carportWidthCM, AMOUNT_OF_FRONT_BACK_UNDERPLANKS);
-    private ArrayList<String> sideunderplanks = MaterialMapper.getRoofData(PLANK_ID, carportLengthCM, AMOUNT_OF_SIDE_UNDERPLANKS);
-    private ArrayList<String> frontoverplanks = MaterialMapper.getRoofData(PLANK_ID, carportWidthCM, AMOUNT_OF_FRONT_OVERPLANKS);
-    private ArrayList<String> sideoverplanks = MaterialMapper.getRoofData(PLANK_ID, carportLengthCM, AMOUNT_OF_SIDE_OVERPLANKS);
-    private ArrayList<String> sidewaterplanks = MaterialMapper.getRoofData(WATERPLANK_AND_SHEDPLANK_ID, carportLengthCM, AMOUNT_OF_SIDE_WATERPLANKS);
-    private ArrayList<String> frontwaterplanks = MaterialMapper.getRoofData(WATERPLANK_AND_SHEDPLANK_ID, carportWidthCM, AMOUNT_OF_FRONT_WATERPLANKS);
-    private ArrayList<String> tiles = MaterialMapper.getScrewsAndTilesData(TILE_ID, amountOfTiles);
-    private ArrayList<String> roofBottomScrew = MaterialMapper.getScrewsAndTilesData(BOTTOMSCREW_ID, amountOfScrews);
-    private ArrayList<String> universalScrews = MaterialMapper.getScrewsAndTilesData(UNIVERSALSCREW_ID, amountOfUniversalScrews);
-    private ArrayList<String> plankWaterScrews = MaterialMapper.getScrewsAndTilesData(PLANK_WATERSCREW_ID, amountOfPlankWaterScrews);
-    private ArrayList<String> bracketScrews = MaterialMapper.getScrewsAndTilesData(BRACKETSCEW_ID, amountOfBracketScrews);
-    private ArrayList<String> carriageBolts = MaterialMapper.getScrewsAndTilesData(CARRIAGEBOLT_ID, amountOfCarriageBolts);
-    private ArrayList<String> squareWashers = MaterialMapper.getScrewsAndTilesData(SQUAREWASHER_ID, amountOfCarriageBolts);
-    private ArrayList<String> battern = MaterialMapper.getRoofData(BATTERN_ROOFLATH_ID, BATTERNLENGTH_DOOR, 1);
-    private ArrayList<String> transomSidesInfo = MaterialMapper.getTransomAndHeadInShedData(TRANSOM_ID, transomSides);
-    private ArrayList<String> transomFrontAndBackInfo = MaterialMapper.getTransomAndHeadInShedData(TRANSOM_ID, transomFrontAndBack);
-    private ArrayList<String> headsInShedInfo = MaterialMapper.getTransomAndHeadInShedData(RAFT_AND_HEAD_ID, headsInShed);
-    private ArrayList<String> planksInShedInfo = MaterialMapper.getPlankData(WATERPLANK_AND_SHEDPLANK_ID, shedHeight, planksForShedAmount);
-    private ArrayList<String> outerScrewsInfo = MaterialMapper.getScrewsAndTilesData(OUTERSCREW_ID, packageOfOuterScrews);
-    private ArrayList<String> innerScrewsInfo = MaterialMapper.getScrewsAndTilesData(INNERSCREW_ID, packageOfInnerScrews);
-    private ArrayList<String> doorGribInfo = MaterialMapper.getScrewsAndTilesData(DOORGRIB_ID, DOOR_GRIB);
-    private ArrayList<String> tHingeInfo = MaterialMapper.getScrewsAndTilesData(THINGE_ID, T_HINGE);
-    private ArrayList<String> angleMountInfo = MaterialMapper.getScrewsAndTilesData(ANGLEMOUNT_ID, amountOfAngleMount);
-    private ArrayList<String> tilesPitchedRoof = MaterialMapper.getScrewsAndTilesData(TILES_PITCHED_ID, tilesForPitchedRoof);
-    private ArrayList<String> tileBindersHooks = MaterialMapper.getScrewsAndTilesData(TILES_BINDERS_HOOKS_ID, packagesOfTileBindersAndHooks);
-    private ArrayList<String> rooftileStones = MaterialMapper.getScrewsAndTilesData(ROOFTILE_STONES_ID, amountOfRooftileStones);
-    private ArrayList<String> rooftileStoneBracketsInfo = MaterialMapper.getScrewsAndTilesData(ROOFTILE_STONE_BRACKETS_ID, amountOfRooftileStoneBrackets);
-    private ArrayList<String> toplathHoldersInfo = MaterialMapper.getScrewsAndTilesData(TOPLATH_HOLDER_ID, amountOfToplathHolders);
-    private ArrayList<String> gavlPlankInfo = MaterialMapper.getRoofData(PLANK_ID, gavlPlankLength, amountOfGavlPlank);
-    private ArrayList<String> gavlPlankMountInfo = MaterialMapper.getPlankData(WATERPLANK_AND_SHEDPLANK_ID, planksForGavlMountLength, amountOfPlanksForGavlMount);
-    private ArrayList<String> rooflathsInfo = MaterialMapper.getRoofData(BATTERN_ROOFLATH_ID, carportLengthCM, amountOfRooflaths);
-    private ArrayList<String> rooflathScrewsInfo = MaterialMapper.getScrewsAndTilesData(ROOFLATH_SCREWS_ID, amountOfRooflathScrews);
-    private ArrayList<String> allPriceIndexes = new ArrayList<>();
-
-
-
 
     public void setCarportLengthCM(int carportLengthCM) {
         this.carportLengthCM = carportLengthCM;
@@ -221,6 +288,7 @@ public class CarportHelper {
     }
 
     public void initArrayList() {
+
         getAllPriceIndexes().add(heads.get(heads.size() - 1));
         getAllPriceIndexes().add(rafts.get(rafts.size() - 1));
         getAllPriceIndexes().add(bands.get(bands.size() - 1));

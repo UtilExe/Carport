@@ -50,7 +50,7 @@ public class MaterialMapper {
                 String type = rs.getString("material_type.type_name");
                 String description = rs.getString("description");
                 double priceUnit = rs.getDouble("price_unit");
-                int price = calcPrice.calcPricePrUnitWithLength(woodAmountAndLength.get(0), priceUnit, woodAmountAndLength.get(1));
+                int price = calcPrice.calcPricePrUnitWithLength(woodAmountAndLength.get(1), priceUnit, woodAmountAndLength.get(0));
                 data.add(category);
                 data.add(type);
                 data.add(description);
@@ -270,6 +270,8 @@ public class MaterialMapper {
 
     public static ArrayList<String> getPlankData(int ID, int height, int plankAmount) {
         ArrayList<String> data = new ArrayList<>();
+        ArrayList<Integer> lengths = getLengthsFromStorage(ID, height);
+        ArrayList<Integer> woodAmountAndLength = calcPrice.getWoodForMeasure(height, lengths, plankAmount);
 
         try {
             Connection con = Connector.connection();
@@ -285,12 +287,12 @@ public class MaterialMapper {
                 String type = rs.getString("material_type.type_name");
                 String description = rs.getString("description");
                 double priceUnit = rs.getDouble("price_unit");
-                int price = calcPrice.calcPricePrUnitWithLength(height, priceUnit, plankAmount);
+                int price = calcPrice.calcPricePrUnitWithLength(woodAmountAndLength.get(1), priceUnit, woodAmountAndLength.get(0));
                 data.add(category);
                 data.add(type);
                 data.add(description);
-                data.add(plankAmount + " stk.");
-                data.add(height + " cm.");
+                data.add(woodAmountAndLength.get(0) + " stk.");
+                data.add(woodAmountAndLength.get(1) + " cm.");
                 data.add(price + " kr.");
 
             }

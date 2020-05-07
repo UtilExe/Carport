@@ -45,5 +45,10 @@ public class Carport {
     public void setRoofMaterial(String roofMaterial) {
         this.roofMaterial = roofMaterial;
     }
+
+    @Override
+    public String toString() {
+        return "Caport Længde: " + carportLength + ", Caport Bredde: " + carportWidth + ", Caport Højde: " + carportHeight + "Tag materiale: " + roofMaterial;
+    }
 }
 

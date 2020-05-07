@@ -19,11 +19,11 @@ public class Login extends Command {
         HttpSession session = request.getSession();
 
         session.setAttribute("email", email);
-        if (email.equals("admin@admin.com")) {
+        if(email.equals("admin@admin.com")) {
             return "admin";
         }
 
-        return "index";
+        return "admin";
     }
 
 }

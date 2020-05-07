@@ -1,7 +1,9 @@
 package FunctionLayer;
 
 import DBAccess.CarportMapper;
+import DBAccess.OrderMapper;
 import DBAccess.UserMapper;
+import FunctionLayer.Objects.Order;
 
 import java.util.ArrayList;
 
@@ -54,6 +56,10 @@ public class LogicFacade {
 
     public static void addCarportToCustOrder(int carportLength, int carportWidth, int carportHeight, boolean hasShed, int shedWidth, int shedLength, boolean hasPitch, int roofPitch, String roofMaterial, int price) {
         CarportMapper.addCarportToCustOrder(carportLength, carportWidth, carportHeight, hasShed, shedWidth, shedLength, hasPitch, roofPitch, roofMaterial, price);
+    }
+
+    public static ArrayList<Order> getOrders() {
+        return OrderMapper.getOrders();
     }
 
 }

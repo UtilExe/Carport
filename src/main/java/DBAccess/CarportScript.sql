@@ -59,6 +59,7 @@ REFERENCES `carport`.`material_type`(`typeID`));
   `roof_pitch` INT NULL,
   `roof_material` VARCHAR(45) NULL,
   `price` INT NULL,
+  `approved` TINYINT NOT NULL DEFAULT 0,
   PRIMARY KEY (`orderID`));
   
   CREATE TABLE `carport`.`orderlines` (

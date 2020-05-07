@@ -1,5 +1,7 @@
 package FunctionLayer;
 
+import FunctionLayer.Objects.Order;
+
 import java.util.ArrayList;
 
 public class Initialisation {
@@ -11,6 +13,7 @@ public class Initialisation {
     private static ArrayList<Integer> shedLengths;
     private static ArrayList<Integer> shedWidths;
     private static ArrayList<Integer> roofPitch;
+    private static ArrayList<Order> orders;
 
     //Inits
     public static void initLengths() {
@@ -55,6 +58,12 @@ public class Initialisation {
         }
     }
 
+    public static void initOrders() {
+        if(orders == null) {
+            orders = LogicFacade.getOrders();
+        }
+    }
+
 
 
     //Get lists
@@ -65,4 +74,5 @@ public class Initialisation {
     public static ArrayList<Integer> getShedLengths() {return shedLengths;}
     public static ArrayList<Integer>getShedWidths() {return shedWidths;}
     public static ArrayList<Integer>getRoofPitch() {return roofPitch;}
+    public static ArrayList<Order>getOrders() {return orders;}
 }

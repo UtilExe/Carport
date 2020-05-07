@@ -228,8 +228,6 @@ public class CarportDesign extends Command {
                 carport = new CarportFlat(carportLengthCM, carportWidthCM, carportHeight, roofMaterial, hasShed, shedWidth, shedLength);
             }
             cart.addToCart(tmpCart, carport);
-
-            System.out.println(cart.toString());
         }
 
         System.out.println("Info om rem:" + heads);

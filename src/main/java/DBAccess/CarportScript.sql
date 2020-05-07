@@ -60,6 +60,24 @@ REFERENCES `carport`.`material_type`(`typeID`));
   `roof_material` VARCHAR(45) NULL,
   `price` INT NULL,
   PRIMARY KEY (`orderID`));
+  
+  CREATE TABLE `carport`.`orderlines` (
+  `orderlines_id` INT NOT NULL AUTO_INCREMENT,
+  `order_id` INT NOT NULL,
+  `product_id` INT NOT NULL,
+  PRIMARY KEY (`orderlines_id`),
+  FOREIGN KEY (`order_id`)
+  REFERENCES `carport`.`cust_order`(`orderID`),
+  FOREIGN KEY (`product_id`)
+  REFERENCES `carport`.`material_list`(`productID`));
+  
+  CREATE TABLE `carport`.`storage` (
+  `storage_id` INT NOT NULL AUTO_INCREMENT,
+  `product_id` INT NOT NULL,
+  `length_cm` INT NOT NULL,
+  PRIMARY KEY (`storage_id`),
+  FOREIGN KEY (`product_id`)
+  REFERENCES `carport`.`material_list`(`productID`));
 
   -- Indsæt data i tabellen:
 INSERT INTO carport_measures (`description`, `measures`) VALUES ('bredde', 240);
@@ -228,3 +246,100 @@ INSERT INTO material_list (`category`, `price_unit`, `unit`, `type_id`, `descrip
 INSERT INTO material_list (`category`, `price_unit`, `unit`, `type_id`, `description`) VALUES ('træ og tagplader', '35', 'stk', '2', '38x73 mm., taglægte');
 INSERT INTO material_list (`category`, `price_unit`, `unit`, `type_id`, `description`) VALUES ('træ og tagplader', '35', 'stk', '2', '38x73 mm., taglægte');
 INSERT INTO material_list (`category`, `price_unit`, `amount_pr_unit`, `unit`, `type_id`, `description`) VALUES ('beslag og skruer', '60', '100, stk', 'pakke', '10', '5x100 mm.');
+
+INSERT INTO storage (`product_id`, `length_cm`) VALUES (1, 250);
+INSERT INTO storage (`product_id`, `length_cm`) VALUES (1, 300);
+INSERT INTO storage (`product_id`, `length_cm`) VALUES (1, 350);
+INSERT INTO storage (`product_id`, `length_cm`) VALUES (1, 400);
+INSERT INTO storage (`product_id`, `length_cm`) VALUES (1, 450);
+INSERT INTO storage (`product_id`, `length_cm`) VALUES (1, 500);
+INSERT INTO storage (`product_id`, `length_cm`) VALUES (1, 550);
+INSERT INTO storage (`product_id`, `length_cm`) VALUES (1, 600);
+INSERT INTO storage (`product_id`, `length_cm`) VALUES (2, 250);
+INSERT INTO storage (`product_id`, `length_cm`) VALUES (2, 300);
+INSERT INTO storage (`product_id`, `length_cm`) VALUES (2, 350);
+INSERT INTO storage (`product_id`, `length_cm`) VALUES (2, 400);
+INSERT INTO storage (`product_id`, `length_cm`) VALUES (2, 450);
+INSERT INTO storage (`product_id`, `length_cm`) VALUES (2, 500);
+INSERT INTO storage (`product_id`, `length_cm`) VALUES (2, 550);
+INSERT INTO storage (`product_id`, `length_cm`) VALUES (2, 600);
+INSERT INTO storage (`product_id`, `length_cm`) VALUES (3, 250);
+INSERT INTO storage (`product_id`, `length_cm`) VALUES (3, 300);
+INSERT INTO storage (`product_id`, `length_cm`) VALUES (3, 350);
+INSERT INTO storage (`product_id`, `length_cm`) VALUES (3, 400);
+INSERT INTO storage (`product_id`, `length_cm`) VALUES (3, 450);
+INSERT INTO storage (`product_id`, `length_cm`) VALUES (3, 500);
+INSERT INTO storage (`product_id`, `length_cm`) VALUES (3, 550);
+INSERT INTO storage (`product_id`, `length_cm`) VALUES (3, 600);
+INSERT INTO storage (`product_id`, `length_cm`) VALUES (4, 250);
+INSERT INTO storage (`product_id`, `length_cm`) VALUES (4, 300);
+INSERT INTO storage (`product_id`, `length_cm`) VALUES (4, 350);
+INSERT INTO storage (`product_id`, `length_cm`) VALUES (4, 400);
+INSERT INTO storage (`product_id`, `length_cm`) VALUES (4, 450);
+INSERT INTO storage (`product_id`, `length_cm`) VALUES (4, 500);
+INSERT INTO storage (`product_id`, `length_cm`) VALUES (4, 550);
+INSERT INTO storage (`product_id`, `length_cm`) VALUES (4, 600);
+INSERT INTO storage (`product_id`, `length_cm`) VALUES (5, 250);
+INSERT INTO storage (`product_id`, `length_cm`) VALUES (5, 300);
+INSERT INTO storage (`product_id`, `length_cm`) VALUES (5, 350);
+INSERT INTO storage (`product_id`, `length_cm`) VALUES (5, 400);
+INSERT INTO storage (`product_id`, `length_cm`) VALUES (5, 450);
+INSERT INTO storage (`product_id`, `length_cm`) VALUES (5, 500);
+INSERT INTO storage (`product_id`, `length_cm`) VALUES (5, 550);
+INSERT INTO storage (`product_id`, `length_cm`) VALUES (5, 600);
+INSERT INTO storage (`product_id`, `length_cm`) VALUES (6, 250);
+INSERT INTO storage (`product_id`, `length_cm`) VALUES (6, 300);
+INSERT INTO storage (`product_id`, `length_cm`) VALUES (6, 350);
+INSERT INTO storage (`product_id`, `length_cm`) VALUES (6, 400);
+INSERT INTO storage (`product_id`, `length_cm`) VALUES (6, 450);
+INSERT INTO storage (`product_id`, `length_cm`) VALUES (6, 500);
+INSERT INTO storage (`product_id`, `length_cm`) VALUES (6, 550);
+INSERT INTO storage (`product_id`, `length_cm`) VALUES (6, 600);
+INSERT INTO storage (`product_id`, `length_cm`) VALUES (7, 250);
+INSERT INTO storage (`product_id`, `length_cm`) VALUES (7, 300);
+INSERT INTO storage (`product_id`, `length_cm`) VALUES (7, 350);
+INSERT INTO storage (`product_id`, `length_cm`) VALUES (7, 400);
+INSERT INTO storage (`product_id`, `length_cm`) VALUES (7, 450);
+INSERT INTO storage (`product_id`, `length_cm`) VALUES (7, 500);
+INSERT INTO storage (`product_id`, `length_cm`) VALUES (7, 550);
+INSERT INTO storage (`product_id`, `length_cm`) VALUES (7, 600);
+INSERT INTO storage (`product_id`, `length_cm`) VALUES (22, 250);
+INSERT INTO storage (`product_id`, `length_cm`) VALUES (22, 300);
+INSERT INTO storage (`product_id`, `length_cm`) VALUES (22, 350);
+INSERT INTO storage (`product_id`, `length_cm`) VALUES (22, 400);
+INSERT INTO storage (`product_id`, `length_cm`) VALUES (22, 450);
+INSERT INTO storage (`product_id`, `length_cm`) VALUES (22, 500);
+INSERT INTO storage (`product_id`, `length_cm`) VALUES (22, 550);
+INSERT INTO storage (`product_id`, `length_cm`) VALUES (22, 600);
+INSERT INTO storage (`product_id`, `length_cm`) VALUES (26, 250);
+INSERT INTO storage (`product_id`, `length_cm`) VALUES (26, 300);
+INSERT INTO storage (`product_id`, `length_cm`) VALUES (26, 350);
+INSERT INTO storage (`product_id`, `length_cm`) VALUES (26, 400);
+INSERT INTO storage (`product_id`, `length_cm`) VALUES (26, 450);
+INSERT INTO storage (`product_id`, `length_cm`) VALUES (26, 500);
+INSERT INTO storage (`product_id`, `length_cm`) VALUES (26, 550);
+INSERT INTO storage (`product_id`, `length_cm`) VALUES (26, 600);
+INSERT INTO storage (`product_id`, `length_cm`) VALUES (27, 250);
+INSERT INTO storage (`product_id`, `length_cm`) VALUES (27, 300);
+INSERT INTO storage (`product_id`, `length_cm`) VALUES (27, 350);
+INSERT INTO storage (`product_id`, `length_cm`) VALUES (27, 400);
+INSERT INTO storage (`product_id`, `length_cm`) VALUES (27, 450);
+INSERT INTO storage (`product_id`, `length_cm`) VALUES (27, 500);
+INSERT INTO storage (`product_id`, `length_cm`) VALUES (27, 550);
+INSERT INTO storage (`product_id`, `length_cm`) VALUES (27, 600);
+INSERT INTO storage (`product_id`, `length_cm`) VALUES (28, 250);
+INSERT INTO storage (`product_id`, `length_cm`) VALUES (28, 300);
+INSERT INTO storage (`product_id`, `length_cm`) VALUES (28, 350);
+INSERT INTO storage (`product_id`, `length_cm`) VALUES (28, 400);
+INSERT INTO storage (`product_id`, `length_cm`) VALUES (28, 450);
+INSERT INTO storage (`product_id`, `length_cm`) VALUES (28, 500);
+INSERT INTO storage (`product_id`, `length_cm`) VALUES (28, 550);
+INSERT INTO storage (`product_id`, `length_cm`) VALUES (28, 600);
+INSERT INTO storage (`product_id`, `length_cm`) VALUES (29, 250);
+INSERT INTO storage (`product_id`, `length_cm`) VALUES (29, 300);
+INSERT INTO storage (`product_id`, `length_cm`) VALUES (29, 350);
+INSERT INTO storage (`product_id`, `length_cm`) VALUES (29, 400);
+INSERT INTO storage (`product_id`, `length_cm`) VALUES (29, 450);
+INSERT INTO storage (`product_id`, `length_cm`) VALUES (29, 500);
+INSERT INTO storage (`product_id`, `length_cm`) VALUES (29, 550);
+INSERT INTO storage (`product_id`, `length_cm`) VALUES (29, 600);

@@ -198,6 +198,14 @@ public class MaterialMapper {
     public static ArrayList<String> getPillarData(int ID, int pillarAmount, ArrayList<Double> pillarLengths) {
         ArrayList<String> data = new ArrayList<>();
         String[] descriptionSplitted = new String[2];
+        double biggestLength = 0;
+        for(int i = 0; i < pillarLengths.size(); i++) {
+            if(biggestLength < pillarLengths.get(i)) {
+                biggestLength = pillarLengths.get(i);
+            }
+        }
+        ArrayList<Integer> lengths = getLengthsFromStorage(ID, (int) biggestLength);
+        ArrayList<Integer> woodAmountAndLength = calcPrice.getWoodForMeasure((int) biggestLength, lengths, pillarAmount);
 
         try {
             Connection con = Connector.connection();
@@ -213,15 +221,14 @@ public class MaterialMapper {
                 String type = rs.getString("material_type.type_name");
                 String description = rs.getString("description");
                 double priceUnit = rs.getDouble("price_unit");
-                int price = 0;
-
+                int price = calcPrice.calcPricePrUnitWithLength(woodAmountAndLength.get(1), priceUnit, woodAmountAndLength.get(0));
                 data.add(category);
                 data.add(type);
                 data.add(description);
-                data.add("Antal stolper: " + pillarAmount);
+                data.add(woodAmountAndLength.get(0) + " stk.");
+                data.add(woodAmountAndLength.get(1) + " cm.");
                 for(int i = 1; i <= pillarAmount/2; i++) {
-                    data.add("Højde på stolpe-par " + i + ": " + pillarLengths.get(i-1) + unit);
-                    price += calcPrice.calcPricePrUnitWithLength((int) (Math.ceil(pillarLengths.get(i-1))), priceUnit, pillarAmount);
+                    data.add("Højde på stolpe-par (skal tilskæres) " + i + ": " + pillarLengths.get(i-1) + unit);
                     // VI GØR LIGESOM I PDF MED ANTAL I FORHOLD TIL MÅL (2 STOLPER AF 271.55 OG 2 STOLPER AF 280.98)
                 }
                 data.add(price + " kr.");

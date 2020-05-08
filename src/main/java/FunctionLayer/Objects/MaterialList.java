@@ -1,10 +1,12 @@
 package FunctionLayer.Objects;
 
-import java.lang.reflect.Array;
+import FunctionLayer.Komparator;
+
 import java.util.ArrayList;
 import java.util.Collections;
 
 public class MaterialList {
+    Komparator sortAlphabetically = new Komparator();
 
     private ArrayList<ArrayList<String>> list;
 
@@ -24,7 +26,9 @@ public class MaterialList {
         this.list.add(materials);
     }
 
-    public void sortListAlphabetically(MaterialList materialList) {
+    public void sortListAlphabetically() {
+
+        Collections.sort(this.list, sortAlphabetically);
 
     }
 

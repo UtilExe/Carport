@@ -361,7 +361,7 @@ public class CarportHelper {
             allMaterials.addToList(rooflathScrewsInfo);
         }
 
-        allMaterials.sortListAlphabetically(allMaterials);
+        allMaterials.sortListAlphabetically();
 
         return allMaterials;
     }

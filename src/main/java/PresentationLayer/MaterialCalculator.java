@@ -440,5 +440,42 @@ public class MaterialCalculator {
         return result;
     }
 
+    public ArrayList<Integer> getWoodForMeasure(int materialMeasure, ArrayList<Integer> lengths, int amountOnCarport) {
+        ArrayList<Integer> result = new ArrayList<>();
+        int tmpResult = 0;
+        int amountOfWood = 0;
+
+        if(lengths.get(lengths.size()-1) < materialMeasure) {
+            materialMeasure /= 2;
+            for (int i = 0; i < lengths.size(); i++) {
+                if(lengths.get(i) >= materialMeasure) {
+                    tmpResult = lengths.get(i);
+                    amountOfWood = 2;
+                    break;
+                }
+            }
+        } else {
+            for (int i = 0; i < lengths.size(); i++) {
+                if(lengths.get(i) >= materialMeasure) {
+                    tmpResult = lengths.get(i);
+                    amountOfWood = 1;
+                    break;
+                }
+                if(lengths.get(i)/2 >= materialMeasure) {
+                    tmpResult = lengths.get(i);
+                    amountOfWood = 2;
+                    break;
+                }
+            }
+        }
+        // Vi ganger antal brædder på carporten med antal brædder til én længde.
+        amountOfWood *= amountOnCarport;
+
+        result.add(amountOfWood);
+        result.add(tmpResult);
+
+        return result;
+    }
+
 
  }

@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: Danie
@@ -12,7 +13,30 @@
 </head>
 <body>
 
-
+<div class="row">
+    <div class="col-3"></div>
+    <div class="col-6">
+        <table style="width:100%">
+            <tr>
+                <th>Kategori</th>
+                <th>Længde</th>
+                <th>Antal</th>
+                <th>Enhed</th>
+                <th>Beskrivelse</th>
+            </tr>
+            <c:forEach var="material" items="${}">
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </c:forEach>
+        </table>
+    </div>
+    <div class="col-3"></div>
+</div>
 
 </body>
 </html>

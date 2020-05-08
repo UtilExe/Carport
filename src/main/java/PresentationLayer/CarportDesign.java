@@ -77,10 +77,6 @@ public class CarportDesign extends Command {
             cart.addToCart(tmpCart, carport);
         }
 
-        // remove when not needed anymore (debug console)
-        System.out.println("DEEEEEEEBUG:" + finalPrice);
-        helper.test();
-
 
         if (helper.isHasPitch()) {
             return "rejsningtag";

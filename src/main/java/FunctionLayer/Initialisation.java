@@ -61,12 +61,8 @@ public class Initialisation {
     }
 
     public static void initOrders() {
-        if(orders == null) {
             orders = LogicFacade.getOrders();
-        }
     }
-
-
 
     //Get lists
     public static ArrayList<Integer>getCarportLengths() {return carportLengths;}

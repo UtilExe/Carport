@@ -23,7 +23,7 @@ public class Login extends Command {
             return "admin";
         }
 
-        return "admin";
+        return "index";
     }
 
 }

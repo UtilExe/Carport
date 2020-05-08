@@ -40,6 +40,20 @@
     color: #fff;
 }
 
+.btnSubmitAdmin
+{
+    /* lav knap lidt længere nede */
+    margin-top: 10px;
+
+    border:none;
+    border-radius:1.5rem;
+    padding: 1%;
+    width: 27%;
+    cursor: pointer;
+    background: #0062cc;
+    color: #fff;
+}
+
 #login-dp{
     min-width: 250px;
     padding: 14px 14px 0;

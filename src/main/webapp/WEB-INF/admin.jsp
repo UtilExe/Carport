@@ -7,15 +7,15 @@
 </head>
 <body>
 
-    <%!
+<%!
     @Override
     public void jspInit(){
         Initialisation.initOrders();
     }
 %>
 
-    <%
-    request.setAttribute("order", Initialisation.getOrders());
+<%
+    request.setAttribute("orders", Initialisation.getOrders());
 %>
 
 <nav class="navbar navbar-expand-lg navbar-light">
@@ -55,10 +55,21 @@
         <h3>Her kan du se ordre som afventer godkendelse:</h3>
 
         <ul style="list-style-type:square;">
-            <c:forEach var="order" items="${requestScope.order}">
+            <c:forEach var="order" items="${requestScope.orders}">
+                <form action="FrontController" method="POST">
+                    <input type="hidden" name="target" value="approve">
                 <li>
-                    ${order}
+                    <input type="hidden" name="orderID" value="${order.orderID}">${order}
                 </li>
+                    <div class="row">
+                        <div class="col-3">
+                            <button name="godkend" type="submit" class="btnSubmitAdmin" style="text-align: center; width: 100%; background-color: green;">Godkend</button>
+                        </div>
+                        <div class="col-3">
+                            <button name="afvis" type="submit" class="btnSubmitAdmin" style="text-align: center; width: 100%; background-color: red;">Afvis</button>
+                        </div>
+                    </div>
+                </form>
             </c:forEach>
         </ul>
 

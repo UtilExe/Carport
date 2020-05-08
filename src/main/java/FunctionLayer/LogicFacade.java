@@ -63,4 +63,10 @@ public class LogicFacade {
         return OrderMapper.getOrders();
     }
 
+    public static void approve(int orderID) {
+        OrderMapper.approve(orderID);
+    }
+
+    public static void removeOrder(int orderID) { OrderMapper.removeOrder(orderID);}
+
 }

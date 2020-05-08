@@ -39,4 +39,28 @@ public class OrderMapper {
         return orders;
     }
 
+    public static void approve(int orderID) {
+        try {
+            Connection con = Connector.connection();
+            String SQL = "UPDATE carport.cust_order SET approved=1 WHERE orderID=?;";
+            PreparedStatement ps = con.prepareStatement(SQL);
+            ps.setInt(1, orderID);
+            ps.executeUpdate();
+        } catch (SQLException | ClassNotFoundException ex) {
+            ex.getMessage();
+        }
+    }
+
+    public static void removeOrder(int orderID) {
+        try {
+            Connection con = Connector.connection();
+            String SQL = "DELETE FROM carport.cust_order WHERE orderID=?;";
+            PreparedStatement ps = con.prepareStatement(SQL);
+            ps.setInt(1, orderID);
+            ps.executeUpdate();
+        } catch (SQLException | ClassNotFoundException ex) {
+            ex.getMessage();
+        }
+    }
+
 }

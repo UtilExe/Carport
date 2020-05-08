@@ -6,6 +6,7 @@ import PresentationLayer.MaterialCalculator;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class CarportHelper {
 
@@ -360,6 +361,7 @@ public class CarportHelper {
             allMaterials.addToList(rooflathScrewsInfo);
         }
 
+        allMaterials.sortListAlphabetically(allMaterials);
 
         return allMaterials;
     }

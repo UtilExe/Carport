@@ -1,6 +1,8 @@
 package FunctionLayer.Objects;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class MaterialList {
 
@@ -20,6 +22,10 @@ public class MaterialList {
 
     public void addToList(ArrayList<String> materials) {
         this.list.add(materials);
+    }
+
+    public void sortListAlphabetically(MaterialList materialList) {
+
     }
 
 }

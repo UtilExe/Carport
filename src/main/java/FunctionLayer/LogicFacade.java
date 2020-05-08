@@ -3,6 +3,7 @@ package FunctionLayer;
 import DBAccess.CarportMapper;
 import DBAccess.OrderMapper;
 import DBAccess.UserMapper;
+import FunctionLayer.Objects.MaterialList;
 import FunctionLayer.Objects.Order;
 
 import java.util.ArrayList;
@@ -61,5 +62,7 @@ public class LogicFacade {
     public static ArrayList<Order> getOrders() {
         return OrderMapper.getOrders();
     }
+
+    public static MaterialList getMaterialList() { return CarportHelper.test(); }
 
 }

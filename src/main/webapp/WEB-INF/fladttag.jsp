@@ -119,7 +119,6 @@
         </div>
 
         <div class="text-left mt-4">
-
             <button class="btn btn-primary" type="submit">Indtast</button>
         </div>
         </form>

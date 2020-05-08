@@ -1,8 +1,10 @@
 package FunctionLayer;
 
 import DBAccess.MaterialMapper;
+import FunctionLayer.Objects.MaterialList;
 import PresentationLayer.MaterialCalculator;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class CarportHelper {
@@ -75,44 +77,47 @@ public class CarportHelper {
     private int amountOfRooflaths;
     private int amountOfRooflathScrews;
 
-    private ArrayList<Double> pillarLengths;
-    private ArrayList<String> heads;
-    private ArrayList<String> rafts;
-    private ArrayList<String> bands;
-    private ArrayList<String> pillars;
-    private ArrayList<String> frontbackunderplanks;
-    private ArrayList<String> sideunderplanks;
-    private ArrayList<String> frontoverplanks;
-    private ArrayList<String> sideoverplanks;
-    private ArrayList<String> sidewaterplanks;
-    private ArrayList<String> frontwaterplanks;
-    private ArrayList<String> tiles;
-    private ArrayList<String> roofBottomScrew;
-    private ArrayList<String> universalScrews;
-    private ArrayList<String> plankWaterScrews;
-    private ArrayList<String> bracketScrews;
-    private ArrayList<String> carriageBolts;
-    private ArrayList<String> squareWashers;
-    private ArrayList<String> battern;
-    private ArrayList<String> transomSidesInfo;
-    private ArrayList<String> transomFrontAndBackInfo;
-    private ArrayList<String> headsInShedInfo;
-    private ArrayList<String> planksInShedInfo;
-    private ArrayList<String> outerScrewsInfo;
-    private ArrayList<String> innerScrewsInfo;
-    private ArrayList<String> doorGribInfo;
-    private ArrayList<String> tHingeInfo;
-    private ArrayList<String> angleMountInfo;
-    private ArrayList<String> tilesPitchedRoof;
-    private ArrayList<String> tileBindersHooks;
-    private ArrayList<String> rooftileStones;
-    private ArrayList<String> rooftileStoneBracketsInfo;
-    private ArrayList<String> toplathHoldersInfo;
-    private ArrayList<String> gavlPlankInfo;
-    private ArrayList<String> gavlPlankMountInfo;
-    private ArrayList<String> rooflathsInfo;
-    private ArrayList<String> rooflathScrewsInfo;
-    private ArrayList<String> allPriceIndexes;
+    private static ArrayList<Double> pillarLengths;
+    private static ArrayList<String> heads;
+    private static ArrayList<String> rafts;
+    private static ArrayList<String> bands;
+    private static ArrayList<String> pillars;
+    private static ArrayList<String> frontbackunderplanks;
+    private static ArrayList<String> sideunderplanks;
+    private static ArrayList<String> frontoverplanks;
+    private static ArrayList<String> sideoverplanks;
+    private static ArrayList<String> sidewaterplanks;
+    private static ArrayList<String> frontwaterplanks;
+    private static ArrayList<String> tiles;
+    private static ArrayList<String> roofBottomScrew;
+    private static ArrayList<String> universalScrews;
+    private static ArrayList<String> plankWaterScrews;
+    private static ArrayList<String> bracketScrews;
+    private static ArrayList<String> carriageBolts;
+    private static ArrayList<String> squareWashers;
+    private static ArrayList<String> battern;
+    private static ArrayList<String> transomSidesInfo;
+    private static ArrayList<String> transomFrontAndBackInfo;
+    private static ArrayList<String> headsInShedInfo;
+    private static ArrayList<String> planksInShedInfo;
+    private static ArrayList<String> outerScrewsInfo;
+    private static ArrayList<String> innerScrewsInfo;
+    private static ArrayList<String> doorGribInfo;
+    private static ArrayList<String> tHingeInfo;
+    private static ArrayList<String> angleMountInfo;
+    private static ArrayList<String> tilesPitchedRoof;
+    private static ArrayList<String> tileBindersHooks;
+    private static ArrayList<String> rooftileStones;
+    private static ArrayList<String> rooftileStoneBracketsInfo;
+    private static ArrayList<String> toplathHoldersInfo;
+    private static ArrayList<String> gavlPlankInfo;
+    private static ArrayList<String> gavlPlankMountInfo;
+    private static ArrayList<String> rooflathsInfo;
+    private static ArrayList<String> rooflathScrewsInfo;
+    private static ArrayList<String> allPriceIndexes;
+
+    private static ArrayList<ArrayList<String>> materials = new ArrayList<>();
+    private static MaterialList allMaterials = new MaterialList(materials);
 
     private boolean hasShed = false;
     private boolean hasPitch = false;
@@ -311,7 +316,47 @@ public class CarportHelper {
         }
     }
 
-    public void test() {
+    public static MaterialList test() {
+        allMaterials.addToList(heads);
+        allMaterials.addToList(rafts);
+        allMaterials.addToList(bands);
+        allMaterials.addToList(pillars);
+        allMaterials.addToList(frontbackunderplanks);
+        allMaterials.addToList(sideunderplanks);
+        allMaterials.addToList(frontoverplanks);
+        allMaterials.addToList(sideoverplanks);
+        allMaterials.addToList(sidewaterplanks);
+        allMaterials.addToList(frontwaterplanks);
+        allMaterials.addToList(tiles);
+        allMaterials.addToList(roofBottomScrew);
+        allMaterials.addToList(universalScrews);
+        allMaterials.addToList(plankWaterScrews);
+        allMaterials.addToList(bracketScrews);
+        allMaterials.addToList(carriageBolts);
+        allMaterials.addToList(squareWashers);
+        // Med skur:
+        allMaterials.addToList(battern);
+        allMaterials.addToList(transomSidesInfo);
+        allMaterials.addToList(transomFrontAndBackInfo);
+        allMaterials.addToList(headsInShedInfo);
+        allMaterials.addToList(planksInShedInfo);
+        allMaterials.addToList(outerScrewsInfo);
+        allMaterials.addToList(innerScrewsInfo);
+        allMaterials.addToList(doorGribInfo);
+        allMaterials.addToList(tHingeInfo);
+        allMaterials.addToList(angleMountInfo);
+        // Med rejsningstag:
+        allMaterials.addToList(tilesPitchedRoof);
+        allMaterials.addToList(tileBindersHooks);
+        allMaterials.addToList(rooftileStones);
+        allMaterials.addToList(rooftileStoneBracketsInfo);
+        allMaterials.addToList(toplathHoldersInfo);
+        allMaterials.addToList(gavlPlankInfo);
+        allMaterials.addToList(gavlPlankMountInfo);
+        allMaterials.addToList(rooflathsInfo);
+        allMaterials.addToList(rooflathScrewsInfo);
+
+
         System.out.println("Info om rem:" + heads);
         System.out.println("Info om spær:" + rafts);
         System.out.println("Info om hulbånd:" + bands);
@@ -352,5 +397,7 @@ public class CarportHelper {
         System.out.println("Info om taglægter: " + rooflathsInfo);
         System.out.println("Info om skruer til taglægter: " + rooflathScrewsInfo);
         //System.out.println(finalPrice);
+
+        return allMaterials;
     }
 }

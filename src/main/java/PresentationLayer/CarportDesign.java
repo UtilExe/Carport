@@ -4,6 +4,7 @@ import FunctionLayer.*;
 import FunctionLayer.Objects.Carport;
 import FunctionLayer.Objects.CarportFlat;
 import FunctionLayer.Objects.CarportPitch;
+import FunctionLayer.Objects.MaterialList;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -77,13 +78,16 @@ public class CarportDesign extends Command {
             cart.addToCart(tmpCart, carport);
         }
 
+        request.setAttribute("materialList", CarportHelper.test());
 
-        if (helper.isHasPitch()) {
+
+        /*if (helper.isHasPitch()) {
             return "rejsningtag";
         } else {
             return "fladttag";
-        }
+        }*/
 
+        return "tmpList";
 
     }
 

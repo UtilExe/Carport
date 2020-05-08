@@ -1,3 +1,4 @@
+<%@ page import="FunctionLayer.Initialisation" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
@@ -13,6 +14,17 @@
 </head>
 <body>
 
+<%!
+    @Override
+    public void jspInit(){
+        Initialisation.initMaterialList();
+    }
+%>
+
+<%
+    request.setAttribute("materialList", Initialisation.getMaterialList());
+%>
+
 <div class="row">
     <div class="col-3"></div>
     <div class="col-6">
@@ -24,13 +36,16 @@
                 <th>Enhed</th>
                 <th>Beskrivelse</th>
             </tr>
-            <c:forEach var="material" items="${}">
+            <c:forEach items="${requestScope.materialList}">
                 <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                <c:forEach var="material" items="${requestScope.materials.list}">
+                    <tr>${material.get(0)}</tr>
+                    <tr>${material.get(1)}</tr>
+                    <tr>${material.get(2)}</tr>
+                    <tr>${material.get(3)}</tr>
+                    <tr>${material.get(4)}</tr>
+                    <tr>${material.get(5)}</tr>
+                </c:forEach>
                 </tr>
             </c:forEach>
         </table>

@@ -42,7 +42,7 @@
                 </p>
             </div>
             <div class="col-3">
-                <img src="images/fladttag.png" class="img-fluid mx-auto d-block" alt="Carport med fladt tag"/>
+                <img src="images/rejsning.png" class="img-fluid mx-auto d-block" alt="Carport med fladt tag"/>
             </div>
         </div>
 

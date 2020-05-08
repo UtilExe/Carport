@@ -78,17 +78,10 @@ public class CarportDesign extends Command {
             cart.addToCart(tmpCart, carport);
         }
 
-        request.setAttribute("materialList", CarportHelper.test());
-
-
-        /*if (helper.isHasPitch()) {
-            return "rejsningtag";
-        } else {
-            return "fladttag";
-        }*/
+        request.setAttribute("materialList", helper.test(helper.isHasShed(), helper.isHasPitch()));
+        request.setAttribute("finalPrice", finalPrice);
 
         return "tmpList";
-
     }
 
 }

@@ -1,4 +1,7 @@
 <%@ page import="FunctionLayer.Initialisation" %>
+<%@include file="../include/header.inc" %>
+<link rel="stylesheet" href="css/styles.css">
+<%@page contentType="text/html" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
@@ -7,28 +10,17 @@
   Time: 11:12
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-<head>
     <title>Tmp liste indtil nyt møde</title>
 </head>
 <body>
 
-<%!
-    @Override
-    public void jspInit(){
-        Initialisation.initMaterialList();
-    }
-%>
 
-<%
-    request.setAttribute("materialList", Initialisation.getMaterialList());
-%>
+<div style="text-align: center">
+    <h2 class="pt-4">Samlet pris: ${requestScope.finalPrice} kr.</h2>
+</div>
 
-<div class="row">
-    <div class="col-3"></div>
-    <div class="col-6">
-        <table style="width:100%">
+<div class="pt-4 pb-4">
+        <table class="materialListStyle">
             <tr>
                 <th>Kategori</th>
                 <th>Længde</th>
@@ -36,21 +28,16 @@
                 <th>Enhed</th>
                 <th>Beskrivelse</th>
             </tr>
-            <c:forEach items="${requestScope.materialList}">
+            <c:forEach var="material" items="${requestScope.materialList.list}">
                 <tr>
-                <c:forEach var="material" items="${requestScope.materials.list}">
-                    <tr>${material.get(0)}</tr>
-                    <tr>${material.get(1)}</tr>
-                    <tr>${material.get(2)}</tr>
-                    <tr>${material.get(3)}</tr>
-                    <tr>${material.get(4)}</tr>
-                    <tr>${material.get(5)}</tr>
-                </c:forEach>
+                    <td>${material.get(0)}</td>
+                    <td>${material.get(4)}</td>
+                    <td>${material.get(3)}</td>
+                    <td>${material.get(1)}</td>
+                    <td>${material.get(2)}</td>
                 </tr>
             </c:forEach>
         </table>
-    </div>
-    <div class="col-3"></div>
 </div>
 
 </body>

@@ -16,7 +16,6 @@ public class Initialisation {
     private static ArrayList<Integer> shedWidths;
     private static ArrayList<Integer> roofPitch;
     private static ArrayList<Order> orders;
-    private static MaterialList materialList;
 
     //Inits
     public static void initLengths() {
@@ -67,12 +66,6 @@ public class Initialisation {
         }
     }
 
-    public static void initMaterialList() {
-        if(materialList == null) {
-            materialList = LogicFacade.getMaterialList();
-        }
-    }
-
 
 
     //Get lists
@@ -84,5 +77,4 @@ public class Initialisation {
     public static ArrayList<Integer>getShedWidths() {return shedWidths;}
     public static ArrayList<Integer>getRoofPitch() {return roofPitch;}
     public static ArrayList<Order>getOrders() {return orders;}
-    public static MaterialList getMaterialList() {return materialList;}
 }

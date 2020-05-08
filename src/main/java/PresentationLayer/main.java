@@ -19,10 +19,13 @@ public class main {
         nummer2.add("2-hovsa");
 
         ArrayList<ArrayList<String>> materials = new ArrayList<>();
-        materials.add(nummer1);
-        materials.add(nummer2);
 
         MaterialList allMaterials = new MaterialList(materials);
+
+        allMaterials.addToList(nummer1);
+        allMaterials.addToList(nummer2);
+
+        System.out.println(allMaterials.getList().get(0).get(1));
 
 
 

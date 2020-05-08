@@ -63,6 +63,4 @@ public class LogicFacade {
         return OrderMapper.getOrders();
     }
 
-    public static MaterialList getMaterialList() { return CarportHelper.test(); }
-
 }

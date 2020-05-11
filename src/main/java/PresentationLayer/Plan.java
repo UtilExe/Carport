@@ -14,7 +14,7 @@ public class Plan extends Command{
 
         CarportHelper helper = LogicFacade.getHelper(orderID);
         String svgDrawing = helper.svgDrawing(helper.getCarportLengthCM(), helper.getCarportWidthCM(), helper.isHasShed());
-        request.setAttribute("testDrawing", svgDrawing);
+        request.setAttribute("drawing", svgDrawing);
         return "admin";
     }
 }

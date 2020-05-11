@@ -54,6 +54,8 @@
 
         <h3>Her kan du se ordre som afventer godkendelse:</h3>
 
+        <div class="ml-4 mb-4">${requestScope.drawing}</div>
+
         <ul style="list-style-type:square;">
             <c:forEach var="order" items="${requestScope.orders}">
                 <form action="FrontController" method="POST">
@@ -70,10 +72,7 @@
                         </div>
                     </div>
                 </form>
-                <form action="FrontController" method="POST">
-                    <input type="hidden" name="target" value="showPlan">
-                    <button name="afvis" type="submit" class="btnSubmitAdmin" style="text-align: center; width: 100%; background-color: deepskyblue;">Vis plantegning</button>
-                </form>
+                <a href="FrontController?target=showplan&orderID=${order.orderID}">Se plantegning</a>
             </c:forEach>
         </ul>
 

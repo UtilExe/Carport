@@ -24,6 +24,7 @@ public class MaterialList {
 
     public void addToList(ArrayList<String> materials) {
         this.list.add(materials);
+
     }
 
     public void sortListAlphabetically() {

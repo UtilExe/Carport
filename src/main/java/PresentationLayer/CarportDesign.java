@@ -65,11 +65,11 @@ public class CarportDesign extends Command {
 
         int finalPrice = calcTest.fullPrice(helper.getAllPriceIndexes());
 
+            Carport carport = null;
         if (!helper.isInvalidInput()) {
             LogicFacade.addCarportToCustOrder(helper.getCarportLengthCM(), helper.getCarportWidthCM(), helper.getCarportHeight(), helper.isHasShed(), helper.getShedWidth(), helper.getShedLength(), helper.isHasPitch(), helper.getCarportPitch(), roofMaterial, finalPrice);
             ArrayList<Carport> tmpCart = new ArrayList<>();
             Cart cart = new Cart(tmpCart);
-            Carport carport;
             if (helper.isHasPitch()) {
                 carport = new CarportPitch(helper.getCarportLengthCM(), helper.getCarportWidthCM(), helper.getCarportHeight(), roofMaterial, helper.isHasShed(), helper.getShedWidth(), helper.getShedLength(), helper.isHasPitch(), helper.getCarportPitch());
             } else {
@@ -80,6 +80,15 @@ public class CarportDesign extends Command {
 
         request.setAttribute("materialList", helper.test(helper.isHasShed(), helper.isHasPitch()));
         request.setAttribute("finalPrice", finalPrice);
+
+        Svg svg = new Svg(800, 600, "0,0,800,600",0,0);
+        Svg svgInnerDrawing = new Svg(900,800,"0,0,900,800",0,0);
+        svg.addRect(0,0,600,780);
+        svg.addRect(0,35,4,780);
+        svg.addRect(0,565,4,780);
+        request.setAttribute("svgdrawing", svg.toString());
+        System.out.println(svg.toString());
+
 
         return "tmpList";
     }

@@ -1,6 +1,6 @@
 package FunctionLayer;
 
-public class Validation {
+public class ValidationValues {
 
     public static int getInteger(String value) {
         int result = 0;
@@ -19,6 +19,15 @@ public class Validation {
         } else {
             return false;
         }
+    }
+
+    // Denne metode forhindrer, at en double til string får erstatet '.' med ','
+    public static String fromDoubleToString(double number) {
+        String result = "";
+        result = String.valueOf(number);
+        result = result.replace(',', '.');
+
+        return result;
     }
 
 

@@ -1,4 +1,4 @@
-package FunctionLayer;
+package FunctionLayer.Objects;
 
 public class User {
     private String name;

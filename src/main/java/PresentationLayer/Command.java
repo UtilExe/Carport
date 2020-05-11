@@ -1,6 +1,5 @@
 package PresentationLayer;
 
-import FunctionLayer.Cart;
 import FunctionLayer.LoginSampleException;
 import java.util.HashMap;
 import javax.servlet.http.HttpServletRequest;

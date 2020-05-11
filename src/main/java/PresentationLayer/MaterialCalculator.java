@@ -2,6 +2,7 @@ package PresentationLayer;
 
 import DBAccess.MaterialMapper;
 import FunctionLayer.*;
+import FunctionLayer.Objects.Svg;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -54,7 +55,8 @@ public class MaterialCalculator {
         }
         tmpResult = (tmpCarportLength / raftAtMeter);
         tmpResult = Math.ceil(tmpResult);
-        result = ((int) tmpResult);
+        // Vi lægger 1 til, da det første spær ikke kommer med i beregningen.
+        result = ((int) tmpResult) + 1;
         return result;
     }
 
@@ -476,6 +478,7 @@ public class MaterialCalculator {
 
         return result;
     }
+
 
 
  }

@@ -2,6 +2,7 @@ package FunctionLayer;
 
 import DBAccess.MaterialMapper;
 import FunctionLayer.Objects.MaterialList;
+import FunctionLayer.Objects.Svg;
 import PresentationLayer.MaterialCalculator;
 
 import java.lang.reflect.Array;
@@ -365,4 +366,33 @@ public class CarportHelper {
 
         return allMaterials;
     }
+
+    public String svgDrawing(int carportLength, int carportWidthCM, boolean hasShed) {
+        // Vi lægger 20 til, så f.eks. den sidste rem kommer med på tegningen.
+        String viewbox = "0,0," + (Math.ceil(carportLength/100.0))*100 + "," + carportWidthCM;
+        ArrayList<Double> headRaftWoodWidth = MaterialMapper.getWidthHeightFromDimensionMeasureInCM(RAFT_AND_HEAD_ID);
+        int a = carportLength / amountOfRafts;
+
+        Svg svg = new Svg(carportLength, carportWidthCM, viewbox,0,0);
+        Svg svgInnerDrawing = new Svg(900,800,"0,0,900,800",0,0);
+        // Carport:
+        svg.addRect(0,0,carportWidthCM,carportLength);
+        // Rem:
+        // 35 er hvor mange cm rem sidder fra carportens sider.
+        svg.addRect(0,35, headRaftWoodWidth.get(0), carportLength);
+        svg.addRect(0,carportWidthCM-35, headRaftWoodWidth.get(0), carportLength);
+        // Spær:
+        int x = 0;
+        for(int i = 0; i < amountOfRafts+1; i++) {
+            svg.addRect(x, 0, carportWidthCM, headRaftWoodWidth.get(0));
+            x += a;
+        }
+
+        // Hulbånd:
+
+
+
+        return svg.toString();
+    }
+
 }

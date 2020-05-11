@@ -1,14 +1,10 @@
 package PresentationLayer;
 
 import FunctionLayer.*;
-import FunctionLayer.Objects.Carport;
-import FunctionLayer.Objects.CarportFlat;
-import FunctionLayer.Objects.CarportPitch;
-import FunctionLayer.Objects.MaterialList;
+import FunctionLayer.Objects.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.ArrayList;
 
 
 public class CarportDesign extends Command {
@@ -22,9 +18,9 @@ public class CarportDesign extends Command {
         String tmpCarportHeight = request.getParameter("height");
         String roofMaterial = request.getParameter("roof");
 
-        int carportLength = Validation.getInteger(tmpCarportLength);
-        int carportWidthCM = Validation.getInteger(tmpCarportWidth);
-        int carportHeight = Validation.getInteger(tmpCarportHeight);
+        int carportLength = ValidationValues.getInteger(tmpCarportLength);
+        int carportWidthCM = ValidationValues.getInteger(tmpCarportWidth);
+        int carportHeight = ValidationValues.getInteger(tmpCarportHeight);
         int shedLength = 0;
         int shedWidth = 0;
         int carportPitch = 0;
@@ -37,13 +33,13 @@ public class CarportDesign extends Command {
         if (request.getParameter("checkboxShed") != null) {
             tmpShedLength = request.getParameter("shedLength");
             tmpShedWidth = request.getParameter("shedWidth");
-            shedLength = Validation.getInteger(tmpShedLength);
-            shedWidth = Validation.getInteger(tmpShedWidth);
+            shedLength = ValidationValues.getInteger(tmpShedLength);
+            shedWidth = ValidationValues.getInteger(tmpShedWidth);
         }
 
         if (request.getParameter("roofPitch") != null) {
             tmpRoofPitch = request.getParameter("roofPitch");
-            carportPitch = Validation.getInteger(tmpRoofPitch);
+            carportPitch = ValidationValues.getInteger(tmpRoofPitch);
             request.setAttribute("roof_pitch", Initialisation.getRoofPitch());
         }
 
@@ -68,26 +64,20 @@ public class CarportDesign extends Command {
             Carport carport = null;
         if (!helper.isInvalidInput()) {
             LogicFacade.addCarportToCustOrder(helper.getCarportLengthCM(), helper.getCarportWidthCM(), helper.getCarportHeight(), helper.isHasShed(), helper.getShedWidth(), helper.getShedLength(), helper.isHasPitch(), helper.getCarportPitch(), roofMaterial, finalPrice);
-            ArrayList<Carport> tmpCart = new ArrayList<>();
-            Cart cart = new Cart(tmpCart);
             if (helper.isHasPitch()) {
                 carport = new CarportPitch(helper.getCarportLengthCM(), helper.getCarportWidthCM(), helper.getCarportHeight(), roofMaterial, helper.isHasShed(), helper.getShedWidth(), helper.getShedLength(), helper.isHasPitch(), helper.getCarportPitch());
             } else {
                 carport = new CarportFlat(helper.getCarportLengthCM(), helper.getCarportWidthCM(), helper.getCarportHeight(), roofMaterial, helper.isHasShed(), helper.getShedWidth(), helper.getShedLength());
             }
-            cart.addToCart(tmpCart, carport);
         }
 
         request.setAttribute("materialList", helper.test(helper.isHasShed(), helper.isHasPitch()));
         request.setAttribute("finalPrice", finalPrice);
 
-        Svg svg = new Svg(800, 600, "0,0,800,600",0,0);
-        Svg svgInnerDrawing = new Svg(900,800,"0,0,900,800",0,0);
-        svg.addRect(0,0,600,780);
-        svg.addRect(0,35,4,780);
-        svg.addRect(0,565,4,780);
-        request.setAttribute("svgdrawing", svg.toString());
-        System.out.println(svg.toString());
+
+        String svgDrawing = helper.svgDrawing(carportLength, carportWidthCM, helper.isHasShed());
+
+        request.setAttribute("svgdrawing", svgDrawing);
 
 
         return "tmpList";

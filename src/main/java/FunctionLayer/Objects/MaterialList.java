@@ -1,12 +1,10 @@
 package FunctionLayer.Objects;
 
-import FunctionLayer.Komparator;
-
 import java.util.ArrayList;
 import java.util.Collections;
 
 public class MaterialList {
-    Komparator sortAlphabetically = new Komparator();
+    ComparatorMaterial sortAlphabetically = new ComparatorMaterial();
 
     private ArrayList<ArrayList<String>> list;
 

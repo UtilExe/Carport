@@ -56,7 +56,7 @@ public class MaterialCalculator {
         tmpResult = (tmpCarportLength / raftAtMeter);
         tmpResult = Math.ceil(tmpResult);
         // Vi lægger 1 til, da det første spær ikke kommer med i beregningen.
-        result = ((int) tmpResult) + 1;
+        result = ((int) tmpResult);
         return result;
     }
 

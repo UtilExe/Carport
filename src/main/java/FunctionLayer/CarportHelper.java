@@ -369,9 +369,10 @@ public class CarportHelper {
 
     public String svgDrawing(int carportLength, int carportWidthCM, boolean hasShed) {
         // Vi lægger 20 til, så f.eks. den sidste rem kommer med på tegningen.
-        String viewbox = "0,0," + (Math.ceil(carportLength/100.0))*100 + "," + carportWidthCM;
+        String viewbox = "0,0," + (carportLength+20) + "," + carportWidthCM;
         ArrayList<Double> headRaftMeasure = MaterialMapper.getWidthHeightFromDimensionMeasureInCM(RAFT_AND_HEAD_ID);
         ArrayList<Double> pillarMeasure = MaterialMapper.getWidthHeightFromDimensionMeasureInCM(PILLAR_ID);
+        ArrayList<Double> plankMeasure = MaterialMapper.getWidthHeightFromDimensionMeasureInCM(WATERPLANK_AND_SHEDPLANK_ID);
         // vi trækker 1 fra, da det 1. spær ikke skal med i beregningen.
         double lengthBetweenRafts = carportLength / (amountOfRafts - 1.0);
 
@@ -392,23 +393,31 @@ public class CarportHelper {
 
         // Stolper:
         int stolpeX = 0;
-        double a = carportLength / ((pillarAmount / 2.0) - 1.0);
+        double lengthBetweenPillars = carportLength / ((pillarAmount / 2.0) - 1.0);
         double pillarTransition = 0.0;
         for(int i = 0; i < pillarAmount / 2; i++){
             final int CM_BETWEEN_PILLARS = 300;
-            if (i == 0 || i == pillarAmount - 1){
+            if (i == (pillarAmount / 2) - 1){
                 pillarTransition = (pillarMeasure.get(0) / 2);
-
             }
 
             svg.addRect(stolpeX - pillarTransition,35 - (headRaftMeasure.get(0) / 2), pillarMeasure.get(0), pillarMeasure.get(1));
             svg.addRect(stolpeX - pillarTransition, carportWidthCM - 35 - (headRaftMeasure.get(0) / 2), pillarMeasure.get(0), pillarMeasure.get(1));
-            stolpeX += a;
+            stolpeX += lengthBetweenPillars;
             pillarTransition = 0.0;
 
         }
 
         // Hulbånd:
+        /*<line x1="55" y1="35" x2="600" y2="569.5" style="stroke:#000000; stroke-dasharray: 5 5;" />
+        <line x1="55" y1="569.5" x2="600" y2="35" style="stroke:#000000; stroke-dasharray: 5 5;" />*/
+        svg.addBand(lengthBetweenRafts, 35, carportLength-(lengthBetweenRafts - headRaftMeasure.get(0)), carportWidthCM-35);
+        svg.addBand(lengthBetweenRafts, carportWidthCM-35, carportLength-(lengthBetweenRafts - headRaftMeasure.get(0)), 35);
+
+        // Skur:
+        svg.addRect(carportLength-shedLength-30, 35, plankMeasure.get(0), shedLength);
+        svg.addRect(carportLength-shedLength-30, shedWidth+35, plankMeasure.get(0), shedLength);
+        svg.addRect(carportLength-shedLength-30, 35, shedWidth, plankMeasure.get(0));
 
 
 

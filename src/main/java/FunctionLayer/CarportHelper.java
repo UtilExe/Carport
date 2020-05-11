@@ -415,11 +415,10 @@ public class CarportHelper {
         svg.addBand(lengthBetweenRafts, carportWidthCM-35, carportLength-(lengthBetweenRafts - headRaftMeasure.get(0)), 35);
 
         // Skur:
-        double shedMax = shedWidth - (plankMeasure.get(0));
         svg.addRect(carportLength-shedLength-30, 35, shedLength, plankMeasure.get(0));
-        svg.addRect(carportLength-shedLength-30, shedMax+35, shedLength, plankMeasure.get(0));
-        svg.addRect(carportLength-shedLength-30, 35, plankMeasure.get(0), shedMax);
-        svg.addRect(carportLength-30, 35, plankMeasure.get(0), shedMax);
+        svg.addRect(carportLength-shedLength-30, shedWidth+35, shedLength, plankMeasure.get(0));
+        svg.addRect(carportLength-shedLength-30, 35, plankMeasure.get(0), shedWidth);
+        svg.addRect(carportLength-30, 35, plankMeasure.get(0), shedWidth);
 
 
 

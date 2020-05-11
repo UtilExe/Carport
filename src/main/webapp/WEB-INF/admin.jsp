@@ -70,6 +70,10 @@
                         </div>
                     </div>
                 </form>
+                <form action="FrontController" method="POST">
+                    <input type="hidden" name="target" value="showPlan">
+                    <button name="afvis" type="submit" class="btnSubmitAdmin" style="text-align: center; width: 100%; background-color: deepskyblue;">Vis plantegning</button>
+                </form>
             </c:forEach>
         </ul>
 

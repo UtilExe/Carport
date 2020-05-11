@@ -69,4 +69,6 @@ public class LogicFacade {
 
     public static void removeOrder(int orderID) { OrderMapper.removeOrder(orderID);}
 
+    public static CarportHelper getHelper(int orderID) { return OrderMapper.getHelper(orderID); }
+
 }

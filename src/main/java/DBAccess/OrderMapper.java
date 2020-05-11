@@ -1,5 +1,6 @@
 package DBAccess;
 
+import FunctionLayer.CarportHelper;
 import FunctionLayer.Objects.Carport;
 import FunctionLayer.Objects.Order;
 
@@ -61,6 +62,29 @@ public class OrderMapper {
         } catch (SQLException | ClassNotFoundException ex) {
             ex.getMessage();
         }
+    }
+
+    public static CarportHelper getHelper(int orderID) {
+        CarportHelper helper = null;
+        try {
+            Connection con = Connector.connection();
+            String SQL = "SELECT carport_length, carport_width, carport_height, shedWidth, shedLength, roof_pitch FROM carport.cust_order WHERE orderID=?;";
+            PreparedStatement ps = con.prepareStatement(SQL);
+            ps.setInt(1, orderID);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()) {
+                int carportLengthCM = rs.getInt("carport_length");
+                int carportWidthCM = rs.getInt("carport_width");
+                int carportHeight = rs.getInt("carport_height");
+                int shedWidth = rs.getInt("shedWidth");
+                int shedLength = rs.getInt("shedLength");
+                int carportPitch = rs.getInt("roof_pitch");
+                helper = new CarportHelper(carportLengthCM, carportWidthCM, carportHeight, shedLength, shedWidth, carportPitch);
+            }
+        } catch (SQLException | ClassNotFoundException ex) {
+            ex.getMessage();
+        }
+        return helper;
     }
 
 }

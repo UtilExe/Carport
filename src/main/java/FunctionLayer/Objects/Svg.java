@@ -13,7 +13,7 @@ public class Svg {
     private int y;
     private StringBuilder svg = new StringBuilder();
     private final String headerTemplate = "<svg version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" height=\"%s\" width=\"%s\" viewBox=\"%s\" preserveAspectRatio=\"xMinYMin\">";
-    private final String rectTemplate = "<rect x=\"%s\" y=\"%s\" height=\"%s\" width=\"%s\" style=\"stroke:#000000; fill: #ffffff\" />";
+    private final String rectTemplate = "<rect x=\"%s\" y=\"%s\" width=\"%s\" height=\"%s\" style=\"stroke:#000000; fill: #ffffff\" />";
     private final String bandTemplate = "<line x1=\"%s\" y1=\"%s\" x2=\"%s\" y2=\"%s\" style=\"stroke:#000000; stroke-dasharray: 5 5;\" />";
 
     public Svg(double width, double height, String viewbox, int x, int y) {
@@ -27,12 +27,12 @@ public class Svg {
         svg.append(String.format(headerTemplate, strHeight, strWidth, viewbox));
     }
 
-    public void addRect(double x, double y, double height, double width){
-        String strHeight = ValidationValues.fromDoubleToString(height);
-        String strWidth = ValidationValues.fromDoubleToString(width);
+    public void addRect(double x, double y, double width, double height){
         String strX = ValidationValues.fromDoubleToString(x);
         String strY = ValidationValues.fromDoubleToString(y);
-        svg.append(String.format(rectTemplate, strX, strY, strHeight, strWidth));
+        String strWidth = ValidationValues.fromDoubleToString(width);
+        String strHeight = ValidationValues.fromDoubleToString(height);
+        svg.append(String.format(rectTemplate, strX, strY, strWidth, strHeight));
     }
 
     public void addBand(double x1, double y1, double x2, double y2) {

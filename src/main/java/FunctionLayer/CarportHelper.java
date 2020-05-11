@@ -379,15 +379,15 @@ public class CarportHelper {
         Svg svg = new Svg(carportLength, carportWidthCM, viewbox,0,0);
         Svg svgInnerDrawing = new Svg(900,800,"0,0,900,800",0,0);
         // Carport:
-        svg.addRect(0,0,carportWidthCM,carportLength);
+        svg.addRect(0,0, carportLength, carportWidthCM);
         // Rem:
         // 35 er hvor mange cm rem sidder fra carportens sider.
-        svg.addRect(0,35, headRaftMeasure.get(0), carportLength);
-        svg.addRect(0,carportWidthCM-35, headRaftMeasure.get(0), carportLength);
+        svg.addRect(0,35, carportLength, headRaftMeasure.get(0));
+        svg.addRect(0,carportWidthCM-35, carportLength, headRaftMeasure.get(0));
         // Spær:
         double x = 0;
         for(int i = 0; i < amountOfRafts; i++) {
-            svg.addRect(x, 0, carportWidthCM, headRaftMeasure.get(0));
+            svg.addRect(x, 0, headRaftMeasure.get(0), carportWidthCM);
             x += lengthBetweenRafts;
         }
 
@@ -401,8 +401,8 @@ public class CarportHelper {
                 pillarTransition = (pillarMeasure.get(0) / 2);
             }
 
-            svg.addRect(stolpeX - pillarTransition,35 - (headRaftMeasure.get(0) / 2), pillarMeasure.get(0), pillarMeasure.get(1));
-            svg.addRect(stolpeX - pillarTransition, carportWidthCM - 35 - (headRaftMeasure.get(0) / 2), pillarMeasure.get(0), pillarMeasure.get(1));
+            svg.addRect(stolpeX - pillarTransition,35 - (headRaftMeasure.get(0) / 2), pillarMeasure.get(1), pillarMeasure.get(0));
+            svg.addRect(stolpeX - pillarTransition, carportWidthCM - 35 - (headRaftMeasure.get(0) / 2), pillarMeasure.get(1), pillarMeasure.get(0));
             stolpeX += lengthBetweenPillars;
             pillarTransition = 0.0;
 
@@ -416,10 +416,10 @@ public class CarportHelper {
 
         // Skur:
         double shedMax = shedWidth - (plankMeasure.get(0));
-        svg.addRect(carportLength-shedLength-30, 35, plankMeasure.get(0), shedLength);
-        svg.addRect(carportLength-shedLength-30, shedMax+35, plankMeasure.get(0), shedLength);
-        svg.addRect(carportLength-shedLength-30, 35, shedMax, plankMeasure.get(0));
-        svg.addRect(carportLength-30, 35, shedMax, plankMeasure.get(0));
+        svg.addRect(carportLength-shedLength-30, 35, shedLength, plankMeasure.get(0));
+        svg.addRect(carportLength-shedLength-30, shedMax+35, shedLength, plankMeasure.get(0));
+        svg.addRect(carportLength-shedLength-30, 35, plankMeasure.get(0), shedMax);
+        svg.addRect(carportLength-30, 35, plankMeasure.get(0), shedMax);
 
 
 

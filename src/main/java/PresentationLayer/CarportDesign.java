@@ -45,17 +45,24 @@ public class CarportDesign extends Command {
 
         CarportHelper helper = new CarportHelper(carportLength, carportWidthCM, carportHeight, shedLength, shedWidth, carportPitch);
 
-        if (helper.getShedWidth() > helper.getCarportWidthCM() || helper.getShedLength() > helper.getCarportLengthCM()) {
-            request.setAttribute("fejl", "Skurrets mål er større end carporten! Prøv igen med korrekte værdier");
+        //TODO  Vi minusser med 70 for at tage højde for at skuret ikke må gå ud over remmene
+        if (helper.getShedWidth() > helper.getCarportWidthCM()-70 || helper.getShedLength() > helper.getCarportLengthCM()-30) {
+            request.setAttribute("fejl", "Skurrets mål er for store i forhold til carporten! Prøv igen med korrekte værdier");
             helper.setInvalidInput(true);
-        }
 
-        request.setAttribute("carport_lengths", Initialisation.getCarportLengths());
-        request.setAttribute("carport_widths", Initialisation.getCarportWidths());
-        request.setAttribute("carport_heights", Initialisation.getCarportHeights());
-        request.setAttribute("carport_roofs", Initialisation.getRoofs());
-        request.setAttribute("shed_lengths", Initialisation.getShedLengths());
-        request.setAttribute("shed_widths", Initialisation.getShedWidths());
+            request.setAttribute("carport_lengths", Initialisation.getCarportLengths());
+            request.setAttribute("carport_widths", Initialisation.getCarportWidths());
+            request.setAttribute("carport_heights", Initialisation.getCarportHeights());
+            request.setAttribute("carport_roofs", Initialisation.getRoofs());
+            request.setAttribute("shed_lengths", Initialisation.getShedLengths());
+            request.setAttribute("shed_widths", Initialisation.getShedWidths());
+
+            if(helper.isHasPitch()) {
+                return "rejsningstag";
+            } else {
+                return "fladttag";
+            }
+        }
 
         helper.initArrayList();
 

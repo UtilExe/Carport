@@ -420,7 +420,13 @@ public class CarportHelper {
         svg.addRect(carportLength-shedLength-30, 35, plankMeasure.get(0), shedWidth);
         svg.addRect(carportLength-30, 35, plankMeasure.get(0), shedWidth);
 
-
+        //Skurstolper
+        svg.addRect(carportLength-shedLength-30, 35, pillarMeasure.get(1), pillarMeasure.get(1)); //Top venstre stolpe
+        svg.addRect(carportLength-30-pillarMeasure.get(1), 35, pillarMeasure.get(1),pillarMeasure.get(1)); //Top højre stolpe
+        svg.addRect(carportLength-shedLength-30, 35+(shedWidth/2), pillarMeasure.get(1), pillarMeasure.get(1)); //Midt venstre stolpe
+        svg.addRect(carportLength-30-pillarMeasure.get(1), 35+(shedWidth/2), pillarMeasure.get(1), pillarMeasure.get(1)); //Midt højre stolpe
+        svg.addRect(carportLength-shedLength-30, 35+shedWidth-pillarMeasure.get(1), pillarMeasure.get(1), pillarMeasure.get(1)); //Venstre nederste stolpe
+        svg.addRect(carportLength-30-pillarMeasure.get(1), 35+shedWidth-pillarMeasure.get(1), pillarMeasure.get(1), pillarMeasure.get(1)); //Højre nederste stolpe
 
         return svg.toString();
     }

@@ -31,7 +31,7 @@ public class MaterialCalculator {
             double tmpCarportLength = carportLength / 100.0;
             // Beregning af antal stolper (skal være et i hver side pr. 300 cm af carportens længde).
             tmpResult = (tmpCarportLength / PILLAR_AT_METER);
-            tmpResult = Math.floor(tmpResult);
+            tmpResult = Math.ceil(tmpResult);
             result = ((int) tmpResult) * 2;
             if (result < 4) {
                 result = 4;
@@ -55,7 +55,6 @@ public class MaterialCalculator {
         }
         tmpResult = (tmpCarportLength / raftAtMeter);
         tmpResult = Math.ceil(tmpResult);
-        // Vi lægger 1 til, da det første spær ikke kommer med i beregningen.
         result = ((int) tmpResult);
         return result;
     }

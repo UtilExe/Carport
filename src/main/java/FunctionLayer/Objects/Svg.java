@@ -13,7 +13,7 @@ public class Svg {
     private int y;
     private StringBuilder svg = new StringBuilder();
     private final String headerTemplate = "<svg version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" height=\"%s\" width=\"%s\" viewBox=\"%s\" preserveAspectRatio=\"xMinYMin\">";
-    private final String rectTemplate = "<rect x=\"%s\" y=\"%d\" height=\"%s\" width=\"%s\" style=\"stroke:#000000; fill: #ffffff\" />";
+    private final String rectTemplate = "<rect x=\"%s\" y=\"%s\" height=\"%s\" width=\"%s\" style=\"stroke:#000000; fill: #ffffff\" />";
 
     public Svg(double width, double height, String viewbox, int x, int y) {
         this.width = width;
@@ -26,11 +26,12 @@ public class Svg {
         svg.append(String.format(headerTemplate, strHeight, strWidth, viewbox));
     }
 
-    public void addRect(double x, int y, double height, double width){
+    public void addRect(double x, double y, double height, double width){
         String strHeight = ValidationValues.fromDoubleToString(height);
         String strWidth = ValidationValues.fromDoubleToString(width);
         String strX = ValidationValues.fromDoubleToString(x);
-        svg.append(String.format(rectTemplate, strX, y, strHeight, strWidth));
+        String strY = ValidationValues.fromDoubleToString(y);
+        svg.append(String.format(rectTemplate, strX, strY, strHeight, strWidth));
     }
 
 

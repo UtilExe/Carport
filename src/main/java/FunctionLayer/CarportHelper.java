@@ -370,8 +370,10 @@ public class CarportHelper {
     public String svgDrawing(int carportLength, int carportWidthCM, boolean hasShed) {
         // Vi lægger 20 til, så f.eks. den sidste rem kommer med på tegningen.
         String viewbox = "0,0," + (Math.ceil(carportLength/100.0))*100 + "," + carportWidthCM;
-        ArrayList<Double> headRaftWoodWidth = MaterialMapper.getWidthHeightFromDimensionMeasureInCM(RAFT_AND_HEAD_ID);
-        double a = carportLength / (amountOfRafts - 1.0);
+        ArrayList<Double> headRaftMeasure = MaterialMapper.getWidthHeightFromDimensionMeasureInCM(RAFT_AND_HEAD_ID);
+        ArrayList<Double> pillarMeasure = MaterialMapper.getWidthHeightFromDimensionMeasureInCM(PILLAR_ID);
+        // vi trækker 1 fra, da det 1. spær ikke skal med i beregningen.
+        double lengthBetweenRafts = carportLength / (amountOfRafts - 1.0);
 
         Svg svg = new Svg(carportLength, carportWidthCM, viewbox,0,0);
         Svg svgInnerDrawing = new Svg(900,800,"0,0,900,800",0,0);
@@ -379,13 +381,31 @@ public class CarportHelper {
         svg.addRect(0,0,carportWidthCM,carportLength);
         // Rem:
         // 35 er hvor mange cm rem sidder fra carportens sider.
-        svg.addRect(0,35, headRaftWoodWidth.get(0), carportLength);
-        svg.addRect(0,carportWidthCM-35, headRaftWoodWidth.get(0), carportLength);
+        svg.addRect(0,35, headRaftMeasure.get(0), carportLength);
+        svg.addRect(0,carportWidthCM-35, headRaftMeasure.get(0), carportLength);
         // Spær:
         double x = 0;
         for(int i = 0; i < amountOfRafts; i++) {
-            svg.addRect(x, 0, carportWidthCM, headRaftWoodWidth.get(0));
-            x += a;
+            svg.addRect(x, 0, carportWidthCM, headRaftMeasure.get(0));
+            x += lengthBetweenRafts;
+        }
+
+        // Stolper:
+        int stolpeX = 0;
+        double a = carportLength / ((pillarAmount / 2.0) - 1.0);
+        double pillarTransition = 0.0;
+        for(int i = 0; i < pillarAmount / 2; i++){
+            final int CM_BETWEEN_PILLARS = 300;
+            if (i == 0 || i == pillarAmount - 1){
+                pillarTransition = (pillarMeasure.get(0) / 2);
+
+            }
+
+            svg.addRect(stolpeX - pillarTransition,35 - (headRaftMeasure.get(0) / 2), pillarMeasure.get(0), pillarMeasure.get(1));
+            svg.addRect(stolpeX - pillarTransition, carportWidthCM - 35 - (headRaftMeasure.get(0) / 2), pillarMeasure.get(0), pillarMeasure.get(1));
+            stolpeX += a;
+            pillarTransition = 0.0;
+
         }
 
         // Hulbånd:

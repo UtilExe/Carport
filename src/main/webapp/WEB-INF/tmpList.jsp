@@ -39,6 +39,7 @@
             </c:forEach>
         </table>
 </div>
+<div class="ml-4 mb-4">${requestScope.svgdrawingfront}</div>
 <div class="ml-4 mb-4">${requestScope.svgdrawing}</div>
 
 

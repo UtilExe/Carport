@@ -84,8 +84,10 @@ public class CarportDesign extends Command {
 
 
         String svgDrawing = helper.svgDrawing(carportLength, carportWidthCM, helper.isHasShed());
+        String svgDrawingFront = helper.svgDrawingFront(carportLength, carportHeight, helper.isHasShed());
 
         request.setAttribute("svgdrawing", svgDrawing);
+        request.setAttribute("svgdrawingfront", svgDrawingFront);
 
 
         return "tmpList";

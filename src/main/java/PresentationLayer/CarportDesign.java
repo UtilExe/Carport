@@ -68,7 +68,7 @@ public class CarportDesign extends Command {
 
         int finalPrice = calcTest.fullPrice(helper.getAllPriceIndexes());
 
-            Carport carport = null;
+        Carport carport = null;
         if (!helper.isInvalidInput()) {
             LogicFacade.addCarportToCustOrder(helper.getCarportLengthCM(), helper.getCarportWidthCM(), helper.getCarportHeight(), helper.isHasShed(), helper.getShedWidth(), helper.getShedLength(), helper.isHasPitch(), helper.getCarportPitch(), roofMaterial, finalPrice);
             if (helper.isHasPitch()) {

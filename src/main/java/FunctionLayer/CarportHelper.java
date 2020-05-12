@@ -370,6 +370,7 @@ public class CarportHelper {
     public String svgDrawing(int carportLength, int carportWidthCM, boolean hasShed) {
         // Vi lægger 20 til, så f.eks. den sidste rem kommer med på tegningen.
         String viewbox = "0,0," + (carportLength+20) + "," + carportWidthCM;
+        String viewboxInner = "0,0," + (carportLength+100) + "," + (carportWidthCM+100);
         ArrayList<Double> headRaftMeasure = MaterialMapper.getWidthHeightFromDimensionMeasureInCM(RAFT_AND_HEAD_ID);
         ArrayList<Double> pillarMeasure = MaterialMapper.getWidthHeightFromDimensionMeasureInCM(PILLAR_ID);
         ArrayList<Double> plankMeasure = MaterialMapper.getWidthHeightFromDimensionMeasureInCM(WATERPLANK_AND_SHEDPLANK_ID);
@@ -377,8 +378,9 @@ public class CarportHelper {
         double lengthBetweenRafts = carportLength / (amountOfRafts - 1.0);
 
         Svg svg = new Svg(carportLength, carportWidthCM, viewbox,0,0);
-        Svg svgInnerDrawing = new Svg(900,800,"0,0,900,800",0,0);
+        Svg svgInnerDrawing = new Svg(carportLength,carportWidthCM, viewboxInner, 0,0);
         // Carport:
+        svgInnerDrawing.addTest(40, 10, 40, 610);
         svg.addRect(0,0, carportLength, carportWidthCM);
         // Rem:
         // 35 er hvor mange cm rem sidder fra carportens sider.
@@ -428,7 +430,8 @@ public class CarportHelper {
         svg.addRect(carportLength-shedLength-30, 35+shedWidth-pillarMeasure.get(1), pillarMeasure.get(1), pillarMeasure.get(1)); //Venstre nederste stolpe
         svg.addRect(carportLength-30-pillarMeasure.get(1), 35+shedWidth-pillarMeasure.get(1), pillarMeasure.get(1), pillarMeasure.get(1)); //Højre nederste stolpe
 
-        return svg.toString();
+
+        return svg.toString() + svgInnerDrawing.toString() + "</svg> </svg>";
     }
 
 }

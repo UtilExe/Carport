@@ -382,10 +382,12 @@ public class CarportHelper {
         // Carport:
         svgInnerDrawing.addTest(40, 10, 40, 610);
         svg.addRect(0,0, carportLength, carportWidthCM);
+
         // Rem:
         // 35 er hvor mange cm rem sidder fra carportens sider.
         svg.addRect(0,35, carportLength, headRaftMeasure.get(0));
         svg.addRect(0,carportWidthCM-35, carportLength, headRaftMeasure.get(0));
+
         // Spær:
         double x = 0;
         for(int i = 0; i < amountOfRafts; i++) {
@@ -397,24 +399,56 @@ public class CarportHelper {
         int stolpeX = 0;
         double lengthBetweenPillars = carportLength / ((pillarAmount / 2.0) - 1.0);
         double pillarTransition = 0.0;
-        for(int i = 0; i < pillarAmount / 2; i++){
+        if(hasShed) {
+            pillarAmount -= 8;
             final int CM_BETWEEN_PILLARS = 300;
-            if (i == (pillarAmount / 2) - 1){
-                pillarTransition = (pillarMeasure.get(0) / 2);
-            }
+            lengthBetweenPillars = (carportLength-shedLength-30) / ((pillarAmount / 2.0) - 1.0);
 
-            svg.addRect(stolpeX - pillarTransition,35 - (headRaftMeasure.get(0) / 2), pillarMeasure.get(1), pillarMeasure.get(0));
-            svg.addRect(stolpeX - pillarTransition, carportWidthCM - 35 - (headRaftMeasure.get(0) / 2), pillarMeasure.get(1), pillarMeasure.get(0));
-            stolpeX += lengthBetweenPillars;
-            pillarTransition = 0.0;
+            //Skurstolper
+            svg.addRect(carportLength-shedLength-30, 35, pillarMeasure.get(1), pillarMeasure.get(1)); //Top venstre stolpe
+            svg.addRect(carportLength-30-pillarMeasure.get(1), 35, pillarMeasure.get(1),pillarMeasure.get(1)); //Top højre stolpe
+            svg.addRect(carportLength-shedLength-30, 35+(shedWidth/2), pillarMeasure.get(1), pillarMeasure.get(1)); //Midt venstre stolpe
+            svg.addRect(carportLength-30-pillarMeasure.get(1), 35+(shedWidth/2), pillarMeasure.get(1), pillarMeasure.get(1)); //Midt højre stolpe
+            svg.addRect(carportLength-shedLength-30, 35+shedWidth-pillarMeasure.get(1), pillarMeasure.get(1), pillarMeasure.get(1)); //Venstre nederste stolpe
+            svg.addRect(carportLength-30-pillarMeasure.get(1), 35+shedWidth-pillarMeasure.get(1), pillarMeasure.get(1), pillarMeasure.get(1)); //Højre nederste stolpe
 
         }
 
+        for(int i = 0; i < pillarAmount / 2; i++){
+            int lastLoop = (pillarAmount / 2) - 1;
+
+            if (i == lastLoop) {
+                pillarTransition = (pillarMeasure.get(0) / 2);
+                if(hasShed) {
+                    svg.addRect(carportLength - pillarTransition,35 - (headRaftMeasure.get(0) / 2), pillarMeasure.get(1), pillarMeasure.get(0));
+                    svg.addRect(carportLength - pillarTransition, carportWidthCM - 35 - (headRaftMeasure.get(0) / 2), pillarMeasure.get(1), pillarMeasure.get(0));
+                } else {
+                    svg.addRect(stolpeX, 35 - (headRaftMeasure.get(0) / 2), pillarMeasure.get(1), pillarMeasure.get(0));
+                    svg.addRect(stolpeX, carportWidthCM - 35 - (headRaftMeasure.get(0) / 2), pillarMeasure.get(1), pillarMeasure.get(0));
+                }
+            }
+
+            if((i > 0) && (i < lastLoop)) {
+                svg.addRect(stolpeX, 35 - (headRaftMeasure.get(0) / 2), pillarMeasure.get(1), pillarMeasure.get(0));
+                svg.addRect(stolpeX, carportWidthCM - 35 - (headRaftMeasure.get(0) / 2), pillarMeasure.get(1), pillarMeasure.get(0));
+            }
+
+            if(i == 0) {
+                svg.addRect(stolpeX, 35 - (headRaftMeasure.get(0) / 2), pillarMeasure.get(1), pillarMeasure.get(0));
+                svg.addRect(stolpeX, carportWidthCM - 35 - (headRaftMeasure.get(0) / 2), pillarMeasure.get(1), pillarMeasure.get(0));
+            }
+
+            stolpeX += lengthBetweenPillars;
+        }
+
         // Hulbånd:
-        /*<line x1="55" y1="35" x2="600" y2="569.5" style="stroke:#000000; stroke-dasharray: 5 5;" />
-        <line x1="55" y1="569.5" x2="600" y2="35" style="stroke:#000000; stroke-dasharray: 5 5;" />*/
-        svg.addBand(lengthBetweenRafts, 35, carportLength-(lengthBetweenRafts - headRaftMeasure.get(0)), carportWidthCM-35);
-        svg.addBand(lengthBetweenRafts, carportWidthCM-35, carportLength-(lengthBetweenRafts - headRaftMeasure.get(0)), 35);
+        if(!hasShed){
+            svg.addBand(lengthBetweenRafts, 35, carportLength-(lengthBetweenRafts - headRaftMeasure.get(0)), carportWidthCM-35);
+            svg.addBand(lengthBetweenRafts, carportWidthCM-35, carportLength-(lengthBetweenRafts - headRaftMeasure.get(0)), 35);
+        }else{
+            svg.addBand(lengthBetweenRafts, 35, carportLength - shedLength - 35, carportWidthCM - 35);
+            svg.addBand(lengthBetweenRafts, carportWidthCM - 35, carportLength - shedLength - 35, 35);
+        }
 
         // Skur:
         svg.addRect(carportLength-shedLength-30, 35, shedLength, plankMeasure.get(0));
@@ -422,13 +456,7 @@ public class CarportHelper {
         svg.addRect(carportLength-shedLength-30, 35, plankMeasure.get(0), shedWidth);
         svg.addRect(carportLength-30, 35, plankMeasure.get(0), shedWidth);
 
-        //Skurstolper
-        svg.addRect(carportLength-shedLength-30, 35, pillarMeasure.get(1), pillarMeasure.get(1)); //Top venstre stolpe
-        svg.addRect(carportLength-30-pillarMeasure.get(1), 35, pillarMeasure.get(1),pillarMeasure.get(1)); //Top højre stolpe
-        svg.addRect(carportLength-shedLength-30, 35+(shedWidth/2), pillarMeasure.get(1), pillarMeasure.get(1)); //Midt venstre stolpe
-        svg.addRect(carportLength-30-pillarMeasure.get(1), 35+(shedWidth/2), pillarMeasure.get(1), pillarMeasure.get(1)); //Midt højre stolpe
-        svg.addRect(carportLength-shedLength-30, 35+shedWidth-pillarMeasure.get(1), pillarMeasure.get(1), pillarMeasure.get(1)); //Venstre nederste stolpe
-        svg.addRect(carportLength-30-pillarMeasure.get(1), 35+shedWidth-pillarMeasure.get(1), pillarMeasure.get(1), pillarMeasure.get(1)); //Højre nederste stolpe
+
 
 
         return svg.toString() + svgInnerDrawing.toString() + "</svg> </svg>";

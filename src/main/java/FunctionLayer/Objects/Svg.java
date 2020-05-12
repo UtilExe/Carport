@@ -54,6 +54,8 @@ public class Svg {
             + "	marker-start: url(#beginArrow" + ");\n"
             + "   marker-end: url(#endArrow" + ");\"/>"
             + " ";
+    private String textTemplate = "<text style=\"text-anchor: middle\" transform=\"translate(%s,%s) rotate(-90)\">%s cm</text>\n" +
+            "<text style=\"text-anchor: middle\" x=\"%s\" y=\"%s\">%s cm</text>";
 
     // private final String testTemplate = "<svg version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" x=\"%s\" y=\"%s\" width=\"%s\" height=\"%s\" viewBox=\"%s\" preserveAspectRatio=\"xMinYMin\">";
 
@@ -100,6 +102,13 @@ public class Svg {
         svg.append(String.format(ArrowWidthTemplate, strX1, strY1, strX2, strY2));
     }
 
+    public void addText(double x1, double y1, int width, double x2, double y2, int length) {
+        String strX1 = ValidationValues.fromDoubleToString(x1);
+        String strY1 = ValidationValues.fromDoubleToString(y1);
+        String strX2 = ValidationValues.fromDoubleToString(x2);
+        String strY2 = ValidationValues.fromDoubleToString(y2);
+        svg.append(String.format(textTemplate, strX1, strY1, width, strX2, strY2, length));
+    }
 
 
     public double getWidth() {

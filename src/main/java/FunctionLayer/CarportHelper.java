@@ -372,6 +372,9 @@ public class CarportHelper {
         final int Y_DATA = 10;
         final int X_DATA = 75;
         final int PUSH_AWAY = 40;
+        final int DRAW_END_VERTICAL = carportWidthCM - MARKER_HEIGHT + Y_DATA;
+        final int DRAW_END_HORIZONTAL = carportLength - MARKER_HEIGHT + X_DATA;
+        final int PUSH_TEXT_DOWN = 70;
         // Vi lægger 20 til, så f.eks. den sidste rem kommer med på tegningen.
         String viewbox = "0,0," + (carportLength+20) + "," + carportWidthCM;
         String viewboxInner = "0,0," + (carportLength+100) + "," + (carportWidthCM+100);
@@ -384,8 +387,9 @@ public class CarportHelper {
         Svg svg = new Svg(carportLength, carportWidthCM, viewbox,75,10);
         Svg svgInnerDrawing = new Svg(carportLength,carportWidthCM, viewboxInner, 75,10);
         // Carport:
-        svgInnerDrawing.addArrowLength(X_DATA, carportWidthCM + PUSH_AWAY, carportLength - MARKER_HEIGHT + X_DATA, carportWidthCM + PUSH_AWAY);
-        svgInnerDrawing.addArrowWidth(PUSH_AWAY, Y_DATA, PUSH_AWAY, carportWidthCM - MARKER_HEIGHT + Y_DATA);
+        svgInnerDrawing.addArrowLength(X_DATA, carportWidthCM + PUSH_AWAY, DRAW_END_HORIZONTAL, carportWidthCM + PUSH_AWAY);
+        svgInnerDrawing.addArrowWidth(PUSH_AWAY, Y_DATA, PUSH_AWAY, DRAW_END_VERTICAL);
+        svgInnerDrawing.addText((PUSH_AWAY/2), ((Y_DATA + carportWidthCM)/2), carportWidthCM, ((DRAW_END_HORIZONTAL/2.0) + PUSH_AWAY), (carportWidthCM + PUSH_TEXT_DOWN), carportLength);
         svg.addRect(0,0, carportLength, carportWidthCM);
 
         // Rem:

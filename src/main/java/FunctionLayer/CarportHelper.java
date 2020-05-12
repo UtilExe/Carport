@@ -457,51 +457,42 @@ public class CarportHelper {
         }
 
         // Hulbånd:
-        if (!hasShed) {
-            svg.addBand(lengthBetweenRafts, 35, carportLength - (lengthBetweenRafts - headRaftMeasure.get(0)), carportWidthCM - 35);
-            svg.addBand(lengthBetweenRafts, carportWidthCM - 35, carportLength - (lengthBetweenRafts - headRaftMeasure.get(0)), 35);
-        } else {
-            svg.addBand(lengthBetweenRafts, 35, carportLength - shedLength - 35, carportWidthCM - 35);
-            svg.addBand(lengthBetweenRafts, carportWidthCM - 35, carportLength - shedLength - 35, 35);
-            if (!hasPitch) {
-
-                if (!hasShed) {
-                    svg.addBand(lengthBetweenRafts, 35, carportLength - (lengthBetweenRafts - headRaftMeasure.get(0)), carportWidthCM - 35);
-                    svg.addBand(lengthBetweenRafts, carportWidthCM - 35, carportLength - (lengthBetweenRafts - headRaftMeasure.get(0)), 35);
-                } else {
-                    svg.addBand(lengthBetweenRafts, 35, carportLength - shedLength - 35, carportWidthCM - 35);
-                    svg.addBand(lengthBetweenRafts, carportWidthCM - 35, carportLength - shedLength - 35, 35);
-                }
+        if (!hasPitch) {
+            if (!hasShed) {
+                svg.addBand(lengthBetweenRafts, 35, carportLength - (lengthBetweenRafts - headRaftMeasure.get(0)), carportWidthCM - 35);
+                svg.addBand(lengthBetweenRafts, carportWidthCM - 35, carportLength - (lengthBetweenRafts - headRaftMeasure.get(0)), 35);
+            } else {
+                svg.addBand(lengthBetweenRafts, 35, carportLength - shedLength - 35, carportWidthCM - 35);
+                svg.addBand(lengthBetweenRafts, carportWidthCM - 35, carportLength - shedLength - 35, 35);
             }
-
-            // Skur:
-            svg.addRect(carportLength - shedLength - 30, 35, shedLength, plankMeasure.get(0));
-            svg.addRect(carportLength - shedLength - 30, shedWidth + 35, shedLength, plankMeasure.get(0));
-            svg.addRect(carportLength - shedLength - 30, 35, plankMeasure.get(0), shedWidth);
-            svg.addRect(carportLength - 30, 35, plankMeasure.get(0), shedWidth);
-
-            // Rejsning:
-            if (hasPitch) {
-
-                ArrayList<Double> roofLathsMeasure = MaterialMapper.getWidthHeightFromDimensionMeasureInCM(BATTERN_ROOFLATH_ID);
-                double lengthBetweenLaths = (carportWidthCM / 2.0) / (amountOfRooflaths / 2.0);
-                //(carportWidthCM / 2) / (amountOfRooflaths - 1.0);
-                //int ll = (carportWidthCM / 2) / (amountOfRooflaths / 2);
-                double b = 45.0;
-                double c = carportWidthCM - 45;
-
-                for (int i = 0; i < (amountOfRooflaths / 2) - 1; i++) {
-                    svg.addRect(0, b, carportLength, roofLathsMeasure.get(0));
-                    svg.addRect(0, c, carportLength, roofLathsMeasure.get(0));
-                    b += lengthBetweenLaths;
-                    c -= lengthBetweenLaths;
-                }
-                svg.addRect(0, carportWidthCM / 2, carportLength, roofLathsMeasure.get(0));
-                svg.addRect(0, (carportWidthCM / 2) - 10, carportLength, roofLathsMeasure.get(0));
-                svg.addRect(0, (carportWidthCM / 2) + 10, carportLength, roofLathsMeasure.get(0));
-            }
-
         }
+        // Skur:
+        svg.addRect(carportLength - shedLength - 30, 35, shedLength, plankMeasure.get(0));
+        svg.addRect(carportLength - shedLength - 30, shedWidth + 35, shedLength, plankMeasure.get(0));
+        svg.addRect(carportLength - shedLength - 30, 35, plankMeasure.get(0), shedWidth);
+        svg.addRect(carportLength - 30, 35, plankMeasure.get(0), shedWidth);
+
+        // Rejsning:
+        if (hasPitch) {
+
+            ArrayList<Double> roofLathsMeasure = MaterialMapper.getWidthHeightFromDimensionMeasureInCM(BATTERN_ROOFLATH_ID);
+            double lengthBetweenLaths = (carportWidthCM / 2.0) / (amountOfRooflaths / 2.0);
+            //(carportWidthCM / 2) / (amountOfRooflaths - 1.0);
+            //int ll = (carportWidthCM / 2) / (amountOfRooflaths / 2);
+            double b = 45.0;
+            double c = carportWidthCM - 45;
+
+            for (int i = 0; i < (amountOfRooflaths / 2) - 1; i++) {
+                svg.addRect(0, b, carportLength, roofLathsMeasure.get(0));
+                svg.addRect(0, c, carportLength, roofLathsMeasure.get(0));
+                b += lengthBetweenLaths;
+                c -= lengthBetweenLaths;
+            }
+            svg.addRect(0, carportWidthCM / 2, carportLength, roofLathsMeasure.get(0));
+            svg.addRect(0, (carportWidthCM / 2) - 10, carportLength, roofLathsMeasure.get(0));
+            svg.addRect(0, (carportWidthCM / 2) + 10, carportLength, roofLathsMeasure.get(0));
+        }
+
         return svgInnerDrawing.toString() + svg.toString() + "</svg> </svg>";
     }
 
@@ -533,7 +524,7 @@ public class CarportHelper {
             length = pillarMeasure.get(0);
             height = carportHeight - plankMeasure.get(1) + headRaftMeasure.get(1);
 
-            for(int i = 0; i < pillarAmount-1; i++) {
+            for (int i = 0; i < pillarAmount - 1; i++) {
                 x -= 300;
                 svgInner.addRect(x, y, length, height);
             }
@@ -545,7 +536,7 @@ public class CarportHelper {
             height = carportHeight - plankMeasure.get(1) + headRaftMeasure.get(1);
             //Første stolpe
             svgInner.addRect(x, y, length, height);
-            for(int i = 0; i < pillarAmount-1; i++) {
+            for (int i = 0; i < pillarAmount - 1; i++) {
                 x -= 300;
                 svgInner.addRect(x, y, length, height);
             }
@@ -557,7 +548,7 @@ public class CarportHelper {
             y = plankMeasure.get(1);
             length = plankMeasure.get(1);
             height = carportHeight - plankMeasure.get(1) + headRaftMeasure.get(1);
-            for(int i = 0; i < (shedLength/plankMeasure.get(1)); i++) {
+            for (int i = 0; i < (shedLength / plankMeasure.get(1)); i++) {
                 x += plankMeasure.get(1);
                 svgInner.addRect(x, y, length, height);
             }

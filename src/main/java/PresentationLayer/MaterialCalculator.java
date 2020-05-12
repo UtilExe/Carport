@@ -328,8 +328,11 @@ public class MaterialCalculator {
 
     public int getAmountOfRooflaths(int carportWidth) {
         // Vi antager, at der er 35 cm mellem hver toplægte.
-        final int SPACE_BETWEEN = 35;
-        int result = carportWidth / SPACE_BETWEEN;
+        final double SPACE_BETWEEN = 35.0;
+        int result;
+        double  tmpResult = Math.ceil((carportWidth - 90.0) / SPACE_BETWEEN);
+        result = (int)tmpResult;
+        System.out.println(result);
         return result;
     }
 

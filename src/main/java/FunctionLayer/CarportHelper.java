@@ -369,6 +369,9 @@ public class CarportHelper {
 
     public String svgDrawing(int carportLength, int carportWidthCM, boolean hasShed) {
         final int MARKER_HEIGHT = 12;
+        final int Y_DATA = 10;
+        final int X_DATA = 75;
+        final int PUSH_AWAY = 40;
         // Vi lægger 20 til, så f.eks. den sidste rem kommer med på tegningen.
         String viewbox = "0,0," + (carportLength+20) + "," + carportWidthCM;
         String viewboxInner = "0,0," + (carportLength+100) + "," + (carportWidthCM+100);
@@ -378,10 +381,11 @@ public class CarportHelper {
         // vi trækker 1 fra, da det 1. spær ikke skal med i beregningen.
         double lengthBetweenRafts = carportLength / (amountOfRafts - 1.0);
 
-        Svg svg = new Svg(carportLength, carportWidthCM, viewbox,0,0);
-        Svg svgInnerDrawing = new Svg(carportLength,carportWidthCM, viewboxInner, 0,0);
+        Svg svg = new Svg(carportLength, carportWidthCM, viewbox,75,10);
+        Svg svgInnerDrawing = new Svg(carportLength,carportWidthCM, viewboxInner, 75,10);
         // Carport:
-        svgInnerDrawing.addTest(0, carportWidthCM + 30, carportLength - MARKER_HEIGHT, carportWidthCM + 30);
+        svgInnerDrawing.addArrowLength(X_DATA, carportWidthCM + PUSH_AWAY, carportLength - MARKER_HEIGHT + X_DATA, carportWidthCM + PUSH_AWAY);
+        svgInnerDrawing.addArrowWidth(PUSH_AWAY, Y_DATA, PUSH_AWAY, carportWidthCM - MARKER_HEIGHT + Y_DATA);
         svg.addRect(0,0, carportLength, carportWidthCM);
 
         // Rem:

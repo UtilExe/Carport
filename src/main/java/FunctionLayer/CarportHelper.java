@@ -439,10 +439,7 @@ public class CarportHelper {
             stolpeX += lengthBetweenPillars;
         }
 
-
         // Hulbånd:
-        /*<line x1="55" y1="35" x2="600" y2="569.5" style="stroke:#000000; stroke-dasharray: 5 5;" />
-        <line x1="55" y1="569.5" x2="600" y2="35" style="stroke:#000000; stroke-dasharray: 5 5;" />*/
         if(!hasShed){
             svg.addBand(lengthBetweenRafts, 35, carportLength-(lengthBetweenRafts - headRaftMeasure.get(0)), carportWidthCM-35);
             svg.addBand(lengthBetweenRafts, carportWidthCM-35, carportLength-(lengthBetweenRafts - headRaftMeasure.get(0)), 35);

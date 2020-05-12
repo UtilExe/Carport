@@ -21,7 +21,7 @@ public class MaterialCalculator {
         if (hasShed) {
             double tmpLength = (carportLength - shedLength) / 100.0;
             tmpResult = (tmpLength / PILLAR_AT_METER);
-            tmpResult = Math.floor(tmpResult);
+            tmpResult = Math.ceil(tmpResult);
             result = (int) (tmpResult * 2);
             if (result < 4) {
                 result = 4;
@@ -37,6 +37,9 @@ public class MaterialCalculator {
                 result = 4;
             }
         }
+        // Vi antager, at der altid skal være et stolpe-par bagerst på carporten uanset om, der er skur eller ej.
+        result += 2;
+
         return result;
     }
 

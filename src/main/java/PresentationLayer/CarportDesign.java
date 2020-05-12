@@ -67,7 +67,7 @@ public class CarportDesign extends Command {
         helper.initArrayList();
 
         int finalPrice = calcTest.fullPrice(helper.getAllPriceIndexes());
-        
+
         // hvad skal carport bruges til, bliver ikke brugt lige nu.
             Carport carport = null;
         if (!helper.isInvalidInput()) {

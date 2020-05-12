@@ -15,11 +15,25 @@ public class Svg {
     private final String headerTemplate = "<svg version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" height=\"%s\" width=\"%s\" viewBox=\"%s\" preserveAspectRatio=\"xMinYMin\">";
     private final String rectTemplate = "<rect x=\"%s\" y=\"%s\" width=\"%s\" height=\"%s\" style=\"stroke:#000000; fill: #ffffff\" />";
     private final String bandTemplate = "<line x1=\"%s\" y1=\"%s\" x2=\"%s\" y2=\"%s\" style=\"stroke:#000000; stroke-dasharray: 5 5;\" />";
-    private final String testTemplate = "<svg version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" height=100 viewBox=\"0, 0, 855, 690\" preserveAspectRatio=\"xMinYMin\"> <defs> <marker id=\"beginArrow\" " +
-            "markerWidth=12 markerHeight=12 refX=0 refY=6 orient=auto> <path d=\"M0,6 L12,0 L12,12 L0,6\" style=\"fill: #000000;\" /> </marker> " +
-            "<marker id=\"endArrow\" \" +\n" +
-            "            \"markerWidth=12 markerHeight=12 refX=12 refY=6 orient=auto> <path d=\"M0,6 L12,6 L0,12 L0,0\" style=\"fill: #000000;\" /> </marker> </defs>" +
-            "<line x1=\"%s\" y1=\"%s\" x2=\"%s\" y2=\"%s\" style=\"stroke:#000000; marker-start: url(#beginArrow); marker-end: url(#endArrow); />";
+    private final String testTemplate = " <defs>\n"
+            + "    <marker id=\"beginArrow" + "\" \n"
+            + "    	markerWidth=\"9\" markerHeight=\"9\" \n"
+            + "    	refX=\"0\" refY=\"4\" \n"
+            + "    	orient=\"auto\">\n"
+            + "        <path d=\"M0,4 L8,0 L8,8 L0,4\" style=\"fill: #000000s;\" />\n"
+            + "    </marker>\n"
+            + "    <marker id=\"endArrow" + "\" \n"
+            + "    	markerWidth=\"9\" markerHeight=\"9\" \n"
+            + "    	refX=\"8\" refY=\"4\" \n"
+            + "    	orient=\"auto\">\n"
+            + "        <path d=\"M0,0 L8,4 L0,8 L0,0\" style=\"fill: #000000;\" />\n"
+            + "    </marker>\n"
+            + "</defs>\n"
+            + "<line x1=\"%s\" y1=\"%s\" x2=\"%s\" y2=\"%s\""
+            + "	style=\"stroke:#006600;\n"
+            + "	marker-start: url(#beginArrow" + ");\n"
+            + "   marker-end: url(#endArrow" + ");\"/>"
+            + " ";
 
     // private final String testTemplate = "<svg version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" x=\"%s\" y=\"%s\" width=\"%s\" height=\"%s\" viewBox=\"%s\" preserveAspectRatio=\"xMinYMin\">";
 

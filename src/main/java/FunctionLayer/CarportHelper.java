@@ -368,6 +368,7 @@ public class CarportHelper {
     }
 
     public String svgDrawing(int carportLength, int carportWidthCM, boolean hasShed) {
+        final int MARKER_HEIGHT = 12;
         // Vi lægger 20 til, så f.eks. den sidste rem kommer med på tegningen.
         String viewbox = "0,0," + (carportLength+20) + "," + carportWidthCM;
         String viewboxInner = "0,0," + (carportLength+100) + "," + (carportWidthCM+100);
@@ -380,7 +381,7 @@ public class CarportHelper {
         Svg svg = new Svg(carportLength, carportWidthCM, viewbox,0,0);
         Svg svgInnerDrawing = new Svg(carportLength,carportWidthCM, viewboxInner, 0,0);
         // Carport:
-        svgInnerDrawing.addTest(40, 10, 40, 610);
+        svgInnerDrawing.addTest(0, carportWidthCM + 30, carportLength - MARKER_HEIGHT, carportWidthCM + 30);
         svg.addRect(0,0, carportLength, carportWidthCM);
 
         // Rem:
@@ -423,8 +424,8 @@ public class CarportHelper {
                     svg.addRect(carportLength - pillarTransition,35 - (headRaftMeasure.get(0) / 2), pillarMeasure.get(1), pillarMeasure.get(0));
                     svg.addRect(carportLength - pillarTransition, carportWidthCM - 35 - (headRaftMeasure.get(0) / 2), pillarMeasure.get(1), pillarMeasure.get(0));
                 } else {
-                    svg.addRect(stolpeX, 35 - (headRaftMeasure.get(0) / 2), pillarMeasure.get(1), pillarMeasure.get(0));
-                    svg.addRect(stolpeX, carportWidthCM - 35 - (headRaftMeasure.get(0) / 2), pillarMeasure.get(1), pillarMeasure.get(0));
+                    svg.addRect(stolpeX - pillarTransition, 35 - (headRaftMeasure.get(0) / 2), pillarMeasure.get(1), pillarMeasure.get(0));
+                    svg.addRect(stolpeX - pillarTransition, carportWidthCM - 35 - (headRaftMeasure.get(0) / 2), pillarMeasure.get(1), pillarMeasure.get(0));
                 }
             }
 
@@ -459,7 +460,7 @@ public class CarportHelper {
 
 
 
-        return svg.toString() + svgInnerDrawing.toString() + "</svg> </svg>";
+        return svgInnerDrawing.toString() + svg.toString() + "</svg> </svg>";
     }
 
 }

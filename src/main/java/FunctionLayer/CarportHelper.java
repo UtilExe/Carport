@@ -412,18 +412,19 @@ public class CarportHelper {
 
         // Stolper:
         int stolpeX = 0;
-        double lengthBetweenPillars = carportLength / ((pillarAmount / 2.0) - 1.0);
+        int methPillarAmount = pillarAmount;
+        double lengthBetweenPillars = carportLength / ((methPillarAmount / 2.0) - 1.0);
         double pillarTransition = 0.0;
         final int CARPORT_END_DIST = 30;
         final int REM_IN_DIST = 35 + 35;
         if (hasShed) {
             if(shedWidth == carportWidthCM - REM_IN_DIST) {
-                pillarAmount -= 6;
+                methPillarAmount -= 6;
             } else {
-                pillarAmount -= 7;
+                methPillarAmount -= 7;
             }
             final int CM_BETWEEN_PILLARS = 300;
-            lengthBetweenPillars = (carportLength - shedLength - CARPORT_END_DIST) / ((pillarAmount / 2.0) - 1.0);
+            lengthBetweenPillars = (carportLength - shedLength - CARPORT_END_DIST) / ((methPillarAmount / 2.0) - 1.0);
 
             //Skurstolper
             svg.addRect(carportLength - shedLength - CARPORT_END_DIST, 35, pillarMeasure.get(1), pillarMeasure.get(1)); //Top venstre stolpe
@@ -436,7 +437,7 @@ public class CarportHelper {
 
         }
 
-        int halfOfPillarAmountCeil = (int) Math.ceil(pillarAmount / 2.0);
+        int halfOfPillarAmountCeil = (int) Math.ceil(methPillarAmount / 2.0);
         for (int i = 0; i < halfOfPillarAmountCeil; i++) {
             int lastLoop = halfOfPillarAmountCeil - 1;
 
@@ -537,7 +538,56 @@ public class CarportHelper {
             svgInner.addRect(0, plankMeasure.get(1), carportLength, headRaftMeasure.get(1));
         }
 
+
         //Stolper
+        int methPillarAmount = pillarAmount;
+        double lengthBetweenPillars = carportLength / ((methPillarAmount / 2.0) - 1.0);
+        double pillarTransition = 0.0;
+        final int CARPORT_END_DIST = 30;
+        final int REM_IN_DIST = 35 + 35;
+        if (hasShed) {
+            if (shedWidth == carportWidthCM - REM_IN_DIST) {
+                methPillarAmount -= 6;
+            } else {
+                methPillarAmount -= 7;
+            }
+            lengthBetweenPillars = (carportLength - shedLength - CARPORT_END_DIST) / ((methPillarAmount / 2.0) - 1.0);
+        }
+
+        int halfOfPillarAmountCeil = (int) Math.ceil(methPillarAmount / 2.0);
+        y = plankMeasure.get(1) + headRaftMeasure.get(1);
+        length = pillarMeasure.get(0);
+        height = carportHeight - plankMeasure.get(1) + headRaftMeasure.get(1);
+        int stolpeX = 0;
+
+        for (int i = 0; i < halfOfPillarAmountCeil; i++) {
+            int lastLoop = halfOfPillarAmountCeil - 1;
+
+            if (i == lastLoop) {
+                pillarTransition = (pillarMeasure.get(0) / 2);
+                if (hasShed) {
+                    svgInner.addRect(carportLength - pillarTransition - CARPORT_END_DIST, y, length, height);
+                } else {
+                    svgInner.addRect(stolpeX - pillarTransition - CARPORT_END_DIST, y, length, height);
+                }
+            }
+
+            if ((i > 0) && (i < lastLoop)) {
+                svgInner.addRect(stolpeX, y, length, height);
+            }
+
+            if (i == 0) {
+                svgInner.addRect(stolpeX, y, length, height);
+            }
+
+            stolpeX += lengthBetweenPillars;
+
+        }
+
+
+
+
+        /*//Stolper
         if (hasShed) {
             x = carportLength - 30 - pillarMeasure.get(0);
             y = plankMeasure.get(1) + headRaftMeasure.get(1);
@@ -560,7 +610,7 @@ public class CarportHelper {
                 x -= 300;
                 svgInner.addRect(x, y, length, height);
             }
-        }
+        }*/
 
         //Skur
         if (hasShed) {

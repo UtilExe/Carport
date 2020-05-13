@@ -14,9 +14,10 @@ import java.util.LinkedHashMap;
 
 public class MaterialCalculator {
 
-    public int calcPillarAmount(int carportLength, boolean hasShed, int shedLength) {
+    public int calcPillarAmount(int carportLength, boolean hasShed, int shedLength, int shedWidth, int carportWidth) {
         int result;
         final double PILLAR_AT_METER = 3.0;
+        final int REM_IN_DIST = 35 + 35;
         double tmpResult;
         if (hasShed) {
             double tmpLength = (carportLength - shedLength) / 100.0;
@@ -26,7 +27,11 @@ public class MaterialCalculator {
             if (result < 4) {
                 result = 4;
             }
-            result += 8; //Vi antager at et skur skal bruge 6 stolper (en i hvert hjørne + 2 i midten) og 2 til hver side af døren.
+            if(shedWidth == carportWidth - REM_IN_DIST) {
+                result += 6; // Samme antagelse som nedenfor, men nu skal stolpen nederst til højre på skuret ikke på, da den stolpe støtter på remmen i forvejen.
+            } else {
+                result += 7; //Vi antager at et skur skal bruge 7 stolper (en i hvert hjørne (på nær hjørnet, hvor bagerste stolpe står) + 2 i midten) og 2 til hver side af døren.
+            }
         } else {
             double tmpCarportLength = carportLength / 100.0;
             // Beregning af antal stolper (skal være et i hver side pr. 300 cm af carportens længde).
@@ -99,7 +104,7 @@ public class MaterialCalculator {
     // af carport til rem være 35 cm på hver side (30 cm bagtil).
 
 
-    public ArrayList<Double> getPillarHeight(int carportHeight, double carportLength, boolean hasShed, int shedLength, boolean hasPitch) {
+    public ArrayList<Double> getPillarHeight(int carportHeight, double carportLength, boolean hasShed, int shedLength, boolean hasPitch, int shedWidth, int carportWidth) {
         ArrayList<Double> stolper = new ArrayList<Double>();
         final int HEAD_ID = 6;
         final int FACIA_ID = 1;
@@ -112,10 +117,10 @@ public class MaterialCalculator {
         double pillarHeight = carportHeight - headHeight - fasciaBoardHeight;
 
         if (hasShed) {
-            pillars = calcPillarAmount((int) carportLength, hasShed, shedLength) - 8;
+            pillars = calcPillarAmount((int) carportLength, hasShed, shedLength, shedWidth, carportWidth) - 8;
             pillars = pillars / 2;
         } else {
-            pillars = (calcPillarAmount((int) carportLength, hasShed, shedLength)) / 2;
+            pillars = (calcPillarAmount((int) carportLength, hasShed, shedLength, shedWidth, carportWidth)) / 2;
         }
 
         if (hasPitch) {
@@ -208,8 +213,8 @@ public class MaterialCalculator {
         return (int) amountOfPacks;
     }
 
-    public int getCarriageBolts(int carportLength, boolean hasShed, int shedLength) {
-        return calcPillarAmount(carportLength, hasShed, shedLength) * 2;
+    public int getCarriageBolts(int carportLength, boolean hasShed, int shedLength, int shedWidth, int carportWidth) {
+        return calcPillarAmount(carportLength, hasShed, shedLength, shedWidth, carportWidth) * 2;
     }
 
     public int[] getTransomsLengthFrontAndBack(int shedWidth) {

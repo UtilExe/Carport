@@ -154,13 +154,13 @@ public class CarportHelper {
         this.band = calcTest.calcBandAmount(carportLengthCM, carportWidthCM, hasShed, shedLength);
         this.rolesOfBand = calcTest.getRolesAmountBand(band);
         this.amountOfRafts = calcTest.calcRaftAmount(carportLengthCM, hasPitch);
-        this.pillarAmount = calcTest.calcPillarAmount(carportLengthCM, hasShed, shedLength);
+        this.pillarAmount = calcTest.calcPillarAmount(carportLengthCM, hasShed, shedLength, shedWidth, carportWidthCM);
         this.amountOfTiles = calcTest.getRoofTileAmount(carportLengthCM, carportWidthCM);
         this.amountOfScrews = calcTest.getRoofScrewAmount(carportLengthCM, carportWidthCM, BOTTOMSCREW_ID);
         this.amountOfUniversalScrews = calcTest.getUniversalScrews(carportLengthCM, hasPitch);
         this.amountOfPlankWaterScrews = calcTest.getPlankAndWaterScrews();
         this.amountOfBracketScrews = calcTest.getBracketScrews(carportLengthCM, hasPitch);
-        this.amountOfCarriageBolts = calcTest.getCarriageBolts(carportLengthCM, hasShed, shedLength);
+        this.amountOfCarriageBolts = calcTest.getCarriageBolts(carportLengthCM, hasShed, shedLength, shedWidth, carportWidthCM);
         this.transomSides = calcTest.getTransomsLengthSides(shedLength);
         this.transomFrontAndBack = calcTest.getTransomsLengthFrontAndBack(shedWidth);
         this.headsInShed = calcTest.getHeadsInShed(shedLength);
@@ -180,7 +180,7 @@ public class CarportHelper {
         this.amountOfRooflaths = calcTest.getAmountOfRooflaths(carportWidthCM);
         this.amountOfRooflathScrews = calcTest.getAmountOfToplathScrews(amountOfRooflaths, amountOfRafts, ROOFLATH_SCREWS_ID);
 
-        this.pillarLengths = calcTest.getPillarHeight(carportHeight, carportLengthCM, hasShed, shedLength, hasPitch);
+        this.pillarLengths = calcTest.getPillarHeight(carportHeight, carportLengthCM, hasShed, shedLength, hasPitch, shedWidth, carportWidthCM);
         this.heads = MaterialMapper.getRoofData(RAFT_AND_HEAD_ID, carportLengthCM, AMOUNT_OF_HEADS);
         this.rafts = MaterialMapper.getRoofData(RAFT_AND_HEAD_ID, carportWidthCM, amountOfRafts);
         this.bands = MaterialMapper.getBandData(BAND_ID, band, rolesOfBand);
@@ -414,32 +414,40 @@ public class CarportHelper {
         int stolpeX = 0;
         double lengthBetweenPillars = carportLength / ((pillarAmount / 2.0) - 1.0);
         double pillarTransition = 0.0;
+        final int CARPORT_END_DIST = 30;
+        final int REM_IN_DIST = 35 + 35;
         if (hasShed) {
-            pillarAmount -= 8;
+            if(shedWidth == carportWidthCM - REM_IN_DIST) {
+                pillarAmount -= 6;
+            } else {
+                pillarAmount -= 7;
+            }
             final int CM_BETWEEN_PILLARS = 300;
-            lengthBetweenPillars = (carportLength - shedLength - 30) / ((pillarAmount / 2.0) - 1.0);
+            lengthBetweenPillars = (carportLength - shedLength - CARPORT_END_DIST) / ((pillarAmount / 2.0) - 1.0);
 
             //Skurstolper
-            svg.addRect(carportLength - shedLength - 30, 35, pillarMeasure.get(1), pillarMeasure.get(1)); //Top venstre stolpe
-            svg.addRect(carportLength - 30 - pillarMeasure.get(1), 35, pillarMeasure.get(1), pillarMeasure.get(1)); //Top højre stolpe
-            svg.addRect(carportLength - shedLength - 30, 35 + (shedWidth / 2), pillarMeasure.get(1), pillarMeasure.get(1)); //Midt venstre stolpe
-            svg.addRect(carportLength - 30 - pillarMeasure.get(1), 35 + (shedWidth / 2), pillarMeasure.get(1), pillarMeasure.get(1)); //Midt højre stolpe
-            svg.addRect(carportLength - shedLength - 30, 35 + shedWidth - pillarMeasure.get(1), pillarMeasure.get(1), pillarMeasure.get(1)); //Venstre nederste stolpe
-            svg.addRect(carportLength - 30 - pillarMeasure.get(1), 35 + shedWidth - pillarMeasure.get(1), pillarMeasure.get(1), pillarMeasure.get(1)); //Højre nederste stolpe
+            svg.addRect(carportLength - shedLength - CARPORT_END_DIST, 35, pillarMeasure.get(1), pillarMeasure.get(1)); //Top venstre stolpe
+            svg.addRect(carportLength - shedLength - CARPORT_END_DIST, 35 + (shedWidth / 2), pillarMeasure.get(1), pillarMeasure.get(1)); //Midt venstre stolpe
+            svg.addRect(carportLength - CARPORT_END_DIST - pillarMeasure.get(1), 35 + (shedWidth / 2), pillarMeasure.get(1), pillarMeasure.get(1)); //Midt højre stolpe
+            svg.addRect(carportLength - shedLength - CARPORT_END_DIST, 35 + shedWidth - pillarMeasure.get(1), pillarMeasure.get(1), pillarMeasure.get(1)); //Venstre nederste stolpe
+
+            if(!(shedWidth == carportWidthCM - REM_IN_DIST))
+            svg.addRect(carportLength - CARPORT_END_DIST - pillarMeasure.get(1), 35 + shedWidth - pillarMeasure.get(1), pillarMeasure.get(1), pillarMeasure.get(1)); //Højre nederste stolpe
 
         }
 
-        for (int i = 0; i < pillarAmount / 2; i++) {
-            int lastLoop = (pillarAmount / 2) - 1;
+        int halfOfPillarAmountCeil = (int) Math.ceil(pillarAmount / 2.0);
+        for (int i = 0; i < halfOfPillarAmountCeil; i++) {
+            int lastLoop = halfOfPillarAmountCeil - 1;
 
             if (i == lastLoop) {
                 pillarTransition = (pillarMeasure.get(0) / 2);
                 if (hasShed) {
-                    svg.addRect(carportLength - pillarTransition, 35 - (headRaftMeasure.get(0) / 2), pillarMeasure.get(1), pillarMeasure.get(0));
-                    svg.addRect(carportLength - pillarTransition, carportWidthCM - 35 - (headRaftMeasure.get(0) / 2), pillarMeasure.get(1), pillarMeasure.get(0));
+                    svg.addRect(carportLength - pillarTransition - CARPORT_END_DIST, 35 - (headRaftMeasure.get(0) / 2), pillarMeasure.get(1), pillarMeasure.get(0));
+                    svg.addRect(carportLength - pillarTransition - CARPORT_END_DIST, carportWidthCM - 35 - (headRaftMeasure.get(0) / 2), pillarMeasure.get(1), pillarMeasure.get(0));
                 } else {
-                    svg.addRect(stolpeX - pillarTransition - 30, 35 - (headRaftMeasure.get(0) / 2), pillarMeasure.get(1), pillarMeasure.get(0));
-                    svg.addRect(stolpeX - pillarTransition - 30, carportWidthCM - 35 - (headRaftMeasure.get(0) / 2), pillarMeasure.get(1), pillarMeasure.get(0));
+                    svg.addRect(stolpeX - pillarTransition - CARPORT_END_DIST, 35 - (headRaftMeasure.get(0) / 2), pillarMeasure.get(1), pillarMeasure.get(0));
+                    svg.addRect(stolpeX - pillarTransition - CARPORT_END_DIST, carportWidthCM - 35 - (headRaftMeasure.get(0) / 2), pillarMeasure.get(1), pillarMeasure.get(0));
                 }
             }
 

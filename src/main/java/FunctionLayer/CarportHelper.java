@@ -607,10 +607,11 @@ public class CarportHelper {
 
         //Rejsning
         if (hasPitch) {
+            double roofHeight = Math.tan((carportPitch * Math.PI) / 180) * (carportWidthCM/2);
             x = 0 - plankMeasure.get(1)/2;
-            y = 0 - Math.tan((carportPitch * Math.PI) / 180) * (carportWidthCM/2);
+            y = 0 - roofHeight;
             double width = plankMeasure.get(1);
-            length = Math.tan((carportPitch * Math.PI) / 180) * (carportWidthCM/2);
+            length = roofHeight;
             //Venstre vandbræt
             svgInner.addRect(x,y, width, length);
 
@@ -625,9 +626,22 @@ public class CarportHelper {
             x += carportLength - plankMeasure.get(1);
             y -= plankMeasure.get(0);
             width = plankMeasure.get(1);
-            length = Math.tan((carportPitch * Math.PI) / 180) * (carportWidthCM/2);
+            length = roofHeight;
             //Højre vandbræt
             svgInner.addRect(x,y,width,length);
+
+
+            //Tagsten
+            x = 0 + plankMeasure.get(1) / 2;
+            y = 0 - roofHeight + plankMeasure.get(1);
+            width = 0 + plankMeasure.get(1);
+            length = 0 + planksForGavlMountLength - plankMeasure.get(1);
+            double loop = (carportLength / width) - 1;
+
+            for(int i = 0; i < loop; i++) {
+                svgInner.addRect(x,y,width,length);
+                x += width;
+            }
 
         }
 

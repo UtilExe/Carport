@@ -526,11 +526,14 @@ public class CarportHelper {
 
         double carportHeightRoof = 0;
 
+        Svg svgInner = null;
+
         if(hasPitch) {
             carportHeightRoof = carportHeight + Math.tan((carportPitch * Math.PI) / 180) * (carportWidthCM/2);
+            svgInner = new Svg(carportLength, carportHeight,  -viewboxX + "," + -viewboxY +  "," + (carportLength+viewboxX) + "," + (carportHeightRoof+viewboxY), 0, 0);
+        } else {
+            svgInner = new Svg(carportLength, carportHeight,  "0,0," + (carportLength) + "," + (carportHeight), 0, 0);
         }
-
-        Svg svgInner = new Svg(carportLength, carportHeight,  -viewboxX + "," + -viewboxY +  "," + (carportLength+viewboxX) + "," + (carportHeightRoof+viewboxY), 0, 0);
 
         //Top bræt
         svgInner.addRect(0, 0, carportLength, plankMeasure.get(1));

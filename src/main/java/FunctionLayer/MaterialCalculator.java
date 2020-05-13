@@ -329,7 +329,6 @@ public class MaterialCalculator {
         int result;
         double  tmpResult = Math.ceil((carportWidth - 90.0) / SPACE_BETWEEN);
         result = (int)tmpResult;
-        System.out.println(result);
         return result;
     }
 

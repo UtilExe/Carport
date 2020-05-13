@@ -475,10 +475,9 @@ public class CarportHelper {
         // Rejsning:
         if (hasPitch) {
 
+            //Taglægter:
             ArrayList<Double> roofLathsMeasure = MaterialMapper.getWidthHeightFromDimensionMeasureInCM(BATTERN_ROOFLATH_ID);
             double lengthBetweenLaths = (carportWidthCM / 2.0) / (amountOfRooflaths / 2.0);
-            //(carportWidthCM / 2) / (amountOfRooflaths - 1.0);
-            //int ll = (carportWidthCM / 2) / (amountOfRooflaths / 2);
             double b = 45.0;
             double c = carportWidthCM - 45;
 
@@ -491,7 +490,20 @@ public class CarportHelper {
             svg.addRect(0, carportWidthCM / 2, carportLength, roofLathsMeasure.get(0));
             svg.addRect(0, (carportWidthCM / 2) - 10, carportLength, roofLathsMeasure.get(0));
             svg.addRect(0, (carportWidthCM / 2) + 10, carportLength, roofLathsMeasure.get(0));
+
+
+
+            // Vindskeder (på gavlen):
+            int gavlPlaceing = 0;
+            for(int i = 0; i < amountOfGavlPlank / 2; i++) {
+                svg.addRect(gavlPlaceing, 0, plankMeasure.get(0), carportWidthCM/2); // Venstre/højre oppe
+                svg.addRect(gavlPlaceing, carportWidthCM/2, plankMeasure.get(0), carportWidthCM/2); // Venstre/højre, nede
+                gavlPlaceing = carportLength;
+            }
+
         }
+
+
 
         return svgInnerDrawing.toString() + svg.toString() + "</svg> </svg>";
     }

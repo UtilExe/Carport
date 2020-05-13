@@ -367,6 +367,7 @@ public class CarportHelper {
     ArrayList<Double> headRaftMeasure = MaterialMapper.getWidthHeightFromDimensionMeasureInCM(RAFT_AND_HEAD_ID);
     ArrayList<Double> pillarMeasure = MaterialMapper.getWidthHeightFromDimensionMeasureInCM(PILLAR_ID);
     ArrayList<Double> plankMeasure = MaterialMapper.getWidthHeightFromDimensionMeasureInCM(PLANK_ID);
+    ArrayList<Double> roofLathsMeasure = MaterialMapper.getWidthHeightFromDimensionMeasureInCM(BATTERN_ROOFLATH_ID);
 
     public String svgDrawing(int carportLength, int carportHeight, boolean hasShed) {
         final int MARKER_HEIGHT = 12;
@@ -481,7 +482,6 @@ public class CarportHelper {
         if (hasPitch) {
 
             //Taglægter:
-            ArrayList<Double> roofLathsMeasure = MaterialMapper.getWidthHeightFromDimensionMeasureInCM(BATTERN_ROOFLATH_ID);
             double lengthBetweenLaths = (carportWidthCM / 2.0) / (amountOfRooflaths / 2.0);
             double b = 45.0;
             double c = carportWidthCM - 45;
@@ -517,11 +517,20 @@ public class CarportHelper {
         ArrayList<Double> plankMeasure = MaterialMapper.getWidthHeightFromDimensionMeasureInCM(WATERPLANK_AND_SHEDPLANK_ID);
 
         double x = 0.0;
-        double y = 0.0;
-        double length = 0.0;
-        double height = 0.0;
+        double y;
+        double length;
+        double height;
 
-        Svg svgInner = new Svg(carportLength, carportHeight, "0,0," + carportLength + "," + carportHeight, 0, 0);
+        double viewboxX = plankMeasure.get(1);
+        double viewboxY = Math.tan((carportPitch * Math.PI) / 180) * (carportWidthCM/2);
+
+        double carportHeightRoof = 0;
+
+        if(hasPitch) {
+            carportHeightRoof = carportHeight + Math.tan((carportPitch * Math.PI) / 180) * (carportWidthCM/2);
+        }
+
+        Svg svgInner = new Svg(carportLength, carportHeight,  -viewboxX + "," + -viewboxY +  "," + (carportLength+viewboxX) + "," + (carportHeightRoof+viewboxY), 0, 0);
 
         //Top bræt
         svgInner.addRect(0, 0, carportLength, plankMeasure.get(1));
@@ -553,7 +562,7 @@ public class CarportHelper {
         int halfOfPillarAmountCeil = (int) Math.ceil(methodPillarAmount / 2.0);
         y = plankMeasure.get(1) + headRaftMeasure.get(1);
         length = pillarMeasure.get(0);
-        height = carportHeight - plankMeasure.get(1) + headRaftMeasure.get(1);
+        height = carportHeight - plankMeasure.get(1) - headRaftMeasure.get(1);
         int stolpeX = 0;
 
         for (int i = 0; i < halfOfPillarAmountCeil; i++) {
@@ -586,11 +595,37 @@ public class CarportHelper {
             x = carportLength - shedLength - 30 - plankMeasure.get(1);
             y = plankMeasure.get(1);
             length = plankMeasure.get(1);
-            height = carportHeight - plankMeasure.get(1) + headRaftMeasure.get(1);
+            height = carportHeight - plankMeasure.get(1);
             for (int i = 0; i < (shedLength / plankMeasure.get(1)); i++) {
                 x += plankMeasure.get(1);
                 svgInner.addRect(x, y, length, height);
             }
+        }
+
+        //Rejsning
+        if (hasPitch) {
+            x = 0 - plankMeasure.get(1)/2;
+            y = 0 - Math.tan((carportPitch * Math.PI) / 180) * (carportWidthCM/2);
+            double width = plankMeasure.get(1);
+            length = Math.tan((carportPitch * Math.PI) / 180) * (carportWidthCM/2);
+            //Venstre vandbræt
+            svgInner.addRect(x,y, width, length);
+
+            x += plankMeasure.get(1);
+            y += plankMeasure.get(0);
+            width = carportLengthCM - plankMeasure.get(1)/2;
+            length = roofLathsMeasure.get(1);
+
+            //Taglægte
+            svgInner.addRect(x,y,width,length);
+
+            x += carportLength - plankMeasure.get(1);
+            y -= plankMeasure.get(0);
+            width = plankMeasure.get(1);
+            length = Math.tan((carportPitch * Math.PI) / 180) * (carportWidthCM/2);
+            //Højre vandbræt
+            svgInner.addRect(x,y,width,length);
+
         }
 
 

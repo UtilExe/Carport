@@ -1,7 +1,7 @@
 package DBAccess;
 
 import FunctionLayer.LoginSampleException;
-import FunctionLayer.Objects.User;
+import FunctionLayer.Entities.User;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

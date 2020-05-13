@@ -1,9 +1,5 @@
-package FunctionLayer.Objects;
+package FunctionLayer.Entities;
 import FunctionLayer.ValidationValues;
-import com.sun.javafx.binding.StringFormatter;
-
-import javax.validation.Valid;
-import javax.validation.Validation;
 
 public class Svg {
     private double width;

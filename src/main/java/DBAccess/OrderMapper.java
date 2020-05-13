@@ -1,8 +1,8 @@
 package DBAccess;
 
 import FunctionLayer.CarportHelper;
-import FunctionLayer.Objects.Carport;
-import FunctionLayer.Objects.Order;
+import FunctionLayer.Entities.Carport;
+import FunctionLayer.Entities.Order;
 
 import java.sql.*;
 import java.util.ArrayList;

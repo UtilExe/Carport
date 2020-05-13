@@ -1,11 +1,9 @@
 package DBAccess;
 
-import PresentationLayer.MaterialCalculator;
+import FunctionLayer.MaterialCalculator;
 
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
 
 public class MaterialMapper {
 

@@ -1,16 +1,8 @@
-package PresentationLayer;
+package FunctionLayer;
 
 import DBAccess.MaterialMapper;
-import FunctionLayer.*;
-import FunctionLayer.Objects.Svg;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
 
 public class MaterialCalculator {
 

@@ -1,4 +1,4 @@
-package FunctionLayer.Objects;
+package FunctionLayer.Entities;
 
 public class Carport {
 

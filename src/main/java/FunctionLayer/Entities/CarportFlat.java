@@ -1,21 +1,17 @@
-package FunctionLayer.Objects;
+package FunctionLayer.Entities;
 
-public class CarportPitch extends Carport {
+public class CarportFlat extends Carport {
 
     private boolean hasShed;
     private int shedWidth;
     private int shedLength;
-    private boolean hasPitch;
-    private int roofPitch;
 
-    public CarportPitch(int carportLength, int carportWidth, int carportHeight, String roofMaterial, boolean hasShed,
-                        int shedWidth, int shedLength, boolean hasPitch, int roofPitch) {
+    public CarportFlat(int carportLength, int carportWidth, int carportHeight, String roofMaterial, boolean hasShed, int
+            shedWidth, int shedLength) {
         super(carportLength, carportWidth, carportHeight, roofMaterial);
         this.hasShed = hasShed;
         this.shedWidth = shedWidth;
         this.shedLength = shedLength;
-        this.hasPitch = hasPitch;
-        this.roofPitch = roofPitch;
     }
 
     public boolean isHasShed() {
@@ -41,21 +37,4 @@ public class CarportPitch extends Carport {
     public void setShedLength(int shedLength) {
         this.shedLength = shedLength;
     }
-
-    public boolean isHasPitch() {
-        return hasPitch;
-    }
-
-    public void setHasPitch(boolean hasPitch) {
-        this.hasPitch = hasPitch;
-    }
-
-    public int getRoofPitch() {
-        return roofPitch;
-    }
-
-    public void setRoofPitch(int roofPitch) {
-        this.roofPitch = roofPitch;
-    }
 }
-

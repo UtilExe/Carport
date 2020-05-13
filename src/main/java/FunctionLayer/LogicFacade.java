@@ -3,8 +3,8 @@ package FunctionLayer;
 import DBAccess.CarportMapper;
 import DBAccess.OrderMapper;
 import DBAccess.UserMapper;
-import FunctionLayer.Objects.Order;
-import FunctionLayer.Objects.User;
+import FunctionLayer.Entities.Order;
+import FunctionLayer.Entities.User;
 
 import java.util.ArrayList;
 

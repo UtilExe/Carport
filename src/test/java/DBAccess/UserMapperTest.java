@@ -7,7 +7,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import FunctionLayer.Objects.User;
+import FunctionLayer.Entities.User;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import org.junit.Before;

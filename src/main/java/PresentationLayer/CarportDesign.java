@@ -1,7 +1,7 @@
 package PresentationLayer;
 
 import FunctionLayer.*;
-import FunctionLayer.Objects.*;
+import FunctionLayer.Entities.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

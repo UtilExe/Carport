@@ -1,7 +1,6 @@
-package FunctionLayer.Objects;
+package FunctionLayer.Entities;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 
 public class ComparatorMaterial implements java.util.Comparator<ArrayList<String>> {
 

@@ -1,4 +1,4 @@
-package FunctionLayer.Objects;
+package FunctionLayer.Entities;
 
 import java.util.ArrayList;
 import java.util.Collections;

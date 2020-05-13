@@ -1,14 +1,10 @@
 package FunctionLayer;
 
 import DBAccess.MaterialMapper;
-import FunctionLayer.Objects.MaterialList;
-import FunctionLayer.Objects.Svg;
-import PresentationLayer.MaterialCalculator;
+import FunctionLayer.Entities.MaterialList;
+import FunctionLayer.Entities.Svg;
 
-import javax.swing.border.MatteBorder;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Collections;
 
 public class CarportHelper {
 

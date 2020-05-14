@@ -2,6 +2,7 @@ package DBAccess;
 
 import FunctionLayer.MaterialCalculator;
 import FunctionLayer.MaterialFacade;
+import FunctionLayer.Operations;
 import FunctionLayer.ValidationValues;
 
 import javax.validation.Valid;
@@ -110,7 +111,7 @@ public class MaterialMapper {
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 amountPrUnit = rs.getString("amount_pr_unit");
-                splittedArr = ValidationValues.splitter(amountPrUnit, ", ");
+                splittedArr = Operations.splitterForDimensions(amountPrUnit, ", ");
                 resultAmount = Integer.parseInt(splittedArr[0]);
             }
 
@@ -141,7 +142,7 @@ public class MaterialMapper {
                 String description = rs.getString("description");
                 String unit = rs.getString("unit");
                 String amountPrUnit = rs.getString("amount_pr_unit");
-                amountPrUnitSplitted = ValidationValues.splitter(amountPrUnit, ", ");
+                amountPrUnitSplitted = Operations.splitterForDimensions(amountPrUnit, ", ");
                 int amountPrUnitNumber = Integer.parseInt(amountPrUnitSplitted[0]);
                 String amountPrUnitType = amountPrUnitSplitted[1];
                 double priceUnit = rs.getDouble("price_unit");
@@ -172,11 +173,11 @@ public class MaterialMapper {
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 String description = rs.getString("description");
-                descriptionSplitted = ValidationValues.splitter(description, "x");
+                descriptionSplitted = Operations.splitterForDimensions(description, "x");
                 double width = Double.parseDouble(descriptionSplitted[0]);
                 width /= 10;
                 widthHeightMeasure.add(width);
-                descriptionSplitted = ValidationValues.splitter(descriptionSplitted[1], " ");
+                descriptionSplitted = Operations.splitterForDimensions(descriptionSplitted[1], " ");
                 double height = Double.parseDouble(descriptionSplitted[0]);
                 height /= 10;
                 widthHeightMeasure.add(height);

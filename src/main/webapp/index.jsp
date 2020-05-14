@@ -56,6 +56,13 @@
 
 <img src="images/header.jpeg" class="img-fluid mx-auto d-block" alt="Responsive header image"/>
 
+<c:if test="${requestScope.error!= null}">
+<div class="fejlbesked">
+    <h2>Fejl!</h2>
+        ${requestScope.error}
+</div>
+</c:if>
+
 <div class="container jumbotron ">
 
     <div class="jumbotron mr-5 mt-20 mt-lg-0">

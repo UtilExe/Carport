@@ -3,6 +3,7 @@ package PresentationLayer;
 import FunctionLayer.LogicFacade;
 import FunctionLayer.LoginSampleException;
 import FunctionLayer.Entities.User;
+import FunctionLayer.RegisterSampleException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -10,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 public class Register extends Command {
 
     @Override
-    String execute( HttpServletRequest request, HttpServletResponse response ) throws LoginSampleException {
+    String execute( HttpServletRequest request, HttpServletResponse response ) throws RegisterSampleException {
         String name = request.getParameter( "name" );
         String email = request.getParameter( "email" );
         String password = request.getParameter( "password" );
@@ -34,6 +35,7 @@ public class Register extends Command {
         } catch (NumberFormatException e) {
             e.printStackTrace();
         }
+
 
         request.setAttribute("createAccountBesked2", "Du er nu oprettet!");
 

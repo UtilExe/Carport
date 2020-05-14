@@ -3,6 +3,7 @@ package DBAccess;
 import FunctionLayer.LoginSampleException;
 import FunctionLayer.Entities.User;
 import FunctionLayer.Log;
+import FunctionLayer.RegisterSampleException;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -12,7 +13,7 @@ import java.sql.Statement;
 
 public class UserMapper {
 
-    public static void createUser(User user) throws LoginSampleException {
+    public static void createUser(User user) throws RegisterSampleException {
         try {
             Connection con = Connector.connection();
             String SQL = "INSERT INTO carport.users (name, email, password, mobilNr) VALUES (?, ?, ?, ?)";
@@ -27,15 +28,18 @@ public class UserMapper {
             user.setDateCreated("create_time");
         } catch ( SQLException | ClassNotFoundException ex ) {
 
-            // Lav evt. validering ift. Duplicate Entry som Nikolaj gjorde.
+            if (ex.getMessage().contains("Duplicate entry")) {
+                Log.finest("Kunne ikke oprette bruger " + user.getEmail() + ": Duplicate entry");
+                throw new RegisterSampleException("En bruger med denne mail eksisterer allerede");
+            }
 
             if (ex.getMessage().contains("Communications link failure")) {
                 Log.severe("login " + ex.getMessage());
-                throw new LoginSampleException("Databasen er i øjeblikket nede. Kontakt IT");
+                throw new RegisterSampleException("Databasen er i øjeblikket nede. Kontakt IT");
             }
 
             Log.severe("Register " + ex.getMessage());
-            throw new LoginSampleException( ex.getMessage() );
+            throw new RegisterSampleException( ex.getMessage() );
         }
     }
 

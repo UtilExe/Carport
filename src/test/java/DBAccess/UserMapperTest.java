@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 import FunctionLayer.Entities.User;
+import FunctionLayer.RegisterSampleException;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import org.junit.Before;
@@ -71,7 +72,7 @@ public class UserMapperTest {
     }
 
     @Test
-    public void testCreateUser01() throws LoginSampleException {
+    public void testCreateUser01() throws LoginSampleException, RegisterSampleException {
         // Can we create a new user - Notice, if login fails, this will fail
         // but so would login01, so this is OK
         User original = new User("test", "test@test.com", "test", 87416585);

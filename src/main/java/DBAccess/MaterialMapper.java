@@ -26,7 +26,7 @@ public class MaterialMapper {
             String methodName = "getLengthsFromStorage";
             UniversalSampleException.exceptionIfsDB(ex.getMessage(), methodName);
             UniversalSampleException.exceptionIfLast(ex.getMessage(), methodName);
-            
+
         }
         return lengths;
 

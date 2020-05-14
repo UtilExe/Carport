@@ -18,6 +18,12 @@ public class CarportDesign extends Command {
         String tmpCarportHeight = request.getParameter("height");
         String roofMaterial = request.getParameter("roof");
 
+        if(tmpCarportHeight.equals("") || tmpCarportLength.equals("") || tmpCarportWidth.equals("") || roofMaterial.equals("")){
+            request.setAttribute("error", "Alle felter blev ikke udfyldt.");
+
+            return "index";
+        }
+
         int carportLength = ValidationValues.getInteger(tmpCarportLength);
         int carportWidthCM = ValidationValues.getInteger(tmpCarportWidth);
         int carportHeight = ValidationValues.getInteger(tmpCarportHeight);
@@ -28,20 +34,33 @@ public class CarportDesign extends Command {
         String tmpShedWidth;
         String tmpRoofPitch;
 
+
         MaterialCalculator calcTest = new MaterialCalculator();
 
         if (request.getParameter("checkboxShed") != null) {
             tmpShedLength = request.getParameter("shedLength");
             tmpShedWidth = request.getParameter("shedWidth");
+
+            if(tmpShedLength.equals("") || tmpShedWidth.equals("")){
+                request.setAttribute("error", "Et af skurmålene blev ikke udfyldt.");
+                return "index";
+            }
+
             shedLength = ValidationValues.getInteger(tmpShedLength);
             shedWidth = ValidationValues.getInteger(tmpShedWidth);
         }
 
         if (request.getParameter("roofPitch") != null) {
             tmpRoofPitch = request.getParameter("roofPitch");
+
+            if(tmpRoofPitch.equals("")){
+                request.setAttribute("error", "Taghældning blev ikke udfyldt.");
+                return "index";
+            }
             carportPitch = ValidationValues.getInteger(tmpRoofPitch);
             request.setAttribute("roof_pitch", Initialisation.getRoofPitch());
         }
+
 
         CarportHelper helper = new CarportHelper(carportLength, carportWidthCM, carportHeight, shedLength, shedWidth, carportPitch);
 
@@ -92,5 +111,6 @@ public class CarportDesign extends Command {
 
         return "carportOutput";
     }
+
 
 }

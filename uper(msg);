@@ -1,0 +1,933 @@
+[33mcommit 326f219d344aac4f029ae580fdf25f5ccad3ff16[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: Util <laymasterlolz@gmail.com>
+Date:   Thu May 14 13:19:22 2020 +0200
+
+    Ret git ignore fil
+
+[33mcommit 4f1bee83c366b0ff28f1553d4ecf70f1aee2796e[m
+Author: Util <laymasterlolz@gmail.com>
+Date:   Thu May 14 13:16:02 2020 +0200
+
+    Lille ændring: Flyt over i FunctionLayer i stedet
+
+[33mcommit e0fcab0bd24f3eb1d7ffbfb456b78e4059d9fc34[m
+Author: Util <laymasterlolz@gmail.com>
+Date:   Thu May 14 13:13:34 2020 +0200
+
+    Start på Exception håndtering og tilføj sti lokalt, så vi ikke skal rette det hver gang. (På samme måde som DBAccess)
+
+[33mcommit 3bbb9fa0916d67458e4e47fbd0e8764b1303b6b2[m
+Author: danielbengtsen <cph-db145@cphbusiness.dk>
+Date:   Thu May 14 13:12:41 2020 +0200
+
+    Fjernet test.svg samt lavet klassen Operations og flyttet splitter-metoden fra ValidationValues til den nye klasse
+
+[33mcommit c8d96248844718756d7a70b4043718cc1d374fd1[m
+Author: danielbengtsen <cph-db145@cphbusiness.dk>
+Date:   Thu May 14 10:40:41 2020 +0200
+
+    Så er alle fejl på skitserne væk for alvor, og hvis ikke, så hjemsøger jeg dem!
+
+[33mcommit d748efcc435a4220e25c69d71b26e79cf03619d8[m
+Author: danielbengtsen <cph-db145@cphbusiness.dk>
+Date:   Thu May 14 10:27:55 2020 +0200
+
+    Nu er alle Mapper-metoder kommet i diverse Facade-klasser
+
+[33mcommit 76c17038327d59765a5e45a840603eef74873094[m
+Author: danielbengtsen <cph-db145@cphbusiness.dk>
+Date:   Wed May 13 17:31:38 2020 +0200
+
+    Så er skitserne helt færdige (der bør ikke være nogen fejl, ellers finder vi dem i morgen/overmorgen)
+
+[33mcommit 8d9f9e48ff69608ed67b938728252889c8030a0f[m
+Author: danielbengtsen <cph-db145@cphbusiness.dk>
+Date:   Wed May 13 17:16:46 2020 +0200
+
+    Fladt tag fra siden med pile er uden fejl nu, men på rejsningstaget sidder pilene ikke helt endnu
+
+[33mcommit b277b6a5a2cf4f1f639e34f8bb769095323a5b60[m
+Author: danielbengtsen <cph-db145@cphbusiness.dk>
+Date:   Wed May 13 16:46:08 2020 +0200
+
+    I gang med at gøre carport fra side med rejsningstag stor nok til at være indefor pilene
+
+[33mcommit 254e3cde38527e1b5e39c8a185a9af4cfd16582b[m
+Author: danielbengtsen <cph-db145@cphbusiness.dk>
+Date:   Wed May 13 16:30:47 2020 +0200
+
+    Skitse done, mangler pile på carport set fra siden
+
+[33mcommit b9b4ab640ce62c37bad7294d380b4df7df30b007[m
+Author: danielbengtsen <cph-db145@cphbusiness.dk>
+Date:   Wed May 13 15:54:37 2020 +0200
+
+    Fejlen med at den ikke laver skitse over fladt tag fra siden er nu løst
+
+[33mcommit 7db516c78361cd3224ed1b1f876015f1bd802d19[m
+Author: Jannich <jannichhoejmose@gmail.com>
+Date:   Wed May 13 15:28:24 2020 +0200
+
+    Fronttegning til rejsning lavet
+
+[33mcommit c947a2dffc77818015a92cf6305c0f6da23cad6c[m
+Author: danielbengtsen <cph-db145@cphbusiness.dk>
+Date:   Wed May 13 13:09:12 2020 +0200
+
+    Små ændringer efter møde med Jon
+
+[33mcommit d6eaf236a511687ed00a7152c7104836142b1378[m
+Author: danielbengtsen <cph-db145@cphbusiness.dk>
+Date:   Wed May 13 12:16:25 2020 +0200
+
+    Lille kommentar fjernet samt lille refactor på methPillarAmount til methodPillarAmount
+
+[33mcommit 7e331df4d379bcfc548c48be027a628f150585bb[m
+Author: danielbengtsen <cph-db145@cphbusiness.dk>
+Date:   Wed May 13 11:35:00 2020 +0200
+
+    Nu er stolperne placeret samme sted på x-aksen på de to skitser
+
+[33mcommit f28555a96db1e57021c68b1b9c6b09adf0e704e1[m
+Author: danielbengtsen <cph-db145@cphbusiness.dk>
+Date:   Wed May 13 10:43:17 2020 +0200
+
+    Nu bliver stolperne sat rigtigt, når skuret er lige så bred som placering mellem rem'ne - på skitsen fra oven.
+
+[33mcommit 4a040135e59b9e0fab1d6f2b49ff5787c8c1a2e5[m
+Author: danielbengtsen <cph-db145@cphbusiness.dk>
+Date:   Wed May 13 09:49:54 2020 +0200
+
+    Så er alt færdigt på skitse set fra oven
+
+[33mcommit 39249c6ec53817f68e8dc52288f9971626f094c5[m
+Author: Jannich <jannichhoejmose@gmail.com>
+Date:   Tue May 12 18:45:42 2020 +0200
+
+    Plan fra siden + rejsning fra toppen
+
+[33mcommit ebd0650ee90d5f77ddb24a1ad11eb9072db71c78[m
+Merge: b5adb86 08d88f6
+Author: Jannich <jannichhoejmose@gmail.com>
+Date:   Tue May 12 18:37:42 2020 +0200
+
+    Plan fra siden færdig
+
+[33mcommit b5adb868177c112047f335737ca80e0c0b17b272[m
+Author: Jannich <jannichhoejmose@gmail.com>
+Date:   Tue May 12 18:28:03 2020 +0200
+
+    Plan fra side færdig
+
+[33mcommit 08d88f60b4467a5cbe93ecd474ac1a56c9c721c1[m
+Author: tullebob <jimmythangpham@hotmail.dk>
+Date:   Tue May 12 18:14:34 2020 +0200
+
+    lægter og overstern/vandbræt brædder??, er nu sat på skitsen
+
+[33mcommit dc7349228003ac9ffce66f1444bf97119910c1bf[m
+Author: danielbengtsen <cph-db145@cphbusiness.dk>
+Date:   Tue May 12 15:17:05 2020 +0200
+
+    Nu er tekst kommet på skitsen i siderne
+
+[33mcommit df978bcbc6370fe85ad33a9ddd1620c04a33c852[m
+Author: Util <laymasterlolz@gmail.com>
+Date:   Tue May 12 14:34:42 2020 +0200
+
+    Carport pil-bredde fixet
+
+[33mcommit fc16e183c45dc7e9fd3e2906af193e537be5a82f[m
+Author: Util <laymasterlolz@gmail.com>
+Date:   Tue May 12 13:25:21 2020 +0200
+
+    Fix pile på carport skitsen udenom tegningen på længden. Mangler bredde
+
+[33mcommit 341908a2b5d9fdbd64877cdcfaf92bc6b0a83d71[m
+Merge: 0bdd775 6f4b376
+Author: Util <laymasterlolz@gmail.com>
+Date:   Tue May 12 12:05:20 2020 +0200
+
+    Merge
+
+[33mcommit 0bdd775fd1aea95c302be44637f08c9a846c086f[m
+Author: Util <laymasterlolz@gmail.com>
+Date:   Tue May 12 12:04:21 2020 +0200
+
+    Start på mål udenfor carport. Det første forsøg er på pilene. Der er dog langt igen
+
+[33mcommit 6f4b3768932f1ffd2e181cc0443cb55f175447e5[m
+Author: danielbengtsen <cph-db145@cphbusiness.dk>
+Date:   Tue May 12 12:03:06 2020 +0200
+
+    Så er hulbånd merget med skur
+
+[33mcommit 7a6cb717faa180b2e8a0ce38fc016f6c49576a5e[m
+Merge: ba4052f a6e52b3
+Author: danielbengtsen <cph-db145@cphbusiness.dk>
+Date:   Tue May 12 11:54:48 2020 +0200
+
+    Merge branch 'master' of https://github.com/VeraUtil/Carport
+
+[33mcommit ba4052f8967aba1e2f7574154e9b4f43a24983af[m
+Author: danielbengtsen <cph-db145@cphbusiness.dk>
+Date:   Tue May 12 11:54:43 2020 +0200
+
+    Så er skur-stolper ikke neine problem mere
+
+[33mcommit a6e52b30316990887f96dae5c3d078de6752df1e[m
+Author: tullebob <jimmythangpham@hotmail.dk>
+Date:   Tue May 12 11:50:28 2020 +0200
+
+    hulbånd virker nu med og uden skur
+
+[33mcommit 91c4fa3e686d550c5a7f6ace35b9dc8a3fbeab55[m
+Author: Jannich <jannichhoejmose@gmail.com>
+Date:   Mon May 11 22:35:33 2020 +0200
+
+    Plantegning tilgængelig for admin siden
+
+[33mcommit cf22b9c323d090785144ec0a584139cb01ad5f4f[m
+Author: Jannich <jannichhoejmose@gmail.com>
+Date:   Mon May 11 20:15:44 2020 +0200
+
+    Visning af plantegning på admin side påbegyndt, mangler tilpasning
+
+[33mcommit b33a5edaaec3abbc300e46161ff0bff0bfbd3d2b[m
+Author: Jannich <jannichhoejmose@gmail.com>
+Date:   Mon May 11 18:18:42 2020 +0200
+
+    Skurstolper tilføjet
+
+[33mcommit 86294eed714060509c7069cf812760ee67dec6db[m
+Author: Jannich <jannichhoejmose@gmail.com>
+Date:   Mon May 11 17:34:05 2020 +0200
+
+    Tegning af skur burde virke
+
+[33mcommit f48f7ec7863f54a107c873ddf07586b9da2529a2[m
+Author: danielbengtsen <cph-db145@cphbusiness.dk>
+Date:   Mon May 11 16:59:49 2020 +0200
+
+    Nu er max-bredde på skur fra rem til rem af carport.
+
+[33mcommit bad761714c8048112a0d3f66f0d758d96e7f2e45[m
+Author: danielbengtsen <cph-db145@cphbusiness.dk>
+Date:   Mon May 11 16:38:45 2020 +0200
+
+    Så blev x, y, y, x til x, y, x, y i addRect
+
+[33mcommit 3009f2d3e97766c4d108ef81b35821c23361ed1f[m
+Author: danielbengtsen <cph-db145@cphbusiness.dk>
+Date:   Mon May 11 16:29:02 2020 +0200
+
+    Nu bør skur omrids virke
+
+[33mcommit 15b3b7ca86a6f094c0126b46388005a7f8720647[m
+Author: danielbengtsen <cph-db145@cphbusiness.dk>
+Date:   Mon May 11 15:44:07 2020 +0200
+
+    I gang med skur-mål. Den vil ikke helt.
+
+[33mcommit 3c0ee59fa4eef9c5e3abc799802682735991bb52[m
+Author: tullebob <jimmythangpham@hotmail.dk>
+Date:   Mon May 11 15:05:45 2020 +0200
+
+    stolper på skitse igang, + spær på skitse sidder nu korrekt.
+
+[33mcommit e7dbd1525af84f1934b1c534d80f922d9c07c04c[m
+Author: tullebob <jimmythangpham@hotmail.dk>
+Date:   Mon May 11 13:44:44 2020 +0200
+
+    mellemrum mellem spær på skitsen virker
+
+[33mcommit c4612efecaf652b32b3de156de734553d4abcb62[m
+Author: danielbengtsen <cph-db145@cphbusiness.dk>
+Date:   Mon May 11 12:50:28 2020 +0200
+
+    I gang med spær på carport-skitse.
+
+[33mcommit 351ea8b9df968800084a4e7712ffe67737c5a6df[m
+Author: tullebob <jimmythangpham@hotmail.dk>
+Date:   Mon May 11 11:21:21 2020 +0200
+
+    påbegyndt skitse af carport
+
+[33mcommit 5fcf7f84daf7dabcb3d2ab45bf2453367f8b36a5[m
+Author: tullebob <jimmythangpham@hotmail.dk>
+Date:   Fri May 8 22:50:01 2020 +0200
+
+    sortering af arraylister alfabetisk virker nu
+
+[33mcommit a023ac44be89d080d9bd1ef3fa283abd2a7f54f3[m
+Author: Bloom9900 <jannichhoejmose@gmail.com>
+Date:   Fri May 8 14:37:00 2020 +0200
+
+    Admin approval added to admin.jsp
+
+[33mcommit e57e8a3f04f14f33069502547b80d70d4f01f85b[m
+Author: danielbengtsen <cph-db145@cphbusiness.dk>
+Date:   Fri May 8 12:56:24 2020 +0200
+
+    I gang med sortering af ArrayList inde i ArrayList
+
+[33mcommit b2ca52f9d0e077749e8186ddb3887fe2d1641200[m
+Author: danielbengtsen <cph-db145@cphbusiness.dk>
+Date:   Fri May 8 11:58:45 2020 +0200
+
+    Så er materialelisten printet på siden med final pris. Dog bør listen sorteres efter alfabet ud fra kategori, index 0
+
+[33mcommit db60f588f6c2ed63b9dc6686b9fffc6cb00277b7[m
+Author: danielbengtsen <cph-db145@cphbusiness.dk>
+Date:   Fri May 8 10:40:37 2020 +0200
+
+    I arbejde på at få materialelisten til at blive vist. Bør virke i java, fejler på jsp.
+
+[33mcommit aaac9f0a4e507a5b480c9c97f4c6eaba960073e8[m
+Author: danielbengtsen <cph-db145@cphbusiness.dk>
+Date:   Fri May 8 09:47:20 2020 +0200
+
+    Safe-commit inden arbejde på at få materialelisten ud på jsp-siden
+
+[33mcommit 5471b0fbfc6c474e4b5f49277618a130081c5249[m
+Author: danielbengtsen <cph-db145@cphbusiness.dk>
+Date:   Fri May 8 09:33:57 2020 +0200
+
+    Så er alt merget og et lille billede er ændret til det korrekte på rejsning-jsp siden.
+
+[33mcommit 3831af1eb4991dc4cabc1e0c25e75227ac657e0b[m
+Merge: 0260f94 5d4aedf
+Author: danielbengtsen <cph-db145@cphbusiness.dk>
+Date:   Fri May 8 09:28:55 2020 +0200
+
+    Merge branch 'CleanUp'
+
+[33mcommit 0260f94e9811a8b5aaa3eadf7e6b2f74ff3799b3[m
+Merge: 42a5e5f 761b7f9
+Author: danielbengtsen <cph-db145@cphbusiness.dk>
+Date:   Fri May 8 09:27:13 2020 +0200
+
+    Merge branch 'CalcFromStorage'
+
+[33mcommit 5d4aedf3af9754673b8b56ed82c7c68eef5284c6[m[33m ([m[1;31morigin/CleanUp[m[33m)[m
+Author: Util <laymasterlolz@gmail.com>
+Date:   Thu May 7 23:19:54 2020 +0200
+
+    Forbedringer. Nu skulle den være der. Alt ser ud til at virke efter mine 1-1 tests
+
+[33mcommit 4048f2f3ae43fd758506d23576c6c2a9ac66c824[m
+Author: Util <laymasterlolz@gmail.com>
+Date:   Thu May 7 22:55:12 2020 +0200
+
+    Fix boolean logic with hasShed / hasPitch
+
+[33mcommit d7244dbc28ebfa31cfbad1735d6eb7db086cf792[m
+Author: Util <laymasterlolz@gmail.com>
+Date:   Thu May 7 22:29:40 2020 +0200
+
+    Fix shedwidth, shedlength, roof pich
+
+[33mcommit e00038b39364d301c0e294adabe0b684c0c37c1f[m
+Author: Util <laymasterlolz@gmail.com>
+Date:   Thu May 7 21:43:41 2020 +0200
+
+    Finjusteringer
+
+[33mcommit d4ec10f2b60b7184d1540d2d842867dda08704bb[m
+Author: Util <laymasterlolz@gmail.com>
+Date:   Thu May 7 21:37:35 2020 +0200
+
+    Fix problem med længder/priser
+
+[33mcommit 42a5e5f5120dd91bc755c25005a585bfab486880[m
+Author: Jannich <jannichhoejmose@gmail.com>
+Date:   Thu May 7 16:33:56 2020 +0200
+
+    Admin kan nu se ordre, som ikke er godkendt
+
+[33mcommit 761b7f911ed7cfe365469bbe7437ea9cc5ab3686[m[33m ([m[1;31morigin/CalcFromStorage[m[33m)[m
+Author: danielbengtsen <cph-db145@cphbusiness.dk>
+Date:   Thu May 7 15:20:25 2020 +0200
+
+    Så er udregning klar i forhold til storage-tabellen
+
+[33mcommit fc243e92e9e1ba00b1f542221ab7a3b42bee7421[m
+Author: danielbengtsen <cph-db145@cphbusiness.dk>
+Date:   Thu May 7 15:02:24 2020 +0200
+
+    Mangler kun implementering på 1 metode
+
+[33mcommit 5bece0c94fd49f3d223716add687ae3fc2a5f16e[m
+Author: danielbengtsen <cph-db145@cphbusiness.dk>
+Date:   Thu May 7 14:06:11 2020 +0200
+
+    Også implementeret på en til metode.
+
+[33mcommit 3c4d7fa010b3fdfd66974b26a48c6105846b9dc1[m
+Author: danielbengtsen <cph-db145@cphbusiness.dk>
+Date:   Thu May 7 13:58:38 2020 +0200
+
+    Man kan nu udregne fra storage i DB. Dog er det kun implementeret på 1 metode indtil videre.
+
+[33mcommit 7cefc822ede013368cbc6e050fe0889b21449647[m
+Author: danielbengtsen <cph-db145@cphbusiness.dk>
+Date:   Thu May 7 12:53:29 2020 +0200
+
+    Har fjernet en lille println
+
+[33mcommit af72c3b9112100f342d789d28dca0be57726b3aa[m
+Author: Util <laymasterlolz@gmail.com>
+Date:   Thu May 7 12:03:29 2020 +0200
+
+    Yderligere forsøg på at fixe
+
+[33mcommit 3949e7448878dec3d4656dff944850ed2676e427[m
+Author: danielbengtsen <cph-db145@cphbusiness.dk>
+Date:   Thu May 7 11:56:32 2020 +0200
+
+    Så er DB opdateret med storage- samt orderlines-tabeller oprettet. Så skal vi bare i gang med, at ændre vores beregninger ud fra brædtlængder
+
+[33mcommit f8c44663c7defd2f41592a3519257583f969e548[m[33m ([m[1;32mCleanUp[m[33m)[m
+Author: Util <laymasterlolz@gmail.com>
+Date:   Thu May 7 00:01:51 2020 +0200
+
+    Flere ændringer + fundet årsagen til pris problemet. Det sker fordi arraylisten bliver initialiseret før setter i carportdesign bliver kaldt. I tvivl ift. bedste design praksis måde at løse på
+
+[33mcommit 463165691d5e37abb50e6e9f3ec6889843cd9d9b[m
+Author: Util <laymasterlolz@gmail.com>
+Date:   Wed May 6 23:02:33 2020 +0200
+
+    Mere oprydning & forbedringer. Stadig problemer med at få vist pris korrekt
+
+[33mcommit c05fe922bf155aa898879ab68676d997dbdb8978[m
+Author: Util <laymasterlolz@gmail.com>
+Date:   Wed May 6 22:18:51 2020 +0200
+
+    Forsøg på at fordele variablerne og samtidig benytte encapsulation. Virker til at være lidt bugs og todo's
+
+[33mcommit e2658337f105ae663454bf490928259c4bad9f74[m
+Author: VeraD <laymasterlolz@gmail.com>
+Date:   Wed May 6 16:47:40 2020 +0200
+
+    Fjern forsøg på CarportHelper. Skal gøres på en smartere måde
+
+[33mcommit 9ea9e7d8f0e692d52eeff74fbf3310cc2a90d2ee[m
+Author: VeraD <laymasterlolz@gmail.com>
+Date:   Wed May 6 16:41:11 2020 +0200
+
+    Implementer pris på bestilling af carport. Igangsæt forsøg på en ny klasse kaldet CarportHelper
+
+[33mcommit 0f2fed3939bcc0743a9a175132aebafa46370301[m
+Author: VeraD <laymasterlolz@gmail.com>
+Date:   Wed May 6 16:34:05 2020 +0200
+
+    Fix condition fejl ift. rejsning & fladt tag og små ændringer
+
+[33mcommit 32e611a3ecbb89919e9eee0c4aec5a56956f9afa[m
+Author: VeraD <laymasterlolz@gmail.com>
+Date:   Wed May 6 16:16:29 2020 +0200
+
+    Lidt ændringer ift. Carport objekt. Vi har nu to yderligere CarportFlat & CarportPitch som extender derfra
+
+[33mcommit e60fcb8cbe0b0f965c9422d4fdd80785307fdd3a[m
+Author: Jannich <jannichhoejmose@gmail.com>
+Date:   Wed May 6 15:50:58 2020 +0200
+
+    Price added
+
+[33mcommit dcba9920b76060d794658a1f99c66c215debfbbd[m
+Author: Jannich <jannichhoejmose@gmail.com>
+Date:   Wed May 6 15:06:18 2020 +0200
+
+    shedHeight not working
+
+[33mcommit 8cf201a1aa6e9feb86eb6f68967311c2cd17f145[m
+Author: danielbengtsen <cph-db145@cphbusiness.dk>
+Date:   Wed May 6 14:18:12 2020 +0200
+
+    Nu kan data trækkes fra hjemmesiden til et carport-objekt
+
+[33mcommit 3afcbaf227494559234e6f00e006b3cf7b67609f[m
+Author: danielbengtsen <cph-db145@cphbusiness.dk>
+Date:   Wed May 6 13:36:45 2020 +0200
+
+    Så kan alt beregnes og laves til en materialeliste. Nu skal refaktureing startes på.
+
+[33mcommit edb165d365c2ce38e7bca89f20e28b6cdb9b764b[m
+Author: danielbengtsen <cph-db145@cphbusiness.dk>
+Date:   Wed May 6 11:35:37 2020 +0200
+
+    Så er den samlede pris udregnet. Vi mangler stadig noget taglægte info-beregning på rejsningstag
+
+[33mcommit 6457309671dd00031e3ffa7cff38c9b4ff567876[m
+Author: danielbengtsen <cph-db145@cphbusiness.dk>
+Date:   Tue May 5 16:07:24 2020 +0200
+
+    Flere ting er nu udregnet til rejsningstag. Er næsten færdigt (mangler nogle taglægter og skruer)
+
+[33mcommit 32289de5c22b9a026c17e65b440eb46930346394[m
+Merge: f9dfc75 94b8e20
+Author: Jannich <jannichhoejmose@gmail.com>
+Date:   Tue May 5 14:08:44 2020 +0200
+
+    Merge branch 'master' of https://github.com/VeraUtil/Carport
+
+[33mcommit f9dfc753434d593723918276748b350340df0255[m
+Author: Jannich <jannichhoejmose@gmail.com>
+Date:   Tue May 5 14:08:33 2020 +0200
+
+    Idk
+
+[33mcommit 94b8e206176ef1ff768be5d671a25d0c21e022e5[m
+Author: VeraD <laymasterlolz@gmail.com>
+Date:   Tue May 5 13:40:07 2020 +0200
+
+    DB til resten af rejsning tag
+
+[33mcommit 373d3ccb842c0b87be596cc3aef22030b4cedf36[m
+Author: VeraD <laymasterlolz@gmail.com>
+Date:   Tue May 5 13:00:57 2020 +0200
+
+    DB for tagpakke
+
+[33mcommit 47e531532478cd3f9d17a8f6498a267532699065[m
+Author: Bloom9900 <jannichhoejmose@gmail.com>
+Date:   Tue May 5 12:56:35 2020 +0200
+
+    Tag med rejsning begyndt materiale liste
+
+[33mcommit 0ce0ae5ee14083bea5f97019c3ffb60a0b6434f6[m
+Author: tullebob <jimmythangpham@hotmail.dk>
+Date:   Tue May 5 11:05:25 2020 +0200
+
+    færdigjort sidste info om fladt tag med skur
+
+[33mcommit 14e1d31ea11b7a9cfe66ead49d8817909ca5614f[m
+Author: danielbengtsen <cph-db145@cphbusiness.dk>
+Date:   Mon May 4 16:05:02 2020 +0200
+
+    Så er brædt til skurbeklædning udregnet
+
+[33mcommit 54a526843bccdc1980b240f6708e6f7bd0a1300a[m
+Author: danielbengtsen <cph-db145@cphbusiness.dk>
+Date:   Mon May 4 15:27:24 2020 +0200
+
+    Så er rem i skuret udregnet.
+
+[33mcommit b9d732072aefa2e4b232980eca0bb4619f83a4c9[m
+Author: danielbengtsen <cph-db145@cphbusiness.dk>
+Date:   Mon May 4 15:12:15 2020 +0200
+
+    Løsholte er udregnet i skuret.
+
+[33mcommit e92a36c178f08f2e382c03890e100d795876e77c[m
+Author: danielbengtsen <cph-db145@cphbusiness.dk>
+Date:   Mon May 4 12:54:52 2020 +0200
+
+    I gang med problemløsning på stolpe-rækkefølge i arraylisten. IndexOutOfBoundsException er løst nu.
+
+[33mcommit 457f414a8b354385d3eaa1c508e388de85ff98a2[m
+Author: tullebob <jimmythangpham@hotmail.dk>
+Date:   Mon May 4 11:55:38 2020 +0200
+
+    tilføjet hasShed til material calculator metoder
+
+[33mcommit 02174e40f04ee6331491101bdd39a816d6ce6daa[m
+Author: Bloom9900 <jannichhoejmose@gmail.com>
+Date:   Mon May 4 11:01:43 2020 +0200
+
+    Rettet i vores hulbånds formler
+
+[33mcommit a871a52cbede31991fa1b98fce5ffbd068801483[m
+Author: tullebob <jimmythangpham@hotmail.dk>
+Date:   Mon May 4 09:41:28 2020 +0200
+
+    ka ikke huske hvad der blevet lavet
+
+[33mcommit bf8d3764adecd0226128d2cd789e5ff2589f5b9c[m
+Author: Bloom9900 <jannichhoejmose@gmail.com>
+Date:   Fri May 1 12:18:56 2020 +0200
+
+    Materialeliste for fladt tag uden skur bliver færdiggjort og med skur er undervejs
+
+[33mcommit 39358da0aaa8a5c6424a8eb36a3022b489658a35[m
+Merge: dd26625 e8dae93
+Author: Bloom9900 <jannichhoejmose@gmail.com>
+Date:   Thu Apr 30 15:12:38 2020 +0200
+
+    Merge branch 'master' of https://github.com/VeraUtil/Carport
+
+[33mcommit dd266252c6228f3ed359dbe26d8b17793c3013c0[m
+Author: Bloom9900 <jannichhoejmose@gmail.com>
+Date:   Thu Apr 30 15:12:25 2020 +0200
+
+    PlankWaterScrew
+
+[33mcommit e8dae932d86a19cb09c443f4a404e2918193f224[m
+Author: VeraD <laymasterlolz@gmail.com>
+Date:   Thu Apr 30 13:53:29 2020 +0200
+
+    Ret fejlbesked
+
+[33mcommit ea4ca98c5ed038887c6c6aeaadd425346934e264[m
+Author: Bloom9900 <jannichhoejmose@gmail.com>
+Date:   Thu Apr 30 13:47:51 2020 +0200
+
+    Hej
+
+[33mcommit 4f5f69057c68e979e3212d4acba4e5cb200db081[m
+Author: Bloom9900 <jannichhoejmose@gmail.com>
+Date:   Thu Apr 30 13:29:02 2020 +0200
+
+    Safe push to avoid mistakes
+
+[33mcommit e622502fbd5b38e3920a966cf9b032a91c62f0af[m
+Author: tullebob <jimmythangpham@hotmail.dk>
+Date:   Thu Apr 30 12:11:16 2020 +0200
+
+    info om buundskruer til tagplader lavet.
+
+[33mcommit 84f3d337af61b663f4f6107cc699840add56d058[m
+Author: tullebob <jimmythangpham@hotmail.dk>
+Date:   Thu Apr 30 11:35:04 2020 +0200
+
+    info om under, oversternsbrædder, vandbrædt, tagplader er lavet.
+
+[33mcommit ad47ff991ca176299f0f55271d50c24b3166f4f8[m
+Author: VeraD <laymasterlolz@gmail.com>
+Date:   Wed Apr 29 15:10:46 2020 +0200
+
+    Ret fejl på SQL
+
+[33mcommit 2a460ac5cd6a32ca688ca3db4c8ccba3e149e296[m
+Author: VeraD <laymasterlolz@gmail.com>
+Date:   Wed Apr 29 14:58:37 2020 +0200
+
+    Rediger database-struktur med ny tabel og implementer i java (materialmapper)
+
+[33mcommit e6b2f00c9771dc8f41e9d92a348005834bab2c8f[m
+Author: danielbengtsen <cph-db145@cphbusiness.dk>
+Date:   Wed Apr 29 12:00:25 2020 +0200
+
+    Stolper er nu beregnet og data er udregnet til brug i materialelisten
+
+[33mcommit dbb5ce1f6e74d0ebd2c0f2fb12a6fbd315a40b61[m
+Author: danielbengtsen <cph-db145@cphbusiness.dk>
+Date:   Tue Apr 28 15:41:34 2020 +0200
+
+    Arbejder på at hente data fra DB om stolper, så materiale-liste kan laves ud fra stolperne
+
+[33mcommit 13c745ab1afe9d7660a48714d064f875c1fb098c[m
+Author: danielbengtsen <cph-db145@cphbusiness.dk>
+Date:   Tue Apr 28 15:27:59 2020 +0200
+
+    Længde af stolper er nu regnet ud fra træ-mål i DB
+
+[33mcommit 43b36c0958759b58b2183c646c2a39a8e209f7de[m
+Author: danielbengtsen <cph-db145@cphbusiness.dk>
+Date:   Tue Apr 28 14:11:10 2020 +0200
+
+    ID er implementeret i DB samt i metoderne i MaterialCalculator og MaterialMapper
+
+[33mcommit c55e42a38e745faf8820af99c4d8ba49327a7344[m
+Author: danielbengtsen <cph-db145@cphbusiness.dk>
+Date:   Tue Apr 28 13:03:42 2020 +0200
+
+    hulbånd er nu udregnet ud fra kundes valgte mål og DB-info for carport med fladt tag og uden skur
+
+[33mcommit 790cdeb88ba7756921c868a9ed585b7a7dd58659[m
+Author: tullebob <jimmythangpham@hotmail.dk>
+Date:   Tue Apr 28 12:02:06 2020 +0200
+
+    sql.script
+
+[33mcommit d1ffe8cb4d06cd48bb1ea0e74d39d8220c15006c[m
+Author: tullebob <jimmythangpham@hotmail.dk>
+Date:   Tue Apr 28 11:42:42 2020 +0200
+
+    materialmapper metoder, trække data ud fra DB til materiale liste.
+    git push
+
+[33mcommit e7dd8ebd8df7f8b4f51d199934cf2a0e31c7424d[m
+Author: Jannich <jannichhoejmose@gmail.com>
+Date:   Mon Apr 27 16:41:46 2020 +0200
+
+    Tilpasset mængde af stolper+højde
+
+[33mcommit a640f912c4d1993969d4a1051b575d6892d2c1bf[m
+Author: Jannich <jannichhoejmose@gmail.com>
+Date:   Mon Apr 27 16:07:59 2020 +0200
+
+    Taghældning fixet med tangent
+
+[33mcommit dde85fb1b572b8f7fa1ed028553fb091090a29e9[m
+Author: danielbengtsen <cph-db145@cphbusiness.dk>
+Date:   Mon Apr 27 13:20:47 2020 +0200
+
+    Har udregnet antal stolper, antal spær samt hulbånd (placering/montering og længe hulbånd)
+
+[33mcommit 27526f1dacc450d8013334007db328b1de7ee25f[m
+Author: danielbengtsen <cph-db145@cphbusiness.dk>
+Date:   Mon Apr 27 10:58:14 2020 +0200
+
+    Data for fladt tag indsat i material_list i MySQL
+
+[33mcommit 9a892cb01a756f0cf6b56e12e4f30efd320b7d27[m
+Author: Bloom9900 <jannichhoejmose@gmail.com>
+Date:   Fri Apr 24 14:50:47 2020 +0200
+
+    materiale liste
+
+[33mcommit 1c85d4847316f827ef449ab0b468eaa57f13ab22[m
+Author: VeraD <laymasterlolz@gmail.com>
+Date:   Fri Apr 24 13:28:02 2020 +0200
+
+    Validering på bredde og længde ved skurret. Skurrets bredde & længde kan ikke være større end carporten nu.
+
+[33mcommit cb73fbcee2be7d96017b4bbfaed866ce1ead2da7[m
+Author: danielbengtsen <cph-db145@cphbusiness.dk>
+Date:   Fri Apr 24 11:48:50 2020 +0200
+
+    Højde også implementeret på rejsningstag-siden. Virker som det skal.
+
+[33mcommit bb2621cc20e2f1a0cab0940364a361d8b84b1a09[m
+Author: VeraD <laymasterlolz@gmail.com>
+Date:   Fri Apr 24 11:38:31 2020 +0200
+
+    Fix højden i dropdown
+
+[33mcommit c7eaca50ac0fa2769ddcc66cc13c718b04da65e5[m
+Author: danielbengtsen <cph-db145@cphbusiness.dk>
+Date:   Fri Apr 24 11:29:16 2020 +0200
+
+    Højde er implementeret i klasser og på siden, men værdierne initialiseres ikke.
+
+[33mcommit 234a06e6fc273d408ff0594997c6404ddf63383e[m
+Author: danielbengtsen <cph-db145@cphbusiness.dk>
+Date:   Wed Apr 22 13:38:10 2020 +0200
+
+    Hygge-push blev push'et lidt for hurtigt uden test. Den virker nu
+
+[33mcommit f0f2377c84357ab26e91ef7bc3bc1b2ab3d6e6ce[m
+Author: danielbengtsen <cph-db145@cphbusiness.dk>
+Date:   Wed Apr 22 13:22:32 2020 +0200
+
+    Lille hygge-push, hvor cm og grader er tilføjet til dropdown-menuerne
+
+[33mcommit 2458df8475b811a084f393da06a2e0058d89b7ea[m
+Author: danielbengtsen <cph-db145@cphbusiness.dk>
+Date:   Wed Apr 22 13:08:17 2020 +0200
+
+    Kurven er lavet og virker... indtil videre. Det kan være vi støder på problemer senere.
+
+[33mcommit 978370a0d1a9098de47e0a399ba99033eeba87a3[m
+Author: VeraD <laymasterlolz@gmail.com>
+Date:   Tue Apr 21 14:20:53 2020 +0200
+
+    Forbind rejsningtag siden til DB, så form nu har en funktion, hvor der bliver insertet til DB. Merge rejsningtag og flattag java siden til én samlet java klasse
+
+[33mcommit 29d67657a84bfcca6fe0948eb242f426584851e8[m
+Author: VeraD <laymasterlolz@gmail.com>
+Date:   Tue Apr 21 13:37:31 2020 +0200
+
+    Fix problem med nullpointer, hvis ikke man udfyldte dropdowns i ekstra checkbox
+
+[33mcommit d52247ca1410ed18deaf53f948012d92efa036a8[m
+Author: danielbengtsen <cph-db145@cphbusiness.dk>
+Date:   Tue Apr 21 13:28:05 2020 +0200
+
+    Initialisering af lister efter submit er fikset.
+
+[33mcommit 262f32dd53a6a9e208bbbb3cf5ff77370c97fbd2[m
+Author: danielbengtsen <cph-db145@cphbusiness.dk>
+Date:   Tue Apr 21 13:16:18 2020 +0200
+
+    null-værdier i checkbox fikset!
+
+[33mcommit 37fb697bcce4468bd1b7ad5940121c19a0cf9b03[m
+Author: danielbengtsen <cph-db145@cphbusiness.dk>
+Date:   Tue Apr 21 12:58:37 2020 +0200
+
+    Under arbejde på validering af skur eller ej på fladttag-siden
+
+[33mcommit 1f85fca05239885d31dc29fdeeb6c88d022e98a0[m
+Author: danielbengtsen <cph-db145@cphbusiness.dk>
+Date:   Tue Apr 21 11:12:47 2020 +0200
+
+    Første udkast til domænemodel er lavet
+
+[33mcommit 99d4b5494054ec00af0150b625498ac369640fcc[m
+Author: Bloom9900 <jannichhoejmose@gmail.com>
+Date:   Tue Apr 21 10:43:32 2020 +0200
+
+    Opret/Login tilføjet
+
+[33mcommit 60a2308db22e27425143a4638eeaac71aed0b9f9[m[33m ([m[1;31morigin/brugerBranch[m[33m)[m
+Author: Jannich <jannichhoejmose@gmail.com>
+Date:   Tue Apr 21 04:34:40 2020 +0200
+
+    Har prøvet at gå i gang med at oprette bruger
+
+[33mcommit ec652c8b429ff1cfef5b752e6836f3764b1b4108[m
+Author: VeraD <laymasterlolz@gmail.com>
+Date:   Mon Apr 20 15:04:12 2020 +0200
+
+    Tilføj til rejsningtag og tilføj taghældning i dropdown og koble den til DB
+
+[33mcommit 7edf1688976a2c7b311c73dd998af8c2a5ce9611[m
+Author: Bloom9900 <jannichhoejmose@gmail.com>
+Date:   Mon Apr 20 14:23:20 2020 +0200
+
+    Dropdowns på fladt tag bliver færdige
+
+[33mcommit 988309409909b6dbe64f3910a9d9a11beafc490a[m
+Author: danielbengtsen <cph-db145@cphbusiness.dk>
+Date:   Mon Apr 20 14:16:28 2020 +0200
+
+    Skur-længde og -bredde data indsat i DB
+
+[33mcommit ec35635882815f7646a15f82a44b8e886f8ebd74[m
+Author: danielbengtsen <cph-db145@cphbusiness.dk>
+Date:   Mon Apr 20 14:03:57 2020 +0200
+
+    Fejl på index-siden måske løst
+
+[33mcommit ce10e10e658075ba623d326ec79b76c7d98c24be[m
+Merge: 17dc058 969c57a
+Author: Bloom9900 <jannichhoejmose@gmail.com>
+Date:   Mon Apr 20 13:51:21 2020 +0200
+
+    Merge branch 'master' of https://github.com/VeraUtil/Carport
+
+[33mcommit 17dc058761427d5dd2b8a6031eda138e8473af58[m
+Author: Bloom9900 <jannichhoejmose@gmail.com>
+Date:   Mon Apr 20 13:51:16 2020 +0200
+
+    JavaScript checkbox med skur
+
+[33mcommit 969c57a720cf4aab62b3fa4f150ae985c392ae52[m
+Author: danielbengtsen <cph-db145@cphbusiness.dk>
+Date:   Mon Apr 20 13:47:03 2020 +0200
+
+    Refactor af lengths og widths til carportLengths og carportWidths
+
+[33mcommit 0cbdb9bb1f45de8a6353fe7c9c904edd35b232aa[m
+Author: danielbengtsen <cph-db145@cphbusiness.dk>
+Date:   Mon Apr 20 13:41:18 2020 +0200
+
+    Skur-længde og -bredde fra DB kan hentes til Java. Mangler JS til checkbox på jsp
+
+[33mcommit 7f6d3a52e8cb02a2c35d2f752c3dc195a667cfa5[m
+Author: Bloom9900 <jannichhoejmose@gmail.com>
+Date:   Mon Apr 20 13:33:44 2020 +0200
+
+    Dropdowns for fladt tag næsten færdige
+
+[33mcommit 174c0fd5d0581b122d1b9eed2a0ca9acd2ab3265[m
+Author: Bloom9900 <jannichhoejmose@gmail.com>
+Date:   Mon Apr 20 12:20:05 2020 +0200
+
+    Caport measures dropdown done
+
+[33mcommit d26dca16e3695b63bed6e1c793722b9f8e1d7fa1[m
+Author: Bloom9900 <jannichhoejmose@gmail.com>
+Date:   Mon Apr 20 12:04:15 2020 +0200
+
+    Dropdown opdateret
+
+[33mcommit 1ffa6bf91b82fd2055d16f6313cfd2552b071940[m
+Author: Bloom9900 <jannichhoejmose@gmail.com>
+Date:   Mon Apr 20 11:41:06 2020 +0200
+
+    Tilføjer første dropdown
+
+[33mcommit 1ffd7ccb62831963feb96e7d0d57505bfedd6101[m
+Author: Bloom9900 <jannichhoejmose@gmail.com>
+Date:   Mon Apr 20 10:44:36 2020 +0200
+
+    Fladttag påbegyndt
+
+[33mcommit 286f73b95c3583aa77d207c0f28c7cbddf70e24d[m
+Author: Bloom9900 <jannichhoejmose@gmail.com>
+Date:   Mon Apr 20 10:31:25 2020 +0200
+
+    Slettet Nav-bar til senere opdatering
+
+[33mcommit 72c9141eb905296e8878a2dcd36ae5be0c388279[m
+Author: VeraD <laymasterlolz@gmail.com>
+Date:   Mon Apr 20 10:08:35 2020 +0200
+
+    Tilføj Jon's ændringer
+
+[33mcommit e14881f3638039d69fbb49338a087190aa2877fb[m
+Author: VeraD <laymasterlolz@gmail.com>
+Date:   Fri Apr 17 14:51:43 2020 +0200
+
+    Klargør Rejsningtag og fladttag siderne
+
+[33mcommit 5c1b493ad9520830ffa5c5bb6d4e4fb6cda3c277[m
+Author: Jannich <jannichhoejmose@gmail.com>
+Date:   Fri Apr 17 14:44:36 2020 +0200
+
+    Billeder centreret på samme række + opacity
+
+[33mcommit 9ed2ecf8151adbbdede221c97b572adc76034b4b[m
+Merge: 689d76f 97643e9
+Author: VeraD <laymasterlolz@gmail.com>
+Date:   Fri Apr 17 14:29:40 2020 +0200
+
+    Merge
+
+[33mcommit 689d76f010339b7b54603c05932b393367e0dccd[m
+Author: VeraD <laymasterlolz@gmail.com>
+Date:   Fri Apr 17 14:27:28 2020 +0200
+
+    Tilføj tekst på index og billeder & carport-type
+
+[33mcommit 97643e9f9c0d5571722c88ab2a22dc08f69e01df[m
+Author: Jannich <jannichhoejmose@gmail.com>
+Date:   Fri Apr 17 14:11:22 2020 +0200
+
+    SQL script opdateret
+
+[33mcommit 33d04158e55ecf586a8e167f0be43ed59689092e[m
+Author: Bloom9900 <jannichhoejmose@gmail.com>
+Date:   Fri Apr 17 13:01:55 2020 +0200
+
+    Data added to script
+
+[33mcommit 72436c5b5bd42829c507e05877db304842e92fc5[m
+Author: danielbengtsen <cph-db145@cphbusiness.dk>
+Date:   Fri Apr 17 12:45:56 2020 +0200
+
+    Database oprettet, 1. udkast. Indholdende data der hentes fra DB til jsp af tag, carport og skur
+
+[33mcommit 55814ab5265a62a19495702b72af6265238640db[m
+Author: danielbengtsen <cph-db145@cphbusiness.dk>
+Date:   Thu Apr 16 12:56:16 2020 +0200
+
+    Fog-info i footeren.
+
+[33mcommit 7173e796c9c154f7b13fab806b4a59d4b8bc41e4[m
+Author: VeraD <laymasterlolz@gmail.com>
+Date:   Thu Apr 16 12:03:48 2020 +0200
+
+    Tilføj redirect klasse, til når der bliver behov for den
+
+[33mcommit fda1f598e7570bba92dfcd4852d49899103be98b[m
+Author: VeraD <laymasterlolz@gmail.com>
+Date:   Thu Apr 16 11:59:47 2020 +0200
+
+    Ændring på connector, så vi kan bruge vores eget login - uden at det skifter
+
+[33mcommit 06707d7c7d4403e1bf90ea974a448b3a90a950f2[m
+Author: VeraD <laymasterlolz@gmail.com>
+Date:   Thu Apr 16 11:53:54 2020 +0200
+
+    Fjern gamle kommentarer, ret sider, tilføj nyt design, inkluder include files, css og klargørelse på design
+
+[33mcommit d7b8483fada4f70a26789b9c8629145e7037c4bd[m
+Author: VeraD <laymasterlolz@gmail.com>
+Date:   Thu Apr 16 10:09:18 2020 +0200
+
+    Tilføj ProjektSkabelon initial

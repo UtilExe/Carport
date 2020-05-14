@@ -129,7 +129,7 @@ public class CarportHelper {
     private int carportWidthCM;
     private int carportHeight;
 
-    public CarportHelper(int carportLengthCM, int carportWidthCM, int carportHeight, int shedLength, int shedWidth, int carportPitch) {
+    public CarportHelper(int carportLengthCM, int carportWidthCM, int carportHeight, int shedLength, int shedWidth, int carportPitch) throws UniversalSampleException {
         if (shedLength > 0 && shedWidth > 0) {
             setHasShed(true);
         }
@@ -371,7 +371,7 @@ public class CarportHelper {
 
 
 
-    public String svgDrawing(int carportLength, int carportHeight, boolean hasShed) {
+    public String svgDrawing(int carportLength, int carportHeight, boolean hasShed) throws UniversalSampleException {
         final int MARKER_HEIGHT = 12;
         final int Y_DATA = 10;
         final int X_DATA = 75;
@@ -515,7 +515,7 @@ public class CarportHelper {
         return svgInnerDrawing.toString() + svg.toString() + "</svg> </svg>";
     }
 
-    public String svgDrawingFront(int carportLength, int carportHeight, boolean hasShed) {
+    public String svgDrawingFront(int carportLength, int carportHeight, boolean hasShed) throws UniversalSampleException {
         double viewboxX = 0.0;
         double viewboxY = 0.0;
         double cHeightViewY = 0.0;

@@ -1,9 +1,6 @@
 package DBAccess;
 
-import FunctionLayer.MaterialCalculator;
-import FunctionLayer.MaterialFacade;
-import FunctionLayer.Operations;
-import FunctionLayer.ValidationValues;
+import FunctionLayer.*;
 
 import javax.validation.Valid;
 import java.sql.*;
@@ -13,7 +10,7 @@ public class MaterialMapper {
 
     private static MaterialCalculator calcPrice = new MaterialCalculator();
 
-    public static ArrayList<Integer> getLengthsFromStorage(int ID) {
+    public static ArrayList<Integer> getLengthsFromStorage(int ID) throws UniversalSampleException {
         ArrayList<Integer> lengths = new ArrayList<>();
         try {
             Connection con = Connector.connection();
@@ -26,13 +23,16 @@ public class MaterialMapper {
                 lengths.add(length);
             }
         } catch (SQLException | ClassNotFoundException ex) {
-            ex.printStackTrace();
+            String methodName = "getLengthsFromStorage";
+            UniversalSampleException.exceptionIfsDB(ex.getMessage(), methodName);
+            UniversalSampleException.exceptionIfLast(ex.getMessage(), methodName);
+            
         }
         return lengths;
 
     }
 
-    public static ArrayList<String> getRoofData(int ID, int measure, int tmpAmount) {
+    public static ArrayList<String> getRoofData(int ID, int measure, int tmpAmount) throws UniversalSampleException {
         ArrayList<String> data = new ArrayList<>();
         String amount = String.valueOf(tmpAmount);
         String carpMeasure = String.valueOf(measure);
@@ -61,12 +61,14 @@ public class MaterialMapper {
                 data.add(price + " kr.");
             }
         } catch (SQLException | ClassNotFoundException ex) {
-            ex.printStackTrace();
+            String methodName = "getRoofData";
+            UniversalSampleException.exceptionIfsDB(ex.getMessage(), methodName);
+            UniversalSampleException.exceptionIfLast(ex.getMessage(), methodName);
         }
         return data;
     }
 
-    public static ArrayList<String> getScrewsAndTilesData(int ID, int tmpAmount) {
+    public static ArrayList<String> getScrewsAndTilesData(int ID, int tmpAmount) throws UniversalSampleException {
         ArrayList<String> data = new ArrayList<>();
         String amount = String.valueOf(tmpAmount);
 
@@ -93,12 +95,14 @@ public class MaterialMapper {
                 data.add(price + " kr.");
             }
         } catch (SQLException | ClassNotFoundException ex) {
-            ex.printStackTrace();
+            String methodName = "getScrewsAndTilesData";
+            UniversalSampleException.exceptionIfsDB(ex.getMessage(), methodName);
+            UniversalSampleException.exceptionIfLast(ex.getMessage(), methodName);
         }
         return data;
     }
 
-    public static int getAmountPrUnit(int ID) {
+    public static int getAmountPrUnit(int ID) throws UniversalSampleException {
         String amountPrUnit = "";
         int resultAmount = 0;
         String[] splittedArr = new String[2];
@@ -116,12 +120,14 @@ public class MaterialMapper {
             }
 
         } catch (SQLException | ClassNotFoundException ex) {
-            ex.printStackTrace();
+            String methodName = "getAmountPrUnit";
+            UniversalSampleException.exceptionIfsDB(ex.getMessage(), methodName);
+            UniversalSampleException.exceptionIfLast(ex.getMessage(), methodName);
         }
         return resultAmount;
     }
 
-    public static ArrayList<String> getBandData(int ID, int bandLength, int rolesOfBand) {
+    public static ArrayList<String> getBandData(int ID, int bandLength, int rolesOfBand) throws UniversalSampleException {
         ArrayList<String> data = new ArrayList<>();
         double bandLengthToMeters = bandLength / 100.0;
         String[] amountPrUnitSplitted = new String[2];
@@ -156,12 +162,14 @@ public class MaterialMapper {
                 data.add(price + " kr.");
             }
         } catch (SQLException | ClassNotFoundException ex) {
-            ex.printStackTrace();
+            String methodName = "getBandData";
+            UniversalSampleException.exceptionIfsDB(ex.getMessage(), methodName);
+            UniversalSampleException.exceptionIfLast(ex.getMessage(), methodName);
         }
         return data;
     }
 
-    public static ArrayList<Double> getWidthHeightFromDimensionMeasureInCM(int ID) {
+    public static ArrayList<Double> getWidthHeightFromDimensionMeasureInCM(int ID) throws UniversalSampleException {
         ArrayList<Double> widthHeightMeasure = new ArrayList<>();
         String[] descriptionSplitted = new String[2];
 
@@ -185,12 +193,14 @@ public class MaterialMapper {
             }
 
         } catch (SQLException | ClassNotFoundException ex) {
-            ex.printStackTrace();
+            String methodName = "getWidthHeightFromDimensionMeasureInCM";
+            UniversalSampleException.exceptionIfsDB(ex.getMessage(), methodName);
+            UniversalSampleException.exceptionIfLast(ex.getMessage(), methodName);
         }
         return widthHeightMeasure;
     }
 
-    public static ArrayList<String> getPillarData(int ID, int pillarAmount, ArrayList<Double> pillarLengths) {
+    public static ArrayList<String> getPillarData(int ID, int pillarAmount, ArrayList<Double> pillarLengths) throws UniversalSampleException {
         ArrayList<String> data = new ArrayList<>();
         String[] descriptionSplitted = new String[2];
         double biggestLength = 0;
@@ -229,13 +239,15 @@ public class MaterialMapper {
                 data.add(price + " kr.");
             }
         } catch (SQLException | ClassNotFoundException ex) {
-            ex.printStackTrace();
+            String methodName = "getLengthsFromStorage";
+            UniversalSampleException.exceptionIfsDB(ex.getMessage(), methodName);
+            UniversalSampleException.exceptionIfLast(ex.getMessage(), methodName);
         }
         return data;
     }
 
 
-    public static ArrayList<String> getTransomAndHeadInShedData(int ID, int[] transomsOrHeads) {
+    public static ArrayList<String> getTransomAndHeadInShedData(int ID, int[] transomsOrHeads) throws UniversalSampleException {
         ArrayList<String> data = new ArrayList<>();
         int totalAmount = 0;
         int totalLength = 0;
@@ -276,14 +288,16 @@ public class MaterialMapper {
                 data.add(price + " kr.");
             }
         } catch (SQLException | ClassNotFoundException ex) {
-            ex.printStackTrace();
+            String methodName = "getTransomAndHeadInShedData";
+            UniversalSampleException.exceptionIfsDB(ex.getMessage(), methodName);
+            UniversalSampleException.exceptionIfLast(ex.getMessage(), methodName);
         }
         return data;
     }
 
 
 
-    public static ArrayList<String> getPlankData(int ID, int height, int plankAmount) {
+    public static ArrayList<String> getPlankData(int ID, int height, int plankAmount) throws UniversalSampleException {
         ArrayList<String> data = new ArrayList<>();
         ArrayList<Integer> lengths = getLengthsFromStorage(ID);
         ArrayList<Integer> woodAmountAndLength = calcPrice.getWoodForMeasure(height, lengths, plankAmount);
@@ -312,7 +326,9 @@ public class MaterialMapper {
 
             }
         } catch (SQLException | ClassNotFoundException ex) {
-            ex.printStackTrace();
+            String methodName = "getPlankData";
+            UniversalSampleException.exceptionIfsDB(ex.getMessage(), methodName);
+            UniversalSampleException.exceptionIfLast(ex.getMessage(), methodName);
         }
         return data;
     }

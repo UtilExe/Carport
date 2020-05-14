@@ -81,7 +81,7 @@ public class MaterialCalculator {
         return result;
     }
 
-    public int getRolesAmountBand(int bandLength) {
+    public int getRolesAmountBand(int bandLength) throws UniversalSampleException {
         int result;
         final int BAND_ID = 10;
         final int BAND_PR_ROLES = MaterialFacade.getAmountPrUnit(BAND_ID);
@@ -94,7 +94,7 @@ public class MaterialCalculator {
     // af carport til rem være 35 cm på hver side (30 cm bagtil).
 
 
-    public ArrayList<Double> getPillarHeight(int carportHeight, double carportLength, boolean hasShed, int shedLength, boolean hasPitch, int shedWidth, int carportWidth) {
+    public ArrayList<Double> getPillarHeight(int carportHeight, double carportLength, boolean hasShed, int shedLength, boolean hasPitch, int shedWidth, int carportWidth) throws UniversalSampleException {
         ArrayList<Double> stolper = new ArrayList<Double>();
         final int HEAD_ID = 6;
         final int FACIA_ID = 1;
@@ -150,7 +150,7 @@ public class MaterialCalculator {
         return number;
     }
 
-    public int getRoofTileAmount(int carportLength, int carportWidth) {
+    public int getRoofTileAmount(int carportLength, int carportWidth) throws UniversalSampleException {
         final int ROOF_TILE_ID = 8;
         double roofTileLength = MaterialFacade.getWidthHeightFromDimensionMeasureInCM(ROOF_TILE_ID).get(1);
         double roofTileWidth = MaterialFacade.getWidthHeightFromDimensionMeasureInCM(ROOF_TILE_ID).get(0);
@@ -163,7 +163,7 @@ public class MaterialCalculator {
         return roofTileAmount;
     }
 
-    public int getRoofScrewAmount(int carportLength, int carportWidth, int ID) {
+    public int getRoofScrewAmount(int carportLength, int carportWidth, int ID) throws UniversalSampleException {
         int roofArea = carportLength * carportWidth;
         final int SCREW_PR_M2 = 12;
         final int CM_TO_M2 = 10000;
@@ -259,7 +259,7 @@ public class MaterialCalculator {
         return result;
     }
 
-    public int getPlanksForShed(int shedLength, int shedWidth) {
+    public int getPlanksForShed(int shedLength, int shedWidth) throws UniversalSampleException {
         int result;
         // ID til brædtet, der skal bruges:
         final int PLANK_ID = 3;
@@ -277,7 +277,7 @@ public class MaterialCalculator {
         return result;
     }
 
-    public int getOuterScrewsShed(int shedLength, int shedWidth, int ID) {
+    public int getOuterScrewsShed(int shedLength, int shedWidth, int ID) throws UniversalSampleException {
         int result;
         int planksForShed = getPlanksForShed(shedLength, shedWidth);
         // Vi antager, at der skal bruges 2 skruer pr. ydre bræt.
@@ -289,7 +289,7 @@ public class MaterialCalculator {
 
     }
 
-    public int getInnerScrewsShed(int shedLength, int shedWidth, int ID) {
+    public int getInnerScrewsShed(int shedLength, int shedWidth, int ID) throws UniversalSampleException {
         int result;
         // Vi antager, at der bruges 4 skruer pr. løsholte.
         final int AMOUNT_OF_SCREWS_PR_TRANSOM = 4;
@@ -330,7 +330,7 @@ public class MaterialCalculator {
         return result;
     }
 
-    public int getAmountOfToplathScrews(int amountOfRooflaths, int raftAmount, int ID) {
+    public int getAmountOfToplathScrews(int amountOfRooflaths, int raftAmount, int ID) throws UniversalSampleException {
         // Vi antager, at der skal én skrue til én taglægte pr. spær:
         final int AMOUNT_OF_SCREWS_PR_ROOFLATH = raftAmount;
 
@@ -388,7 +388,7 @@ public class MaterialCalculator {
         return AMOUNT_OF_GAVL_PLANKS;
     }
 
-    public int getAmountOfPlanksForGavlMount(int carportWidth) {
+    public int getAmountOfPlanksForGavlMount(int carportWidth) throws UniversalSampleException {
         int result;
         // ID til brættet, der skal bruges:
         final int PLANK_ID = 3;

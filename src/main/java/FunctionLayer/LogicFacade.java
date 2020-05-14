@@ -1,9 +1,7 @@
 package FunctionLayer;
 
-import DBAccess.CarportMapper;
-import DBAccess.OrderMapper;
+
 import DBAccess.UserMapper;
-import FunctionLayer.Entities.Order;
 import FunctionLayer.Entities.User;
 
 import java.util.ArrayList;
@@ -20,55 +18,6 @@ public class LogicFacade {
         return user;
     }
 
-    public static ArrayList<Integer> getCarportLength() {
-        ArrayList<Integer> carportLength = CarportMapper.getCarportMeasure("længde");
-        return carportLength;
-    }
 
-    public static ArrayList<Integer> getCarportWidth() {
-        ArrayList<Integer> carportWidth = CarportMapper.getCarportMeasure("bredde");
-        return carportWidth;
-    }
-
-    public static ArrayList<Integer> getCarportHeight() {
-        ArrayList<Integer> carportHeight = CarportMapper.getCarportMeasure("højde");
-        return carportHeight;
-    }
-
-    public static ArrayList<String> getCarportRoof() {
-        ArrayList<String> carportRoof = CarportMapper.getCarportRoof();
-        return carportRoof;
-    }
-
-    public static ArrayList<Integer> getShedLength() {
-        ArrayList<Integer> shedLength = CarportMapper.getShedMeasure("længde");
-        return shedLength;
-    }
-
-    public static ArrayList<Integer> getShedWidth() {
-        ArrayList<Integer> shedWidth = CarportMapper.getShedMeasure("bredde");
-        return shedWidth;
-    }
-
-    public static ArrayList<Integer> getRoofPitch() {
-        ArrayList<Integer> roofPitch = CarportMapper.getRoofPitch();
-        return roofPitch;
-    }
-
-    public static void addCarportToCustOrder(int carportLength, int carportWidth, int carportHeight, boolean hasShed, int shedWidth, int shedLength, boolean hasPitch, int roofPitch, String roofMaterial, int price) {
-        CarportMapper.addCarportToCustOrder(carportLength, carportWidth, carportHeight, hasShed, shedWidth, shedLength, hasPitch, roofPitch, roofMaterial, price);
-    }
-
-    public static ArrayList<Order> getOrders() {
-        return OrderMapper.getOrders();
-    }
-
-    public static void approve(int orderID) {
-        OrderMapper.approve(orderID);
-    }
-
-    public static void removeOrder(int orderID) { OrderMapper.removeOrder(orderID);}
-
-    public static CarportHelper getHelper(int orderID) { return OrderMapper.getHelper(orderID); }
 
 }

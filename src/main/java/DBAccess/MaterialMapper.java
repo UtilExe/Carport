@@ -1,7 +1,10 @@
 package DBAccess;
 
 import FunctionLayer.MaterialCalculator;
+import FunctionLayer.MaterialFacade;
+import FunctionLayer.ValidationValues;
 
+import javax.validation.Valid;
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -9,7 +12,7 @@ public class MaterialMapper {
 
     private static MaterialCalculator calcPrice = new MaterialCalculator();
 
-    public static ArrayList<Integer> getLengthsFromStorage(int ID, int materialMeasure) {
+    public static ArrayList<Integer> getLengthsFromStorage(int ID) {
         ArrayList<Integer> lengths = new ArrayList<>();
         try {
             Connection con = Connector.connection();
@@ -32,7 +35,7 @@ public class MaterialMapper {
         ArrayList<String> data = new ArrayList<>();
         String amount = String.valueOf(tmpAmount);
         String carpMeasure = String.valueOf(measure);
-        ArrayList<Integer> lengths = getLengthsFromStorage(ID, measure);
+        ArrayList<Integer> lengths = getLengthsFromStorage(ID);
         ArrayList<Integer> woodAmountAndLength = calcPrice.getWoodForMeasure(measure, lengths, tmpAmount);
 
         try {
@@ -94,7 +97,6 @@ public class MaterialMapper {
         return data;
     }
 
-
     public static int getAmountPrUnit(int ID) {
         String amountPrUnit = "";
         int resultAmount = 0;
@@ -108,7 +110,7 @@ public class MaterialMapper {
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 amountPrUnit = rs.getString("amount_pr_unit");
-                splittedArr = splitter(amountPrUnit, ", ");
+                splittedArr = ValidationValues.splitter(amountPrUnit, ", ");
                 resultAmount = Integer.parseInt(splittedArr[0]);
             }
 
@@ -139,7 +141,7 @@ public class MaterialMapper {
                 String description = rs.getString("description");
                 String unit = rs.getString("unit");
                 String amountPrUnit = rs.getString("amount_pr_unit");
-                amountPrUnitSplitted = splitter(amountPrUnit, ", ");
+                amountPrUnitSplitted = ValidationValues.splitter(amountPrUnit, ", ");
                 int amountPrUnitNumber = Integer.parseInt(amountPrUnitSplitted[0]);
                 String amountPrUnitType = amountPrUnitSplitted[1];
                 double priceUnit = rs.getDouble("price_unit");
@@ -158,12 +160,6 @@ public class MaterialMapper {
         return data;
     }
 
-    public static String[] splitter(String strFromDB, String regex) {
-        String[] splittedString = new String[2];
-        splittedString = strFromDB.split(regex);
-        return splittedString;
-    }
-
     public static ArrayList<Double> getWidthHeightFromDimensionMeasureInCM(int ID) {
         ArrayList<Double> widthHeightMeasure = new ArrayList<>();
         String[] descriptionSplitted = new String[2];
@@ -176,11 +172,11 @@ public class MaterialMapper {
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 String description = rs.getString("description");
-                descriptionSplitted = splitter(description, "x");
+                descriptionSplitted = ValidationValues.splitter(description, "x");
                 double width = Double.parseDouble(descriptionSplitted[0]);
                 width /= 10;
                 widthHeightMeasure.add(width);
-                descriptionSplitted = splitter(descriptionSplitted[1], " ");
+                descriptionSplitted = ValidationValues.splitter(descriptionSplitted[1], " ");
                 double height = Double.parseDouble(descriptionSplitted[0]);
                 height /= 10;
                 widthHeightMeasure.add(height);
@@ -202,7 +198,7 @@ public class MaterialMapper {
                 biggestLength = pillarLengths.get(i);
             }
         }
-        ArrayList<Integer> lengths = getLengthsFromStorage(ID, (int) biggestLength);
+        ArrayList<Integer> lengths = getLengthsFromStorage(ID);
         ArrayList<Integer> woodAmountAndLength = calcPrice.getWoodForMeasure((int) biggestLength, lengths, pillarAmount);
 
         try {
@@ -253,7 +249,7 @@ public class MaterialMapper {
             totalLength += transomsOrHeads[i];
         }
 
-        ArrayList<Integer> lengths = getLengthsFromStorage(ID, totalLength);
+        ArrayList<Integer> lengths = getLengthsFromStorage(ID);
         ArrayList<Integer> woodAmountAndLength = calcPrice.getWoodForMeasure(totalLength, lengths, totalAmount);
 
         try {
@@ -288,7 +284,7 @@ public class MaterialMapper {
 
     public static ArrayList<String> getPlankData(int ID, int height, int plankAmount) {
         ArrayList<String> data = new ArrayList<>();
-        ArrayList<Integer> lengths = getLengthsFromStorage(ID, height);
+        ArrayList<Integer> lengths = getLengthsFromStorage(ID);
         ArrayList<Integer> woodAmountAndLength = calcPrice.getWoodForMeasure(height, lengths, plankAmount);
 
         try {

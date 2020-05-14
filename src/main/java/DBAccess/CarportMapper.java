@@ -77,28 +77,4 @@ public class CarportMapper {
         return pitch;
     }
 
-    public static void addCarportToCustOrder(int carportLength, int carportWidth, int carportHeight, boolean hasShed, int shedWidth, int shedLength, boolean hasPitch, int roofPitch, String roofMaterial, int price) {
-        try {
-            Connection con = Connector.connection();
-            String SQL = "INSERT INTO carport.cust_order (carport_length, carport_width, carport_height, hasShed, shedWidth, " +
-                    "shedLength, hasPitch, roof_pitch, roof_material, price) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-            PreparedStatement ps = con.prepareStatement( SQL, Statement.RETURN_GENERATED_KEYS );
-            ps.setInt(1, carportLength);
-            ps.setInt( 2, carportWidth);
-            ps.setInt( 3, carportHeight);
-            ps.setBoolean( 4, hasShed);
-            ps.setInt(5, shedWidth);
-            ps.setInt(6, shedLength);
-            ps.setBoolean(7, hasPitch);
-            ps.setInt(8, roofPitch);
-            ps.setString(9, roofMaterial);
-            ps.setInt(10, price);
-
-            ps.executeUpdate();
-            ResultSet ids = ps.getGeneratedKeys();
-            ids.next();
-        } catch ( SQLException | ClassNotFoundException ex ) {
-            ex.printStackTrace();
-        }
-    }
 }

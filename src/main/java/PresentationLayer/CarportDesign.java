@@ -71,7 +71,7 @@ public class CarportDesign extends Command {
         // hvad skal carport bruges til, bliver ikke brugt lige nu.
             Carport carport = null;
         if (!helper.isInvalidInput()) {
-            LogicFacade.addCarportToCustOrder(helper.getCarportLengthCM(), helper.getCarportWidthCM(), helper.getCarportHeight(), helper.isHasShed(), helper.getShedWidth(), helper.getShedLength(), helper.isHasPitch(), helper.getCarportPitch(), roofMaterial, finalPrice);
+            OrderFacade.addCarportToCustOrder(helper.getCarportLengthCM(), helper.getCarportWidthCM(), helper.getCarportHeight(), helper.isHasShed(), helper.getShedWidth(), helper.getShedLength(), helper.isHasPitch(), helper.getCarportPitch(), roofMaterial, finalPrice);
             if (helper.isHasPitch()) {
                 carport = new CarportPitch(helper.getCarportLengthCM(), helper.getCarportWidthCM(), helper.getCarportHeight(), roofMaterial, helper.isHasShed(), helper.getShedWidth(), helper.getShedLength(), helper.isHasPitch(), helper.getCarportPitch());
             } else {

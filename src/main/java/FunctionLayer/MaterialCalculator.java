@@ -1,7 +1,5 @@
 package FunctionLayer;
 
-import DBAccess.MaterialMapper;
-
 import java.util.ArrayList;
 
 public class MaterialCalculator {
@@ -86,7 +84,7 @@ public class MaterialCalculator {
     public int getRolesAmountBand(int bandLength) {
         int result;
         final int BAND_ID = 10;
-        final int BAND_PR_ROLES = MaterialMapper.getAmountPrUnit(BAND_ID);
+        final int BAND_PR_ROLES = MaterialFacade.getAmountPrUnit(BAND_ID);
         double bandLengthToM = bandLength / 100.0;
         result = (int) Math.ceil(bandLengthToM / BAND_PR_ROLES);
         return result;
@@ -104,8 +102,8 @@ public class MaterialCalculator {
         final int DIST_BEHIND_CARPORT = 30;
         int pillars = 0;
         double firstPillar;
-        double headHeight = MaterialMapper.getWidthHeightFromDimensionMeasureInCM(HEAD_ID).get(1);
-        double fasciaBoardHeight = MaterialMapper.getWidthHeightFromDimensionMeasureInCM(FACIA_ID).get(1);
+        double headHeight = MaterialFacade.getWidthHeightFromDimensionMeasureInCM(HEAD_ID).get(1);
+        double fasciaBoardHeight = MaterialFacade.getWidthHeightFromDimensionMeasureInCM(FACIA_ID).get(1);
         double pillarHeight = carportHeight - headHeight - fasciaBoardHeight;
 
         if (hasShed) {
@@ -154,8 +152,8 @@ public class MaterialCalculator {
 
     public int getRoofTileAmount(int carportLength, int carportWidth) {
         final int ROOF_TILE_ID = 8;
-        double roofTileLength = MaterialMapper.getWidthHeightFromDimensionMeasureInCM(ROOF_TILE_ID).get(1);
-        double roofTileWidth = MaterialMapper.getWidthHeightFromDimensionMeasureInCM(ROOF_TILE_ID).get(0);
+        double roofTileLength = MaterialFacade.getWidthHeightFromDimensionMeasureInCM(ROOF_TILE_ID).get(1);
+        double roofTileWidth = MaterialFacade.getWidthHeightFromDimensionMeasureInCM(ROOF_TILE_ID).get(0);
         final int TILE_OVERLAP = 20;
         roofTileWidth -= TILE_OVERLAP;
         double roofTileArea = roofTileWidth * roofTileLength;
@@ -169,7 +167,7 @@ public class MaterialCalculator {
         int roofArea = carportLength * carportWidth;
         final int SCREW_PR_M2 = 12;
         final int CM_TO_M2 = 10000;
-        final double AMOUNT_OF_SCREWS_PR_PACKAGE = MaterialMapper.getAmountPrUnit(ID);
+        final double AMOUNT_OF_SCREWS_PR_PACKAGE = MaterialFacade.getAmountPrUnit(ID);
 
         double tmpResult = ((roofArea / CM_TO_M2) * SCREW_PR_M2) / AMOUNT_OF_SCREWS_PR_PACKAGE;
         int result = (int) Math.ceil(tmpResult);
@@ -267,7 +265,7 @@ public class MaterialCalculator {
         final int PLANK_ID = 3;
         // Vi antager, at der er et overlap på beklædningen af 2,5 cm i hver side af brædtet.
         final double OVERLAP = 2.5;
-        ArrayList<Double> dimensionsOfPlank = MaterialMapper.getWidthHeightFromDimensionMeasureInCM(PLANK_ID);
+        ArrayList<Double> dimensionsOfPlank = MaterialFacade.getWidthHeightFromDimensionMeasureInCM(PLANK_ID);
         double tmpPlankWidth = dimensionsOfPlank.get(1);
         double plankWidthAfterOverlap = tmpPlankWidth - OVERLAP;
         int plankWidth = (int) Math.ceil(plankWidthAfterOverlap);
@@ -284,7 +282,7 @@ public class MaterialCalculator {
         int planksForShed = getPlanksForShed(shedLength, shedWidth);
         // Vi antager, at der skal bruges 2 skruer pr. ydre bræt.
         final int AMOUNT_OF_OUTERSCREW_PR_PLANK = 2;
-        double amountOfScrewPrPackage = MaterialMapper.getAmountPrUnit(ID);
+        double amountOfScrewPrPackage = MaterialFacade.getAmountPrUnit(ID);
         double tmpResult = (planksForShed * AMOUNT_OF_OUTERSCREW_PR_PLANK) / amountOfScrewPrPackage;
         result = (int) Math.ceil(tmpResult);
         return result;
@@ -296,7 +294,7 @@ public class MaterialCalculator {
         // Vi antager, at der bruges 4 skruer pr. løsholte.
         final int AMOUNT_OF_SCREWS_PR_TRANSOM = 4;
         final int AMOUNT_OF_SCREWS_ON_DOOR = 50;
-        double amountOfScewPrPackage = MaterialMapper.getAmountPrUnit(ID);
+        double amountOfScewPrPackage = MaterialFacade.getAmountPrUnit(ID);
         int transomAmountFrontBack = getTransomsLengthFrontAndBack(shedWidth)[0] + getTransomsLengthFrontAndBack(shedWidth)[2];
         int transomAmountSides = getTransomsLengthSides(shedLength)[0];
         double tmpResult = ((transomAmountFrontBack * AMOUNT_OF_SCREWS_PR_TRANSOM) + (transomAmountSides * AMOUNT_OF_SCREWS_ON_DOOR) + AMOUNT_OF_SCREWS_ON_DOOR) / amountOfScewPrPackage;
@@ -336,7 +334,7 @@ public class MaterialCalculator {
         // Vi antager, at der skal én skrue til én taglægte pr. spær:
         final int AMOUNT_OF_SCREWS_PR_ROOFLATH = raftAmount;
 
-        double screwsPrUnit = MaterialMapper.getAmountPrUnit(ID);
+        double screwsPrUnit = MaterialFacade.getAmountPrUnit(ID);
         int result = (amountOfRooflaths * AMOUNT_OF_SCREWS_PR_ROOFLATH);
         result = (int) (Math.ceil(result / screwsPrUnit));
 
@@ -396,7 +394,7 @@ public class MaterialCalculator {
         final int PLANK_ID = 3;
         // Vi antager, at der er et overlap på beklædningen af 2,5 cm i hver side af brædtet.
         final double OVERLAP = 2.5;
-        ArrayList<Double> dimensionsOfPlank = MaterialMapper.getWidthHeightFromDimensionMeasureInCM(PLANK_ID);
+        ArrayList<Double> dimensionsOfPlank = MaterialFacade.getWidthHeightFromDimensionMeasureInCM(PLANK_ID);
         double tmpPlankWidth = dimensionsOfPlank.get(1);
         double plankWidthAfterOverlap = tmpPlankWidth - OVERLAP;
         int plankWidth = (int) Math.ceil(plankWidthAfterOverlap);

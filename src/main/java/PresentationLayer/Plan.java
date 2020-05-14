@@ -1,8 +1,6 @@
 package PresentationLayer;
 
-import FunctionLayer.CarportHelper;
-import FunctionLayer.LogicFacade;
-import FunctionLayer.LoginSampleException;
+import FunctionLayer.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -12,7 +10,7 @@ public class Plan extends Command{
     String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException {
         int orderID = Integer.parseInt(request.getParameter("orderID"));
 
-        CarportHelper helper = LogicFacade.getHelper(orderID);
+        CarportHelper helper = OrderFacade.getHelper(orderID);
         String svgDrawing = helper.svgDrawing(helper.getCarportLengthCM(), helper.getCarportWidthCM(), helper.isHasShed());
         request.setAttribute("drawing", svgDrawing);
         return "admin";

@@ -18,48 +18,48 @@ public class Initialisation {
     //Inits
     public static void initLengths() {
         if(carportLengths == null) {
-            carportLengths = LogicFacade.getCarportLength();
+            carportLengths = CarportFacade.getCarportLength();
         }
     }
 
     public static void initWidth() {
         if(carportWidths == null) {
-            carportWidths = LogicFacade.getCarportWidth();
+            carportWidths = CarportFacade.getCarportWidth();
         }
     }
 
     public static void initHeight() {
         if(carportHeights == null) {
-            carportHeights = LogicFacade.getCarportHeight();
+            carportHeights = CarportFacade.getCarportHeight();
         }
     }
 
     public static void initRoof() {
         if(roofs == null) {
-            roofs = LogicFacade.getCarportRoof();
+            roofs = CarportFacade.getCarportRoof();
         }
     }
 
     public static void initShedLengths() {
         if(shedLengths == null) {
-            shedLengths = LogicFacade.getShedLength();
+            shedLengths = CarportFacade.getShedLength();
         }
     }
 
     public static void initShedWidths() {
         if(shedWidths == null) {
-            shedWidths = LogicFacade.getShedWidth();
+            shedWidths = CarportFacade.getShedWidth();
         }
     }
 
     public static void initRoofPitch() {
         if(roofPitch == null) {
-            roofPitch = LogicFacade.getRoofPitch();
+            roofPitch = CarportFacade.getRoofPitch();
         }
     }
 
     public static void initOrders() {
-            orders = LogicFacade.getOrders();
+            orders = OrderFacade.getOrders();
     }
 
     //Get lists

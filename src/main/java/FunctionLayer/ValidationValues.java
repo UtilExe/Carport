@@ -31,4 +31,11 @@ public class ValidationValues {
     }
 
 
+    public static String[] splitter(String strFromDB, String regex) {
+        String[] splittedString = new String[2];
+        splittedString = strFromDB.split(regex);
+        return splittedString;
+    }
+
+
 }

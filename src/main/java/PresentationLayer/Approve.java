@@ -1,8 +1,10 @@
 package PresentationLayer;
 
+import FunctionLayer.Entities.Order;
 import FunctionLayer.Initialisation;
 import FunctionLayer.LogicFacade;
 import FunctionLayer.LoginSampleException;
+import FunctionLayer.OrderFacade;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -17,9 +19,9 @@ public class Approve extends Command {
         int orderID = Integer.parseInt(request.getParameter("orderID"));
 
         if (str != null) {
-            LogicFacade.approve(orderID);
+            OrderFacade.approve(orderID);
         } else if (str2 != null) {
-            LogicFacade.removeOrder(orderID);
+            OrderFacade.removeOrder(orderID);
         }
 
         Initialisation.initOrders();

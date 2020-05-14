@@ -516,10 +516,19 @@ public class CarportHelper {
     }
 
     public String svgDrawingFront(int carportLength, int carportHeight, boolean hasShed) {
-        double viewboxX = plankMeasure.get(1);
-        double viewboxY = Math.tan((carportPitch * Math.PI) / 180) * (carportWidthCM/2);
-        double cHeightViewY = carportHeight + viewboxY;
-        double cLengthViewX = carportLength + viewboxX;
+        double viewboxX = 0.0;
+        double viewboxY = 0.0;
+        double cHeightViewY = 0.0;
+        double cLengthViewX = 0.0;
+        if(hasPitch) {
+            viewboxX = plankMeasure.get(1);
+            viewboxY = Math.tan((carportPitch * Math.PI) / 180) * (carportWidthCM/2);
+            cHeightViewY = carportHeight + viewboxY;
+            cLengthViewX = carportLength + viewboxX;
+        } else {
+            cHeightViewY = carportHeight;
+            cLengthViewX = carportLength;
+        }
         final int MARKER_HEIGHT = 12;
         final int Y_DATA = 10;
         final int X_DATA = 75;
@@ -528,7 +537,8 @@ public class CarportHelper {
         final double DRAW_END_HORIZONTAL = cLengthViewX - MARKER_HEIGHT + X_DATA;
         final int PUSH_TEXT_DOWN = 70;
         ArrayList<Double> plankMeasure = MaterialFacade.getWidthHeightFromDimensionMeasureInCM(WATERPLANK_AND_SHEDPLANK_ID);
-        String viewboxInner = "0,0," + (cLengthViewX + 100) + "," + (cHeightViewY + 100);
+
+
 
         double x = 0.0;
         double y;
@@ -539,20 +549,16 @@ public class CarportHelper {
 
         double carportHeightRoof = 0;
 
+        String viewboxInner = "0,0," + (cLengthViewX + 100) + "," + (cHeightViewY + 100);
+
         Svg svgInnerDrawing = new Svg(cLengthViewX, cHeightViewY, viewboxInner, 75, 10);
         // Carport:
         svgInnerDrawing.addArrowLength(X_DATA + viewboxX, cHeightViewY + PUSH_AWAY, DRAW_END_HORIZONTAL, cHeightViewY + PUSH_AWAY);
         svgInnerDrawing.addArrowWidth(PUSH_AWAY, Y_DATA, PUSH_AWAY, DRAW_END_VERTICAL);
         svgInnerDrawing.addText((PUSH_AWAY / 2), ((Y_DATA + cHeightViewY) / 2), carportHeight, ((DRAW_END_HORIZONTAL / 2.0) + PUSH_AWAY), (cHeightViewY + PUSH_TEXT_DOWN), carportLength);
 
-        Svg svg = null;
+        Svg svg = new Svg(cLengthViewX, cHeightViewY,  -viewboxX + "," + -viewboxY +  "," + (cLengthViewX+20) + "," + (cHeightViewY), 75, 10);
 
-        if(hasPitch) {
-            carportHeightRoof = carportHeight + Math.tan((carportPitch * Math.PI) / 180) * (carportWidthCM/2);
-            svg = new Svg(cLengthViewX, cHeightViewY,  -viewboxX + "," + -viewboxY +  "," + (cLengthViewX+20) + "," + (cHeightViewY), 75, 10);
-        } else {
-            svg = new Svg(carportLength, carportHeight,  "0,0," + (carportLength+20) + "," + (carportHeight), 75, 10);
-        }
 
         //Top bræt
         svg.addRect(0, 0, carportLength, plankMeasure.get(1));

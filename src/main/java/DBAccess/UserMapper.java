@@ -2,6 +2,7 @@ package DBAccess;
 
 import FunctionLayer.LoginSampleException;
 import FunctionLayer.Entities.User;
+import FunctionLayer.Log;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -25,6 +26,15 @@ public class UserMapper {
             ids.next();
             user.setDateCreated("create_time");
         } catch ( SQLException | ClassNotFoundException ex ) {
+
+            // Lav evt. validering ift. Duplicate Entry som Nikolaj gjorde.
+
+            if (ex.getMessage().contains("Communications link failure")) {
+                Log.severe("login " + ex.getMessage());
+                throw new LoginSampleException("Databasen er i øjeblikket nede. Kontakt IT");
+            }
+
+            Log.severe("Register " + ex.getMessage());
             throw new LoginSampleException( ex.getMessage() );
         }
     }
@@ -44,9 +54,16 @@ public class UserMapper {
                 User user = new User(email, password);
                 return user;
             } else {
+                Log.info("login " + "Could not validate user");
                 throw new LoginSampleException( "Could not validate user" );
             }
         } catch ( ClassNotFoundException | SQLException ex ) {
+
+            if (ex.getMessage().contains("Communications link failure")) {
+                Log.severe("login " + ex.getMessage());
+                throw new LoginSampleException("Databasen er i øjeblikket nede. Kontakt IT");
+            }
+            Log.severe("Login " + ex.getMessage());
             throw new LoginSampleException(ex.getMessage());
         }
     }

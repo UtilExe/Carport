@@ -1,72 +1,76 @@
-package com.company;
-
+package FunctionLayer;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.*;
 
-
 public class Log {
 
-
-
-    private static final String FILENAME = "demo.log";
-    private static final String FILEPATH = "/Users/nbh/Desktop/logs/";
+    private static String FILENAME;
+    private static String FILEPATH;
+    //private static final String FILENAME = "demo.log";
+    //private static final String FILEPATH = "/Users/emilg/Desktop/logs/";
 
     //private static final String FILEPATH = "/var/log/tomcat8/";
-    private static final String PATH = FILEPATH + FILENAME;
+    //private static final String PATH = FILEPATH + FILENAME;
+
+    private static String PATH = "";
 
     private Log() {
     }
 
+    private static void setLogPath() {
+        String deployed = System.getenv("DEPLOYED");
+
+        if(deployed != null) {
+            FILENAME = "rename-til-tomcat-fil";
+            FILEPATH = "/var/log/tomcat8/";
+        } else {
+            // Localhost
+            FILENAME = LogPath.FILENAME;
+            FILEPATH = LogPath.FILEPATH;
+        }
+        PATH = FILEPATH + FILENAME;
+    }
+
     private static void log(Level lvl, String decription) throws Exception {
-
+        setLogPath();
         Logger logger = Logger.getLogger(Log.class.getName());   // alle operationer på logger er thread safe
-
         FileHandler fh = new FileHandler(PATH, true);
         fh.setFormatter(new VerySimpleFormatter());
         logger.addHandler(fh);
 
         logger.setLevel(Level.FINEST);   // her sætter vi niveauet for logningen.
-
-        logger.log(lvl ,  decription  );
-
+        logger.log(lvl, decription);
 
         fh.close();
-
     }
 
-
-    public static void severe(String description ) {
+    public static void severe(String description) {
         try {
-            log(Level.SEVERE,description );
+            log(Level.SEVERE, description);
         } catch (Exception e) {
         }
     }
 
-    public static void info(String description ) {
-
+    public static void info(String description) {
         try {
-            log(Level.INFO,description );
+            log(Level.INFO, description);
         } catch (Exception e) {
         }
     }
 
-    public static void finest(String description ) {
-
+    public static void finest(String description) {
         try {
-            log(Level.FINEST,description );
+            log(Level.FINEST, description);
         } catch (Exception e) {
         }
     }
 }
 
-
-
 class VerySimpleFormatter extends Formatter {
 
     private static final String PATTERN = "yyyy-MM-dd'T'HH:mm:ss.SSSXXX";
-
 
     @Override
     public String format(final LogRecord record) {

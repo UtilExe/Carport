@@ -1,14 +1,13 @@
 package PresentationLayer;
 
 import FunctionLayer.*;
-import FunctionLayer.Entities.Order;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 public class Approve extends Command {
     @Override
-    String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException, OrderSampleException {
+    String execute(HttpServletRequest request, HttpServletResponse response) throws UniversalSampleException {
 
         String str = request.getParameter("godkend");
         String str2 = request.getParameter("afvis");

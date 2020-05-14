@@ -1,13 +1,12 @@
 package DBAccess;
 
-import FunctionLayer.LoginSampleException;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 
 import FunctionLayer.Entities.User;
+import FunctionLayer.UniversalSampleException;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import org.junit.Before;
@@ -58,20 +57,20 @@ public class UserMapperTest {
     }
 
     @Test
-    public void testLogin01() throws LoginSampleException {
+    public void testLogin01() throws UniversalSampleException {
         // Can we log in
         User user = UserMapper.login( "jens@somewhere.com", "jensen" );
         assertTrue( user != null );
     }
 
-    @Test( expected = LoginSampleException.class )
-    public void testLogin02() throws LoginSampleException {
+    @Test( expected = UniversalSampleException.class )
+    public void testLogin02() throws UniversalSampleException {
         // We should get an exception if we use the wrong password
         User user = UserMapper.login( "jens@somewhere.com", "larsen" );
     }
 
     @Test
-    public void testCreateUser01() throws LoginSampleException {
+    public void testCreateUser01() throws UniversalSampleException {
         // Can we create a new user - Notice, if login fails, this will fail
         // but so would login01, so this is OK
         User original = new User("test", "test@test.com", "test", 87416585);

@@ -5,8 +5,7 @@
  */
 package PresentationLayer;
 
-import FunctionLayer.LoginSampleException;
-import FunctionLayer.OrderSampleException;
+import FunctionLayer.UniversalSampleException;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -41,7 +40,7 @@ public class FrontController extends HttpServlet {
             } else {
                 request.getRequestDispatcher("/WEB-INF/" + view + ".jsp").forward(request, response);
             }
-        } catch (UnsupportedEncodingException | LoginSampleException | OrderSampleException ex ) {
+        } catch (UnsupportedEncodingException | UniversalSampleException ex ) {
             request.setAttribute( "error", ex.getMessage() );
             request.getRequestDispatcher( "index.jsp" ).forward( request, response );
         }

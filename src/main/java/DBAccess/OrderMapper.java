@@ -3,16 +3,14 @@ package DBAccess;
 import FunctionLayer.CarportHelper;
 import FunctionLayer.Entities.Carport;
 import FunctionLayer.Entities.Order;
-import FunctionLayer.Log;
-import FunctionLayer.LoginSampleException;
-import FunctionLayer.OrderSampleException;
+import FunctionLayer.UniversalSampleException;
 
 import java.sql.*;
 import java.util.ArrayList;
 
 public class OrderMapper {
 
-    public static ArrayList<Order> getOrders() throws OrderSampleException {
+    public static ArrayList<Order> getOrders() throws UniversalSampleException {
         ArrayList<Order> orders = new ArrayList<>();
         try {
             Connection con = Connector.connection();
@@ -40,14 +38,14 @@ public class OrderMapper {
         } catch(SQLException | ClassNotFoundException ex) {
 
             String methodName = "getOrders";
-            OrderSampleException.exceptionIfsDB(ex.getMessage(), methodName);
-            OrderSampleException.exceptionIfLast(ex.getMessage(), methodName);
+            UniversalSampleException.exceptionIfsDB(ex.getMessage(), methodName);
+            UniversalSampleException.exceptionIfLast(ex.getMessage(), methodName);
 
         }
         return orders;
     }
 
-    public static void approve(int orderID) throws OrderSampleException {
+    public static void approve(int orderID) throws UniversalSampleException {
         try {
             Connection con = Connector.connection();
             String SQL = "UPDATE carport.cust_order SET approved=1 WHERE orderID=?;";
@@ -56,13 +54,13 @@ public class OrderMapper {
             ps.executeUpdate();
         } catch (SQLException | ClassNotFoundException ex) {
             String methodName = "approve";
-            OrderSampleException.exceptionIfsDB(ex.getMessage(), methodName);
-            OrderSampleException.exceptionIfLast(ex.getMessage(), methodName);
+            UniversalSampleException.exceptionIfsDB(ex.getMessage(), methodName);
+            UniversalSampleException.exceptionIfLast(ex.getMessage(), methodName);
 
         }
     }
 
-    public static void removeOrder(int orderID) throws OrderSampleException {
+    public static void removeOrder(int orderID) throws UniversalSampleException {
         try {
             Connection con = Connector.connection();
             String SQL = "DELETE FROM carport.cust_order WHERE orderID=?;";
@@ -72,13 +70,13 @@ public class OrderMapper {
         } catch (SQLException | ClassNotFoundException ex) {
 
             String methodName = "removeOrder";
-            OrderSampleException.exceptionIfsDB(ex.getMessage(), methodName);
-            OrderSampleException.exceptionIfLast(ex.getMessage(), methodName);
+            UniversalSampleException.exceptionIfsDB(ex.getMessage(), methodName);
+            UniversalSampleException.exceptionIfLast(ex.getMessage(), methodName);
 
         }
     }
 
-    public static void addCarportToCustOrder(int carportLength, int carportWidth, int carportHeight, boolean hasShed, int shedWidth, int shedLength, boolean hasPitch, int roofPitch, String roofMaterial, int price) throws OrderSampleException {
+    public static void addCarportToCustOrder(int carportLength, int carportWidth, int carportHeight, boolean hasShed, int shedWidth, int shedLength, boolean hasPitch, int roofPitch, String roofMaterial, int price) throws UniversalSampleException {
         try {
             Connection con = Connector.connection();
             String SQL = "INSERT INTO carport.cust_order (carport_length, carport_width, carport_height, hasShed, shedWidth, " +
@@ -101,14 +99,14 @@ public class OrderMapper {
         } catch ( SQLException | ClassNotFoundException ex ) {
 
             String methodName = "addCarportToCustOrder";
-            OrderSampleException.exceptionIfsDB(ex.getMessage(), methodName);
-            OrderSampleException.exceptionIfLast(ex.getMessage(), methodName);
+            UniversalSampleException.exceptionIfsDB(ex.getMessage(), methodName);
+            UniversalSampleException.exceptionIfLast(ex.getMessage(), methodName);
 
 
         }
     }
 
-    public static CarportHelper getHelper(int orderID) throws OrderSampleException {
+    public static CarportHelper getHelper(int orderID) throws UniversalSampleException {
         CarportHelper helper = null;
         try {
             Connection con = Connector.connection();
@@ -128,8 +126,8 @@ public class OrderMapper {
         } catch (SQLException | ClassNotFoundException ex) {
 
             String methodName = "getHelper";
-            OrderSampleException.exceptionIfsDB(ex.getMessage(), methodName);
-            OrderSampleException.exceptionIfLast(ex.getMessage(), methodName);
+            UniversalSampleException.exceptionIfsDB(ex.getMessage(), methodName);
+            UniversalSampleException.exceptionIfLast(ex.getMessage(), methodName);
 
         }
         return helper;

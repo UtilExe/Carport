@@ -58,7 +58,7 @@ public class Initialisation {
         }
     }
 
-    public static void initOrders() throws OrderSampleException {
+    public static void initOrders() throws UniversalSampleException {
             orders = OrderFacade.getOrders();
     }
 

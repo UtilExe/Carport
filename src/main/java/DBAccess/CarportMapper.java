@@ -1,7 +1,5 @@
 package DBAccess;
 
-import FunctionLayer.LoginSampleException;
-
 import java.sql.*;
 import java.util.ArrayList;
 

@@ -1,8 +1,8 @@
 package DBAccess;
 
-import FunctionLayer.LoginSampleException;
 import FunctionLayer.Entities.User;
 import FunctionLayer.Log;
+import FunctionLayer.UniversalSampleException;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -12,7 +12,7 @@ import java.sql.Statement;
 
 public class UserMapper {
 
-    public static void createUser(User user) throws LoginSampleException {
+    public static void createUser(User user) throws UniversalSampleException {
         try {
             Connection con = Connector.connection();
             String SQL = "INSERT INTO carport.users (name, email, password, mobilNr) VALUES (?, ?, ?, ?)";
@@ -26,20 +26,20 @@ public class UserMapper {
             ids.next();
             user.setDateCreated("create_time");
         } catch ( SQLException | ClassNotFoundException ex ) {
+            String methodName = "createUser";
 
-            // Lav evt. validering ift. Duplicate Entry som Nikolaj gjorde.
-
-            if (ex.getMessage().contains("Communications link failure")) {
-                Log.severe("login " + ex.getMessage());
-                throw new LoginSampleException("Databasen er i øjeblikket nede. Kontakt IT");
+            if (ex.getMessage().contains("Duplicate entry")) {
+                Log.finest(methodName + user.getEmail() + ": Duplicate entry");
+                throw new UniversalSampleException("En bruger med denne mail eksisterer allerede");
             }
 
-            Log.severe("Register " + ex.getMessage());
-            throw new LoginSampleException( ex.getMessage() );
+            UniversalSampleException.exceptionIfsDB(ex.getMessage(), methodName);
+
+            UniversalSampleException.exceptionIfLast(ex.getMessage(), methodName);
         }
     }
 
-    public static User login(String mail, String pw ) throws LoginSampleException {
+    public static User login(String mail, String pw ) throws UniversalSampleException {
         try {
             Connection con = Connector.connection();
             String SQL = "SELECT email, password FROM Users "
@@ -55,17 +55,14 @@ public class UserMapper {
                 return user;
             } else {
                 Log.info("login " + "Could not validate user");
-                throw new LoginSampleException( "Brugeren kunne ikke valideres" );
+                throw new UniversalSampleException( "Brugeren kunne ikke valideres" );
             }
         } catch ( ClassNotFoundException | SQLException ex ) {
+            String methodName = "login";
 
-            if (ex.getMessage().contains("Communications link failure")) {
-                Log.severe("login " + ex.getMessage());
-                throw new LoginSampleException("Databasen er i øjeblikket nede. Kontakt IT");
-            }
-            Log.severe("Login " + ex.getMessage());
-            throw new LoginSampleException(ex.getMessage());
+            UniversalSampleException.exceptionIfsDB(ex.getMessage(), methodName);
+            UniversalSampleException.exceptionIfLast(ex.getMessage(), methodName);
         }
+        return null;
     }
-
 }

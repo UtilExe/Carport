@@ -11,7 +11,7 @@ public class CarportDesign extends Command {
 
 
     @Override
-    String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException, OrderSampleException {
+    String execute(HttpServletRequest request, HttpServletResponse response) throws UniversalSampleException {
 
         String tmpCarportLength = request.getParameter("length");
         String tmpCarportWidth = request.getParameter("width");

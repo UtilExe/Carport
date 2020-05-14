@@ -8,20 +8,20 @@ import java.util.ArrayList;
 
 public class OrderFacade {
 
-    public static void addCarportToCustOrder(int carportLength, int carportWidth, int carportHeight, boolean hasShed, int shedWidth, int shedLength, boolean hasPitch, int roofPitch, String roofMaterial, int price) throws OrderSampleException {
+    public static void addCarportToCustOrder(int carportLength, int carportWidth, int carportHeight, boolean hasShed, int shedWidth, int shedLength, boolean hasPitch, int roofPitch, String roofMaterial, int price) throws UniversalSampleException {
         OrderMapper.addCarportToCustOrder(carportLength, carportWidth, carportHeight, hasShed, shedWidth, shedLength, hasPitch, roofPitch, roofMaterial, price);
     }
 
-    public static ArrayList<Order> getOrders() throws OrderSampleException {
+    public static ArrayList<Order> getOrders() throws UniversalSampleException {
         return OrderMapper.getOrders();
     }
 
-    public static void approve(int orderID) throws OrderSampleException {
+    public static void approve(int orderID) throws UniversalSampleException {
         OrderMapper.approve(orderID);
     }
 
-    public static void removeOrder(int orderID) throws OrderSampleException { OrderMapper.removeOrder(orderID);}
+    public static void removeOrder(int orderID) throws UniversalSampleException { OrderMapper.removeOrder(orderID);}
 
-    public static CarportHelper getHelper(int orderID) throws OrderSampleException { return OrderMapper.getHelper(orderID); }
+    public static CarportHelper getHelper(int orderID) throws UniversalSampleException { return OrderMapper.getHelper(orderID); }
 
 }

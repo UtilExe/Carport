@@ -1,7 +1,6 @@
 package PresentationLayer;
 
-import FunctionLayer.LoginSampleException;
-import FunctionLayer.OrderSampleException;
+import FunctionLayer.UniversalSampleException;
 
 import java.util.HashMap;
 import javax.servlet.http.HttpServletRequest;
@@ -30,7 +29,8 @@ abstract class Command {
         return commands.getOrDefault(targetName, new UnknownCommand() );   // unknowncommand er default.
     }
 
-    abstract String execute( HttpServletRequest request, HttpServletResponse response )
-            throws LoginSampleException, OrderSampleException;
+
+    abstract String execute( HttpServletRequest request, HttpServletResponse response ) 
+            throws UniversalSampleException;
 
 }

@@ -55,7 +55,7 @@ public class UserMapper {
                 return user;
             } else {
                 Log.info("login " + "Could not validate user");
-                throw new LoginSampleException( "Could not validate user" );
+                throw new LoginSampleException( "Brugeren kunne ikke valideres" );
             }
         } catch ( ClassNotFoundException | SQLException ex ) {
 

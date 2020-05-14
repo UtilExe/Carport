@@ -11,7 +11,7 @@ public class CarportDesign extends Command {
 
 
     @Override
-    String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException {
+    String execute(HttpServletRequest request, HttpServletResponse response) throws LoginSampleException, OrderSampleException {
 
         String tmpCarportLength = request.getParameter("length");
         String tmpCarportWidth = request.getParameter("width");
@@ -90,7 +90,7 @@ public class CarportDesign extends Command {
         request.setAttribute("svgdrawingfront", svgDrawingFront);
 
 
-        return "tmpList";
+        return "carportOutput";
     }
 
 }

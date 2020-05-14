@@ -1,4 +1,5 @@
 <%@ page import="FunctionLayer.Initialisation" %>
+<%@ page import="FunctionLayer.OrderSampleException" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@include file="../include/header.inc" %>
 <link rel="stylesheet" href="css/styles.css">
@@ -10,7 +11,11 @@
 <%!
     @Override
     public void jspInit(){
-        Initialisation.initOrders();
+        try {
+            Initialisation.initOrders();
+        } catch (OrderSampleException e) {
+            e.printStackTrace();
+        }
     }
 %>
 

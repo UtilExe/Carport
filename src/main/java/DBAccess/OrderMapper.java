@@ -3,13 +3,16 @@ package DBAccess;
 import FunctionLayer.CarportHelper;
 import FunctionLayer.Entities.Carport;
 import FunctionLayer.Entities.Order;
+import FunctionLayer.Log;
+import FunctionLayer.LoginSampleException;
+import FunctionLayer.OrderSampleException;
 
 import java.sql.*;
 import java.util.ArrayList;
 
 public class OrderMapper {
 
-    public static ArrayList<Order> getOrders() {
+    public static ArrayList<Order> getOrders() throws OrderSampleException {
         ArrayList<Order> orders = new ArrayList<>();
         try {
             Connection con = Connector.connection();
@@ -35,12 +38,16 @@ public class OrderMapper {
                 orders.add(order);
             }
         } catch(SQLException | ClassNotFoundException ex) {
-            ex.getMessage();
+
+            String methodName = "getOrders";
+            OrderSampleException.exceptionIfsDB(ex.getMessage(), methodName);
+            OrderSampleException.exceptionIfLast(ex.getMessage(), methodName);
+
         }
         return orders;
     }
 
-    public static void approve(int orderID) {
+    public static void approve(int orderID) throws OrderSampleException {
         try {
             Connection con = Connector.connection();
             String SQL = "UPDATE carport.cust_order SET approved=1 WHERE orderID=?;";
@@ -48,11 +55,14 @@ public class OrderMapper {
             ps.setInt(1, orderID);
             ps.executeUpdate();
         } catch (SQLException | ClassNotFoundException ex) {
-            ex.getMessage();
+            String methodName = "approve";
+            OrderSampleException.exceptionIfsDB(ex.getMessage(), methodName);
+            OrderSampleException.exceptionIfLast(ex.getMessage(), methodName);
+
         }
     }
 
-    public static void removeOrder(int orderID) {
+    public static void removeOrder(int orderID) throws OrderSampleException {
         try {
             Connection con = Connector.connection();
             String SQL = "DELETE FROM carport.cust_order WHERE orderID=?;";
@@ -60,11 +70,15 @@ public class OrderMapper {
             ps.setInt(1, orderID);
             ps.executeUpdate();
         } catch (SQLException | ClassNotFoundException ex) {
-            ex.getMessage();
+
+            String methodName = "removeOrder";
+            OrderSampleException.exceptionIfsDB(ex.getMessage(), methodName);
+            OrderSampleException.exceptionIfLast(ex.getMessage(), methodName);
+
         }
     }
 
-    public static void addCarportToCustOrder(int carportLength, int carportWidth, int carportHeight, boolean hasShed, int shedWidth, int shedLength, boolean hasPitch, int roofPitch, String roofMaterial, int price) {
+    public static void addCarportToCustOrder(int carportLength, int carportWidth, int carportHeight, boolean hasShed, int shedWidth, int shedLength, boolean hasPitch, int roofPitch, String roofMaterial, int price) throws OrderSampleException {
         try {
             Connection con = Connector.connection();
             String SQL = "INSERT INTO carport.cust_order (carport_length, carport_width, carport_height, hasShed, shedWidth, " +
@@ -85,11 +99,16 @@ public class OrderMapper {
             ResultSet ids = ps.getGeneratedKeys();
             ids.next();
         } catch ( SQLException | ClassNotFoundException ex ) {
-            ex.printStackTrace();
+
+            String methodName = "addCarportToCustOrder";
+            OrderSampleException.exceptionIfsDB(ex.getMessage(), methodName);
+            OrderSampleException.exceptionIfLast(ex.getMessage(), methodName);
+
+
         }
     }
 
-    public static CarportHelper getHelper(int orderID) {
+    public static CarportHelper getHelper(int orderID) throws OrderSampleException {
         CarportHelper helper = null;
         try {
             Connection con = Connector.connection();
@@ -107,9 +126,14 @@ public class OrderMapper {
                 helper = new CarportHelper(carportLengthCM, carportWidthCM, carportHeight, shedLength, shedWidth, carportPitch);
             }
         } catch (SQLException | ClassNotFoundException ex) {
-            ex.getMessage();
+
+            String methodName = "getHelper";
+            OrderSampleException.exceptionIfsDB(ex.getMessage(), methodName);
+            OrderSampleException.exceptionIfLast(ex.getMessage(), methodName);
+
         }
         return helper;
     }
+
 
 }

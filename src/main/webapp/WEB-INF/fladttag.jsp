@@ -42,14 +42,23 @@
                     Ud over at fremstå enkel og minimalistisk, giver en carport med fladt tag,
                     mulighed for at bygge helt i skel, og stadig overholde grænsen for maksimal højde.
                 </p>
+                <p>Når De har indtaste Deres ønskede mål, vil de blive videresendt til en ansat, som vil vende
+                tilbage til Dem for at sikre, at målenes sammenhæng er ideel.
+                </p>
             </div>
             <div class="col-3">
                 <img src="images/fladttag.png" class="img-fluid mx-auto d-block" alt="Carport med fladt tag"/>
             </div>
         </div>
 
-        <h3>Byg din egen Carport</h3>
-        <p class="mb-0">Nedenunder kan du tilpasse mål og materialer efter egne ønsker.</p>
+        <h3>Byg Deres egen Carport</h3>
+        <p class="mb-0">Nedenunder kan De tilpasse mål og materialer efter egne ønsker.</p>
+        <p class="mb-0">Vær dog opmærksom på følgende:</p>
+        <ul style="list-style-type: circle">
+            <li>Skurets mål må ikke være større end carportens.</li>
+            <li>Der skal være en minimumslængde på 70 cm mellem skurets bredde og carportens bredde.</li>
+            <li>Der skal være en minimumslængde på 30 cm mellem skurets længde og carportens længde.</li>
+        </ul>
         <p class="nbText">NB: Nedenstående mål er i centimeter.</p>
 
         <form action="FrontController" method="post">
@@ -94,7 +103,7 @@
         <br>
 
             <p class="beskedRød">${requestScope.fejl}</p>
-        Med redskabsrum: <input name="checkboxShed" type="checkbox" id="myCheck" onclick="myFunction()">
+        Med redskabsrum: <input name="checkboxShed" type="checkbox" id="myCheck" onclick="showShed()">
         <br>
         <br>
 
@@ -119,12 +128,13 @@
         </div>
 
         <div class="text-left mt-4">
+            <input class="btn tlfNumberBox" name="tlfNumber" type="number" placeholder="Indtast tlf. nummer:">
             <button class="btn btn-primary" type="submit">Indtast</button>
         </div>
         </form>
 
         <script>
-            function myFunction() {
+            function showShed() {
                 var checkBox = document.getElementById("myCheck");
                 var shed = document.getElementById("shed");
                 if (checkBox.checked == true){

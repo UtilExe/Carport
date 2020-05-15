@@ -60,6 +60,7 @@ REFERENCES `carport`.`material_type`(`typeID`));
   `roof_material` VARCHAR(45) NULL,
   `price` INT NULL,
   `approved` TINYINT NOT NULL DEFAULT 0,
+  `tlf_number` INT NOT NULL,
   PRIMARY KEY (`orderID`));
   
   CREATE TABLE `carport`.`orderlines` (
@@ -171,25 +172,25 @@ INSERT INTO shed_measures (`description`, `measures`) VALUES ('bredde', 590);
 INSERT INTO shed_measures (`description`, `measures`) VALUES ('bredde', 620);
 INSERT INTO shed_measures (`description`, `measures`) VALUES ('bredde', 650);
 INSERT INTO shed_measures (`description`, `measures`) VALUES ('bredde', 680);
-INSERT INTO shed_measures (`description`, `measures`) VALUES ('længde', 110);
-INSERT INTO shed_measures (`description`, `measures`) VALUES ('længde', 140);
-INSERT INTO shed_measures (`description`, `measures`) VALUES ('længde', 170);
-INSERT INTO shed_measures (`description`, `measures`) VALUES ('længde', 200);
-INSERT INTO shed_measures (`description`, `measures`) VALUES ('længde', 230);
-INSERT INTO shed_measures (`description`, `measures`) VALUES ('længde', 260);
-INSERT INTO shed_measures (`description`, `measures`) VALUES ('længde', 290);
-INSERT INTO shed_measures (`description`, `measures`) VALUES ('længde', 320);
-INSERT INTO shed_measures (`description`, `measures`) VALUES ('længde', 350);
-INSERT INTO shed_measures (`description`, `measures`) VALUES ('længde', 380);
-INSERT INTO shed_measures (`description`, `measures`) VALUES ('længde', 410);
-INSERT INTO shed_measures (`description`, `measures`) VALUES ('længde', 440);
-INSERT INTO shed_measures (`description`, `measures`) VALUES ('længde', 470);
-INSERT INTO shed_measures (`description`, `measures`) VALUES ('længde', 500);
-INSERT INTO shed_measures (`description`, `measures`) VALUES ('længde', 530);
-INSERT INTO shed_measures (`description`, `measures`) VALUES ('længde', 560);
-INSERT INTO shed_measures (`description`, `measures`) VALUES ('længde', 590);
-INSERT INTO shed_measures (`description`, `measures`) VALUES ('længde', 620);
-INSERT INTO shed_measures (`description`, `measures`) VALUES ('længde', 650);
+INSERT INTO shed_measures (`description`, `measures`) VALUES ('længde', 145);
+INSERT INTO shed_measures (`description`, `measures`) VALUES ('længde', 175);
+INSERT INTO shed_measures (`description`, `measures`) VALUES ('længde', 205);
+INSERT INTO shed_measures (`description`, `measures`) VALUES ('længde', 235);
+INSERT INTO shed_measures (`description`, `measures`) VALUES ('længde', 265);
+INSERT INTO shed_measures (`description`, `measures`) VALUES ('længde', 295);
+INSERT INTO shed_measures (`description`, `measures`) VALUES ('længde', 325);
+INSERT INTO shed_measures (`description`, `measures`) VALUES ('længde', 355);
+INSERT INTO shed_measures (`description`, `measures`) VALUES ('længde', 385);
+INSERT INTO shed_measures (`description`, `measures`) VALUES ('længde', 415);
+INSERT INTO shed_measures (`description`, `measures`) VALUES ('længde', 445);
+INSERT INTO shed_measures (`description`, `measures`) VALUES ('længde', 475);
+INSERT INTO shed_measures (`description`, `measures`) VALUES ('længde', 505);
+INSERT INTO shed_measures (`description`, `measures`) VALUES ('længde', 535);
+INSERT INTO shed_measures (`description`, `measures`) VALUES ('længde', 565);
+INSERT INTO shed_measures (`description`, `measures`) VALUES ('længde', 595);
+INSERT INTO shed_measures (`description`, `measures`) VALUES ('længde', 625);
+INSERT INTO shed_measures (`description`, `measures`) VALUES ('længde', 655);
+INSERT INTO shed_measures (`description`, `measures`) VALUES ('længde', 685);
 
 INSERT INTO material_type (`type_name`) VALUES ('brædt');
 INSERT INTO material_type (`type_name`) VALUES ('lægte');

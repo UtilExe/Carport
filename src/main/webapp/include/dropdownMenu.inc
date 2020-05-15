@@ -4,11 +4,10 @@
                    aria-haspopup="true" aria-expanded="false">
                     <img class="login-image" src="./images/foto.png" height="70" alt="Logo">
                 </a>
-                <div class="dropdown-menu" style="left: -100px;" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="FrontController?target=redirect&destination=createAccount">Opret
-                        profil</a>
+                <div class="dropdown-menu" style="left: -110px;" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="FrontController?target=redirect&destination=createAccount">Opret profil</a>
                     <a class="dropdown-item"> Eller login:</a>
-                    <ul id="login-dp" style="text-decoration: none;" class="dropdown-item">
+                    <ul id="login-dp" class="dropdown-item list-unstyled">
                         <li>
                             <div class="row">
                                 <div class="col-md-12">

@@ -34,12 +34,7 @@
             <ul class="navbar-nav mr-5 mt-60 mt-lg-0">
                 <div class="col-lg-auto">
                     <li class="nav-item active">
-                        <a class="nav-link text-white" href="FrontController?target=redirect&destination=admin"><h3>
-                            Forside</h3></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-white" href="FrontController?target=redirect&destination=ordre"><h3>
-                            Ordre</h3></a>
+                        <a class="nav-link text-white" href="FrontController?target=redirect&destination=index"><h3>Forside</h3></a>
                     </li>
                 </div>
             </ul>
@@ -70,6 +65,7 @@
                     <th>Antal</th>
                     <th>Enhed</th>
                     <th>Beskrivelse</th>
+                    <th>Pris</th>
                 </tr>
                 <c:forEach var="materialView" items="${requestScope.materialView.list}">
                     <tr>
@@ -78,29 +74,34 @@
                         <td>${materialView.get(3)}</td>
                         <td>${materialView.get(1)}</td>
                         <td>${materialView.get(2)}</td>
+                        <td>${materialView.get(materialView.size()-1)}</td>
                     </tr>
                 </c:forEach>
             </table>
         </div>
 
-        <ul style="list-style-type:square;">
+        <ul style="list-style-type:none;">
             <c:forEach var="order" items="${requestScope.orders}">
-                <form action="FrontController" method="POST">
-                    <input type="hidden" name="target" value="approve">
-                <li>
-                    <input type="hidden" name="orderID" value="${order.orderID}">${order}
-                </li>
+                <div class="mb-3 pb-2 borderSlightUnder">
+                    <form action="FrontController" method="POST">
+                        <input type="hidden" name="target" value="approve">
+                        <li>
+                            <input type="hidden" name="orderID" value="${order.orderID}">${order}
+                        </li>
+                        <div class="row mb-2">
+                            <div class="col-3">
+                                <button name="godkend" type="submit" class="btnSubmitAdmin" style="text-align: center; width: 100%; background-color: green;">Godkend</button>
+                            </div>
+                            <div class="col-3">
+                                <button name="afvis" type="submit" class="btnSubmitAdmin" style="text-align: center; width: 100%; background-color: red;">Afvis</button>
+                            </div>
+                        </div>
+                    </form>
                     <div class="row">
-                        <div class="col-3">
-                            <button name="godkend" type="submit" class="btnSubmitAdmin" style="text-align: center; width: 100%; background-color: green;">Godkend</button>
-                        </div>
-                        <div class="col-3">
-                            <button name="afvis" type="submit" class="btnSubmitAdmin" style="text-align: center; width: 100%; background-color: red;">Afvis</button>
-                        </div>
+                        <div class="col-2"><a href="FrontController?target=showplan&orderID=${order.orderID}">Se plantegning</a></div>
+                        <div class="col-2"><a href="FrontController?target=materialView&orderID=${order.orderID}">Se materialeliste</a></div>
                     </div>
-                </form>
-                <a href="FrontController?target=showplan&orderID=${order.orderID}">Se plantegning</a>
-                <a href="FrontController?target=materialView&orderID=${order.orderID}">Se materialeliste</a>
+                </div>
             </c:forEach>
         </ul>
 

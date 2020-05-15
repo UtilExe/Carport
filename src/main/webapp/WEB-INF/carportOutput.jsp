@@ -10,38 +10,67 @@
   Time: 11:12
   To change this template use File | Settings | File Templates.
 --%>
-    <title>Tmp liste indtil nyt møde</title>
+<title>Materialeliste og skitser</title>
 </head>
 <body>
 
+<nav class="navbar navbar-expand-lg navbar-light">
+    <a class="navbar-brand" href="#"> <img src="./images/logo.png" width="100" height="100" alt="Logo"></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
+            aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarText">
+        <ul class="navbar-nav mr-auto ">
+            <ul class="navbar-nav mr-5 mt-60 mt-lg-0">
+                <div class="col-lg-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link text-white" href="FrontController?target=redirect&destination=index"><h3>
+                            Tilbage til forsiden</h3></a>
+                    </li>
+                </div>
+            </ul>
+        </ul>
+        <span class="navbar-text mr-5">
+            ${sessionScope.email}
+        </span>
+        <%@include file="/include/dropdownMenu.inc" %>
+    </div>
+</nav>
+
+
+<div style="text-align: center">
+    <h3 class="pt-4 text-success">Deres carport-mål er blevet gemt og vil snarest muligt blive efterset af en ansat, der vil vende tilbage til Dem!</h3>
+    <h3 class="text-success">De kan nu forlade siden.</h3>
+</div>
 
 <div style="text-align: center">
     <h2 class="pt-4">Samlet pris: ${requestScope.finalPrice} kr.</h2>
 </div>
 
-<div class="pt-4 pb-4">
-        <table class="materialListStyle">
+<div class="pt-4 pb-4" style="margin-bottom: 50px">
+    <table class="centerHorizontal materialListStyle">
+        <tr>
+            <th>Kategori</th>
+            <th>Længde</th>
+            <th>Antal</th>
+            <th>Enhed</th>
+            <th>Beskrivelse</th>
+        </tr>
+        <c:forEach var="material" items="${requestScope.materialList.list}">
             <tr>
-                <th>Kategori</th>
-                <th>Længde</th>
-                <th>Antal</th>
-                <th>Enhed</th>
-                <th>Beskrivelse</th>
+                <td>${material.get(0)}</td>
+                <td>${material.get(4)}</td>
+                <td>${material.get(3)}</td>
+                <td>${material.get(1)}</td>
+                <td>${material.get(2)}</td>
             </tr>
-            <c:forEach var="material" items="${requestScope.materialList.list}">
-                <tr>
-                    <td>${material.get(0)}</td>
-                    <td>${material.get(4)}</td>
-                    <td>${material.get(3)}</td>
-                    <td>${material.get(1)}</td>
-                    <td>${material.get(2)}</td>
-                </tr>
-            </c:forEach>
-        </table>
+        </c:forEach>
+    </table>
 </div>
-<div class="ml-4 mb-4">${requestScope.svgdrawingfront}</div>
-<div class="ml-4 mb-4">${requestScope.svgdrawing}</div>
 
+<div class="mb-4 centerHorizontal">${requestScope.svgdrawingfront}</div>
 
-</body>
-</html>
+<div class="mb-4 centerHorizontal">${requestScope.svgdrawing}</div>
+
+<%@include file="../include/footer.inc" %>

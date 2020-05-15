@@ -17,6 +17,7 @@ public class CarportDesign extends Command {
         String tmpCarportWidth = request.getParameter("width");
         String tmpCarportHeight = request.getParameter("height");
         String roofMaterial = request.getParameter("roof");
+        String tmpTlfNumber = request.getParameter("tlfNumber");
 
         if(tmpCarportHeight.equals("") || tmpCarportLength.equals("") || tmpCarportWidth.equals("") || roofMaterial.equals("")){
             request.setAttribute("error", "Alle felter blev ikke udfyldt.");
@@ -27,6 +28,7 @@ public class CarportDesign extends Command {
         int carportLength = ValidationValues.getInteger(tmpCarportLength);
         int carportWidthCM = ValidationValues.getInteger(tmpCarportWidth);
         int carportHeight = ValidationValues.getInteger(tmpCarportHeight);
+        int tlfNumber = ValidationValues.getInteger(tmpTlfNumber);
         int shedLength = 0;
         int shedWidth = 0;
         int carportPitch = 0;
@@ -64,7 +66,7 @@ public class CarportDesign extends Command {
 
         CarportHelper helper = new CarportHelper(carportLength, carportWidthCM, carportHeight, shedLength, shedWidth, carportPitch);
 
-        //TODO  Vi minusser med 70 for at tage højde for at skuret ikke må gå ud over remmene
+        //Vi minusser med 70 for at tage højde for at skuret ikke må gå ud over remmene og 30 for at gøre op for afstanden bagerst.
         if (helper.getShedWidth() > helper.getCarportWidthCM()-70 || helper.getShedLength() > helper.getCarportLengthCM()-30) {
             request.setAttribute("fejl", "Skurrets mål er for store i forhold til carporten! Prøv igen med korrekte værdier");
             helper.setInvalidInput(true);
@@ -90,7 +92,7 @@ public class CarportDesign extends Command {
         // hvad skal carport bruges til, bliver ikke brugt lige nu.
             Carport carport = null;
         if (!helper.isInvalidInput()) {
-            OrderFacade.addCarportToCustOrder(helper.getCarportLengthCM(), helper.getCarportWidthCM(), helper.getCarportHeight(), helper.isHasShed(), helper.getShedWidth(), helper.getShedLength(), helper.isHasPitch(), helper.getCarportPitch(), roofMaterial, finalPrice);
+            OrderFacade.addCarportToCustOrder(helper.getCarportLengthCM(), helper.getCarportWidthCM(), helper.getCarportHeight(), helper.isHasShed(), helper.getShedWidth(), helper.getShedLength(), helper.isHasPitch(), helper.getCarportPitch(), roofMaterial, finalPrice, tlfNumber);
             if (helper.isHasPitch()) {
                 carport = new CarportPitch(helper.getCarportLengthCM(), helper.getCarportWidthCM(), helper.getCarportHeight(), roofMaterial, helper.isHasShed(), helper.getShedWidth(), helper.getShedLength(), helper.isHasPitch(), helper.getCarportPitch());
             } else {

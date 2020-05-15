@@ -66,10 +66,10 @@
 <div class="container jumbotron ">
 
     <div class="jumbotron mr-5 mt-20 mt-lg-0">
-        <h3> Byg din egen carport</h3>
-        <p> Her kan du designe og udvikle din egen ønskede Carport med egne mål.
-            På den måde sikrer du, at du får netop din ønskede Carport!</p>
-        <p>Vælg din ønskede Carport type for at starte med at designe den:</p>
+        <h3> Byg Deres egen carport</h3>
+        <p> Her kan De designe og udvikle Deres egen ønskede Carport med egne mål.
+            På den måde sikres, at De får netop den Carport De ønsker!</p>
+        <p>Vælg Deres ønskede Carport type for at starte med at designe den:</p>
 
         <div class="row">
         <div class="col">

@@ -31,8 +31,9 @@ public class OrderMapper {
                 String roofMaterial = rs.getString("roof_material");
                 int price = rs.getInt("price");
                 boolean approved = rs.getBoolean("approved");
+                int tlfNumber = rs.getInt("tlf_number");
                 Carport carport = new Carport(carportLength, carportWidth, carportHeight, roofMaterial);
-                Order order = new Order(orderID, carport, hasShed, shedWidth, shedLength, hasPitch, roofPitch, price, approved);
+                Order order = new Order(orderID, carport, hasShed, shedWidth, shedLength, hasPitch, roofPitch, price, approved, tlfNumber);
                 orders.add(order);
             }
         } catch(SQLException | ClassNotFoundException ex) {
@@ -76,11 +77,11 @@ public class OrderMapper {
         }
     }
 
-    public static void addCarportToCustOrder(int carportLength, int carportWidth, int carportHeight, boolean hasShed, int shedWidth, int shedLength, boolean hasPitch, int roofPitch, String roofMaterial, int price) throws UniversalSampleException {
+    public static void addCarportToCustOrder(int carportLength, int carportWidth, int carportHeight, boolean hasShed, int shedWidth, int shedLength, boolean hasPitch, int roofPitch, String roofMaterial, int price, int tlfNumber) throws UniversalSampleException {
         try {
             Connection con = Connector.connection();
             String SQL = "INSERT INTO carport.cust_order (carport_length, carport_width, carport_height, hasShed, shedWidth, " +
-                    "shedLength, hasPitch, roof_pitch, roof_material, price) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                    "shedLength, hasPitch, roof_pitch, roof_material, price, tlf_number) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement ps = con.prepareStatement( SQL, Statement.RETURN_GENERATED_KEYS );
             ps.setInt(1, carportLength);
             ps.setInt( 2, carportWidth);
@@ -92,6 +93,7 @@ public class OrderMapper {
             ps.setInt(8, roofPitch);
             ps.setString(9, roofMaterial);
             ps.setInt(10, price);
+            ps.setInt(11, tlfNumber);
 
             ps.executeUpdate();
             ResultSet ids = ps.getGeneratedKeys();

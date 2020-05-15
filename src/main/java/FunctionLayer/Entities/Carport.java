@@ -48,7 +48,7 @@ public class Carport {
 
     @Override
     public String toString() {
-        return "Caport Længde: " + carportLength + ", Caport Bredde: " + carportWidth + ", Caport Højde: " + carportHeight + "Tag materiale: " + roofMaterial;
+        return "Caport Længde: " + carportLength + ", Caport Bredde: " + carportWidth + ", Caport Højde: " + carportHeight + ", Tag materiale: " + roofMaterial;
     }
 }
 

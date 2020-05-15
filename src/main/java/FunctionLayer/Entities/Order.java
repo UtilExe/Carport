@@ -10,8 +10,9 @@ public class Order {
     private int roofPitch;
     private int price;
     private boolean approved;
+    private int tlfNumber;
 
-    public Order(int orderID, Carport carport, boolean hasShed, int shedWidth, int shedLength, boolean hasPitch, int roofPitch, int price, boolean approved) {
+    public Order(int orderID, Carport carport, boolean hasShed, int shedWidth, int shedLength, boolean hasPitch, int roofPitch, int price, boolean approved, int tlfNumber) {
         this.orderID = orderID;
         this.carport = carport;
         this.hasShed = hasShed;
@@ -21,6 +22,7 @@ public class Order {
         this.roofPitch = roofPitch;
         this.price = price;
         this.approved = approved;
+        this.tlfNumber = tlfNumber;
     }
 
     public int getOrderID() {
@@ -95,29 +97,23 @@ public class Order {
         this.approved = approved;
     }
 
-    /*@Override
-    public String toString() {
-        return "Order{" +
-                "orderID=" + orderID +
-                ", carport=" + carport +
-                ", hasShed=" + hasShed +
-                ", shedWidth=" + shedWidth +
-                ", shedLength=" + shedLength +
-                ", hasPitch=" + hasPitch +
-                ", roofPitch=" + roofPitch +
-                ", price=" + price +
-                ", approved=" + approved +
-                '}';
-    }*/
+    public int getTlfNumber() {
+        return tlfNumber;
+    }
+
+    public void setTlfNumber(int tlfNumber) {
+        this.tlfNumber = tlfNumber;
+    }
+
     @Override
     public String toString() {
         String result = "";
         if(hasShed) {
-            result += ", skurlængde: " + shedLength + ", skurbredde: " + shedWidth;
+            result += ", Skurlængde: " + shedLength + ", Skurbredde: " + shedWidth;
         }
         if(hasPitch) {
-            result += ", taghældning: " + roofPitch;
+            result += ", Taghældning: " + roofPitch;
         }
-        return "OrderID: " + orderID + ", Carport: " + carport.toString() + result + ", Pris: " + price + " DKK";
+        return "OrderID: " + orderID + ", " + carport.toString() + result + ", Pris: " + price + " DKK, " + "Kundens tlf. nr.: " + tlfNumber;
     }
 }

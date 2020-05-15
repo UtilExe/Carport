@@ -201,11 +201,14 @@
     opacity: 0.6;
 }
 
-.materialListStyle {
+.centerHorizontal {
     margin-left: auto;
     margin-right: auto;
-    border: 2px solid black;
     text-align: center;
+}
+
+.materialListStyle {
+    border: 2px solid black;
 }
 
 .materialListStyle > tr {
@@ -216,4 +219,14 @@
 .materialListStyle > th, td {
     border: 2px solid black;
     padding: 5px;
+}
+
+.borderSlightUnder {
+    border-bottom: 1.5px solid lightgray;
+}
+
+.tlfNumberBox {
+    border: 1px solid lightgrey;
+    background-color: white;
+    color: black;
 }

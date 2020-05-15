@@ -57,7 +57,7 @@ public class MaterialCalculator {
         return result;
     }
 
-    public int calcBandAmount(int carportLength, int carportWidth, boolean hasShed, int shedLength) {
+    public int calcLengthOfBands(int carportLength, int carportWidth, boolean hasShed, int shedLength) {
         double lengthOfSquare = 0.0;
         double widthOfSquare;
         double calcDiagonal;

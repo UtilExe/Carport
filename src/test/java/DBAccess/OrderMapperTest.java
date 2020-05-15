@@ -1,5 +1,6 @@
 package DBAccess;
 
+import FunctionLayer.CarportHelper;
 import FunctionLayer.Entities.Carport;
 import FunctionLayer.Entities.Order;
 import FunctionLayer.UniversalSampleException;
@@ -44,6 +45,7 @@ public class OrderMapperTest {
     @Before
     public void beforeEachTest() {
         try (Statement stmt = testConnection.createStatement()) {
+            stmt.execute("CREATE TABLE `material_list` LIKE `carport`.`material_list`");
             stmt.execute("DROP TABLE IF EXISTS `cust_order`");
             stmt.execute("CREATE TABLE `cust_order` LIKE `carport`.`cust_order`");
             stmt.execute("INSERT INTO `cust_order` VALUES " +
@@ -59,13 +61,94 @@ public class OrderMapperTest {
 
     @Test
     public void testGetOrders() throws UniversalSampleException {
-        //Carport carport = new Carport(700, 300, 340, "Sjovt-tag");
-        //Order order = new Order(0, carport, true, 200, 300, false, 30, 15000, false, 86756453);
-        ArrayList<Order> orderList = OrderMapper.getOrders();
+        // Vi henter alle ordrer der ikke er godkendt.
+        ArrayList<Order> orderList = OrderMapper.getOrdersThatAreNotApproved();
 
-        assertThat(orderList, hasSize(4));
-
+        assertThat(orderList, hasSize(3));
     }
 
+    @Test (expected = AssertionError.class)
+    public void testGetOrdersNegative() throws UniversalSampleException {
+        // Vi henter alle ordrer der ikke er godkendt.
+        ArrayList<Order> orderList = OrderMapper.getOrdersThatAreNotApproved();
+
+        assertThat(orderList, hasSize(4));
+    }
+
+    @Test
+    public void testApprove() throws UniversalSampleException {
+        // Vi godkender den sidste odrer.
+        OrderMapper.approve(4);
+        // Så henter vi ordrerne igen og tjekker om den er blevet godkendt.
+        ArrayList<Order> orderList = OrderMapper.getOrdersThatAreNotApproved();
+
+        assertThat(orderList, hasSize(2));
+    }
+
+    @Test (expected = AssertionError.class)
+    public void testApproveNegative() throws UniversalSampleException {
+        // Vi godkender den sidste odrer.
+        OrderMapper.approve(4);
+        // Så henter vi ordrerne igen og tjekker om den er blevet godkendt.
+        ArrayList<Order> orderList = OrderMapper.getOrdersThatAreNotApproved();
+
+        assertThat(orderList, hasSize(3));
+    }
+
+    @Test
+    public void testRemoveOrder() throws UniversalSampleException {
+        // Vi fjerner den sidste odrer.
+        OrderMapper.removeOrder(4);
+        // Så henter vi ordrerne igen og tjekker om den er blevet fjernet.
+        ArrayList<Order> orderList = OrderMapper.getOrdersThatAreNotApproved();
+
+        assertThat(orderList, hasSize(2));
+    }
+
+    @Test (expected = AssertionError.class)
+    public void testRemoveOrderNegative() throws UniversalSampleException {
+        // Vi fjerner den sidste odrer.
+        OrderMapper.removeOrder(4);
+        // Så henter vi ordrerne igen og tjekker om den er blevet fjerner.
+        ArrayList<Order> orderList = OrderMapper.getOrdersThatAreNotApproved();
+
+        assertThat(orderList, hasSize(3));
+    }
+
+    @Test
+    public void testaddCarportToCustOrder() throws UniversalSampleException {
+        //Carport carport = new Carport(700, 300, 340, "Sjovt-tag");
+        //Order order = new Order(0, carport, true, 200, 300, false, 30, 15000, false, 86756453);
+
+        // Vi tilføjer en ordre:
+        OrderMapper.addCarportToCustOrder(700, 300, 340, true, 200, 200, true, 30, "Sjovt-tag", 15000, 98722412);
+
+        // Så henter vi ordrerne igen og tjekker om den er blevet tilføjet.
+        ArrayList<Order> orderList = OrderMapper.getOrdersThatAreNotApproved();
+
+        assertThat(orderList, hasSize(4));
+    }
+
+    @Test (expected = AssertionError.class)
+    public void testaddCarportToCustOrderNegative() throws UniversalSampleException {
+        // Vi tilføjer en ordre:
+        OrderMapper.addCarportToCustOrder(700, 300, 340, true, 200, 200, true, 30, "Sjovt-tag", 15000, 98722412);
+
+        // Så henter vi ordrerne igen og tjekker om den er blevet tilføjet.
+        ArrayList<Order> orderList = OrderMapper.getOrdersThatAreNotApproved();
+
+        assertThat(orderList, hasSize(3));
+    }
+
+    // TODO Lav nedenstående test, hvis overskud.
+    /*
+    @Test
+    public void testGetHelper() throws UniversalSampleException {
+        CarportHelper result = OrderMapper.getHelper(4);
+        CarportHelper expected = new CarportHelper(720, 360, 340, 260, 325, 35);
+
+        assertEquals(result, expected);
+    }
+     */
 
 }

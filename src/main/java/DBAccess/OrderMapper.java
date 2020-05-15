@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 public class OrderMapper {
 
-    public static ArrayList<Order> getOrders() throws UniversalSampleException {
+    public static ArrayList<Order> getOrdersThatAreNotApproved() throws UniversalSampleException {
         ArrayList<Order> orders = new ArrayList<>();
         try {
             Connection con = Connector.connection();
@@ -49,7 +49,7 @@ public class OrderMapper {
     public static void approve(int orderID) throws UniversalSampleException {
         try {
             Connection con = Connector.connection();
-            String SQL = "UPDATE carport.cust_order SET approved=1 WHERE orderID=?;";
+            String SQL = "UPDATE cust_order SET approved=1 WHERE orderID=?;";
             PreparedStatement ps = con.prepareStatement(SQL);
             ps.setInt(1, orderID);
             ps.executeUpdate();
@@ -64,7 +64,7 @@ public class OrderMapper {
     public static void removeOrder(int orderID) throws UniversalSampleException {
         try {
             Connection con = Connector.connection();
-            String SQL = "DELETE FROM carport.cust_order WHERE orderID=?;";
+            String SQL = "DELETE FROM cust_order WHERE orderID=?;";
             PreparedStatement ps = con.prepareStatement(SQL);
             ps.setInt(1, orderID);
             ps.executeUpdate();
@@ -80,7 +80,7 @@ public class OrderMapper {
     public static void addCarportToCustOrder(int carportLength, int carportWidth, int carportHeight, boolean hasShed, int shedWidth, int shedLength, boolean hasPitch, int roofPitch, String roofMaterial, int price, int tlfNumber) throws UniversalSampleException {
         try {
             Connection con = Connector.connection();
-            String SQL = "INSERT INTO carport.cust_order (carport_length, carport_width, carport_height, hasShed, shedWidth, " +
+            String SQL = "INSERT INTO cust_order (carport_length, carport_width, carport_height, hasShed, shedWidth, " +
                     "shedLength, hasPitch, roof_pitch, roof_material, price, tlf_number) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement ps = con.prepareStatement( SQL, Statement.RETURN_GENERATED_KEYS );
             ps.setInt(1, carportLength);
@@ -112,7 +112,7 @@ public class OrderMapper {
         CarportHelper helper = null;
         try {
             Connection con = Connector.connection();
-            String SQL = "SELECT carport_length, carport_width, carport_height, shedWidth, shedLength, roof_pitch FROM carport.cust_order WHERE orderID=?;";
+            String SQL = "SELECT carport_length, carport_width, carport_height, shedWidth, shedLength, roof_pitch FROM cust_order WHERE orderID=?;";
             PreparedStatement ps = con.prepareStatement(SQL);
             ps.setInt(1, orderID);
             ResultSet rs = ps.executeQuery();

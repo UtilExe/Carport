@@ -13,7 +13,7 @@ public class OrderFacade {
     }
 
     public static ArrayList<Order> getOrders() throws UniversalSampleException {
-        return OrderMapper.getOrders();
+        return OrderMapper.getOrdersThatAreNotApproved();
     }
 
     public static void approve(int orderID) throws UniversalSampleException {

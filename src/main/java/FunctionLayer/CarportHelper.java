@@ -147,7 +147,7 @@ public class CarportHelper {
         /// Initialize Variables
         this.calcTest = new MaterialCalculator();
         this.shedHeight = (int) (carportHeight - MaterialFacade.getWidthHeightFromDimensionMeasureInCM(6).get(1));
-        this.band = calcTest.calcBandAmount(carportLengthCM, carportWidthCM, hasShed, shedLength);
+        this.band = calcTest.calcLengthOfBands(carportLengthCM, carportWidthCM, hasShed, shedLength);
         this.rolesOfBand = calcTest.getRolesAmountBand(band);
         this.amountOfRafts = calcTest.calcRaftAmount(carportLengthCM, hasPitch);
         this.pillarAmount = calcTest.calcPillarAmount(carportLengthCM, hasShed, shedLength, shedWidth, carportWidthCM);

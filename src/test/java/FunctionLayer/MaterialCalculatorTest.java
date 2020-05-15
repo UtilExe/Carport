@@ -501,6 +501,64 @@ public class MaterialCalculatorTest {
         int result = calculator.getPlanksForGavlMountLength(carportWidth, roofPitch);
         assertEquals(expected, result);
     }
-    
+
+    @Test
+    public void testGetWoodForMeasure() {
+            // Hvor langt er det utopiske brædt:
+           int materialMeasure = 600;
+           // Hvor mange brædt skal vi bruge:
+           int amountOnCarport = 2;
+           // Hvilke længder har vi til rådighed:
+        ArrayList<Integer> lengths = new ArrayList<>();
+        lengths.add(210);
+        lengths.add(260);
+        lengths.add(310);
+        lengths.add(360);
+        lengths.add(410);
+        lengths.add(460);
+        lengths.add(510);
+
+        //Vi forventer:
+        ArrayList<Integer> expected = new ArrayList<>();
+        // Vi tilføjer antal brædt af det optimale af dem vi har til rådighed (husk: vi skal bruge to utopiske længder):
+        expected.add(4);
+        // Vi tilføjer den optimale længde (den længde der er lige over halvdelen af det vi skal bruge):
+        expected.add(310);
+
+        //Nu udfører vi beregningen:
+        ArrayList<Integer> result = calculator.getWoodForMeasure(materialMeasure, lengths, amountOnCarport);
+
+        assertEquals(expected, result);
+    }
+
+
+    @Test (expected = AssertionError.class)
+    public void testGetWoodForMeasureNegative() {
+        // Hvor langt er det utopiske brædt:
+        int materialMeasure = 600;
+        // Hvor mange brædt skal vi bruge:
+        int amountOnCarport = 2;
+        // Hvilke længder har vi til rådighed:
+        ArrayList<Integer> lengths = new ArrayList<>();
+        lengths.add(210);
+        lengths.add(260);
+        lengths.add(310);
+        lengths.add(360);
+        lengths.add(410);
+        lengths.add(460);
+        lengths.add(510);
+
+        //Vi forventer:
+        ArrayList<Integer> expected = new ArrayList<>();
+        // Vi tilføjer antal brædt af det optimale af dem vi har til rådighed (husk: vi skal bruge to utopiske længder):
+        expected.add(2);
+        // Vi tilføjer den optimale længde (den længde der er lige over halvdelen af det vi skal bruge):
+        expected.add(260);
+
+        //Nu udfører vi beregningen:
+        ArrayList<Integer> result = calculator.getWoodForMeasure(materialMeasure, lengths, amountOnCarport);
+
+        assertEquals(expected, result);
+    }
 
 }

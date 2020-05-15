@@ -13,7 +13,7 @@ public class MaterialView extends Command {
         int orderID = Integer.parseInt(request.getParameter("orderID"));
 
         CarportHelper helper = OrderFacade.getHelper(orderID);
-        request.setAttribute("materialView", helper.test(helper.isHasShed(), helper.isHasPitch()));
+        request.setAttribute("materialView", helper.createMaterialList(helper.isHasShed(), helper.isHasPitch()));
         request.setAttribute("showMaterials", true);
 
         return "admin";

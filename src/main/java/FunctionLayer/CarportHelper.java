@@ -315,7 +315,7 @@ public class CarportHelper {
         }
     }
 
-    public MaterialList test(boolean hasShed, boolean hasPitch) {
+    public MaterialList createMaterialList(boolean hasShed, boolean hasPitch) {
         allMaterials.addToList(heads);
         allMaterials.addToList(rafts);
         allMaterials.addToList(bands);

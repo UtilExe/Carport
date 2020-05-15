@@ -98,7 +98,7 @@ public class CarportDesign extends Command {
             }
         }
 
-        request.setAttribute("materialList", helper.test(helper.isHasShed(), helper.isHasPitch()));
+        request.setAttribute("materialList", helper.createMaterialList(helper.isHasShed(), helper.isHasPitch()));
         request.setAttribute("finalPrice", finalPrice);
 
 

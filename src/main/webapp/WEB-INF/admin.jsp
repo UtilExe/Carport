@@ -6,7 +6,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
 <title>Admin</title>
 </head>
-<body>
+<body onload="showMaterialList()">
 
 <%!
     @Override
@@ -59,7 +59,29 @@
 
         <h3>Her kan du se ordre som afventer godkendelse:</h3>
 
-        <div class="ml-4 mb-4">${requestScope.drawing}</div>
+        <div class="ml-4 mb-4">${requestScope.drawingAbove}</div>
+        <div class="ml-4 mb-4">${requestScope.drawingSide}</div>
+
+        <div class="pt-4 pb-4" id="materialTable" style="visibility: hidden;">
+            <table class="materialListStyle">
+                <tr>
+                    <th>Kategori</th>
+                    <th>Længde</th>
+                    <th>Antal</th>
+                    <th>Enhed</th>
+                    <th>Beskrivelse</th>
+                </tr>
+                <c:forEach var="materialView" items="${requestScope.materialView.list}">
+                    <tr>
+                        <td>${materialView.get(0)}</td>
+                        <td>${materialView.get(4)}</td>
+                        <td>${materialView.get(3)}</td>
+                        <td>${materialView.get(1)}</td>
+                        <td>${materialView.get(2)}</td>
+                    </tr>
+                </c:forEach>
+            </table>
+        </div>
 
         <ul style="list-style-type:square;">
             <c:forEach var="order" items="${requestScope.orders}">
@@ -78,10 +100,24 @@
                     </div>
                 </form>
                 <a href="FrontController?target=showplan&orderID=${order.orderID}">Se plantegning</a>
+                <a href="FrontController?target=materialView&orderID=${order.orderID}">Se materialeliste</a>
             </c:forEach>
         </ul>
 
     </div>
 </div>
+
+<script>
+    function showMaterialList() {
+        var materialTable = document.getElementById("materialTable");
+        var showMaterials = ${requestScope.showMaterials};
+        if(showMaterials == true) {
+            materialTable.style.visibility = "visible";
+        } else {
+            materialTable.style.visibility = "hidden";
+        }
+    }
+</script>
+
 
 <%@include file="../include/footer.inc" %>

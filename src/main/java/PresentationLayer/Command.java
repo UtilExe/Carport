@@ -18,7 +18,7 @@ abstract class Command {
         commands.put( "carportDesign",      new CarportDesign()      );
         commands.put( "approve",            new Approve()            );
         commands.put( "showplan",           new Plan()               );
-        //commands.put( "carportDrawing",      new CarportDrawing()     );
+        commands.put( "materialView",       new MaterialView()       );
     }
 
     static Command from( HttpServletRequest request ) {

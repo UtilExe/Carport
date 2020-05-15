@@ -12,7 +12,11 @@ public class Plan extends Command{
 
         CarportHelper helper = OrderFacade.getHelper(orderID);
         String svgDrawing = helper.svgDrawing(helper.getCarportLengthCM(), helper.getCarportWidthCM(), helper.isHasShed());
-        request.setAttribute("drawing", svgDrawing);
+        String svgDrawingFront = helper.svgDrawingFront(helper.getCarportLengthCM(), helper.getCarportHeight(), helper.isHasShed());
+        request.setAttribute("drawingAbove", svgDrawing);
+        request.setAttribute("drawingSide", svgDrawingFront);
+        request.setAttribute("showMaterials", false);
+
         return "admin";
     }
 }

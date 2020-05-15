@@ -20,7 +20,7 @@ public class OrderMapperTest {
     private static Connection testConnection;
     private static String USER = DBLogin.username;
     private static String USERPW = DBLogin.password;
-    private static String DBNAME = "carport_test?serverTimezone=CET&useSSL=false";
+    private static String DBNAME = "carportTest?serverTimezone=CET&useSSL=false";
     private static String HOST = "localhost";
 
     @BeforeClass
@@ -44,9 +44,9 @@ public class OrderMapperTest {
     @Before
     public void beforeEachTest() {
         try (Statement stmt = testConnection.createStatement()) {
-            stmt.execute("DROP TABLE IF EXISTS `cust_order_test`");
-            stmt.execute("CREATE TABLE `cust_order_test` LIKE `carport`.`cust_order`");
-            stmt.execute("INSERT INTO `cust_order_test` VALUES " +
+            stmt.execute("DROP TABLE IF EXISTS `cust_order`");
+            stmt.execute("CREATE TABLE `cust_order` LIKE `carport`.`cust_order`");
+            stmt.execute("INSERT INTO `cust_order` VALUES " +
                     "(1, 630, 330, 340, false, 0, 0, false, 0, 'Plasttrapezplader', 8049, false, 12345678), " +
                     "(2, 540, 360, 320, true, 290, 265, false, 0, 'Plasttrapezplader', 11217, false, 43243546), " +
                     "(3, 540, 420, 360, false, 0, 0, true, 30, 'Eternittag B7 - Grå', 11943, true, 74253647), " +
@@ -59,8 +59,8 @@ public class OrderMapperTest {
 
     @Test
     public void testGetOrders() throws UniversalSampleException {
-        Carport carport = new Carport(700, 300, 340, "Sjovt-tag");
-        Order order = new Order(0, carport, true, 200, 300, false, 30, 15000, false, 86756453);
+        //Carport carport = new Carport(700, 300, 340, "Sjovt-tag");
+        //Order order = new Order(0, carport, true, 200, 300, false, 30, 15000, false, 86756453);
         ArrayList<Order> orderList = OrderMapper.getOrders();
 
         assertThat(orderList, hasSize(4));

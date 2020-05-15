@@ -2,8 +2,8 @@ DROP DATABASE IF EXISTS `carport`;
 CREATE SCHEMA `carport`;
 USE `carport`;
 
--- DROP SCHEMA IF EXISTS `carport_test`;
-CREATE SCHEMA `carport_test`;
+DROP SCHEMA IF EXISTS `carportTest`;
+CREATE SCHEMA `carportTest`;
 
 CREATE TABLE `carport`.`carport_measures` (
   `description` VARCHAR(45) NOT NULL,

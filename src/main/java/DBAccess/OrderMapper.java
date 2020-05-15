@@ -14,7 +14,7 @@ public class OrderMapper {
         ArrayList<Order> orders = new ArrayList<>();
         try {
             Connection con = Connector.connection();
-            String SQL = "SELECT * FROM carport.cust_order WHERE approved != 1;";
+            String SQL = "SELECT * FROM cust_order WHERE approved != 1;";
             PreparedStatement ps = con.prepareStatement(SQL);
             ResultSet rs = ps.executeQuery();
             while(rs.next()) {

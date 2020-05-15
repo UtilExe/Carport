@@ -135,10 +135,13 @@ public class MaterialCalculator {
                 stolper.add(roundedNum);
             }
         }
-        // Looper igennem skurets 8 stolper (med skurets højde).
-        final int SHED_PILLARS = 8;
-        for (int i = 1; i < SHED_PILLARS; i++) {
-            stolper.add(firstPillar);
+
+        if (hasShed) {
+            // Looper igennem skurets 8 stolper (med skurets højde).
+            final int SHED_PILLARS = 8;
+            for (int i = 1; i < SHED_PILLARS; i++) {
+                stolper.add(firstPillar);
+            }
         }
         return stolper;
     }
@@ -211,7 +214,7 @@ public class MaterialCalculator {
         /* Vi antager, at der er 3 løsholte fra bunden til toppen på skurets for- og bagside samt 2 løsholte
          fra bunden til toppen på skurets sider. */
 
-        // HashMappet består af int = antal løsholter samt double = længde på de løsholter:
+        // Array'et består af int = antal løsholter samt double = længde på de løsholter:
         int[] result = new int[4];
         final int TRANSOMS_ON_SIDES = 3;
         // Vi antager at dørens bredde er 80 cm, da det virker som en dør-standard bredde:
@@ -231,10 +234,10 @@ public class MaterialCalculator {
     }
 
     public int[] getTransomsLengthSides(int shedLength) {
-        /* Vi antager, at der er 3 løsholte fra bunden til toppen på skurets for- og bagside samt 2 løsholte
+         /* Vi antager, at der er 3 løsholte fra bunden til toppen på skurets for- og bagside samt 2 løsholte
          fra bunden til toppen på skurets sider. */
 
-        // HashMappet består af int = antal løsholter samt double = længde på de løsholter:
+        // Array'et består af int = antal løsholter samt double = længde på de løsholter:
         int[] result = new int[2];
         final int TRANSOMS_ON_SIDES = 2;
         int transomLength = shedLength;

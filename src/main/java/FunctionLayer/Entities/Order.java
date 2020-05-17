@@ -29,10 +29,6 @@ public class Order {
         return orderID;
     }
 
-    public void setOrderID(int orderID) {
-        this.orderID = orderID;
-    }
-
     public Carport getCarport() {
         return carport;
     }
@@ -65,44 +61,12 @@ public class Order {
         this.shedLength = shedLength;
     }
 
-    public boolean isHasPitch() {
-        return hasPitch;
-    }
-
-    public void setHasPitch(boolean hasPitch) {
-        this.hasPitch = hasPitch;
-    }
-
     public int getRoofPitch() {
         return roofPitch;
     }
 
     public void setRoofPitch(int roofPitch) {
         this.roofPitch = roofPitch;
-    }
-
-    public int getPrice() {
-        return price;
-    }
-
-    public void setPrice(int price) {
-        this.price = price;
-    }
-
-    public boolean isApproved() {
-        return approved;
-    }
-
-    public void setApproved(boolean approved) {
-        this.approved = approved;
-    }
-
-    public int getTlfNumber() {
-        return tlfNumber;
-    }
-
-    public void setTlfNumber(int tlfNumber) {
-        this.tlfNumber = tlfNumber;
     }
 
     @Override

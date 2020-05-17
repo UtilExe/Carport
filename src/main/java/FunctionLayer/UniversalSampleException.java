@@ -16,8 +16,6 @@ public class UniversalSampleException extends Exception {
             Log.severe(methodName + ": " + exMessage);
             throw new UniversalSampleException( "Databasen er i øjeblikket nede. Kontakt IT" );
         }
-
-
     }
 
     public static void exceptionIfLast(String exMessage, String methodName) throws UniversalSampleException {

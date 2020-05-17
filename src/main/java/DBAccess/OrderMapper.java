@@ -18,7 +18,6 @@ public class OrderMapper {
             PreparedStatement ps = con.prepareStatement(SQL);
             ResultSet rs = ps.executeQuery();
             while(rs.next()) {
-                //orderID, carport_length, carport_width, carport_height, hasShed, shedWidth, shedLength, hasPitch, roof_pitch, roof_material, price, approved
                 int orderID = rs.getInt("orderID");
                 int carportLength = rs.getInt("carport_length");
                 int carportWidth = rs.getInt("carport_width");
@@ -103,7 +102,6 @@ public class OrderMapper {
             String methodName = "addCarportToCustOrder";
             UniversalSampleException.exceptionIfsDB(ex.getMessage(), methodName);
             UniversalSampleException.exceptionIfLast(ex.getMessage(), methodName);
-
 
         }
     }

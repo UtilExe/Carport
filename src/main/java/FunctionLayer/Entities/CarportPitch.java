@@ -42,14 +42,6 @@ public class CarportPitch extends Carport {
         this.shedLength = shedLength;
     }
 
-    public boolean isHasPitch() {
-        return hasPitch;
-    }
-
-    public void setHasPitch(boolean hasPitch) {
-        this.hasPitch = hasPitch;
-    }
-
     public int getRoofPitch() {
         return roofPitch;
     }

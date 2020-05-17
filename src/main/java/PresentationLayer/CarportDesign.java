@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServletResponse;
 
 public class CarportDesign extends Command {
 
-
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws UniversalSampleException {
 
@@ -35,7 +34,6 @@ public class CarportDesign extends Command {
         String tmpShedLength;
         String tmpShedWidth;
         String tmpRoofPitch;
-
 
         MaterialCalculator calcTest = new MaterialCalculator();
 
@@ -63,7 +61,6 @@ public class CarportDesign extends Command {
             request.setAttribute("roof_pitch", Initialisation.getRoofPitch());
         }
 
-
         CarportHelper helper = new CarportHelper(carportLength, carportWidthCM, carportHeight, shedLength, shedWidth, carportPitch);
 
         //Vi minusser med 70 for at tage højde for at skuret ikke må gå ud over remmene og 30 for at gøre op for afstanden bagerst.
@@ -89,7 +86,6 @@ public class CarportDesign extends Command {
 
         int finalPrice = calcTest.fullPrice(helper.getAllPriceIndexes());
 
-        // hvad skal carport bruges til, bliver ikke brugt lige nu.
             Carport carport = null;
         if (!helper.isInvalidInput()) {
             OrderFacade.addCarportToCustOrder(helper.getCarportLengthCM(), helper.getCarportWidthCM(), helper.getCarportHeight(), helper.isHasShed(), helper.getShedWidth(), helper.getShedLength(), helper.isHasPitch(), helper.getCarportPitch(), roofMaterial, finalPrice, tlfNumber);
@@ -103,13 +99,11 @@ public class CarportDesign extends Command {
         request.setAttribute("materialList", helper.createMaterialList(helper.isHasShed(), helper.isHasPitch()));
         request.setAttribute("finalPrice", finalPrice);
 
-
-        String svgDrawing = helper.svgDrawing(carportLength, carportWidthCM, helper.isHasShed());
-        String svgDrawingFront = helper.svgDrawingFront(carportLength, carportHeight, helper.isHasShed());
+        String svgDrawing = helper.svgDrawingTop(carportLength, helper.isHasShed());
+        String svgDrawingFront = helper.svgDrawingSide(carportLength, carportHeight, helper.isHasShed());
 
         request.setAttribute("svgdrawing", svgDrawing);
         request.setAttribute("svgdrawingfront", svgDrawingFront);
-
 
         return "carportOutput";
     }

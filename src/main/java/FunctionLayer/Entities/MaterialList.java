@@ -16,19 +16,12 @@ public class MaterialList {
         return list;
     }
 
-    public void setList(ArrayList<ArrayList<String>> list) {
-        this.list = list;
-    }
-
     public void addToList(ArrayList<String> materials) {
         this.list.add(materials);
-
     }
 
     public void sortListAlphabetically() {
-
         Collections.sort(this.list, sortAlphabetically);
-
     }
 
 }

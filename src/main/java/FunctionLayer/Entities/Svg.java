@@ -53,8 +53,6 @@ public class Svg {
     private String textTemplate = "<text style=\"text-anchor: middle\" transform=\"translate(%s,%s) rotate(-90)\">%s cm</text>\n" +
             "<text style=\"text-anchor: middle\" x=\"%s\" y=\"%s\">%s cm</text>";
 
-    // private final String testTemplate = "<svg version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" x=\"%s\" y=\"%s\" width=\"%s\" height=\"%s\" viewBox=\"%s\" preserveAspectRatio=\"xMinYMin\">";
-
     public Svg(double width, double height, String viewbox, int x, int y) {
         this.width = width;
         String strWidth = ValidationValues.fromDoubleToString(width);
@@ -106,7 +104,6 @@ public class Svg {
         svg.append(String.format(textTemplate, strX1, strY1, width, strX2, strY2, length));
     }
 
-
     public double getWidth() {
         return width;
     }
@@ -121,30 +118,6 @@ public class Svg {
 
     public void setHeight(double height) {
         this.height = height;
-    }
-
-    public String getViewbox() {
-        return viewbox;
-    }
-
-    public void setViewbox(String viewbox) {
-        this.viewbox = viewbox;
-    }
-
-    public int getX() {
-        return x;
-    }
-
-    public void setX(int x) {
-        this.x = x;
-    }
-
-    public int getY() {
-        return y;
-    }
-
-    public void setY(int y) {
-        this.y = y;
     }
 
     @Override

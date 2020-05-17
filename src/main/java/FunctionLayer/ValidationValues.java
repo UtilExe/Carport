@@ -12,15 +12,6 @@ public class ValidationValues {
         return result;
     }
 
-    public static boolean getBoolean(String value) {
-        int result;
-        if(value.equals("1")) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
     // Denne metode forhindrer, at en double til string får erstatet '.' med ','
     public static String fromDoubleToString(double number) {
         String result = "";

@@ -269,7 +269,6 @@ public class CarportHelper {
     }
 
     public void initArrayList() {
-
         allPriceIndexes.add(heads.get(heads.size() - 1));
         allPriceIndexes.add(rafts.get(rafts.size() - 1));
         allPriceIndexes.add(bands.get(bands.size() - 1));
@@ -333,7 +332,7 @@ public class CarportHelper {
         allMaterials.addToList(bracketScrews);
         allMaterials.addToList(carriageBolts);
         allMaterials.addToList(squareWashers);
-        // Med skur:
+
         if (hasShed) {
             allMaterials.addToList(battern);
             allMaterials.addToList(transomSidesInfo);
@@ -346,7 +345,7 @@ public class CarportHelper {
             allMaterials.addToList(tHingeInfo);
             allMaterials.addToList(angleMountInfo);
         }
-        // Med rejsningstag:
+
         if (hasPitch) {
             allMaterials.addToList(tilesPitchedRoof);
             allMaterials.addToList(tileBindersHooks);
@@ -371,7 +370,7 @@ public class CarportHelper {
 
 
 
-    public String svgDrawing(int carportLength, int carportHeight, boolean hasShed) throws UniversalSampleException {
+    public String svgDrawingTop(int carportLength, boolean hasShed) throws UniversalSampleException {
         final int MARKER_HEIGHT = 12;
         final int Y_DATA = 10;
         final int X_DATA = 75;
@@ -402,6 +401,7 @@ public class CarportHelper {
         ArrayList<Double> overPlankMeasure = MaterialFacade.getWidthHeightFromDimensionMeasureInCM(PLANK_ID);
         svg.addRect(0, 0, carportLength, overPlankMeasure.get(0));
         svg.addRect(0, carportWidthCM, carportLength, overPlankMeasure.get(0));
+
         // Spær:
         double x = 0;
         for (int i = 0; i < amountOfRafts; i++) {
@@ -416,13 +416,13 @@ public class CarportHelper {
         double pillarTransition = 0.0;
         final int CARPORT_END_DIST = 30;
         final int REM_IN_DIST = 35 + 35;
+
         if (hasShed) {
             if(shedWidth == carportWidthCM - REM_IN_DIST) {
                 methodPillarAmount -= 6;
             } else {
                 methodPillarAmount -= 7;
             }
-            final int CM_BETWEEN_PILLARS = 300;
             lengthBetweenPillars = (carportLength - shedLength - CARPORT_END_DIST) / ((methodPillarAmount / 2.0) - 1.0);
 
             //Skurstolper
@@ -498,8 +498,6 @@ public class CarportHelper {
             svg.addRect(0, (carportWidthCM / 2) - 10, carportLength, roofLathsMeasure.get(0));
             svg.addRect(0, (carportWidthCM / 2) + 10, carportLength, roofLathsMeasure.get(0));
 
-
-
             // Vindskeder (på gavlen):
             int gavlPlaceing = 0;
             for(int i = 0; i < amountOfGavlPlank / 2; i++) {
@@ -510,16 +508,14 @@ public class CarportHelper {
 
         }
 
-
-
         return svgInnerDrawing.toString() + svg.toString() + "</svg> </svg>";
     }
 
-    public String svgDrawingFront(int carportLength, int carportHeight, boolean hasShed) throws UniversalSampleException {
+    public String svgDrawingSide(int carportLength, int carportHeight, boolean hasShed) throws UniversalSampleException {
         double viewboxX = 0.0;
         double viewboxY = 0.0;
-        double cHeightViewY = 0.0;
-        double cLengthViewX = 0.0;
+        double cHeightViewY;
+        double cLengthViewX;
         if(hasPitch) {
             viewboxX = plankMeasure.get(1);
             viewboxY = Math.tan((carportPitch * Math.PI) / 180) * (carportWidthCM/2);
@@ -538,16 +534,10 @@ public class CarportHelper {
         final int PUSH_TEXT_DOWN = 70;
         ArrayList<Double> plankMeasure = MaterialFacade.getWidthHeightFromDimensionMeasureInCM(WATERPLANK_AND_SHEDPLANK_ID);
 
-
-
-        double x = 0.0;
+        double x;
         double y;
         double length;
         double height;
-
-
-
-        double carportHeightRoof = 0;
 
         String viewboxInner = "0,0," + (cLengthViewX + 100) + "," + (cHeightViewY + 100);
 
@@ -559,7 +549,6 @@ public class CarportHelper {
 
         Svg svg = new Svg(cLengthViewX, cHeightViewY,  -viewboxX + "," + -viewboxY +  "," + (cLengthViewX+20) + "," + (cHeightViewY), 75, 10);
 
-
         //Top bræt
         svg.addRect(0, 0, carportLength, plankMeasure.get(1));
 
@@ -570,7 +559,6 @@ public class CarportHelper {
         } else {
             svg.addRect(0, plankMeasure.get(1), carportLength, headRaftMeasure.get(1));
         }
-
 
         //Stolper
         int methodPillarAmount = pillarAmount;
@@ -617,8 +605,6 @@ public class CarportHelper {
 
         }
 
-
-        //Skur
         if (hasShed) {
             x = carportLength - shedLength - 30 - plankMeasure.get(1);
             y = plankMeasure.get(1);
@@ -655,7 +641,6 @@ public class CarportHelper {
             //Højre vandbræt
             svg.addRect(x,y,width,length);
 
-
             //Tagsten
             x = 0 + plankMeasure.get(1) / 2;
             y = 0 - roofHeight + plankMeasure.get(1);
@@ -667,9 +652,7 @@ public class CarportHelper {
                 svg.addRect(x,y,width,length);
                 x += width;
             }
-
         }
-
 
         return svgInnerDrawing.toString() + svg.toString() + "</svg> </svg>";
     }

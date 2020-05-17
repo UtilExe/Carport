@@ -3,7 +3,7 @@ package FunctionLayer;
 public class Operations {
 
     public static String[] splitterForDimensions(String strFromDB, String regex) {
-        String[] splittedString = new String[2];
+        String[] splittedString;
         splittedString = strFromDB.split(regex);
         return splittedString;
     }
@@ -12,6 +12,5 @@ public class Operations {
         String result = "\"" + input + "\"";
         return result;
     }
-
 
 }

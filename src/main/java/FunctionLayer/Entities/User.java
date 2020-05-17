@@ -5,8 +5,6 @@ public class User {
     private String email;
     private String password;
     private int mobilNr;
-    private String dateCreated;
-    private int saldo;
 
     public User(String name, String email, String password, int mobilNr) {
         this.name = name;
@@ -46,25 +44,5 @@ public class User {
 
     public int getMobilNr() {
         return mobilNr;
-    }
-
-    public void setMobilNr(int mobilNr) {
-        this.mobilNr = mobilNr;
-    }
-
-    public String getDateCreated() {
-        return dateCreated;
-    }
-
-    public void setDateCreated(String dateCreated) {
-        this.dateCreated = dateCreated;
-    }
-
-    public int getSaldo() {
-        return saldo;
-    }
-
-    public void setSaldo(int saldo) {
-        this.saldo = saldo;
     }
 }

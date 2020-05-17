@@ -8,11 +8,6 @@ public class Log {
 
     private static String FILENAME;
     private static String FILEPATH;
-    //private static final String FILENAME = "demo.log";
-    //private static final String FILEPATH = "/Users/emilg/Desktop/logs/";
-
-    //private static final String FILEPATH = "/var/log/tomcat8/";
-    //private static final String PATH = FILEPATH + FILENAME;
 
     private static String PATH = "";
 

@@ -34,8 +34,6 @@ public class MaterialMapper {
 
     public static ArrayList<String> getRoofData(int ID, int measure, int tmpAmount) throws UniversalSampleException {
         ArrayList<String> data = new ArrayList<>();
-        String amount = String.valueOf(tmpAmount);
-        String carpMeasure = String.valueOf(measure);
         ArrayList<Integer> lengths = getLengthsFromStorage(ID);
         ArrayList<Integer> woodAmountAndLength = calcPrice.getWoodForMeasure(measure, lengths, tmpAmount);
 
@@ -103,9 +101,9 @@ public class MaterialMapper {
     }
 
     public static int getAmountPrUnit(int ID) throws UniversalSampleException {
-        String amountPrUnit = "";
+        String amountPrUnit;
         int resultAmount = 0;
-        String[] splittedArr = new String[2];
+        String[] splittedArr;
 
         try {
             Connection con = Connector.connection();
@@ -130,7 +128,7 @@ public class MaterialMapper {
     public static ArrayList<String> getBandData(int ID, int bandLength, int rolesOfBand) throws UniversalSampleException {
         ArrayList<String> data = new ArrayList<>();
         double bandLengthToMeters = bandLength / 100.0;
-        String[] amountPrUnitSplitted = new String[2];
+        String[] amountPrUnitSplitted;
 
         try {
             Connection con = Connector.connection();
@@ -171,7 +169,7 @@ public class MaterialMapper {
 
     public static ArrayList<Double> getWidthHeightFromDimensionMeasureInCM(int ID) throws UniversalSampleException {
         ArrayList<Double> widthHeightMeasure = new ArrayList<>();
-        String[] descriptionSplitted = new String[2];
+        String[] descriptionSplitted;
 
         try {
             Connection con = Connector.connection();
@@ -202,7 +200,6 @@ public class MaterialMapper {
 
     public static ArrayList<String> getPillarData(int ID, int pillarAmount, ArrayList<Double> pillarLengths) throws UniversalSampleException {
         ArrayList<String> data = new ArrayList<>();
-        String[] descriptionSplitted = new String[2];
         double biggestLength = 0;
         for(int i = 0; i < pillarLengths.size(); i++) {
             if(biggestLength < pillarLengths.get(i)) {
@@ -234,7 +231,6 @@ public class MaterialMapper {
                 data.add(woodAmountAndLength.get(1) + " cm.");
                 for(int i = 1; i <= pillarAmount/2; i++) {
                     data.add("Højde på stolpe-par (skal tilskæres) " + i + ": " + pillarLengths.get(i-1) + unit);
-                    // VI GØR LIGESOM I PDF MED ANTAL I FORHOLD TIL MÅL (2 STOLPER AF 271.55 OG 2 STOLPER AF 280.98)
                 }
                 data.add(price + " kr.");
             }

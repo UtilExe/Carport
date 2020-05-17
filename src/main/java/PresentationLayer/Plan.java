@@ -17,6 +17,9 @@ public class Plan extends Command{
         request.setAttribute("drawingSide", svgDrawingFront);
         request.setAttribute("showMaterials", false);
 
+        Initialisation.initOrders();
+        request.setAttribute("orders", Initialisation.getOrders());
+
         return "admin";
     }
 }

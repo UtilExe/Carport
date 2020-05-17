@@ -1,4 +1,5 @@
 <%@ page import="FunctionLayer.Initialisation" %>
+<%@ page import="FunctionLayer.UniversalSampleException" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@include file="include/header.inc" %>
 <link rel="stylesheet" href="css/styles.css">
@@ -11,6 +12,7 @@
 <%!
     @Override
     public void jspInit(){
+        try {
         Initialisation.initLengths();
         Initialisation.initWidth();
         Initialisation.initHeight();
@@ -18,17 +20,10 @@
         Initialisation.initShedLengths();
         Initialisation.initShedWidths();
         Initialisation.initRoofPitch();
+        } catch (UniversalSampleException ex) {
+            ex.getMessage();
+        }
     }
-%>
-
-<%
-    request.setAttribute("carport_lengths", Initialisation.getCarportLengths());
-    request.setAttribute("carport_widths", Initialisation.getCarportWidths());
-    request.setAttribute("carport_heights", Initialisation.getCarportHeights());
-    request.setAttribute("carport_roofs", Initialisation.getRoofs());
-    request.setAttribute("shed_lengths", Initialisation.getShedLengths());
-    request.setAttribute("shed_widths", Initialisation.getShedWidths());
-    request.setAttribute("roof_pitch", Initialisation.getRoofPitch());
 %>
 
 <nav class="navbar navbar-expand-lg navbar-light">

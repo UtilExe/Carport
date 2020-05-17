@@ -8,21 +8,6 @@
 </head>
 <body onload="showMaterialList()">
 
-<%!
-    @Override
-    public void jspInit(){
-        try {
-            Initialisation.initOrders();
-        } catch (UniversalSampleException e) {
-            e.printStackTrace();
-        }
-    }
-%>
-
-<%
-    request.setAttribute("orders", Initialisation.getOrders());
-%>
-
 <nav class="navbar navbar-expand-lg navbar-light">
     <a class="navbar-brand" href="#"> <img src="./images/logo.png" width="100" height="100" alt="Logo"></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
@@ -55,10 +40,9 @@
         <h3>Her kan du se ordre som afventer godkendelse:</h3>
 
         <div class="ml-4 mb-4">${requestScope.drawingAbove}</div>
-        <div class="ml-4 mb-4">${requestScope.drawingSide}</div>
 
-        <div class="pt-4 pb-4" id="materialTable" style="visibility: hidden;">
-            <table class="materialListStyle">
+        <div id="materialTable" style="visibility: hidden;">
+            <table class="materialListStyle centerHorizontal">
                 <tr>
                     <th>Kategori</th>
                     <th>Længde</th>
@@ -79,6 +63,8 @@
                 </c:forEach>
             </table>
         </div>
+
+        <div class="ml-4 mb-4">${requestScope.drawingSide}</div>
 
         <ul style="list-style-type:none;">
             <c:forEach var="order" items="${requestScope.orders}">
@@ -114,8 +100,12 @@
         var showMaterials = ${requestScope.showMaterials};
         if(showMaterials == true) {
             materialTable.style.visibility = "visible";
+            materialTable.classList.add('pt-4');
+            materialTable.classList.add('pb-4');
         } else {
             materialTable.style.visibility = "hidden";
+            materialTable.classList.remove('pt-4');
+            materialTable.classList.remove('pb-4');
         }
     }
 </script>

@@ -1,6 +1,7 @@
 package PresentationLayer;
 
 import FunctionLayer.CarportHelper;
+import FunctionLayer.Initialisation;
 import FunctionLayer.OrderFacade;
 import FunctionLayer.UniversalSampleException;
 
@@ -15,6 +16,9 @@ public class MaterialView extends Command {
         CarportHelper helper = OrderFacade.getHelper(orderID);
         request.setAttribute("materialView", helper.createMaterialList(helper.isHasShed(), helper.isHasPitch()));
         request.setAttribute("showMaterials", true);
+
+        Initialisation.initOrders();
+        request.setAttribute("orders", Initialisation.getOrders());
 
         return "admin";
     }

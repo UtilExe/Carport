@@ -2,6 +2,7 @@ package DBAccess;
 
 import FunctionLayer.Entities.User;
 import FunctionLayer.Log;
+import FunctionLayer.Operations;
 import FunctionLayer.UniversalSampleException;
 
 import java.sql.Connection;
@@ -29,12 +30,11 @@ public class UserMapper {
             String methodName = "createUser";
 
             if (ex.getMessage().contains("Duplicate entry")) {
-                Log.finest(methodName + user.getEmail() + ": Duplicate entry");
+                Log.finest(methodName + Operations.addQuotesAround(user.getEmail()) + ": Duplicate entry");
                 throw new UniversalSampleException("En bruger med denne mail eksisterer allerede");
             }
 
             UniversalSampleException.exceptionIfsDB(ex.getMessage(), methodName);
-
             UniversalSampleException.exceptionIfLast(ex.getMessage(), methodName);
         }
     }

@@ -1,5 +1,6 @@
 package PresentationLayer;
 
+import FunctionLayer.Initialisation;
 import FunctionLayer.LogicFacade;
 import FunctionLayer.Entities.User;
 import FunctionLayer.UniversalSampleException;
@@ -20,6 +21,8 @@ public class Login extends Command {
 
         session.setAttribute("email", email);
         if(email.equals("admin@admin.com")) {
+            Initialisation.initOrders();
+            request.setAttribute("orders", Initialisation.getOrders());
             return "admin";
         }
 

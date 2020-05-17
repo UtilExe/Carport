@@ -1,11 +1,13 @@
 package DBAccess;
 
+import FunctionLayer.UniversalSampleException;
+
 import java.sql.*;
 import java.util.ArrayList;
 
 public class CarportMapper {
 
-    public static ArrayList<Integer> getCarportMeasure(String description) {
+    public static ArrayList<Integer> getCarportMeasure(String description) throws UniversalSampleException {
         ArrayList<Integer> measure = new ArrayList<>();
         try {
             Connection con = Connector.connection();
@@ -18,12 +20,14 @@ public class CarportMapper {
                 measure.add(unit);
             }
         } catch (SQLException | ClassNotFoundException ex) {
-            ex.printStackTrace();
+            String methodName = "getCarportMeasure";
+            UniversalSampleException.exceptionIfsDB(ex.getMessage(), methodName);
+            UniversalSampleException.exceptionIfLast(ex.getMessage(), methodName);
         }
         return measure;
     }
 
-    public static ArrayList<String> getCarportRoof() {
+    public static ArrayList<String> getCarportRoof() throws UniversalSampleException {
         ArrayList<String> types = new ArrayList<>();
         try {
             Connection con = Connector.connection();
@@ -35,12 +39,14 @@ public class CarportMapper {
                 types.add(roof);
             }
         } catch (SQLException | ClassNotFoundException ex) {
-            ex.printStackTrace();
+            String methodName = "getCarportRoof";
+            UniversalSampleException.exceptionIfsDB(ex.getMessage(), methodName);
+            UniversalSampleException.exceptionIfLast(ex.getMessage(), methodName);
         }
         return types;
     }
 
-    public static ArrayList<Integer> getShedMeasure(String description) {
+    public static ArrayList<Integer> getShedMeasure(String description) throws UniversalSampleException {
         ArrayList<Integer> measure = new ArrayList<>();
         try {
             Connection con = Connector.connection();
@@ -53,12 +59,14 @@ public class CarportMapper {
                 measure.add(unit);
             }
         } catch (SQLException | ClassNotFoundException ex) {
-            ex.printStackTrace();
+            String methodName = "getShedMeasure";
+            UniversalSampleException.exceptionIfsDB(ex.getMessage(), methodName);
+            UniversalSampleException.exceptionIfLast(ex.getMessage(), methodName);
         }
         return measure;
     }
 
-    public static ArrayList<Integer> getRoofPitch() {
+    public static ArrayList<Integer> getRoofPitch() throws UniversalSampleException {
         ArrayList<Integer> pitch = new ArrayList<>();
         try {
             Connection con = Connector.connection();
@@ -70,7 +78,9 @@ public class CarportMapper {
                 pitch.add(roofPitch);
             }
         } catch (SQLException | ClassNotFoundException ex) {
-            ex.printStackTrace();
+            String methodName = "getRoofPitch";
+            UniversalSampleException.exceptionIfsDB(ex.getMessage(), methodName);
+            UniversalSampleException.exceptionIfLast(ex.getMessage(), methodName);
         }
         return pitch;
     }

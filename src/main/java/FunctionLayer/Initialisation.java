@@ -16,43 +16,43 @@ public class Initialisation {
     private static ArrayList<Order> orders;
 
     //Inits
-    public static void initLengths() {
+    public static void initLengths() throws UniversalSampleException {
         if(carportLengths == null) {
             carportLengths = CarportFacade.getCarportLength();
         }
     }
 
-    public static void initWidth() {
+    public static void initWidth() throws UniversalSampleException {
         if(carportWidths == null) {
             carportWidths = CarportFacade.getCarportWidth();
         }
     }
 
-    public static void initHeight() {
+    public static void initHeight() throws UniversalSampleException {
         if(carportHeights == null) {
             carportHeights = CarportFacade.getCarportHeight();
         }
     }
 
-    public static void initRoof() {
+    public static void initRoof() throws UniversalSampleException {
         if(roofs == null) {
             roofs = CarportFacade.getCarportRoof();
         }
     }
 
-    public static void initShedLengths() {
+    public static void initShedLengths() throws UniversalSampleException {
         if(shedLengths == null) {
             shedLengths = CarportFacade.getShedLength();
         }
     }
 
-    public static void initShedWidths() {
+    public static void initShedWidths() throws UniversalSampleException {
         if(shedWidths == null) {
             shedWidths = CarportFacade.getShedWidth();
         }
     }
 
-    public static void initRoofPitch() {
+    public static void initRoofPitch() throws UniversalSampleException {
         if(roofPitch == null) {
             roofPitch = CarportFacade.getRoofPitch();
         }

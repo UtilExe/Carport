@@ -236,11 +236,11 @@ public class CarportHelper {
         return shedWidth;
     }
 
-    public int getCarportWidthCM() {
+    public int getCarportWidth() {
         return carportWidthCM;
     }
 
-    public int getCarportLengthCM() {
+    public int getCarportLength() {
         return carportLengthCM;
     }
 
@@ -370,42 +370,42 @@ public class CarportHelper {
 
 
 
-    public String svgDrawingTop(int carportLength, boolean hasShed) throws UniversalSampleException {
+    public String svgDrawingTop(int carportLength, int carportWidth, boolean hasShed) throws UniversalSampleException {
         final int MARKER_HEIGHT = 12;
         final int Y_DATA = 10;
         final int X_DATA = 75;
         final int PUSH_AWAY = 40;
-        final int DRAW_END_VERTICAL = carportWidthCM - MARKER_HEIGHT + Y_DATA;
-        final int DRAW_END_HORIZONTAL = carportLengthCM - MARKER_HEIGHT + X_DATA;
+        final int DRAW_END_VERTICAL = carportWidth - MARKER_HEIGHT + Y_DATA;
+        final int DRAW_END_HORIZONTAL = carportLength - MARKER_HEIGHT + X_DATA;
         final int PUSH_TEXT_DOWN = 70;
         // Vi lægger 20 til, så f.eks. den sidste rem kommer med på tegningen.
-        String viewbox = "0,0," + (carportLength + 20) + "," + carportWidthCM;
-        String viewboxInner = "0,0," + (carportLength + 100) + "," + (carportWidthCM + 100);
+        String viewbox = "0,0," + (carportLength + 20) + "," + carportWidth;
+        String viewboxInner = "0,0," + (carportLength + 100) + "," + (carportWidth + 100);
         // vi trækker 1 fra, da det 1. spær ikke skal med i beregningen.
         double lengthBetweenRafts = carportLength / (amountOfRafts - 1.0);
 
-        Svg svg = new Svg(carportLength, carportWidthCM, viewbox, 75, 10);
-        Svg svgInnerDrawing = new Svg(carportLength, carportWidthCM, viewboxInner, 75, 10);
+        Svg svg = new Svg(carportLength, carportWidth, viewbox, 75, 10);
+        Svg svgInnerDrawing = new Svg(carportLength, carportWidth, viewboxInner, 75, 10);
         // Carport:
-        svgInnerDrawing.addArrowLength(X_DATA, carportWidthCM + PUSH_AWAY, DRAW_END_HORIZONTAL, carportWidthCM + PUSH_AWAY);
+        svgInnerDrawing.addArrowLength(X_DATA, carportWidth + PUSH_AWAY, DRAW_END_HORIZONTAL, carportWidth + PUSH_AWAY);
         svgInnerDrawing.addArrowWidth(PUSH_AWAY, Y_DATA, PUSH_AWAY, DRAW_END_VERTICAL);
-        svgInnerDrawing.addText((PUSH_AWAY / 2), ((Y_DATA + carportWidthCM) / 2), carportWidthCM, ((DRAW_END_HORIZONTAL / 2.0) + PUSH_AWAY), (carportWidthCM + PUSH_TEXT_DOWN), carportLength);
-        svg.addRect(0, 0, carportLength, carportWidthCM);
+        svgInnerDrawing.addText((PUSH_AWAY / 2), ((Y_DATA + carportWidth) / 2), carportWidth, ((DRAW_END_HORIZONTAL / 2.0) + PUSH_AWAY), (carportWidth + PUSH_TEXT_DOWN), carportLength);
+        svg.addRect(0, 0, carportLength, carportWidth);
 
         // Rem:
         // 35 er hvor mange cm rem sidder fra carportens sider.
         svg.addRect(0, 35, carportLength, headRaftMeasure.get(0));
-        svg.addRect(0, carportWidthCM - 35, carportLength, headRaftMeasure.get(0));
+        svg.addRect(0, carportWidth - 35, carportLength, headRaftMeasure.get(0));
 
         // Sternbrædder til siderne
         ArrayList<Double> overPlankMeasure = MaterialFacade.getWidthHeightFromDimensionMeasureInCM(PLANK_ID);
         svg.addRect(0, 0, carportLength, overPlankMeasure.get(0));
-        svg.addRect(0, carportWidthCM, carportLength, overPlankMeasure.get(0));
+        svg.addRect(0, carportWidth, carportLength, overPlankMeasure.get(0));
 
         // Spær:
         double x = 0;
         for (int i = 0; i < amountOfRafts; i++) {
-            svg.addRect(x, 0, headRaftMeasure.get(0), carportWidthCM);
+            svg.addRect(x, 0, headRaftMeasure.get(0), carportWidth);
             x += lengthBetweenRafts;
         }
 
@@ -418,7 +418,7 @@ public class CarportHelper {
         final int REM_IN_DIST = 35 + 35;
 
         if (hasShed) {
-            if(shedWidth == carportWidthCM - REM_IN_DIST) {
+            if(shedWidth == carportWidth - REM_IN_DIST) {
                 methodPillarAmount -= 6;
             } else {
                 methodPillarAmount -= 7;
@@ -431,7 +431,7 @@ public class CarportHelper {
             svg.addRect(carportLength - CARPORT_END_DIST - pillarMeasure.get(1), 35 + (shedWidth / 2), pillarMeasure.get(1), pillarMeasure.get(1)); //Midt højre stolpe
             svg.addRect(carportLength - shedLength - CARPORT_END_DIST, 35 + shedWidth - pillarMeasure.get(1), pillarMeasure.get(1), pillarMeasure.get(1)); //Venstre nederste stolpe
 
-            if(!(shedWidth == carportWidthCM - REM_IN_DIST))
+            if(!(shedWidth == carportWidth - REM_IN_DIST))
             svg.addRect(carportLength - CARPORT_END_DIST - pillarMeasure.get(1), 35 + shedWidth - pillarMeasure.get(1), pillarMeasure.get(1), pillarMeasure.get(1)); //Højre nederste stolpe
 
         }
@@ -444,21 +444,21 @@ public class CarportHelper {
                 pillarTransition = (pillarMeasure.get(0) / 2);
                 if (hasShed) {
                     svg.addRect(carportLength - pillarTransition - CARPORT_END_DIST, 35 - (headRaftMeasure.get(0) / 2), pillarMeasure.get(1), pillarMeasure.get(0));
-                    svg.addRect(carportLength - pillarTransition - CARPORT_END_DIST, carportWidthCM - 35 - (headRaftMeasure.get(0) / 2), pillarMeasure.get(1), pillarMeasure.get(0));
+                    svg.addRect(carportLength - pillarTransition - CARPORT_END_DIST, carportWidth - 35 - (headRaftMeasure.get(0) / 2), pillarMeasure.get(1), pillarMeasure.get(0));
                 } else {
                     svg.addRect(stolpeX - pillarTransition - CARPORT_END_DIST, 35 - (headRaftMeasure.get(0) / 2), pillarMeasure.get(1), pillarMeasure.get(0));
-                    svg.addRect(stolpeX - pillarTransition - CARPORT_END_DIST, carportWidthCM - 35 - (headRaftMeasure.get(0) / 2), pillarMeasure.get(1), pillarMeasure.get(0));
+                    svg.addRect(stolpeX - pillarTransition - CARPORT_END_DIST, carportWidth - 35 - (headRaftMeasure.get(0) / 2), pillarMeasure.get(1), pillarMeasure.get(0));
                 }
             }
 
             if ((i > 0) && (i < lastLoop)) {
                 svg.addRect(stolpeX, 35 - (headRaftMeasure.get(0) / 2), pillarMeasure.get(1), pillarMeasure.get(0));
-                svg.addRect(stolpeX, carportWidthCM - 35 - (headRaftMeasure.get(0) / 2), pillarMeasure.get(1), pillarMeasure.get(0));
+                svg.addRect(stolpeX, carportWidth - 35 - (headRaftMeasure.get(0) / 2), pillarMeasure.get(1), pillarMeasure.get(0));
             }
 
             if (i == 0) {
                 svg.addRect(stolpeX, 35 - (headRaftMeasure.get(0) / 2), pillarMeasure.get(1), pillarMeasure.get(0));
-                svg.addRect(stolpeX, carportWidthCM - 35 - (headRaftMeasure.get(0) / 2), pillarMeasure.get(1), pillarMeasure.get(0));
+                svg.addRect(stolpeX, carportWidth - 35 - (headRaftMeasure.get(0) / 2), pillarMeasure.get(1), pillarMeasure.get(0));
             }
 
             stolpeX += lengthBetweenPillars;
@@ -467,11 +467,11 @@ public class CarportHelper {
         // Hulbånd:
         if (!hasPitch) {
             if (!hasShed) {
-                svg.addBand(lengthBetweenRafts, 35, carportLength - (lengthBetweenRafts - headRaftMeasure.get(0)), carportWidthCM - 35);
-                svg.addBand(lengthBetweenRafts, carportWidthCM - 35, carportLength - (lengthBetweenRafts - headRaftMeasure.get(0)), 35);
+                svg.addBand(lengthBetweenRafts, 35, carportLength - (lengthBetweenRafts - headRaftMeasure.get(0)), carportWidth - 35);
+                svg.addBand(lengthBetweenRafts, carportWidth - 35, carportLength - (lengthBetweenRafts - headRaftMeasure.get(0)), 35);
             } else {
-                svg.addBand(lengthBetweenRafts, 35, carportLength - shedLength - 35, carportWidthCM - 35);
-                svg.addBand(lengthBetweenRafts, carportWidthCM - 35, carportLength - shedLength - 35, 35);
+                svg.addBand(lengthBetweenRafts, 35, carportLength - shedLength - 35, carportWidth - 35);
+                svg.addBand(lengthBetweenRafts, carportWidth - 35, carportLength - shedLength - 35, 35);
             }
         }
         // Skur:
@@ -484,9 +484,9 @@ public class CarportHelper {
         if (hasPitch) {
 
             //Taglægter:
-            double lengthBetweenLaths = (carportWidthCM / 2.0) / (amountOfRooflaths / 2.0);
+            double lengthBetweenLaths = (carportWidth / 2.0) / (amountOfRooflaths / 2.0);
             double b = 45.0;
-            double c = carportWidthCM - 45;
+            double c = carportWidth - 45;
 
             for (int i = 0; i < (amountOfRooflaths / 2) - 1; i++) {
                 svg.addRect(0, b, carportLength, roofLathsMeasure.get(0));
@@ -494,15 +494,15 @@ public class CarportHelper {
                 b += lengthBetweenLaths;
                 c -= lengthBetweenLaths;
             }
-            svg.addRect(0, carportWidthCM / 2, carportLength, roofLathsMeasure.get(0));
-            svg.addRect(0, (carportWidthCM / 2) - 10, carportLength, roofLathsMeasure.get(0));
-            svg.addRect(0, (carportWidthCM / 2) + 10, carportLength, roofLathsMeasure.get(0));
+            svg.addRect(0, carportWidth / 2, carportLength, roofLathsMeasure.get(0));
+            svg.addRect(0, (carportWidth / 2) - 10, carportLength, roofLathsMeasure.get(0));
+            svg.addRect(0, (carportWidth / 2) + 10, carportLength, roofLathsMeasure.get(0));
 
             // Vindskeder (på gavlen):
             int gavlPlaceing = 0;
             for(int i = 0; i < amountOfGavlPlank / 2; i++) {
-                svg.addRect(gavlPlaceing, 0, plankMeasure.get(0), carportWidthCM/2); // Venstre/højre oppe
-                svg.addRect(gavlPlaceing, carportWidthCM/2, plankMeasure.get(0), carportWidthCM/2); // Venstre/højre, nede
+                svg.addRect(gavlPlaceing, 0, plankMeasure.get(0), carportWidth/2); // Venstre/højre oppe
+                svg.addRect(gavlPlaceing, carportWidth/2, plankMeasure.get(0), carportWidth/2); // Venstre/højre, nede
                 gavlPlaceing = carportLength;
             }
 
@@ -511,14 +511,14 @@ public class CarportHelper {
         return svgInnerDrawing.toString() + svg.toString() + "</svg> </svg>";
     }
 
-    public String svgDrawingSide(int carportLength, int carportHeight, boolean hasShed) throws UniversalSampleException {
+    public String svgDrawingSide(int carportLength, int carportWidth,int carportHeight, boolean hasShed) throws UniversalSampleException {
         double viewboxX = 0.0;
         double viewboxY = 0.0;
         double cHeightViewY;
         double cLengthViewX;
         if(hasPitch) {
             viewboxX = plankMeasure.get(1);
-            viewboxY = Math.tan((carportPitch * Math.PI) / 180) * (carportWidthCM/2);
+            viewboxY = Math.tan((carportPitch * Math.PI) / 180) * (carportWidth/2);
             cHeightViewY = carportHeight + viewboxY;
             cLengthViewX = carportLength + viewboxX;
         } else {
@@ -567,7 +567,7 @@ public class CarportHelper {
         final int CARPORT_END_DIST = 30;
         final int REM_IN_DIST = 35 + 35;
         if (hasShed) {
-            if (shedWidth == carportWidthCM - REM_IN_DIST) {
+            if (shedWidth == carportWidth - REM_IN_DIST) {
                 methodPillarAmount -= 6;
             } else {
                 methodPillarAmount -= 7;
@@ -618,7 +618,7 @@ public class CarportHelper {
 
         //Rejsning
         if (hasPitch) {
-            double roofHeight = Math.tan((carportPitch * Math.PI) / 180) * (carportWidthCM/2);
+            double roofHeight = Math.tan((carportPitch * Math.PI) / 180) * (carportWidth/2);
             x = 0 - plankMeasure.get(1)/2;
             y = 0 - roofHeight;
             double width = plankMeasure.get(1);

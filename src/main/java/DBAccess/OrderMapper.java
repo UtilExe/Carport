@@ -115,13 +115,13 @@ public class OrderMapper {
             ps.setInt(1, orderID);
             ResultSet rs = ps.executeQuery();
             while(rs.next()) {
-                int carportLengthCM = rs.getInt("carport_length");
-                int carportWidthCM = rs.getInt("carport_width");
+                int carportLength = rs.getInt("carport_length");
+                int carportWidth = rs.getInt("carport_width");
                 int carportHeight = rs.getInt("carport_height");
                 int shedWidth = rs.getInt("shedWidth");
                 int shedLength = rs.getInt("shedLength");
                 int carportPitch = rs.getInt("roof_pitch");
-                helper = new CarportHelper(carportLengthCM, carportWidthCM, carportHeight, shedLength, shedWidth, carportPitch);
+                helper = new CarportHelper(carportLength, carportWidth, carportHeight, shedLength, shedWidth, carportPitch);
             }
         } catch (SQLException | ClassNotFoundException ex) {
 

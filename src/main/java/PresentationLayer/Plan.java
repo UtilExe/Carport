@@ -11,8 +11,8 @@ public class Plan extends Command{
         int orderID = Integer.parseInt(request.getParameter("orderID"));
 
         CarportHelper helper = OrderFacade.getHelper(orderID);
-        String svgDrawing = helper.svgDrawingTop(helper.getCarportLengthCM(), helper.isHasShed());
-        String svgDrawingFront = helper.svgDrawingSide(helper.getCarportLengthCM(), helper.getCarportHeight(), helper.isHasShed());
+        String svgDrawing = helper.svgDrawingTop(helper.getCarportLength(), helper.getCarportWidth(), helper.isHasShed());
+        String svgDrawingFront = helper.svgDrawingSide(helper.getCarportLength(), helper.getCarportWidth(), helper.getCarportHeight(), helper.isHasShed());
         request.setAttribute("drawingAbove", svgDrawing);
         request.setAttribute("drawingSide", svgDrawingFront);
         request.setAttribute("showMaterials", false);

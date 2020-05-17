@@ -18,14 +18,14 @@ public class CarportDesign extends Command {
         String roofMaterial = request.getParameter("roof");
         String tmpTlfNumber = request.getParameter("tlfNumber");
 
-        if(tmpCarportHeight.equals("") || tmpCarportLength.equals("") || tmpCarportWidth.equals("") || roofMaterial.equals("")){
+        if(tmpCarportHeight.equals("") || tmpCarportLength.equals("") || tmpCarportWidth.equals("") || roofMaterial.equals("") || tmpTlfNumber.equals("")){
             request.setAttribute("error", "Alle felter blev ikke udfyldt.");
 
             return "index";
         }
 
         int carportLength = ValidationValues.getInteger(tmpCarportLength);
-        int carportWidthCM = ValidationValues.getInteger(tmpCarportWidth);
+        int carportWidth = ValidationValues.getInteger(tmpCarportWidth);
         int carportHeight = ValidationValues.getInteger(tmpCarportHeight);
         int tlfNumber = ValidationValues.getInteger(tmpTlfNumber);
         int shedLength = 0;
@@ -61,10 +61,10 @@ public class CarportDesign extends Command {
             request.setAttribute("roof_pitch", Initialisation.getRoofPitch());
         }
 
-        CarportHelper helper = new CarportHelper(carportLength, carportWidthCM, carportHeight, shedLength, shedWidth, carportPitch);
+        CarportHelper helper = new CarportHelper(carportLength, carportWidth, carportHeight, shedLength, shedWidth, carportPitch);
 
         //Vi minusser med 70 for at tage højde for at skuret ikke må gå ud over remmene og 30 for at gøre op for afstanden bagerst.
-        if (helper.getShedWidth() > helper.getCarportWidthCM()-70 || helper.getShedLength() > helper.getCarportLengthCM()-30) {
+        if (helper.getShedWidth() > helper.getCarportWidth()-70 || helper.getShedLength() > helper.getCarportLength()-30) {
             request.setAttribute("fejl", "Skurrets mål er for store i forhold til carporten! Prøv igen med korrekte værdier");
             helper.setInvalidInput(true);
 
@@ -88,19 +88,19 @@ public class CarportDesign extends Command {
 
             Carport carport = null;
         if (!helper.isInvalidInput()) {
-            OrderFacade.addCarportToCustOrder(helper.getCarportLengthCM(), helper.getCarportWidthCM(), helper.getCarportHeight(), helper.isHasShed(), helper.getShedWidth(), helper.getShedLength(), helper.isHasPitch(), helper.getCarportPitch(), roofMaterial, finalPrice, tlfNumber);
+            OrderFacade.addCarportToCustOrder(helper.getCarportLength(), helper.getCarportWidth(), helper.getCarportHeight(), helper.isHasShed(), helper.getShedWidth(), helper.getShedLength(), helper.isHasPitch(), helper.getCarportPitch(), roofMaterial, finalPrice, tlfNumber);
             if (helper.isHasPitch()) {
-                carport = new CarportPitch(helper.getCarportLengthCM(), helper.getCarportWidthCM(), helper.getCarportHeight(), roofMaterial, helper.isHasShed(), helper.getShedWidth(), helper.getShedLength(), helper.isHasPitch(), helper.getCarportPitch());
+                carport = new CarportPitch(helper.getCarportLength(), helper.getCarportWidth(), helper.getCarportHeight(), roofMaterial, helper.isHasShed(), helper.getShedWidth(), helper.getShedLength(), helper.isHasPitch(), helper.getCarportPitch());
             } else {
-                carport = new CarportFlat(helper.getCarportLengthCM(), helper.getCarportWidthCM(), helper.getCarportHeight(), roofMaterial, helper.isHasShed(), helper.getShedWidth(), helper.getShedLength());
+                carport = new CarportFlat(helper.getCarportLength(), helper.getCarportWidth(), helper.getCarportHeight(), roofMaterial, helper.isHasShed(), helper.getShedWidth(), helper.getShedLength());
             }
         }
 
         request.setAttribute("materialList", helper.createMaterialList(helper.isHasShed(), helper.isHasPitch()));
         request.setAttribute("finalPrice", finalPrice);
 
-        String svgDrawing = helper.svgDrawingTop(carportLength, helper.isHasShed());
-        String svgDrawingFront = helper.svgDrawingSide(carportLength, carportHeight, helper.isHasShed());
+        String svgDrawing = helper.svgDrawingTop(carportLength, carportWidth, helper.isHasShed());
+        String svgDrawingFront = helper.svgDrawingSide(carportLength, carportWidth, carportHeight, helper.isHasShed());
 
         request.setAttribute("svgdrawing", svgDrawing);
         request.setAttribute("svgdrawingfront", svgDrawingFront);

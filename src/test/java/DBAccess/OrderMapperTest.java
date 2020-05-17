@@ -13,6 +13,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+
 import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.*;
 
@@ -45,7 +46,13 @@ public class OrderMapperTest {
     @Before
     public void beforeEachTest() {
         try (Statement stmt = testConnection.createStatement()) {
+
+            stmt.execute("DROP TABLE IF EXISTS `material_type`");
+            stmt.execute("CREATE TABLE `material_type` LIKE `carport`.`material_type`");
+
+            stmt.execute("DROP TABLE IF EXISTS `material_list`");
             stmt.execute("CREATE TABLE `material_list` LIKE `carport`.`material_list`");
+
             stmt.execute("DROP TABLE IF EXISTS `cust_order`");
             stmt.execute("CREATE TABLE `cust_order` LIKE `carport`.`cust_order`");
             stmt.execute("INSERT INTO `cust_order` VALUES " +
@@ -67,7 +74,7 @@ public class OrderMapperTest {
         assertThat(orderList, hasSize(3));
     }
 
-    @Test (expected = AssertionError.class)
+    @Test(expected = AssertionError.class)
     public void testGetOrdersNegative() throws UniversalSampleException {
         // Vi henter alle ordrer der ikke er godkendt.
         ArrayList<Order> orderList = OrderMapper.getOrdersThatAreNotApproved();
@@ -85,7 +92,7 @@ public class OrderMapperTest {
         assertThat(orderList, hasSize(2));
     }
 
-    @Test (expected = AssertionError.class)
+    @Test(expected = AssertionError.class)
     public void testApproveNegative() throws UniversalSampleException {
         // Vi godkender den sidste odrer.
         OrderMapper.approve(4);
@@ -105,7 +112,7 @@ public class OrderMapperTest {
         assertThat(orderList, hasSize(2));
     }
 
-    @Test (expected = AssertionError.class)
+    @Test(expected = AssertionError.class)
     public void testRemoveOrderNegative() throws UniversalSampleException {
         // Vi fjerner den sidste odrer.
         OrderMapper.removeOrder(4);
@@ -129,7 +136,7 @@ public class OrderMapperTest {
         assertThat(orderList, hasSize(4));
     }
 
-    @Test (expected = AssertionError.class)
+    @Test(expected = AssertionError.class)
     public void testaddCarportToCustOrderNegative() throws UniversalSampleException {
         // Vi tilføjer en ordre:
         OrderMapper.addCarportToCustOrder(700, 300, 340, true, 200, 200, true, 30, "Sjovt-tag", 15000, 98722412);
@@ -140,15 +147,16 @@ public class OrderMapperTest {
         assertThat(orderList, hasSize(3));
     }
 
-    // TODO Lav nedenstående test, hvis overskud.
-    /*
+
     @Test
     public void testGetHelper() throws UniversalSampleException {
+        // Vi antager, at de to objekter er ens, da de 2 første værdier er det samme.
         CarportHelper result = OrderMapper.getHelper(4);
+        // vi indsætter data fra test-taballen fra orderID 4.
         CarportHelper expected = new CarportHelper(720, 360, 340, 260, 325, 35);
-
-        assertEquals(result, expected);
+        assertEquals(result.getCarportLength(), expected.getCarportLength());
+        assertEquals(result.getCarportWidth(), expected.getCarportWidth());
     }
-     */
+
 
 }

@@ -76,7 +76,7 @@
                         </li>
                         <div class="row mb-2">
                             <div class="col-3">
-                                <button name="godkend" type="submit" class="btnSubmitAdmin" style="text-align: center; width: 100%; background-color: green;">Godkend</button>
+                                <button name="goddddkend" type="submit" class="btnSubmitAdmin" style="text-align: center; width: 100%; background-color: green;">Godkend</button>
                             </div>
                             <div class="col-3">
                                 <button name="afvis" type="submit" class="btnSubmitAdmin" style="text-align: center; width: 100%; background-color: red;">Afvis</button>

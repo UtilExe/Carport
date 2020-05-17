@@ -1,8 +1,6 @@
 package FunctionLayer;
 
 import org.junit.After;
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -105,12 +103,12 @@ public class MaterialCalculatorTest {
     public void testGetRolesAmountBand() throws UniversalSampleException {
         int bandLength = 500;
         int expected = 1;
-        int result = calculator.getRolesAmountBand(bandLength);
+        int result = calculator.calcRolesAmountBand(bandLength);
         assertEquals(expected, result);
 
         bandLength = 1500;
         expected = 2;
-        result = calculator.getRolesAmountBand(bandLength);
+        result = calculator.calcRolesAmountBand(bandLength);
         assertEquals(expected, result);
     }
 
@@ -118,41 +116,41 @@ public class MaterialCalculatorTest {
     public void testGetRolesAmountBandNegative() throws UniversalSampleException {
         int bandLength = 500;
         int expected = 5;
-        int result = calculator.getRolesAmountBand(bandLength);
+        int result = calculator.calcRolesAmountBand(bandLength);
         assertEquals(expected, result);
 
         bandLength = 1500;
         expected = 5;
-        result = calculator.getRolesAmountBand(bandLength);
+        result = calculator.calcRolesAmountBand(bandLength);
         assertEquals(expected, result);
     }
 
     @Test
     public void testGetPillarHeight() throws UniversalSampleException {
         int expected = 3;
-        ArrayList<Double> result = calculator.getPillarHeight(carportHeight, carportLength, hasShed, shedLength, hasPitch, shedWidth, carportWidth);
+        ArrayList<Double> result = calculator.calcPillarHeight(carportHeight, carportLength, hasShed, shedLength, hasPitch, shedWidth, carportWidth);
         assertThat(result, hasSize(expected));
 
         hasShed = true;
         expected = 10;
-        result = calculator.getPillarHeight(carportHeight, carportLength, hasShed, shedLength, hasPitch, shedWidth, carportWidth);
+        result = calculator.calcPillarHeight(carportHeight, carportLength, hasShed, shedLength, hasPitch, shedWidth, carportWidth);
     }
 
     @Test (expected = AssertionError.class)
     public void testGetPillarHeightNegative() throws UniversalSampleException {
         int expected = 10;
-        ArrayList<Double> result = calculator.getPillarHeight(carportHeight, carportLength, hasShed, shedLength, hasPitch, shedWidth, carportWidth);
+        ArrayList<Double> result = calculator.calcPillarHeight(carportHeight, carportLength, hasShed, shedLength, hasPitch, shedWidth, carportWidth);
         assertThat(result, hasSize(expected));
 
         hasShed = true;
         expected = 3;
-        result = calculator.getPillarHeight(carportHeight, carportLength, hasShed, shedLength, hasPitch, shedWidth, carportWidth);
+        result = calculator.calcPillarHeight(carportHeight, carportLength, hasShed, shedLength, hasPitch, shedWidth, carportWidth);
     }
 
     @Test
     public void testGetRoofTileAmount() throws UniversalSampleException {
         int expected = 8;
-        int result = calculator.getRoofTileAmount(carportLength, carportWidth);
+        int result = calculator.calcRoofTileAmount(carportLength, carportWidth);
 
         assertEquals(expected, result);
     }
@@ -160,7 +158,7 @@ public class MaterialCalculatorTest {
     @Test (expected = AssertionError.class)
     public void testGetRoofTileAmountNegative() throws UniversalSampleException {
         int expected = 15;
-        int result = calculator.getRoofTileAmount(carportLength, carportWidth);
+        int result = calculator.calcRoofTileAmount(carportLength, carportWidth);
 
         assertEquals(expected, result);
     }
@@ -169,7 +167,7 @@ public class MaterialCalculatorTest {
     public void testGetRoofScrewAmount() throws UniversalSampleException {
         int expected = 2;
         int ID = 9;
-        int result = calculator.getRoofScrewAmount(carportLength, carportWidth, ID);
+        int result = calculator.calcRoofScrewAmount(carportLength, carportWidth, ID);
         assertEquals(expected, result);
     }
 
@@ -177,42 +175,42 @@ public class MaterialCalculatorTest {
     public void testGetRoofScrewAmountNegative() throws UniversalSampleException {
         int expected = 7;
         int ID = 9;
-        int result = calculator.getRoofScrewAmount(carportLength, carportWidth, ID);
+        int result = calculator.calcRoofScrewAmount(carportLength, carportWidth, ID);
         assertEquals(expected, result);
     }
 
     @Test
     public void testGetUniversalScrews() {
         int expected = 22;
-        int result = calculator.getUniversalScrews(carportLength, hasPitch);
+        int result = calculator.calcUniversalScrews(carportLength, hasPitch);
         assertEquals(expected, result);
     }
 
     @Test (expected = AssertionError.class)
     public void testGetUniversalScrewsNegative()  {
         int expected = 18;
-        int result = calculator.getUniversalScrews(carportLength, hasPitch);
+        int result = calculator.calcUniversalScrews(carportLength, hasPitch);
         assertEquals(expected, result);
     }
 
     @Test
     public void testGetPlankAndWaterScrews() {
         int expected = 1;
-        int result = calculator.getPlankAndWaterScrews();
+        int result = calculator.calcPlankAndWaterScrews();
         assertEquals(expected, result);
     }
 
     @Test (expected = AssertionError.class)
     public void testGetPlankAndWaterScrewsNegative() {
         int expected = 4;
-        int result = calculator.getPlankAndWaterScrews();
+        int result = calculator.calcPlankAndWaterScrews();
         assertEquals(expected, result);
     }
 
     @Test
     public void testGetBracketScrews() {
         int expected = 2;
-        int result = calculator.getBracketScrews(carportLength, hasPitch);
+        int result = calculator.calcBracketScrews(carportLength, hasPitch);
 
         assertEquals(expected, result);
     }
@@ -220,77 +218,77 @@ public class MaterialCalculatorTest {
     @Test (expected = AssertionError.class)
     public void testGetBracketScrewsNegative() {
         int expected = 1;
-        int result = calculator.getBracketScrews(carportLength, hasPitch);
+        int result = calculator.calcBracketScrews(carportLength, hasPitch);
         assertEquals(expected, result);
     }
 
     @Test
     public void testGetCarriageBolts() {
         int expected = 12;
-        int result = calculator.getCarriageBolts(carportLength, hasShed, shedLength, shedWidth, carportWidth);
+        int result = calculator.calcCarriageBolts(carportLength, hasShed, shedLength, shedWidth, carportWidth);
         assertEquals(expected, result);
     }
 
     @Test (expected = AssertionError.class)
     public void testGetCarriageBoltsNegative() {
         int expected = 6;
-        int result = calculator.getCarriageBolts(carportLength, hasShed, shedLength, shedWidth, carportWidth);
+        int result = calculator.calcCarriageBolts(carportLength, hasShed, shedLength, shedWidth, carportWidth);
         assertEquals(expected, result);
     }
 
     @Test
     public void testGetTransomsLengthFrontAndBack() {
         int[] expected = {9, 100, 3, 20}; // udregnet ud fra variablerne i getTransomsLengthFrontAndBack metoden
-        int[] result = calculator.getTransomsLengthFrontAndBack(shedWidth);
+        int[] result = calculator.calcTransomsLengthFrontAndBack(shedWidth);
         assertArrayEquals(expected, result);
     }
 
     @Test (expected = AssertionError.class)
     public void testGetTransomsLengthFrontAndBackNegative() {
         int[] expected = {5, 100, 3, 20};
-        int[] result = calculator.getTransomsLengthFrontAndBack(shedWidth);
+        int[] result = calculator.calcTransomsLengthFrontAndBack(shedWidth);
         assertArrayEquals(expected, result);
     }
 
     @Test
     public void testGetTransomsLengthSides() {
         int[] expected = {4, 200};
-        int[] result = calculator.getTransomsLengthSides(shedLength);
+        int[] result = calculator.calcTransomsLengthSides(shedLength);
         assertArrayEquals(expected, result);
     }
 
     @Test (expected = AssertionError.class)
     public void testGetTransomsLengthSidesNegative() {
         int[] expected = {4, 150};
-        int[] result = calculator.getTransomsLengthSides(shedLength);
+        int[] result = calculator.calcTransomsLengthSides(shedLength);
         assertArrayEquals(expected, result);
     }
 
     @Test
     public void testGetHeadsInShed() {
         int[] expected = {2, 200};
-        int[] result = calculator.getHeadsInShed(shedLength);
+        int[] result = calculator.calcHeadsInShed(shedLength);
         assertArrayEquals(expected, result);
     }
 
     @Test (expected = AssertionError.class)
     public void testGetHeadsInShedNegative() {
         int[] expected = {5, 150};
-        int[] result = calculator.getHeadsInShed(shedLength);
+        int[] result = calculator.calcHeadsInShed(shedLength);
         assertArrayEquals(expected, result);
     }
 
     @Test
     public void testGetPlanksForShed() throws UniversalSampleException {
         int expected = 107;
-        int result = calculator.getPlanksForShed(shedLength, shedWidth);
+        int result = calculator.calcPlanksForShed(shedLength, shedWidth);
         assertEquals(expected, result);
     }
 
     @Test (expected = AssertionError.class)
     public void testGetPlanksForShedNegative() throws UniversalSampleException {
         int expected = 60;
-        int result = calculator.getPlanksForShed(shedLength, shedWidth);
+        int result = calculator.calcPlanksForShed(shedLength, shedWidth);
         assertEquals(expected, result);
     }
 
@@ -298,7 +296,7 @@ public class MaterialCalculatorTest {
     public void testGetOuterScrewsShed() throws UniversalSampleException {
         int expected = 2;
         int ID = 13;
-        int result = calculator.getOuterScrewsShed(shedLength, shedWidth, ID);
+        int result = calculator.calcOuterScrewsShed(shedLength, shedWidth, ID);
         assertEquals(expected, result);
     }
 
@@ -306,7 +304,7 @@ public class MaterialCalculatorTest {
     public void testGetOuterScrewsShedNegative() throws UniversalSampleException {
         int expected = 1;
         int ID = 13;
-        int result = calculator.getOuterScrewsShed(shedLength, shedWidth, ID);
+        int result = calculator.calcOuterScrewsShed(shedLength, shedWidth, ID);
         assertEquals(expected, result);
     }
 
@@ -314,7 +312,7 @@ public class MaterialCalculatorTest {
     public void testGetInnerScrewsShed() throws UniversalSampleException {
         int expected = 2;
         int ID = 12;
-        int result = calculator.getInnerScrewsShed(shedLength, shedWidth, ID);
+        int result = calculator.calcInnerScrewsShed(shedLength, shedWidth, ID);
         assertEquals(expected, result);
     }
 
@@ -322,14 +320,14 @@ public class MaterialCalculatorTest {
     public void testGetInnerScrewsShedNegative() throws UniversalSampleException {
         int expected = 3;
         int ID = 12;
-        int result = calculator.getInnerScrewsShed(shedLength, shedWidth, ID);
+        int result = calculator.calcInnerScrewsShed(shedLength, shedWidth, ID);
         assertEquals(expected, result);
     }
 
     @Test
     public void testGetAngleMount() {
         int expected = 32;
-        int result = calculator.getAngleMount(shedLength, shedWidth);
+        int result = calculator.calcAngleMount(shedLength, shedWidth);
         assertEquals(expected, result);
     }
 
@@ -337,35 +335,35 @@ public class MaterialCalculatorTest {
     public void testGetAngleMountNegative() throws UniversalSampleException {
         int expected = 5;
         int ID = 12;
-        int result = calculator.getInnerScrewsShed(shedLength, shedWidth, ID);
+        int result = calculator.calcInnerScrewsShed(shedLength, shedWidth, ID);
         assertEquals(expected, result);
     }
 
     @Test
     public void getTilesForPitchedRoof() {
         int expected = 288;
-        int result = calculator.getTilesForPitchedRoof();
+        int result = calculator.calcTilesForPitchedRoof();
         assertEquals(expected, result);
     }
 
     @Test (expected = AssertionError.class)
     public void getTilesForPitchedRoofNegative() {
         int expected = 188;
-        int result = calculator.getTilesForPitchedRoof();
+        int result = calculator.calcTilesForPitchedRoof();
         assertEquals(expected, result);
     }
 
     @Test
     public void testGetAmountOfRooflaths() {
         int expected = 9;
-        int result = calculator.getAmountOfRooflaths(carportWidth);
+        int result = calculator.calcAmountOfRooflaths(carportWidth);
         assertEquals(expected, result);
     }
 
     @Test (expected = AssertionError.class)
     public void testGetAmountOfRooflathsNegative() {
         int expected = 10;
-        int result = calculator.getAmountOfRooflaths(carportWidth);
+        int result = calculator.calcAmountOfRooflaths(carportWidth);
         assertEquals(expected, result);
     }
 
@@ -375,7 +373,7 @@ public class MaterialCalculatorTest {
         int amountOfRooflaths = 9;
         int raftAmount = 11;
         int ID = 30;
-        int result = calculator.getAmountOfToplathScrews(amountOfRooflaths, raftAmount, ID);
+        int result = calculator.calcAmountOfToplathScrews(amountOfRooflaths, raftAmount, ID);
         assertEquals(expected, result);
     }
 
@@ -385,35 +383,35 @@ public class MaterialCalculatorTest {
         int amountOfRooflaths = 9;
         int raftAmount = 11;
         int ID = 30;
-        int result = calculator.getAmountOfToplathScrews(amountOfRooflaths, raftAmount, ID);
+        int result = calculator.calcAmountOfToplathScrews(amountOfRooflaths, raftAmount, ID);
         assertEquals(expected, result);
     }
 
     @Test
     public void testGetPackagesOfTileBindersAndHooks() {
         int expected = 2;
-        int result = calculator.getPackagesOfTileBindersAndHooks();
+        int result = calculator.calcPackagesOfTileBindersAndHooks();
         assertEquals(expected, result);
     }
 
     @Test (expected = AssertionError.class)
     public void testGetPackagesOfTileBindersAndHooksNegative() {
         int expected = 1;
-        int result = calculator.getPackagesOfTileBindersAndHooks();
+        int result = calculator.calcPackagesOfTileBindersAndHooks();
         assertEquals(expected, result);
     }
 
     @Test
     public void testGetAmountOfRoofTileStones() {
         int expected = 15;
-        int result = calculator.getAmountOfRoofTileStones(carportLength);
+        int result = calculator.calcAmountOfRoofTileStones(carportLength);
         assertEquals(expected, result);
     }
 
     @Test (expected = AssertionError.class)
     public void testGetAmountOfRoofTileStonesNegative() {
         int expected = 10;
-        int result = calculator.getAmountOfRoofTileStones(carportLength);
+        int result = calculator.calcAmountOfRoofTileStones(carportLength);
         assertEquals(expected, result);
     }
 
@@ -421,84 +419,84 @@ public class MaterialCalculatorTest {
     @Test
     public void testGetAmountOfRoofTileStoneBrackets() {
         int expected = 600;
-        int result = calculator.getAmountOfRoofTileStoneBrackets(carportLength);
+        int result = calculator.calcAmountOfRoofTileStoneBrackets(carportLength);
         assertEquals(expected, result);
     }
 
     @Test (expected = AssertionError.class)
     public void testGetAmountOfRoofTileStoneBracketsNegative() {
         int expected = 500;
-        int result = calculator.getAmountOfRoofTileStoneBrackets(carportLength);
+        int result = calculator.calcAmountOfRoofTileStoneBrackets(carportLength);
         assertEquals(expected, result);
     }
 
     @Test
     public void testGetAmountOfToplathHolders() {
         int expected = 600;
-        int result = calculator.getAmountOfToplathHolders(carportLength);
+        int result = calculator.calcAmountOfToplathHolders(carportLength);
         assertEquals(expected, result);
     }
 
     @Test (expected = AssertionError.class)
     public void testGetAmountOfToplathHoldersNegative() {
         int expected = 2;
-        int result = calculator.getAmountOfToplathHolders(carportLength);
+        int result = calculator.calcAmountOfToplathHolders(carportLength);
         assertEquals(expected, result);
     }
 
     @Test
     public void testGetGavlPlanksLength() {
         int expected = 231;
-        int result = calculator.getGavlPlanksLength(carportWidth, roofPitch);
+        int result = calculator.calcGavlPlanksLength(carportWidth, roofPitch);
         assertEquals(expected, result);
     }
 
     @Test (expected = AssertionError.class)
     public void testGetGavlPlanksLengthNegative() {
         int expected = 130;
-        int result = calculator.getGavlPlanksLength(carportWidth, roofPitch);
+        int result = calculator.calcGavlPlanksLength(carportWidth, roofPitch);
         assertEquals(expected, result);
     }
 
     @Test
     public void testGetAmountOfGavlPlanks() {
         int expected = 4;
-        int result = calculator.getAmountOfGavlPlanks();
+        int result = calculator.calcAmountOfGavlPlanks();
         assertEquals(expected, result);
     }
 
     @Test (expected = AssertionError.class)
     public void testGetAmountOfGavlPlanksNegative() {
         int expected = 2;
-        int result = calculator.getAmountOfGavlPlanks();
+        int result = calculator.calcAmountOfGavlPlanks();
         assertEquals(expected, result);
     }
 
     @Test
     public void testGetAmountOfPlanksForGavlMount() throws UniversalSampleException {
         int expected = 107;
-        int result = calculator.getAmountOfPlanksForGavlMount(carportWidth);
+        int result = calculator.calcAmountOfPlanksForGavlMount(carportWidth);
         assertEquals(expected, result);
     }
 
     @Test (expected = AssertionError.class)
     public void testGetAmountOfPlanksForGavlMountNegative() throws UniversalSampleException {
         int expected = 50;
-        int result = calculator.getAmountOfPlanksForGavlMount(carportWidth);
+        int result = calculator.calcAmountOfPlanksForGavlMount(carportWidth);
         assertEquals(expected, result);
     }
 
     @Test
     public void testGetPlanksForGavlMountLength() {
         int expected = 116;
-        int result = calculator.getPlanksForGavlMountLength(carportWidth, roofPitch);
+        int result = calculator.calcPlanksForGavlMountLength(carportWidth, roofPitch);
         assertEquals(expected, result);
     }
 
     @Test (expected = AssertionError.class)
     public void testGetPlanksForGavlMountLengthNegative() {
         int expected = 75;
-        int result = calculator.getPlanksForGavlMountLength(carportWidth, roofPitch);
+        int result = calculator.calcPlanksForGavlMountLength(carportWidth, roofPitch);
         assertEquals(expected, result);
     }
 
@@ -526,7 +524,7 @@ public class MaterialCalculatorTest {
         expected.add(310);
 
         //Nu udfører vi beregningen:
-        ArrayList<Integer> result = calculator.getWoodForMeasure(materialMeasure, lengths, amountOnCarport);
+        ArrayList<Integer> result = calculator.calcWoodForMeasure(materialMeasure, lengths, amountOnCarport);
 
         assertEquals(expected, result);
     }
@@ -556,7 +554,7 @@ public class MaterialCalculatorTest {
         expected.add(260);
 
         //Nu udfører vi beregningen:
-        ArrayList<Integer> result = calculator.getWoodForMeasure(materialMeasure, lengths, amountOnCarport);
+        ArrayList<Integer> result = calculator.calcWoodForMeasure(materialMeasure, lengths, amountOnCarport);
 
         assertEquals(expected, result);
     }

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 public class MaterialCalculator {
 
+    // calcStolpeAntal
     public int calcPillarAmount(int carportLength, boolean hasShed, int shedLength, int shedWidth, int carportWidth) {
         int result;
         final double PILLAR_AT_METER = 3.0;
@@ -38,6 +39,7 @@ public class MaterialCalculator {
         return result;
     }
 
+    // calcSpærAntal
     //Vi antager at mængde af spær ikke ændre sig med skur eller ej
     public int calcRaftAmount(int carportLength, boolean hasPitch) {
         int result;
@@ -57,6 +59,7 @@ public class MaterialCalculator {
         return result;
     }
 
+    // calcHulbåndLængde
     public int calcLengthOfBands(int carportLength, int carportWidth, boolean hasShed, int shedLength) {
         double lengthOfSquare = 0.0;
         double widthOfSquare;
@@ -81,7 +84,8 @@ public class MaterialCalculator {
         return result;
     }
 
-    public int getRolesAmountBand(int bandLength) throws UniversalSampleException {
+    // calcHulbåndsRuller
+    public int calcRolesAmountBand(int bandLength) throws UniversalSampleException {
         int result;
         final int BAND_ID = 10;
         final int BAND_PR_ROLES = MaterialFacade.getAmountPrUnit(BAND_ID);
@@ -90,11 +94,8 @@ public class MaterialCalculator {
         return result;
     }
 
-    // ANTAGELSE: Uanset carport-mål skal afstanden fra det yderste
-    // af carport til rem være 35 cm på hver side (30 cm bagtil).
-
-
-    public ArrayList<Double> getPillarHeight(int carportHeight, double carportLength, boolean hasShed, int shedLength, boolean hasPitch, int shedWidth, int carportWidth) throws UniversalSampleException {
+    // calcStolpeHøjde
+    public ArrayList<Double> calcPillarHeight(int carportHeight, double carportLength, boolean hasShed, int shedLength, boolean hasPitch, int shedWidth, int carportWidth) throws UniversalSampleException {
         ArrayList<Double> stolper = new ArrayList<Double>();
         final int HEAD_ID = 6;
         final int FACIA_ID = 1;
@@ -121,7 +122,7 @@ public class MaterialCalculator {
             }
         } else {
             firstPillar = pillarHeight + Math.tan((2 * Math.PI) / 180) * DIST_BEHIND_CARPORT;
-            firstPillar = roundToTwo(firstPillar);
+            firstPillar = Operations.roundToTwo(firstPillar);
             firstPillar += GROUND_DEPTH;
             stolper.add(firstPillar);
 
@@ -130,7 +131,7 @@ public class MaterialCalculator {
             // Looper igennem carportens stolper (med varierende højde grundet hældning).
             for (int i = 1; i < pillars; i++) {
                 tmpStolpeHeight = tmpStolpeHeight + Math.tan((2 * Math.PI) / 180) * 300;
-                double roundedNum = roundToTwo(tmpStolpeHeight);
+                double roundedNum = Operations.roundToTwo(tmpStolpeHeight);
                 roundedNum += GROUND_DEPTH;
                 stolper.add(roundedNum);
             }
@@ -146,14 +147,8 @@ public class MaterialCalculator {
         return stolper;
     }
 
-    public double roundToTwo(double number) {
-        String rounder = String.format("%1.2f", number);
-        rounder = rounder.replace(',', '.');
-        number = Double.valueOf(rounder);
-        return number;
-    }
-
-    public int getRoofTileAmount(int carportLength, int carportWidth) throws UniversalSampleException {
+    // calcPlasttrapezpladerAntal
+    public int calcRoofTileAmount(int carportLength, int carportWidth) throws UniversalSampleException {
         final int ROOF_TILE_ID = 8;
         double roofTileLength = MaterialFacade.getWidthHeightFromDimensionMeasureInCM(ROOF_TILE_ID).get(1);
         double roofTileWidth = MaterialFacade.getWidthHeightFromDimensionMeasureInCM(ROOF_TILE_ID).get(0);
@@ -166,7 +161,8 @@ public class MaterialCalculator {
         return roofTileAmount;
     }
 
-    public int getRoofScrewAmount(int carportLength, int carportWidth, int ID) throws UniversalSampleException {
+    // calcTagskrueAntal
+    public int calcRoofScrewAmount(int carportLength, int carportWidth, int ID) throws UniversalSampleException {
         int roofArea = carportLength * carportWidth;
         final int SCREW_PR_M2 = 12;
         final int CM_TO_M2 = 10000;
@@ -178,14 +174,16 @@ public class MaterialCalculator {
         return result;
     }
 
-    public int getUniversalScrews(int carportLength, boolean hasPitch) {
+    // calcUniversalSkruer
+    public int calcUniversalScrews(int carportLength, boolean hasPitch) {
         //Vi antager at der skrues en skrue i hver side af hvert spær
         return calcRaftAmount(carportLength, hasPitch) * 2;
     }
 
-    public int getPlankAndWaterScrews() {
+    // calcVandbrætOgSternSkruer
+    public int calcPlankAndWaterScrews() {
         /*
-        OBS!! Der vil altid kun være 3 sternbrææder
+        OBS: Der vil altid kun være 3 sternbrææder
         Vi antager at antallet af skruer aldrig bliver mere end 200stk(1 pakke) da der vil være 3 sternbrædder
         med en skrue i hver side.
         På vandbrædderne skal der bruges samme antal skruer. Dermed overstiger vi stadig ikke de 200stk.
@@ -193,7 +191,8 @@ public class MaterialCalculator {
         return 1;
     }
 
-    public int getBracketScrews(int carportLength, boolean hasPitch) {
+    // calcBeslagSkruer
+    public int calcBracketScrews(int carportLength, boolean hasPitch) {
         /*
         Vi antager at der skrues 2 beslag på hver side af et spær i begge ender. Derved ganger vi spær med 4 og derefter
         med 6 da der går 6 skruer til 1 beslag.
@@ -206,11 +205,13 @@ public class MaterialCalculator {
         return (int) amountOfPacks;
     }
 
-    public int getCarriageBolts(int carportLength, boolean hasShed, int shedLength, int shedWidth, int carportWidth) {
+    // calcBræddeBolte
+    public int calcCarriageBolts(int carportLength, boolean hasShed, int shedLength, int shedWidth, int carportWidth) {
         return calcPillarAmount(carportLength, hasShed, shedLength, shedWidth, carportWidth) * 2;
     }
 
-    public int[] getTransomsLengthFrontAndBack(int shedWidth) {
+    // calcLøsholteLængdeForanOgBagved
+    public int[] calcTransomsLengthFrontAndBack(int shedWidth) {
         /* Vi antager, at der er 3 løsholte fra bunden til toppen på skurets for- og bagside samt 2 løsholte
          fra bunden til toppen på skurets sider. */
 
@@ -233,7 +234,8 @@ public class MaterialCalculator {
         return result;
     }
 
-    public int[] getTransomsLengthSides(int shedLength) {
+    // calcLøsholteLængdeISiderne
+    public int[] calcTransomsLengthSides(int shedLength) {
          /* Vi antager, at der er 3 løsholte fra bunden til toppen på skurets for- og bagside samt 2 løsholte
          fra bunden til toppen på skurets sider. */
 
@@ -250,7 +252,8 @@ public class MaterialCalculator {
         return result;
     }
 
-    public int[] getHeadsInShed(int shedLength) {
+    // calcRemPåSkur
+    public int[] calcHeadsInShed(int shedLength) {
         int headsLength = shedLength;
         // Der er 1 rem i hver side (derfor, 2 i alt):
         final int HEADS_AMOUNT = 2;
@@ -262,7 +265,8 @@ public class MaterialCalculator {
         return result;
     }
 
-    public int getPlanksForShed(int shedLength, int shedWidth) throws UniversalSampleException {
+    // calcBeklædningForSkur
+    public int calcPlanksForShed(int shedLength, int shedWidth) throws UniversalSampleException {
         int result;
         // ID til brædtet, der skal bruges:
         final int PLANK_ID = 3;
@@ -271,7 +275,6 @@ public class MaterialCalculator {
         ArrayList<Double> dimensionsOfPlank = MaterialFacade.getWidthHeightFromDimensionMeasureInCM(PLANK_ID);
         double tmpPlankWidth = dimensionsOfPlank.get(1);
         double plankWidthAfterOverlap = tmpPlankWidth - OVERLAP;
-        int plankWidth = (int) Math.ceil(plankWidthAfterOverlap);
         double sides = (shedLength / plankWidthAfterOverlap) * 2;
         double frontBack = (shedWidth / plankWidthAfterOverlap) * 2;
         double tmpResult = sides + frontBack;
@@ -280,9 +283,10 @@ public class MaterialCalculator {
         return result;
     }
 
-    public int getOuterScrewsShed(int shedLength, int shedWidth, int ID) throws UniversalSampleException {
+    // calcYdreSkruerPåSkur
+    public int calcOuterScrewsShed(int shedLength, int shedWidth, int ID) throws UniversalSampleException {
         int result;
-        int planksForShed = getPlanksForShed(shedLength, shedWidth);
+        int planksForShed = calcPlanksForShed(shedLength, shedWidth);
         // Vi antager, at der skal bruges 2 skruer pr. ydre bræt.
         final int AMOUNT_OF_OUTERSCREW_PR_PLANK = 2;
         double amountOfScrewPrPackage = MaterialFacade.getAmountPrUnit(ID);
@@ -292,39 +296,41 @@ public class MaterialCalculator {
 
     }
 
-    public int getInnerScrewsShed(int shedLength, int shedWidth, int ID) throws UniversalSampleException {
+    // calcIndreSkruerPåSkur
+    public int calcInnerScrewsShed(int shedLength, int shedWidth, int ID) throws UniversalSampleException {
         int result;
         // Vi antager, at der bruges 4 skruer pr. løsholte.
         final int AMOUNT_OF_SCREWS_PR_TRANSOM = 4;
         final int AMOUNT_OF_SCREWS_ON_DOOR = 50;
         double amountOfScewPrPackage = MaterialFacade.getAmountPrUnit(ID);
-        int transomAmountFrontBack = getTransomsLengthFrontAndBack(shedWidth)[0] + getTransomsLengthFrontAndBack(shedWidth)[2];
-        int transomAmountSides = getTransomsLengthSides(shedLength)[0];
+        int transomAmountFrontBack = calcTransomsLengthFrontAndBack(shedWidth)[0] + calcTransomsLengthFrontAndBack(shedWidth)[2];
+        int transomAmountSides = calcTransomsLengthSides(shedLength)[0];
         double tmpResult = ((transomAmountFrontBack * AMOUNT_OF_SCREWS_PR_TRANSOM) + (transomAmountSides * AMOUNT_OF_SCREWS_ON_DOOR) + AMOUNT_OF_SCREWS_ON_DOOR) / amountOfScewPrPackage;
         result = (int) Math.ceil(tmpResult);
-
 
         return result;
     }
 
-    public int getAngleMount(int shedLength, int shedWidth) {
+    // calcVinkelBeslag
+    public int calcAngleMount(int shedLength, int shedWidth) {
         int result;
         // Vi antager, at der bruges 2 vinkelbeslag pr. løsholt(én i hver ende)
-        final int ANGLE_MOUNT_PR_TRANSOM = 2;
-        int transomAmountFrontBack = getTransomsLengthFrontAndBack(shedWidth)[0] + getTransomsLengthFrontAndBack(shedWidth)[2];
-        int transomAmountSides = getTransomsLengthSides(shedLength)[0];
+        int transomAmountFrontBack = calcTransomsLengthFrontAndBack(shedWidth)[0] + calcTransomsLengthFrontAndBack(shedWidth)[2];
+        int transomAmountSides = calcTransomsLengthSides(shedLength)[0];
         result = (transomAmountFrontBack + transomAmountSides) * 2;
         return result;
     }
 
-    public int getTilesForPitchedRoof() {
+    // calcTagstenForRejsningtag
+    public int calcTilesForPitchedRoof() {
         // 6 rækker af 24 sten på hver side af taget:
         int totalTiles = (6*24) * 2;
         //return (int) (Math.ceil(totalTiles/300));
         return totalTiles;
     }
 
-    public int getAmountOfRooflaths(int carportWidth) {
+    // calcAntalTaglægter
+    public int calcAmountOfRooflaths(int carportWidth) {
         // Vi antager, at der er 35 cm mellem hver toplægte.
         final double SPACE_BETWEEN = 35.0;
         int result;
@@ -333,7 +339,8 @@ public class MaterialCalculator {
         return result;
     }
 
-    public int getAmountOfToplathScrews(int amountOfRooflaths, int raftAmount, int ID) throws UniversalSampleException {
+    // calcAntalToplægteSkruer
+    public int calcAmountOfToplathScrews(int amountOfRooflaths, int raftAmount, int ID) throws UniversalSampleException {
         // Vi antager, at der skal én skrue til én taglægte pr. spær:
         final int AMOUNT_OF_SCREWS_PR_ROOFLATH = raftAmount;
 
@@ -344,14 +351,16 @@ public class MaterialCalculator {
         return result;
     }
 
-    public int getPackagesOfTileBindersAndHooks() {
+    // calcTagstensbindereOgNakkekroge
+    public int calcPackagesOfTileBindersAndHooks() {
         // Vi antager, at der uanset tagstørrelse skal bruges 2 pakker tagstens bindere og nakkekroge
         final int AMOUNT_OF_TILE_BINDERS_HOOKS = 2;
 
         return AMOUNT_OF_TILE_BINDERS_HOOKS;
     }
 
-    public int getAmountOfRoofTileStones(int carportLength) {
+    // calcAntalRygsten
+    public int calcAmountOfRoofTileStones(int carportLength) {
         // Vi antager, at en rygsten har en længde på 50 cm.
         final int ROOFTILE_STONE_LENGTH_CM = 50;
         final int OVERLAP_CM = 10;
@@ -361,21 +370,24 @@ public class MaterialCalculator {
         return result;
     }
 
-    public int getAmountOfRoofTileStoneBrackets(int amountOfRoofTileStones) {
+    // calcAntalRygstensBeslag
+    public int calcAmountOfRoofTileStoneBrackets(int amountOfRoofTileStones) {
         // Der skal 1 rygstensbeslag til 1 rygsten.
         int result = amountOfRoofTileStones;
 
         return result;
     }
 
-    public int getAmountOfToplathHolders(int amountOfRafts) {
+    // calcAntalToplægteHoldere
+    public int calcAmountOfToplathHolders(int amountOfRafts) {
         // Der er 1 toplægteholder på hvert spær.
         int result = amountOfRafts;
 
         return result;
     }
 
-    public int getGavlPlanksLength(int carportWidth, int carportPitch) {
+    // calcVindskederLængde
+    public int calcGavlPlanksLength(int carportWidth, int carportPitch) {
         double halfWidth = carportWidth / 2;
         double middleHeight = Math.tan((carportPitch * Math.PI) / 180) * halfWidth;
         double tmpResult = Math.sqrt((halfWidth * halfWidth) + (middleHeight * middleHeight));
@@ -384,14 +396,16 @@ public class MaterialCalculator {
         return result;
     }
 
-    public int getAmountOfGavlPlanks() {
+    // calcAntalVindskeder
+     public int calcAmountOfGavlPlanks() {
         // Vi antager, at der altid er 4 gavl-bræt (2 foran og 2 bagved):
         final int AMOUNT_OF_GAVL_PLANKS = 4;
 
         return AMOUNT_OF_GAVL_PLANKS;
     }
 
-    public int getAmountOfPlanksForGavlMount(int carportWidth) throws UniversalSampleException {
+    // calcAntalBrætIGavlen
+    public int calcAmountOfPlanksForGavlMount(int carportWidth) throws UniversalSampleException {
         int result;
         // ID til brættet, der skal bruges:
         final int PLANK_ID = 3;
@@ -400,14 +414,14 @@ public class MaterialCalculator {
         ArrayList<Double> dimensionsOfPlank = MaterialFacade.getWidthHeightFromDimensionMeasureInCM(PLANK_ID);
         double tmpPlankWidth = dimensionsOfPlank.get(1);
         double plankWidthAfterOverlap = tmpPlankWidth - OVERLAP;
-        int plankWidth = (int) Math.ceil(plankWidthAfterOverlap);
         double amountOfPlanks = (carportWidth / plankWidthAfterOverlap) * 2;
         result = (int) Math.ceil(amountOfPlanks);
 
         return result;
     }
 
-    public int getPlanksForGavlMountLength(int carportWidth, int carportPitch) {
+    // calcLængdePåBrætIGavlen
+    public int calcPlanksForGavlMountLength(int carportWidth, int carportPitch) {
         double halfWidth = carportWidth / 2;
         double middleHeight = Math.tan((carportPitch * Math.PI) / 180) * halfWidth;
         int result = (int) (Math.ceil(middleHeight));
@@ -415,11 +429,13 @@ public class MaterialCalculator {
         return result;
     }
 
+    // calcPrisPrEnhed
     public int calcPricePrUnit(int unit, double pricePrUnit) {
         int result = (int) (Math.ceil(unit * pricePrUnit));
         return result;
     }
 
+    // calcPrisPrEnhedMedLængde
     public int calcPricePrUnitWithLength(int unit, double pricePrUnit, int amount) {
         int result = (int) (Math.ceil((unit * pricePrUnit) * amount));
         return result;
@@ -430,9 +446,9 @@ public class MaterialCalculator {
         final int PRICE_FOR_SERVICE = 5000;
         int prices;
         int result = 0;
-        String priceIndex = "";
+        String priceIndex;
         for (String s : materialInfo) {
-            String[] tmpPriceIndex = new String[2];
+            String[] tmpPriceIndex;
             tmpPriceIndex = s.split(" ");
             priceIndex = tmpPriceIndex[0];
             prices = Integer.parseInt(priceIndex);
@@ -444,7 +460,8 @@ public class MaterialCalculator {
         return result;
     }
 
-    public ArrayList<Integer> getWoodForMeasure(int materialMeasure, ArrayList<Integer> lengths, int amountOnCarport) {
+    // calcAntalTræTilLængde
+    public ArrayList<Integer> calcWoodForMeasure(int materialMeasure, ArrayList<Integer> lengths, int amountOnCarport) {
         ArrayList<Integer> result = new ArrayList<>();
         int tmpResult = 0;
         int amountOfWood = 0;

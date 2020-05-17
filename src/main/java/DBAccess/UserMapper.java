@@ -25,7 +25,6 @@ public class UserMapper {
             ps.executeUpdate();
             ResultSet ids = ps.getGeneratedKeys();
             ids.next();
-            user.setDateCreated("create_time");
         } catch ( SQLException | ClassNotFoundException ex ) {
             String methodName = "createUser";
 

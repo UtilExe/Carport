@@ -13,4 +13,11 @@ public class Operations {
         return result;
     }
 
+    public static double roundToTwo(double number) {
+        String rounder = String.format("%1.2f", number);
+        rounder = rounder.replace(',', '.');
+        number = Double.valueOf(rounder);
+        return number;
+    }
+
 }

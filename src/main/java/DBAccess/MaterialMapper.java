@@ -2,7 +2,6 @@ package DBAccess;
 
 import FunctionLayer.*;
 
-import javax.validation.Valid;
 import java.sql.*;
 import java.util.ArrayList;
 
@@ -35,7 +34,7 @@ public class MaterialMapper {
     public static ArrayList<String> getRoofData(int ID, int measure, int tmpAmount) throws UniversalSampleException {
         ArrayList<String> data = new ArrayList<>();
         ArrayList<Integer> lengths = getLengthsFromStorage(ID);
-        ArrayList<Integer> woodAmountAndLength = calcPrice.getWoodForMeasure(measure, lengths, tmpAmount);
+        ArrayList<Integer> woodAmountAndLength = calcPrice.calcWoodForMeasure(measure, lengths, tmpAmount);
 
         try {
             Connection con = Connector.connection();
@@ -207,7 +206,7 @@ public class MaterialMapper {
             }
         }
         ArrayList<Integer> lengths = getLengthsFromStorage(ID);
-        ArrayList<Integer> woodAmountAndLength = calcPrice.getWoodForMeasure((int) biggestLength, lengths, pillarAmount);
+        ArrayList<Integer> woodAmountAndLength = calcPrice.calcWoodForMeasure((int) biggestLength, lengths, pillarAmount);
 
         try {
             Connection con = Connector.connection();
@@ -259,7 +258,7 @@ public class MaterialMapper {
         }
 
         ArrayList<Integer> lengths = getLengthsFromStorage(ID);
-        ArrayList<Integer> woodAmountAndLength = calcPrice.getWoodForMeasure(totalLength, lengths, totalAmount);
+        ArrayList<Integer> woodAmountAndLength = calcPrice.calcWoodForMeasure(totalLength, lengths, totalAmount);
 
         try {
             Connection con = Connector.connection();
@@ -296,7 +295,7 @@ public class MaterialMapper {
     public static ArrayList<String> getPlankData(int ID, int height, int plankAmount) throws UniversalSampleException {
         ArrayList<String> data = new ArrayList<>();
         ArrayList<Integer> lengths = getLengthsFromStorage(ID);
-        ArrayList<Integer> woodAmountAndLength = calcPrice.getWoodForMeasure(height, lengths, plankAmount);
+        ArrayList<Integer> woodAmountAndLength = calcPrice.calcWoodForMeasure(height, lengths, plankAmount);
 
         try {
             Connection con = Connector.connection();

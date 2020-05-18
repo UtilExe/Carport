@@ -16,7 +16,7 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="Carport" options="-endorseddirs C:\Users\Danie\Documents\Skole\Cphbusiness\2Semester(2020)\Eksamensprojekt\Carport\target/endorsed" />
+      <module name="Carport" options="-endorseddirs C:\Users\Jannich\Documents\IntelliJ\Carport\target/endorsed" />
     </option>
   </component>
 </project>

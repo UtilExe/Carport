@@ -35,8 +35,6 @@
 
     <div class="jumbotron mr-5 mt-20 mt-lg-0">
 
-        ${orderID}
-
         <form action="FrontController" method="POST">
             <input type="hidden" name="target" value="edit">
 

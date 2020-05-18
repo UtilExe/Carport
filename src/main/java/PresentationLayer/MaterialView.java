@@ -8,6 +8,11 @@ import FunctionLayer.UniversalSampleException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+/**
+ * @author Daniel, Emil, Jannich, Jimmy
+ * MaterialView klassen håndterer at materiale-listen kan blive vist på admin-siden.
+ */
+
 public class MaterialView extends Command {
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws UniversalSampleException {

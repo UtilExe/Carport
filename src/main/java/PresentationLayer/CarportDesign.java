@@ -2,10 +2,13 @@ package PresentationLayer;
 
 import FunctionLayer.*;
 import FunctionLayer.Entities.*;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+/**
+ * @author Daniel, Emil, Jannich, Jimmy
+ * CarportDesign klassen håndterer vejen fra de indtastede Carport mål til den færdige materiale-liste, skitse & carport.
+ */
 
 public class CarportDesign extends Command {
 

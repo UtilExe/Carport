@@ -1,12 +1,12 @@
 package FunctionLayer;
 
-public class Operations {
+/**
+ * @author Daniel, Emil, Jannich, Jimmy
+ * Operations klassen indeholder en række hjælpsomme metoder, bl.a. formatering, splitter og lignende, som bliver brugt
+ * Flere steder i koden, som har til formål at undgå gentagne kode.
+ */
 
-    /**
-     * @author Daniel, Emil, Jannich, Jimmy
-     * Operations klassen indeholder en række hjælpsomme metoder, bl.a. formatering, splitter og lignende, som bliver brugt
-     * Flere steder i koden, som har til formål at undgå gentagne kode.
-     */
+public class Operations {
 
     public static String[] splitterForDimensions(String strFromDB, String regex) {
         String[] splittedString;

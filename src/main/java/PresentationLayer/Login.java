@@ -9,6 +9,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+/**
+ * @author Daniel, Emil, Jannich, Jimmy
+ * Login klassen håndterer et brugerlogin/admin-login, med brugerens angive email og password, der bliver hentet.
+ */
+
 public class Login extends Command {
 
     @Override

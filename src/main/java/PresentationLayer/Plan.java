@@ -5,6 +5,11 @@ import FunctionLayer.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+/**
+ * @author Daniel, Emil, Jannich, Jimmy
+ * Plan klassen står for at vise skitserne på admin-siden ud fra Ordre ID.
+ */
+
 public class Plan extends Command{
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws UniversalSampleException {

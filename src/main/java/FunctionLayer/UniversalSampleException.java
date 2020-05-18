@@ -1,5 +1,10 @@
 package FunctionLayer;
 
+/**
+ * @author Daniel, Emil, Jannich, Jimmy
+ * UniversalSampleException klassen er en Generel exception vi har lavet for at håndtere Exceptions og skrive til log - alt i én exception.
+ */
+
 public class UniversalSampleException extends Exception {
 
     public UniversalSampleException(String msg) {

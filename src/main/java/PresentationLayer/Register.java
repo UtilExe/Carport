@@ -7,6 +7,11 @@ import FunctionLayer.UniversalSampleException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+/**
+ * @author Daniel, Emil, Jannich, Jimmy
+ * Register klassen står for at den besøgende kan oprette en bruger.
+ */
+
 public class Register extends Command {
 
     @Override

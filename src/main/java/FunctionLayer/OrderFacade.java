@@ -1,10 +1,14 @@
 package FunctionLayer;
 
-
 import DBAccess.OrderMapper;
 import FunctionLayer.Entities.Order;
 
 import java.util.ArrayList;
+
+/**
+ * @author Daniel, Emil, Jannich, Jimmy
+ * OrderFacade håndterer processen mellem Præsentationslaget, Funktionslaget og Database-niveau for Ordre ift. tilføjelse, godkendelse mv.
+ */
 
 public class OrderFacade {
 
@@ -20,8 +24,12 @@ public class OrderFacade {
         OrderMapper.approve(orderID);
     }
 
-    public static void removeOrder(int orderID) throws UniversalSampleException { OrderMapper.removeOrder(orderID);}
+    public static void removeOrder(int orderID) throws UniversalSampleException {
+        OrderMapper.removeOrder(orderID);
+    }
 
-    public static CarportHelper getHelper(int orderID) throws UniversalSampleException { return OrderMapper.getHelper(orderID); }
+    public static CarportHelper getHelper(int orderID) throws UniversalSampleException {
+        return OrderMapper.getHelper(orderID);
+    }
 
 }

@@ -6,8 +6,12 @@ import FunctionLayer.UniversalSampleException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class Redirect extends Command{
+/**
+ * @author Daniel, Emil, Jannich, Jimmy
+ * Redirect klassen står for at håndtere initialisering når man tilgår en bestemt destination.
+ */
 
+public class Redirect extends Command{
 
     @Override
     String execute(HttpServletRequest request, HttpServletResponse response) throws UniversalSampleException {

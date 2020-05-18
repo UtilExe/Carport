@@ -49,24 +49,7 @@
 </div>
 
 <div class="pt-4 pb-4" style="margin-bottom: 50px">
-    <table class="centerHorizontal materialListStyle">
-        <tr>
-            <th>Kategori</th>
-            <th>Længde</th>
-            <th>Antal</th>
-            <th>Enhed</th>
-            <th>Beskrivelse</th>
-        </tr>
-        <c:forEach var="material" items="${requestScope.materialList.list}">
-            <tr>
-                <td>${material.get(0)}</td>
-                <td>${material.get(4)}</td>
-                <td>${material.get(3)}</td>
-                <td>${material.get(1)}</td>
-                <td>${material.get(2)}</td>
-            </tr>
-        </c:forEach>
-    </table>
+    <p class="centerHorizontal">NB: De vil modtage en stykliste, når carporten er betalt.</p>
 </div>
 
 <div class="mb-4 centerHorizontal">${requestScope.svgdrawingfront}</div>

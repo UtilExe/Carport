@@ -99,7 +99,7 @@ public class CarportDesign extends Command {
             }
         }
 
-        request.setAttribute("materialList", helper.createMaterialList(helper.isHasShed(), helper.isHasPitch()));
+        /*request.setAttribute("materialList", helper.createMaterialList(helper.isHasShed(), helper.isHasPitch()));*/
         request.setAttribute("finalPrice", finalPrice);
 
         String svgDrawing = helper.svgDrawingTop(carportLength, carportWidth, helper.isHasShed());

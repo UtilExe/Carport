@@ -86,6 +86,7 @@
                     <div class="row">
                         <div class="col-2"><a href="FrontController?target=showplan&orderID=${order.orderID}">Se plantegning</a></div>
                         <div class="col-2"><a href="FrontController?target=materialView&orderID=${order.orderID}">Se materialeliste</a></div>
+                        <div class="col-2"><a href="FrontController?target=redirect&destination=editOrder&orderID=${order.orderID}">Ret i carporten</a></div>
                     </div>
                 </div>
             </c:forEach>

@@ -32,4 +32,8 @@ public class OrderFacade {
         return OrderMapper.getHelper(orderID);
     }
 
+    public static void editOrder(int orderID, String measure, int amount) {
+        OrderMapper.editOrder(orderID, measure, amount);
+    }
+
 }

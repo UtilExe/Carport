@@ -42,13 +42,6 @@ public class Redirect extends Command{
             request.setAttribute("orderID", orderID);
         }
 
-        if(destination.equals("searchOrder")) {
-            //TODO Lav egen extender eller fix det på en smartere måde uden at lave flere klasser
-            int orderID = Integer.parseInt(request.getParameter("orderID"));
-            Order order = OrderFacade.getOrder(orderID);
-            request.setAttribute("order", order);
-        }
-
         return destination;
     }
 }

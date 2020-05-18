@@ -20,7 +20,7 @@ abstract class Command {
         commands.put( "showplan",           new Plan()               );
         commands.put( "materialView",       new MaterialView()       );
         commands.put( "edit",               new Editor()             );
-        commands.put( "search",             new Redirect()           );
+        commands.put( "search",             new Searcher()           );
     }
 
     static Command from( HttpServletRequest request ) {

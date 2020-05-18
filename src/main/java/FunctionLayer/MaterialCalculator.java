@@ -9,6 +9,15 @@ import java.util.ArrayList;
 
 public class MaterialCalculator {
 
+    /**
+     * calcPillarAmount har til formålet, at udregne antallet af stolper på carporten ud fra kundens valgte mål.
+     * @param carportLength længden på carporten, som kunden har valgt.
+     * @param hasShed om kunden har valgt skur eller ej (true = har valgt, false = har ikke valgt).
+     * @param shedLength længden på skuret, som kunden har valgt.
+     * @param shedWidth bredden på skuret, som kunden har valgt.
+     * @param carportWidth bredden på carporten, som kunden har valgt.
+     * @return en int med antal stolper.
+     */
     // calcStolpeAntal
     public int calcPillarAmount(int carportLength, boolean hasShed, int shedLength, int shedWidth, int carportWidth) {
         int result;
@@ -44,6 +53,13 @@ public class MaterialCalculator {
         return result;
     }
 
+
+    /**
+     * calcRaftAmount har til formål at beregne antallet af spær på carporten ud fra kundens valgte mål.
+     * @param carportLength er carportens længde, som kunden har valgt.
+     * @param hasPitch om kunden har valgt rejsningstag eller fladt tag (true = rejsningstag, false = fladt tag).
+     * @return en int med antal spær.
+     */
     // calcSpærAntal
     //Vi antager at mængde af spær ikke ændre sig med skur eller ej
     public int calcRaftAmount(int carportLength, boolean hasPitch) {
@@ -64,6 +80,15 @@ public class MaterialCalculator {
         return result;
     }
 
+
+    /**
+     * calcLengthOfBands har til formål at beregne længden af hulhånd, der skal bruges ud fra kundens valgte mål.
+     * @param carportLength længden på carporten, som kunden har valgt.
+     * @param carportWidth bredden på carporten, som kunden har valgt.
+     * @param hasShed om kunden har valgt skur eller ej (true = har valgt, false = har ikke valgt).
+     * @param shedLength længden på skuret, som kunden har valgt.
+     * @return
+     */
     // calcHulbåndLængde
     public int calcLengthOfBands(int carportLength, int carportWidth, boolean hasShed, int shedLength) {
         double lengthOfSquare = 0.0;
@@ -89,6 +114,14 @@ public class MaterialCalculator {
         return result;
     }
 
+
+    /**
+     * calcRolesAmountBand har til formål at beregne antallet af ruller hulbånd ud fra hulbåndets længde samt antal
+     * meter hulbånd i en pakke (der hentes fra databasen).
+     * @param bandLength er længden på hulbåndet, der er beregnet i metoden: calcLengthOfBands.
+     * @return en int med antal ruller hulbånd.
+     * @throws UniversalSampleException kastes, hvis der er problemer med at hente fra databasen.
+     */
     // calcHulbåndsRuller
     public int calcRolesAmountBand(int bandLength) throws UniversalSampleException {
         int result;
@@ -99,6 +132,18 @@ public class MaterialCalculator {
         return result;
     }
 
+    /**
+     * calcPillarHeight har til formål, at beregne højden på stolperne ud fra kundens valgte mål.
+     * @param carportHeight højden på carporten, som kunden har valgt.
+     * @param carportLength længden på carporten, som kunden har valgt.
+     * @param hasShed om kunden har valgt skur eller ej (true = har valgt, false = har ikke valgt).
+     * @param shedLength længden på skuret, som kunden har valgt.
+     * @param hasPitch om kunden har valgt rejsningstag eller fladt tag (true = rejsningstag, false = fladt tag).
+     * @param shedWidth bredden på skuret, som kunden har valgt.
+     * @param carportWidth bredden på carporten, som kunde har valgt.
+     * @return et ArrayList med doubles, der indeholder stolpernes højde i stolpepar (hvert index' længde, er længden for 2 stolper).
+     * @throws UniversalSampleException kastes, hvis der er problemer med at hente fra databasen.
+     */
     // calcStolpeHøjde
     public ArrayList<Double> calcPillarHeight(int carportHeight, double carportLength, boolean hasShed, int shedLength, boolean hasPitch, int shedWidth, int carportWidth) throws UniversalSampleException {
         ArrayList<Double> stolper = new ArrayList<Double>();
@@ -152,6 +197,14 @@ public class MaterialCalculator {
         return stolper;
     }
 
+    /**
+     * calcRoofTileAmount har til formål at beregnes plasttrapezpladerne for en carport med fladt tag, ud fra kundens
+     * valgte mål.
+     * @param carportLength længden på carporten, som kunden har valgt.
+     * @param carportWidth bredden på carporten, som kunden har valgt.
+     * @return en int der indeholder antal plasttrapezplader.
+     * @throws UniversalSampleException kastes, hvis der er problemer med at hente fra databasen.
+     */
     // calcPlasttrapezpladerAntal
     public int calcRoofTileAmount(int carportLength, int carportWidth) throws UniversalSampleException {
         final int ROOF_TILE_ID = 8;
@@ -166,6 +219,14 @@ public class MaterialCalculator {
         return roofTileAmount;
     }
 
+    /**
+     * calcRoofScrewAmount har til formål at beregne antal tagskruer ud fra kundens valgte mål.
+     * @param carportLength længden på carporten, som kunden har valgt.
+     * @param carportWidth bredden på carporten, som kunden har valgt.
+     * @param ID product_id'et på tagskruer i databasen.
+     * @return en int der indeholder antal tagskruer.
+     * @throws UniversalSampleException kastes, hvis der er problemer med at hente fra databasen.
+     */
     // calcTagskrueAntal
     public int calcRoofScrewAmount(int carportLength, int carportWidth, int ID) throws UniversalSampleException {
         int roofArea = carportLength * carportWidth;
@@ -179,12 +240,22 @@ public class MaterialCalculator {
         return result;
     }
 
+    /**
+     * calcUniversalScrews har til formål at beregne antal universalskruer ud fra kundens valgte mål.
+     * @param carportLength længden på carporten, som kunden har valgt.
+     * @param hasPitch om kunden har valgt rejsningstag eller fladt tag (true = rejsningstag, false = fladt tag).
+     * @return en int der indeholder antal universalskruer.
+     */
     // calcUniversalSkruer
     public int calcUniversalScrews(int carportLength, boolean hasPitch) {
         //Vi antager at der skrues en skrue i hver side af hvert spær
         return calcRaftAmount(carportLength, hasPitch) * 2;
     }
 
+    /**
+     * calcPlankAndWaterScrews har til formål at give antal pakker med skruer til vandbrædt og sternbrædder.
+     * @return en int indeholdende antal pakker med skruer.
+     */
     // calcVandbrætOgSternSkruer
     public int calcPlankAndWaterScrews() {
         /*
@@ -196,6 +267,13 @@ public class MaterialCalculator {
         return 1;
     }
 
+
+    /**
+     * calcBracketScrews har til formål at beregne antallet af pakker med skruer til beslag ud fra kundens valgte mål.
+     * @param carportLength længden på carporten, som kunden har valgt.
+     * @param hasPitch om kunden har valgt rejsningstag eller fladt tag (true = rejsningstag, false = fladt tag).
+     * @return en int der indeholder antal pakker med skruer til beslag.
+     */
     // calcBeslagSkruer
     public int calcBracketScrews(int carportLength, boolean hasPitch) {
         /*
@@ -210,11 +288,29 @@ public class MaterialCalculator {
         return (int) amountOfPacks;
     }
 
+
+    /**
+     * calcCarriageBolts har til formål at beregne antal bræddebolte ud fra kundens valgte mål.
+     * @param carportLength længden på carporten, som kunden har valgt.
+     * @param hasShed om kunden har valgt skur eller ej (true = har valgt, false = har ikke valgt).
+     * @param shedLength længden på skuret, som har kunden har valgt.
+     * @param shedWidth bredden på skuret, som kunden har valgt.
+     * @param carportWidth bredden på carporten, som kunden har valgt.
+     * @return en int der indeholder antal bræddebolte.
+     */
     // calcBræddeBolte
     public int calcCarriageBolts(int carportLength, boolean hasShed, int shedLength, int shedWidth, int carportWidth) {
         return calcPillarAmount(carportLength, hasShed, shedLength, shedWidth, carportWidth) * 2;
     }
 
+
+    /**
+     * calcTransomsLengthFrontAndBack har til formål at beregne antal løsholter foran og bagpå skuret ud fra kundens
+     * valgte mål.
+     * @param shedWidth bredden på skuret, som kunden har valgt.
+     * @return et Array med en størrelse på 4, hvor index 0: antal normale løsholte, index 1: længden på de normale løsholte,
+     * index 2: antal løsholter, hvor døren er trukket fra, index 3: længden på løsholter, hvor døren er trukket fra.
+     */
     // calcLøsholteLængdeForanOgBagved
     public int[] calcTransomsLengthFrontAndBack(int shedWidth) {
         /* Vi antager, at der er 3 løsholte fra bunden til toppen på skurets for- og bagside samt 2 løsholte
@@ -239,6 +335,12 @@ public class MaterialCalculator {
         return result;
     }
 
+    /**
+     * calcTransomsLengthSides har til formål at beregne antallet af løsholter i siderne af skuret ud fra kundens
+     * valgte mål.
+     * @param shedLength længden på skuret, som kunden har valgt.
+     * @return et Array med en størrelse på 2, hvor index 0: antal løsholte og index 1: længen på løsholterne.
+     */
     // calcLøsholteLængdeISiderne
     public int[] calcTransomsLengthSides(int shedLength) {
          /* Vi antager, at der er 3 løsholte fra bunden til toppen på skurets for- og bagside samt 2 løsholte
@@ -257,6 +359,11 @@ public class MaterialCalculator {
         return result;
     }
 
+    /**
+     * calcHeadsInShed er til formål at beregne antal rem i skuret ud fra kundens valgte mål.
+     * @param shedLength længden på skuret, som kunden har valgt.
+     * @return et Array med en størrelse på 2, hvor index 0: antal remme, index 1: længden på remmene.
+     */
     // calcRemPåSkur
     public int[] calcHeadsInShed(int shedLength) {
         int headsLength = shedLength;
@@ -270,6 +377,13 @@ public class MaterialCalculator {
         return result;
     }
 
+    /**
+     * calcPlanksForShed har til formål at beregne antal brædt til beklædningen på skuret ud fra kundens valgte mål.
+     * @param shedLength længden på skuret, som kunden har valgt.
+     * @param shedWidth bredden på skuret, som kunden har valgt.
+     * @return en int der indeholder antal brædt til beklædningen på skuret.
+     * @throws UniversalSampleException kastes, hvis der er problemer med at hente fra databasen.
+     */
     // calcBeklædningForSkur
     public int calcPlanksForShed(int shedLength, int shedWidth) throws UniversalSampleException {
         int result;
@@ -288,6 +402,15 @@ public class MaterialCalculator {
         return result;
     }
 
+    /**
+     * calcOuterScrewsShed har til formål at beregne antal pakker med skruer til ydersiden af skuret ud fra kundens
+     * valgte mål.
+     * @param shedLength længden på skuret, som kunden har valgt.
+     * @param shedWidth bredden på skuret, som kunden har valgt.
+     * @param ID product_id'et på ydreskruer hentet fra databasen.
+     * @return en int der indeholder antal pakker med skruer til ydersiden af skuret.
+     * @throws UniversalSampleException kastes, hvis der er problemer med at hente fra databasen.
+     */
     // calcYdreSkruerPåSkur
     public int calcOuterScrewsShed(int shedLength, int shedWidth, int ID) throws UniversalSampleException {
         int result;
@@ -301,6 +424,15 @@ public class MaterialCalculator {
 
     }
 
+    /**
+     * calcInnerScrewsShed har til formål at beregne antal pakker med skruer til indersiden af skuret ud fra kundens
+     * valgte mål.
+     * @param shedLength længden på skuret, som kunden har valgt.
+     * @param shedWidth bredden på skuret, som kunden har valgt.
+     * @param ID product_id'et på indreskruer hentet fra databasen.
+     * @return en int der indeholder antal pakker med skruer til indersiden af skuret.
+     * @throws UniversalSampleException kastes, hvis der er problemer med at hente fra databasen.
+     */
     // calcIndreSkruerPåSkur
     public int calcInnerScrewsShed(int shedLength, int shedWidth, int ID) throws UniversalSampleException {
         int result;
@@ -316,6 +448,13 @@ public class MaterialCalculator {
         return result;
     }
 
+
+    /**
+     * calcAngleMount har til formål at beregne antal vinkelbeslag ud fra kundens valgte mål.
+     * @param shedLength længden på skuret, som kunden har valgt.
+     * @param shedWidth bredden på skuret, som kunden har valgt.
+     * @return en int der indeholder antal vinkelbeslag.
+     */
     // calcVinkelBeslag
     public int calcAngleMount(int shedLength, int shedWidth) {
         int result;
@@ -326,17 +465,28 @@ public class MaterialCalculator {
         return result;
     }
 
+    /**
+     * calcTilesForPitchedRoof har til formål at beregne antal tagsten til en carport med rejsningstag.
+     * @return en int der indeholder antal tagsten til en carport med rejsningstag.
+     */
     // calcTagstenForRejsningtag
     public int calcTilesForPitchedRoof() {
-        // 6 rækker af 24 sten på hver side af taget:
-        int totalTiles = (6*24) * 2;
-        //return (int) (Math.ceil(totalTiles/300));
+        // Vi antager at der er 6 rækker af 24 sten på hver side af taget:
+        final int ROWS = 6;
+        final int AMOUNT_STONES = 24;
+        int totalTiles = (ROWS*AMOUNT_STONES) * 2;
+
         return totalTiles;
     }
 
+    /**
+     * calcAmountOfRooflaths har til formål at beregne antal taglægter ud fra kundens valgte mål.
+     * @param carportWidth bredden på carporten, som kunden har valgt.
+     * @return en int der indeholder antal taglægter.
+     */
     // calcAntalTaglægter
     public int calcAmountOfRooflaths(int carportWidth) {
-        // Vi antager, at der er 35 cm mellem hver toplægte.
+        // Vi antager, at der er 35 cm mellem hver taglægte.
         final double SPACE_BETWEEN = 35.0;
         int result;
         double  tmpResult = Math.ceil((carportWidth - 90.0) / SPACE_BETWEEN);
@@ -344,8 +494,17 @@ public class MaterialCalculator {
         return result;
     }
 
-    // calcAntalToplægteSkruer
-    public int calcAmountOfToplathScrews(int amountOfRooflaths, int raftAmount, int ID) throws UniversalSampleException {
+    /**
+     * calcAmountOfRooflathScrews har til formål at beregne antal pakker med skruer til taglægterne ud fra antal
+     * taglægter og antal spær.
+     * @param amountOfRooflaths antallet af taglægter.
+     * @param raftAmount antallet af spær.
+     * @param ID product_id'et på skruer til taglægter der hentes fra databasen.
+     * @return en int der indeholder antal pakker med skruer til taglægterne.
+     * @throws UniversalSampleException kastes, hvis der er problemer med at hente fra databasen.
+     */
+    // calcAntalTaglægteSkruer
+    public int calcAmountOfRooflathScrews(int amountOfRooflaths, int raftAmount, int ID) throws UniversalSampleException {
         // Vi antager, at der skal én skrue til én taglægte pr. spær:
         final int AMOUNT_OF_SCREWS_PR_ROOFLATH = raftAmount;
 
@@ -356,6 +515,11 @@ public class MaterialCalculator {
         return result;
     }
 
+    /**
+     * calcPackagesOfTileBindersAndHooks har til formål at give antal pakker med tagstens bindere og nakkekroge
+     * til en carport med rejsningstag.
+     * @return en int der indeholder antal pakker med tagstens bindere og nakkekroge.
+     */
     // calcTagstensbindereOgNakkekroge
     public int calcPackagesOfTileBindersAndHooks() {
         // Vi antager, at der uanset tagstørrelse skal bruges 2 pakker tagstens bindere og nakkekroge
@@ -364,6 +528,11 @@ public class MaterialCalculator {
         return AMOUNT_OF_TILE_BINDERS_HOOKS;
     }
 
+    /**
+     * calcAmountOfRoofTileStones har til formål at beregne antal rygsten ud fra kundens valgte mål.
+     * @param carportLength længden på carporten, som kunden har valgt.
+     * @return en int der indeholder antal rygsten.
+     */
     // calcAntalRygsten
     public int calcAmountOfRoofTileStones(int carportLength) {
         // Vi antager, at en rygsten har en længde på 50 cm.
@@ -375,6 +544,11 @@ public class MaterialCalculator {
         return result;
     }
 
+    /**
+     * calcAmountOfRoofTileStoneBrackets har til formål at beregne antal rugstensbeslag ud fra antal rygsten.
+     * @param amountOfRoofTileStones antal rygsten.
+     * @return en int der indeholder antal rygstensbeslag.
+     */
     // calcAntalRygstensBeslag
     public int calcAmountOfRoofTileStoneBrackets(int amountOfRoofTileStones) {
         // Der skal 1 rygstensbeslag til 1 rygsten.
@@ -383,6 +557,12 @@ public class MaterialCalculator {
         return result;
     }
 
+
+    /**
+     * calcAmountOfToplathHolders har til formål at beregne antal toplægteholdere ud fra antallet af spær.
+     * @param amountOfRafts antallet af spær.
+     * @return en int der indeholder antallet af toplægte holdere.
+     */
     // calcAntalToplægteHoldere
     public int calcAmountOfToplathHolders(int amountOfRafts) {
         // Der er 1 toplægteholder på hvert spær.
@@ -391,6 +571,13 @@ public class MaterialCalculator {
         return result;
     }
 
+    /**
+     * calcGavlPlanksLength har til formål at beregne længden på vindskederne på en carport med rejsningstag ud fra
+     * kundens valgte mål.
+     * @param carportWidth bredden på carporten, som kunden har valgt.
+     * @param carportPitch hældningen på taget, som kunden har valgt.
+     * @return
+     */
     // calcVindskederLængde
     public int calcGavlPlanksLength(int carportWidth, int carportPitch) {
         double halfWidth = carportWidth / 2;
@@ -401,6 +588,10 @@ public class MaterialCalculator {
         return result;
     }
 
+    /**
+     * calcAmountOfGavlPlanks har til formål at give antal vindskeder til en carport med rejsningstag.
+     * @return en int der indeholder antal vindskeder.
+     */
     // calcAntalVindskeder
      public int calcAmountOfGavlPlanks() {
         // Vi antager, at der altid er 4 gavl-bræt (2 foran og 2 bagved):
@@ -409,6 +600,13 @@ public class MaterialCalculator {
         return AMOUNT_OF_GAVL_PLANKS;
     }
 
+    /**
+     * calcAmountOfPlanksForGavlMount har til formål at beregne antallet af brædt til beklædningen på gavlen ud fra
+     * kundens valgte mål.
+     * @param carportWidth bredden på carporten, som kunden har valgt.
+     * @return en int der indeholder antallet af brædt til gavlens beklædning.
+     * @throws UniversalSampleException
+     */
     // calcAntalBrætIGavlen
     public int calcAmountOfPlanksForGavlMount(int carportWidth) throws UniversalSampleException {
         int result;
@@ -425,6 +623,13 @@ public class MaterialCalculator {
         return result;
     }
 
+    /**
+     * calcPlanksForGavlMountLength har til formål at beregne den største længden på brædderne til beklædningen på gavlen
+     * ud fra kundens valgte mål. Brædderne tilskæres, når carporten bygges.
+     * @param carportWidth bredden på carporten, som kunden har valgt.
+     * @param carportPitch hældningen på taget, som kunden har valgt.
+     * @return en int der indeholder den største længden på brædderne til beklædningen på gavlen.
+     */
     // calcLængdePåBrætIGavlen
     public int calcPlanksForGavlMountLength(int carportWidth, int carportPitch) {
         double halfWidth = carportWidth / 2;
@@ -434,18 +639,41 @@ public class MaterialCalculator {
         return result;
     }
 
+
+    /**
+     * calcPricePrUnit har til formål at beregne prisen for et materiale pr. enhed, f.eks. prisen for en pakke skruer,
+     * en rulle hulbånd, en cm spærtræ mm.
+     * @param unit er antallet pr. enhed (f.eks. 200 for en pakke skruer, hvor der er 200 stk. pr. pakke).
+     * @param pricePrUnit er prisen pr. enhed.
+     * @return en int der indeholder prisen pr. enhed.
+     */
     // calcPrisPrEnhed
     public int calcPricePrUnit(int unit, double pricePrUnit) {
         int result = (int) (Math.ceil(unit * pricePrUnit));
         return result;
     }
 
+    /**
+     * calcPricePrUnitWithLength har til formål at beregne prisen pr. enhed af materialer, hvor antallet afhænger
+     * af længden, f.eks. skal der bruges ét brædt på 1000 cm, men grundet lagerets længder, bruges der to brædt af 500 cm.
+     * @param unit antal pr. enhed.
+     * @param pricePrUnit prisen pr. enhed.
+     * @param amount antal.
+     * @return
+     */
     // calcPrisPrEnhedMedLængde
     public int calcPricePrUnitWithLength(int unit, double pricePrUnit, int amount) {
         int result = (int) (Math.ceil((unit * pricePrUnit) * amount));
         return result;
     }
 
+    /**
+     * fullPrice har til formål at beregne den samlede pris for caporten, hvor prisen på materialer samt Fogs
+     * service begge udgør en samlet pris.
+     * @param materialInfo en ArrayList der indeholder alle priserne på alle de beregnede materialer til carporten.
+     *                     ArrayListen er skabt ud fra info om hvert materiales sidste index.
+     * @return en int der indeholder den fulde pris for carport-servicen.
+     */
     public int fullPrice(ArrayList<String> materialInfo) {
         // Vi antager, at Fog tager 5000 kr. for carport-ydelsen ekls. materiale priser.
         final int PRICE_FOR_SERVICE = 5000;
@@ -465,6 +693,19 @@ public class MaterialCalculator {
         return result;
     }
 
+
+    /**
+     * calcWoodForMeasure-metoden har til formål at beregne, hvor mange stykker træ der skal til for
+     * at udfylde en given længde ud fra de længde, der står i databasen.
+     * F.eks.: Der skal bruges en rem på 1472 cm, men den maksimale længde i databasen er 900 cm, så der udregnes måske,
+     * at der skal bruges to stykker træ af 750 cm, da der er tættest på halvdelen af 1472 cm.
+     *
+     * @param materialMeasure er den utopiske længde, der skal bruges på carporten.
+     * @param lengths er længderne fra storage-tabellen (Fogs lager), der er blevet lagt i et ArrayList.
+     * @param amountOnCarport er antallet af brædt med den utopiske længde, der skal bruges på carporten (f.eks. 2 rem,
+     *                        én i hver side).
+     * @return index 0: antal brædt (fra lageret), index 1: længden på brædt (fra lageret).
+     */
     // calcAntalTræTilLængde
     public ArrayList<Integer> calcWoodForMeasure(int materialMeasure, ArrayList<Integer> lengths, int amountOnCarport) {
         ArrayList<Integer> result = new ArrayList<>();

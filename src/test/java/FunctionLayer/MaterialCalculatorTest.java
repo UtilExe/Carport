@@ -373,7 +373,7 @@ public class MaterialCalculatorTest {
         int amountOfRooflaths = 9;
         int raftAmount = 11;
         int ID = 30;
-        int result = calculator.calcAmountOfToplathScrews(amountOfRooflaths, raftAmount, ID);
+        int result = calculator.calcAmountOfRooflathScrews(amountOfRooflaths, raftAmount, ID);
         assertEquals(expected, result);
     }
 
@@ -383,7 +383,7 @@ public class MaterialCalculatorTest {
         int amountOfRooflaths = 9;
         int raftAmount = 11;
         int ID = 30;
-        int result = calculator.calcAmountOfToplathScrews(amountOfRooflaths, raftAmount, ID);
+        int result = calculator.calcAmountOfRooflathScrews(amountOfRooflaths, raftAmount, ID);
         assertEquals(expected, result);
     }
 

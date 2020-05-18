@@ -151,4 +151,4 @@ $RECYCLE.BIN/
 
 # End of https://www.gitignore.io/api/maven,macos,windows,java-web,intellij# Created by .ignore support plugin (hsz.mobi)
 src/main/java/DBAccess/DBLogin.java
-src/main/java/FunctionLayer/LogPath.java
+src/main/java/FunctionLayer/PathForLog.java.java

@@ -8,6 +8,13 @@ package FunctionLayer;
 
 public class Operations {
 
+    /**
+     * splitterForDimensions-metoden bruges primært til at tage description-collonen fra material_list-tabellen, men
+     * kan også bruges som en standard String splitter, da regex'et selv kan bestemmes.
+     * @param strFromDB er strengen, der skal splittes.
+     * @param regex er hvilken char, som strengen skal splittes på.
+     * @return er array med to index (ét før regex-tegnet og ét efter).
+     */
     public static String[] splitterForDimensions(String strFromDB, String regex) {
         String[] splittedString;
         splittedString = strFromDB.split(regex);

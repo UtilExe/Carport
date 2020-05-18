@@ -180,7 +180,7 @@ public class CarportHelper {
         this.amountOfPlanksForGavlMount = calcTest.calcAmountOfPlanksForGavlMount(carportWidthCM);
         this.planksForGavlMountLength = calcTest.calcPlanksForGavlMountLength(carportWidthCM, carportPitch);
         this.amountOfRooflaths = calcTest.calcAmountOfRooflaths(carportWidthCM);
-        this.amountOfRooflathScrews = calcTest.calcAmountOfToplathScrews(amountOfRooflaths, amountOfRafts, ROOFLATH_SCREWS_ID);
+        this.amountOfRooflathScrews = calcTest.calcAmountOfRooflathScrews(amountOfRooflaths, amountOfRafts, ROOFLATH_SCREWS_ID);
 
         this.pillarLengths = calcTest.calcPillarHeight(carportHeight, carportLengthCM, hasShed, shedLength, hasPitch, shedWidth, carportWidthCM);
         this.heads = MaterialFacade.getRoofData(RAFT_AND_HEAD_ID, carportLengthCM, AMOUNT_OF_HEADS);

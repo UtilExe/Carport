@@ -98,8 +98,7 @@ public class CarportDesign extends Command {
                 carport = new CarportFlat(helper.getCarportLength(), helper.getCarportWidth(), helper.getCarportHeight(), roofMaterial, helper.isHasShed(), helper.getShedWidth(), helper.getShedLength());
             }
         }
-
-        /*request.setAttribute("materialList", helper.createMaterialList(helper.isHasShed(), helper.isHasPitch()));*/
+        
         request.setAttribute("finalPrice", finalPrice);
 
         String svgDrawing = helper.svgDrawingTop(carportLength, carportWidth, helper.isHasShed());

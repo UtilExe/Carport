@@ -27,8 +27,8 @@ public class Log {
             FILEPATH = "/var/log/tomcat8/";
         } else {
             // Localhost
-            FILENAME = LogPath.FILENAME;
-            FILEPATH = LogPath.FILEPATH;
+            FILENAME = PathForLog.FILENAME;
+            FILEPATH = PathForLog.FILEPATH;
         }
         PATH = FILEPATH + FILENAME;
     }

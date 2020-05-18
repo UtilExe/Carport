@@ -8,6 +8,11 @@ import FunctionLayer.UniversalSampleException;
 import java.sql.*;
 import java.util.ArrayList;
 
+/**
+ * @author Daniel, Emil, Jannich, Jimmy
+ * OrderMapper klassen bruges til at håndtere bestilling/ordre af en Carport fra brugeren på database-niveau.
+ */
+
 public class OrderMapper {
 
     public static ArrayList<Order> getOrdersThatAreNotApproved() throws UniversalSampleException {

@@ -3,6 +3,11 @@ package FunctionLayer.Entities;
 import java.util.ArrayList;
 import java.util.Collections;
 
+/**
+ * @author Daniel, Emil, Jannich, Jimmy
+ * MaterialList klassen indeholder de nødvendige variabler for at kunne oprette en Materiale Liste.
+ */
+
 public class MaterialList {
     ComparatorMaterial sortAlphabetically = new ComparatorMaterial();
 

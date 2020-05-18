@@ -11,6 +11,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+/**
+ * @author Daniel, Emil, Jannich, Jimmy
+ * UserMapper klassen bruges til at håndtere login og registrering af brugere på database-niveau.
+ */
+
 public class UserMapper {
 
     public static void createUser(User user) throws UniversalSampleException {

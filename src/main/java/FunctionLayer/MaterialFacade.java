@@ -4,6 +4,11 @@ import DBAccess.MaterialMapper;
 
 import java.util.ArrayList;
 
+/**
+ * @author Daniel, Emil, Jannich, Jimmy
+ * MaterialFacade håndterer processen mellem Præsentationslaget, Funktionslaget og Database-niveau for Materialer.
+ */
+
 public class MaterialFacade {
 
     public static ArrayList<Integer> getLengthsFromStorage(int ID) throws UniversalSampleException {

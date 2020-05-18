@@ -1,5 +1,10 @@
 package FunctionLayer.Entities;
 
+/**
+ * @author Daniel, Emil, Jannich, Jimmy
+ * CarportFlat klassen nedarver fra Carport klassen, med en række nødvendige variabler som en Carport med Fladt Tag og Skur har.
+ */
+
 public class CarportFlat extends Carport {
 
     private boolean hasShed;

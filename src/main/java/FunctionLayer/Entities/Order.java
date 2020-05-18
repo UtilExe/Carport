@@ -1,5 +1,10 @@
 package FunctionLayer.Entities;
 
+/**
+ * @author Daniel, Emil, Jannich, Jimmy
+ * Order klassen består af en række nødvendige variabler som er gældende for en Ordre.
+ */
+
 public class Order {
     private int orderID;
     private Carport carport;

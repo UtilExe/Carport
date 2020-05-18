@@ -4,6 +4,11 @@ import FunctionLayer.Entities.Order;
 
 import java.util.ArrayList;
 
+/**
+ * @author Daniel, Emil, Jannich, Jimmy
+ * Initalisation klassen sørger for at initialisere database-elementer som i sidste ende bliver vist på JSP.
+ */
+
 public class Initialisation {
     //Creating lists
     private static ArrayList<Integer> carportLengths;

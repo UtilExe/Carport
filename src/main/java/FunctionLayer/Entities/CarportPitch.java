@@ -1,5 +1,10 @@
 package FunctionLayer.Entities;
 
+/**
+ * @author Daniel, Emil, Jannich, Jimmy
+ * CarportPitch klassen nedarver fra Carport klassen, med en række nødvendige variabler som en Carport med Rejsning Tag og Skur har.
+ */
+
 public class CarportPitch extends Carport {
 
     private boolean hasShed;

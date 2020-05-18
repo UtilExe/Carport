@@ -1,5 +1,10 @@
 package FunctionLayer.Entities;
 
+/**
+ * @author Daniel, Emil, Jannich, Jimmy
+ * User klassen består af en række variabler, som en bruger kræves at have.
+ */
+
 public class User {
     private String name;
     private String email;

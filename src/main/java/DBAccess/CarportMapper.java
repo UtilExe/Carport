@@ -1,9 +1,13 @@
 package DBAccess;
 
 import FunctionLayer.UniversalSampleException;
-
 import java.sql.*;
 import java.util.ArrayList;
+
+/**
+ * @author Daniel, Emil, Jannich, Jimmy
+ * CarportMapper klassen bruges til at hente data om mål til Carport fra databasen.
+ */
 
 public class CarportMapper {
 

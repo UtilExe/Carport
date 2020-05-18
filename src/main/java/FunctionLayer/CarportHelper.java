@@ -6,6 +6,12 @@ import FunctionLayer.Entities.Svg;
 
 import java.util.ArrayList;
 
+/**
+ * @author Daniel, Emil, Jannich, Jimmy
+ * CarportHelper er tænkt som en hjælpe-klasse, hvor beregningerne fra MaterialCalculator forbindes med MaterialeListe og SVG klassen.
+ * En række af vores variabler bliver instantieret i Konstruktøren.
+ */
+
 public class CarportHelper {
 
     private final int AMOUNT_OF_HEADS = 2;

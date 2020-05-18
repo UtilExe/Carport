@@ -5,6 +5,11 @@ import FunctionLayer.*;
 import java.sql.*;
 import java.util.ArrayList;
 
+/**
+ * @author Daniel, Emil, Jannich, Jimmy
+ * MaterialMapper klassen bruges til at hente materialer fra databasen, ud fra målene der er blevet udregnet i MaterialCalculator.
+ */
+
 public class MaterialMapper {
 
     private static MaterialCalculator calcPrice = new MaterialCalculator();

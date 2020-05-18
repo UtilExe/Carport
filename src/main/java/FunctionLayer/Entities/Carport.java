@@ -1,5 +1,10 @@
 package FunctionLayer.Entities;
 
+/**
+ * @author Daniel, Emil, Jannich, Jimmy
+ * Carport klassen består af en række nødvendige variabler som en Carport indeholder.
+ */
+
 public class Carport {
 
     private int carportLength;

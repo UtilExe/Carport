@@ -4,6 +4,11 @@ import DBAccess.CarportMapper;
 
 import java.util.ArrayList;
 
+/**
+ * @author Daniel, Emil, Jannich, Jimmy
+ * CarportFacaden håndterer processen mellem Præsentationslaget, Funktionslaget og Database-niveau for Carport.
+ */
+
 public class CarportFacade {
 
     public static ArrayList<Integer> getCarportLength() throws UniversalSampleException {

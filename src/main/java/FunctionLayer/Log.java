@@ -4,6 +4,11 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.*;
 
+/**
+ * @author Daniel, Emil, Jannich, Jimmy
+ * Log klassen håndterer fejl, således at vi kan logge det til en fil. Eksempelvis. hvis databasen er nede.
+ */
+
 public class Log {
 
     private static String FILENAME;

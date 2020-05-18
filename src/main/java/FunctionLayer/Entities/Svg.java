@@ -1,6 +1,12 @@
 package FunctionLayer.Entities;
 import FunctionLayer.ValidationValues;
 
+/**
+ * @author Daniel, Emil, Jannich, Jimmy
+ * Svg klassen håndterer tegning, som en skitse, af den bestilte Carport ud fra beregnede mål.
+ * ToString metoden opretter et svg tag i HTML, hvor skitsen bliver genereret igennem CarportHelper klassen.
+ */
+
 public class Svg {
     private double width;
     private double height;

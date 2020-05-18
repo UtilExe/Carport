@@ -2,6 +2,11 @@ package FunctionLayer;
 
 import java.util.ArrayList;
 
+/**
+ * @author Daniel, Emil, Jannich, Jimmy
+ * MaterialCalculator klassen står for at beregne Materiallisten ud fra forskellige Carport-mål.
+ */
+
 public class MaterialCalculator {
 
     // calcStolpeAntal

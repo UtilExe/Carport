@@ -36,4 +36,8 @@ public class OrderFacade {
         OrderMapper.editOrder(orderID, measure, amount);
     }
 
+    public static Order getOrder(int orderID) {
+        return OrderMapper.getOrder(orderID);
+    }
+
 }

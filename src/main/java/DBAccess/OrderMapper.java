@@ -153,4 +153,35 @@ public class OrderMapper {
 
         }
     }
+
+    public static Order getOrder(int id) {
+        Order order = null;
+        try {
+            Connection con = Connector.connection();
+            String SQL = "SELECT * FROM carport.cust_order WHERE orderID=?;";
+            PreparedStatement ps = con.prepareStatement(SQL);
+            ps.setInt(1, id);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()) {
+                int orderID = rs.getInt("orderID");
+                int carportLength = rs.getInt("carport_length");
+                int carportWidth = rs.getInt("carport_width");
+                int carportHeight = rs.getInt("carport_height");
+                String roofMaterial = rs.getString("roof_material");
+                boolean hasShed = rs.getBoolean("hasShed");
+                int shedWidth = rs.getInt("shedWidth");
+                int shedLength = rs.getInt("shedLength");
+                boolean hasPitch = rs.getBoolean("hasPitch");
+                int roofPitch = rs.getInt("roof_pitch");
+                int price = rs.getInt("price");
+                boolean approved = rs.getBoolean("approved");
+                int tlfNumber = rs.getInt("tlf_number");
+                Carport carport = new Carport(carportLength, carportWidth, carportHeight, roofMaterial);
+                order = new Order(orderID, carport, hasShed, shedWidth, shedLength, hasPitch, roofPitch, price, approved, tlfNumber);
+            }
+        } catch (SQLException | ClassNotFoundException ex) {
+            ex.getMessage();
+        }
+        return order;
+    }
 }

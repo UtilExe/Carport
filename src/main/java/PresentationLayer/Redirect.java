@@ -1,6 +1,8 @@
 package PresentationLayer;
 
+import FunctionLayer.Entities.Order;
 import FunctionLayer.Initialisation;
+import FunctionLayer.OrderFacade;
 import FunctionLayer.UniversalSampleException;
 
 import javax.servlet.http.HttpServletRequest;
@@ -35,9 +37,16 @@ public class Redirect extends Command{
             request.setAttribute("roof_pitch", Initialisation.getRoofPitch());
         }
 
-        if(destination.equals("editOrder")) {
+        if(destination.equals("searchOrder") && request.getParameter("orderID") != null) {
             int orderID = Integer.parseInt(request.getParameter("orderID"));
             request.setAttribute("orderID", orderID);
+        }
+
+        if(destination.equals("searchOrder")) {
+            //TODO Lav egen extender eller fix det på en smartere måde uden at lave flere klasser
+            int orderID = Integer.parseInt(request.getParameter("orderID"));
+            Order order = OrderFacade.getOrder(orderID);
+            request.setAttribute("order", order);
         }
 
         return destination;

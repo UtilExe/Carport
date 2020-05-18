@@ -19,10 +19,12 @@
             <ul class="navbar-nav mr-5 mt-60 mt-lg-0">
                 <div class="col-lg-auto">
                     <li class="nav-item active">
-                        <a class="nav-link text-white" href="FrontController?target=redirect&destination=index"><h3>Forside</h3></a>
+                        <a class="nav-link text-white" href="FrontController?target=redirec&tdestination=index"><h3>Forside</h3></a>
                     </li>
+                </div>
+                <div class="col-lg-auto">
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="FrontController?target=redirect&destination=editOrder"><h3>Søg på Ordre</h3></a>
+                        <a class="nav-link text-white" href="FrontController?target=redirect&destination=searchOrder"><h3>Søg på Ordre</h3></a>
                     </li>
                 </div>
             </ul>

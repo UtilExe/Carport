@@ -16,8 +16,13 @@
         <ul class="navbar-nav mr-auto ">
             <ul class="navbar-nav mr-5 mt-60 mt-lg-0">
                 <div class="col-lg-auto">
-                    <li class="nav-item active">
+                    <li class="nav-item">
                         <a class="nav-link text-white" href="FrontController?target=redirect&destination=index"><h3>Forside</h3></a>
+                    </li>
+                </div>
+                <div class="col-lg-auto">
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="FrontController?target=redirect&destination=searchOrder"><h3>Søg på Ordre</h3></a>
                     </li>
                 </div>
             </ul>
@@ -32,7 +37,6 @@
 <div class="container jumbotron ">
 
     <div class="jumbotron mr-5 mt-20 mt-lg-0">
-
         <form action="FrontController" method="POST">
             <input type="hidden" name="target" value="edit">
 
@@ -64,10 +68,11 @@
         </div>
 
             <h5>Indtast ny enhed</h5>
-            <input type="number" name="amount" min="50" max="1000">
+            <input type="number" name="amount" min="15" max="1000">
             <button type="submit" class="btnSubmit" style="text-align: center">Submit</button>
 
         </form>
     </div>
 </div>
+
 <%@include file="../include/footer.inc" %>

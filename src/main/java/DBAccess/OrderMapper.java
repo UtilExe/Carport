@@ -141,17 +141,13 @@ public class OrderMapper {
     public static void editOrder(int orderID, String measure, int amount) {
         try {
             Connection con = Connector.connection();
-            String SQL = "UPDATE carport.cust_order SET ?=? WHERE orderID=?;";
+            String SQL = "UPDATE carport.cust_order SET "+measure+"=? WHERE orderID=?;";
             PreparedStatement ps = con.prepareStatement(SQL);
-            ps.setString(1, measure);
-            ps.setInt(2, amount);
-            ps.setInt(3, orderID);
+            ps.setInt(1, amount);
+            ps.setInt(2, orderID);
             ps.executeUpdate();
-            System.out.println("Test");
         } catch (SQLException | ClassNotFoundException ex) {
-            ex.getMessage();
+            ex.printStackTrace();
         }
     }
-
-
 }

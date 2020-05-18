@@ -18,7 +18,6 @@ public class Editor extends Command {
 
         OrderFacade.editOrder(orderID, measure, amount);
 
-
         Initialisation.initOrders();
         request.setAttribute("orders", Initialisation.getOrders());
         return "admin";

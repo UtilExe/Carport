@@ -21,6 +21,9 @@
                     <li class="nav-item active">
                         <a class="nav-link text-white" href="FrontController?target=redirect&destination=index"><h3>Forside</h3></a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="FrontController?target=redirect&destination=editOrder"><h3>Søg på Ordre</h3></a>
+                    </li>
                 </div>
             </ul>
         </ul>

@@ -32,7 +32,7 @@ public class OrderFacade {
         return OrderMapper.getHelper(orderID);
     }
 
-    public static void editOrder(int orderID, String measure, int amount) {
+    public static void editOrder(int orderID, String measure, int amount) throws UniversalSampleException {
         OrderMapper.editOrder(orderID, measure, amount);
     }
 

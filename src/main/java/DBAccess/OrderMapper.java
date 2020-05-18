@@ -86,7 +86,7 @@ public class OrderMapper {
             Connection con = Connector.connection();
             String SQL = "INSERT INTO cust_order (carport_length, carport_width, carport_height, hasShed, shedWidth, " +
                     "shedLength, hasPitch, roof_pitch, roof_material, price, tlf_number) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-            PreparedStatement ps = con.prepareStatement( SQL, Statement.RETURN_GENERATED_KEYS );
+            PreparedStatement ps = con.prepareStatement( SQL );
             ps.setInt(1, carportLength);
             ps.setInt( 2, carportWidth);
             ps.setInt( 3, carportHeight);
@@ -100,8 +100,7 @@ public class OrderMapper {
             ps.setInt(11, tlfNumber);
 
             ps.executeUpdate();
-            ResultSet ids = ps.getGeneratedKeys();
-            ids.next();
+
         } catch ( SQLException | ClassNotFoundException ex ) {
 
             String methodName = "addCarportToCustOrder";
@@ -138,16 +137,20 @@ public class OrderMapper {
         return helper;
     }
 
-    public static void editOrder(int orderID, String measure, int amount) {
+    public static void editOrder(int orderID, String measure, int amount) throws UniversalSampleException {
         try {
             Connection con = Connector.connection();
-            String SQL = "UPDATE carport.cust_order SET "+measure+"=? WHERE orderID=?;";
+            String SQL = "UPDATE cust_order SET "+measure+"=? WHERE orderID=?;";
             PreparedStatement ps = con.prepareStatement(SQL);
             ps.setInt(1, amount);
             ps.setInt(2, orderID);
             ps.executeUpdate();
         } catch (SQLException | ClassNotFoundException ex) {
-            ex.printStackTrace();
+
+            String methodName = "editOrder";
+            UniversalSampleException.exceptionIfsDB(ex.getMessage(), methodName);
+            UniversalSampleException.exceptionIfLast(ex.getMessage(), methodName);
+
         }
     }
 }

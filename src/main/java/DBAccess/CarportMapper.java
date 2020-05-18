@@ -88,5 +88,4 @@ public class CarportMapper {
         }
         return pitch;
     }
-
 }

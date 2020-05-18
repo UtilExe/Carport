@@ -147,16 +147,41 @@ public class OrderMapperTest {
         assertThat(orderList, hasSize(3));
     }
 
-
     @Test
     public void testGetHelper() throws UniversalSampleException {
         // Vi antager, at de to objekter er ens, da de 2 første værdier er det samme.
         CarportHelper result = OrderMapper.getHelper(4);
         // vi indsætter data fra test-taballen fra orderID 4.
         CarportHelper expected = new CarportHelper(720, 360, 340, 260, 325, 35);
-        assertEquals(result.getCarportLength(), expected.getCarportLength());
-        assertEquals(result.getCarportWidth(), expected.getCarportWidth());
+        assertEquals(expected.getCarportLength(), result.getCarportLength());
+        assertEquals(expected.getCarportWidth(), result.getCarportWidth());
     }
 
+    @Test (expected = AssertionError.class)
+    public void testGetHelperNegative() throws UniversalSampleException {
+        // Vi antager, at de to objekter er ens, da de 2 første værdier er det samme.
+        CarportHelper result = OrderMapper.getHelper(4);
+        // Vi indsætter data fra test-taballen fra orderID 4.
+        CarportHelper expected = new CarportHelper(550, 440, 340, 260, 325, 35);
+        assertEquals(expected.getCarportLength(), result.getCarportLength());
+        assertEquals(expected.getCarportWidth(), result.getCarportWidth());
+    }
 
+    @Test
+    public void editOrder() throws UniversalSampleException {
+        // Vi opdaterer ordren med carport-længden 550
+        OrderMapper.editOrder(4, "carport_length", 550);
+        CarportHelper result = OrderMapper.getHelper(4);
+        // Vi forventet dermed at Carport-længden også bliver 550 her:
+        CarportHelper expected = new CarportHelper(550, 360, 340, 260, 325, 35);
+        assertEquals(expected.getCarportLength(), result.getCarportLength());
+    }
+
+    @Test (expected = AssertionError.class)
+    public void editOrderNegative() throws UniversalSampleException {
+        OrderMapper.editOrder(4, "carport_length", 550);
+        CarportHelper result = OrderMapper.getHelper(4);
+        CarportHelper expected = new CarportHelper(750, 360, 340, 260, 325, 35);
+        assertEquals(expected.getCarportLength(), result.getCarportLength());
+    }
 }

@@ -4,8 +4,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-
-
 public class Connector {
 
     private static String URL;
@@ -41,7 +39,6 @@ public class Connector {
             URL = "jdbc:mysql://localhost:3306/carport?serverTimezone=CET&useSSL=false&useUnicode=true&characterEncoding=UTF-8&allowPublicKeyRetrieval=true";
             USERNAME = DBLogin.username;
             PASSWORD = DBLogin.password;
-            //System.out.println("Du har ikke ordentlig forbindelse til dine setenv.sh fil.");
         }
 
     }

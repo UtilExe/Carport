@@ -154,7 +154,7 @@ public class OrderMapper {
         }
     }
 
-    public static Order getOrder(int id) {
+    public static Order getOrder(int id) throws UniversalSampleException {
         Order order = null;
         try {
             Connection con = Connector.connection();
@@ -180,7 +180,11 @@ public class OrderMapper {
                 order = new Order(orderID, carport, hasShed, shedWidth, shedLength, hasPitch, roofPitch, price, approved, tlfNumber);
             }
         } catch (SQLException | ClassNotFoundException ex) {
-            ex.getMessage();
+
+            String methodName = "getOrder";
+            UniversalSampleException.exceptionIfsDB(ex.getMessage(), methodName);
+            UniversalSampleException.exceptionIfLast(ex.getMessage(), methodName);
+
         }
         return order;
     }

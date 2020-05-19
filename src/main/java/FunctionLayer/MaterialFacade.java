@@ -11,11 +11,6 @@ import java.util.ArrayList;
 
 public class MaterialFacade {
 
-    public static ArrayList<Integer> getLengthsFromStorage(int ID) throws UniversalSampleException {
-        ArrayList<Integer> lengthsFromStorage = MaterialMapper.getLengthsFromStorage(ID);
-        return lengthsFromStorage;
-    }
-
     public static ArrayList<String> getRoofData(int ID, int measure, int tmpAmount) throws UniversalSampleException {
         ArrayList<String> roofData = MaterialMapper.getRoofData(ID, measure, tmpAmount);
         return roofData;

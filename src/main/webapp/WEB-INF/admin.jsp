@@ -4,7 +4,7 @@
 <%@include file="../include/header.inc" %>
 <link rel="stylesheet" href="css/styles.css">
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
-<title>Admin</title>
+<title>Admin side</title>
 </head>
 <body onload="showMaterialList()">
 

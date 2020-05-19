@@ -9,7 +9,7 @@ public class UnknownCommand extends Command {
 
     @Override
     String execute( HttpServletRequest request, HttpServletResponse response ) throws UniversalSampleException {
-        String msg = "Unknown command. Contact IT";
+        String msg = "Der skete en Fejl. Kontakt IT-afdelingen.";
         throw new UniversalSampleException( msg );
     }
 

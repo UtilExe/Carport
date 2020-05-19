@@ -36,7 +36,7 @@ public class OrderFacade {
         OrderMapper.editOrder(orderID, measure, amount);
     }
 
-    public static Order getOrder(int orderID) {
+    public static Order getOrder(int orderID) throws UniversalSampleException {
         return OrderMapper.getOrder(orderID);
     }
 

@@ -502,11 +502,11 @@ public class MaterialCalculatorTest {
 
     @Test
     public void testGetWoodForMeasure() {
-            // Hvor langt er det utopiske brædt:
-           int materialMeasure = 600;
-           // Hvor mange brædt skal vi bruge:
-           int amountOnCarport = 2;
-           // Hvilke længder har vi til rådighed:
+        // Hvor langt er det ideelle brædt:
+        int materialMeasure = 600;
+        // Hvor mange brædt skal vi bruge:
+        int amountOnCarport = 2;
+        // Hvilke længder har vi til rådighed:
         ArrayList<Integer> lengths = new ArrayList<>();
         lengths.add(210);
         lengths.add(260);

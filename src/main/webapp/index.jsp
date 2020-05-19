@@ -4,7 +4,7 @@
 <%@include file="include/header.inc" %>
 <link rel="stylesheet" href="css/styles.css">
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
-<title>Welcome page</title>
+<title>Forside</title>
 
 </head>
 <body>

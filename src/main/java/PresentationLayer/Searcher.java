@@ -14,8 +14,10 @@ public class Searcher extends Command {
         int orderID = Integer.parseInt(request.getParameter("orderID"));
         Order order = OrderFacade.getOrder(orderID);
         request.setAttribute("order", order);
+
         Initialisation.initOrders();
         request.setAttribute("orders", Initialisation.getOrders());
+
         return "searchOrder";
     }
 }

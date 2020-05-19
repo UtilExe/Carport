@@ -1,5 +1,5 @@
 <br>
-<div class="card footerbottom">
+<div class="card" id="footerDiv">
     <img src="images/footer.png" height = 230; class="card-img">
     <div class="card-img-overlay">
         <div class="row">

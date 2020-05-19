@@ -8,21 +8,6 @@
 </head>
 <body onload="showMaterialList()">
 
-<%!
-    @Override
-    public void jspInit(){
-        try {
-            Initialisation.initOrders();
-        } catch (UniversalSampleException e) {
-            e.printStackTrace();
-        }
-    }
-%>
-
-<%
-    request.setAttribute("orders", Initialisation.getOrders());
-%>
-
 <nav class="navbar navbar-expand-lg navbar-light">
     <a class="navbar-brand" href="#"> <img src="./images/logo.png" width="100" height="100" alt="Logo"></a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText"
@@ -34,7 +19,7 @@
             <ul class="navbar-nav mr-5 mt-60 mt-lg-0">
                 <div class="col-lg-auto">
                     <li class="nav-item active">
-                        <a class="nav-link text-white" href="FrontController?target=redirect&destination=index"><h3>Forside</h3></a>
+                        <a class="nav-link text-white" href="FrontController?target=redirect&destination=index"><h3>Kunde Forside</h3></a>
                     </li>
                 </div>
                 <div class="col-lg-auto">

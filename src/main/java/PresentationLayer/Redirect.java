@@ -41,6 +41,10 @@ public class Redirect extends Command{
             int orderID = Integer.parseInt(request.getParameter("orderID"));
             request.setAttribute("orderID", orderID);
         }
+        if(destination.equals("admin")) {
+            Initialisation.initOrders();
+            request.setAttribute("orders", Initialisation.getOrders());
+        }
 
         return destination;
     }

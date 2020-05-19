@@ -4,7 +4,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
     <title>Søg i ordre</title>
 </head>
-<body>
+<body onload="snapFooterToBottom()">
 
 <nav class="navbar navbar-expand-lg navbar-light">
     <a class="navbar-brand" href="#"> <img src="./images/logo.png" width="100" height="100" alt="Logo"></a>
@@ -44,5 +44,12 @@
         ${order}
     </div>
 </div>
+
+<script>
+    function snapFooterToBottom() {
+        var footerDiv = document.getElementById("footerDiv");
+        footerDiv.classList.add("footerbottom");
+    }
+</script>
 
 <%@include file="../include/footer.inc"%>

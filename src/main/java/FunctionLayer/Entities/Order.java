@@ -14,10 +14,10 @@ public class Order {
     private boolean hasPitch;
     private int roofPitch;
     private int price;
-    private boolean approved;
+    private boolean isApproved;
     private int tlfNumber;
 
-    public Order(int orderID, Carport carport, boolean hasShed, int shedWidth, int shedLength, boolean hasPitch, int roofPitch, int price, boolean approved, int tlfNumber) {
+    public Order(int orderID, Carport carport, boolean hasShed, int shedWidth, int shedLength, boolean hasPitch, int roofPitch, int price, boolean isApproved, int tlfNumber) {
         this.orderID = orderID;
         this.carport = carport;
         this.hasShed = hasShed;
@@ -26,7 +26,7 @@ public class Order {
         this.hasPitch = hasPitch;
         this.roofPitch = roofPitch;
         this.price = price;
-        this.approved = approved;
+        this.isApproved = isApproved;
         this.tlfNumber = tlfNumber;
     }
 
@@ -83,11 +83,12 @@ public class Order {
         if(hasPitch) {
             result += ", Taghældning: " + roofPitch;
         }
-        if (approved) {
-            result += ", Godkendt: " + " Ja";
+        String approved;
+        if (isApproved) {
+            approved = ", Godkendt: " + " Ja";
         } else {
-            result += ", Godkendt: " + " Nej";
+            approved = ", Godkendt: " + " Nej";
         }
-        return "OrderID: " + orderID + ", " + carport.toString() + result + ", Pris: " + price + " DKK, " + "Kundens tlf. nr.: " + tlfNumber;
+        return "OrderID: " + orderID + ", " + carport.toString() + result + ", Pris: " + price + " DKK, " + "Kundens tlf. nr.: " + tlfNumber + approved;
     }
 }

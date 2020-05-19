@@ -231,3 +231,9 @@
     background-color: white;
     color: black;
 }
+
+.footerbottom {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}

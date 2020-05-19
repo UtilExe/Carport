@@ -16,7 +16,7 @@
             <ul class="navbar-nav mr-5 mt-60 mt-lg-0">
                 <div class="col-lg-auto">
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="FrontController?target=redirect&destination=admin"><h3>Forside</h3></a>
+                        <a class="nav-link text-white" href="FrontController?target=redirect&destination=admin"><h3>Admin Forside</h3></a>
                     </li>
                 </div>
                 <div class="col-lg-auto">
@@ -36,10 +36,10 @@
 <div class="container jumbotron ">
 
     <div class="jumbotron mr-5 mt-20 mt-lg-0">
-        <form action="FrontController" method="POST">
+        <form action="FrontController" class="mb-3" method="POST">
             <input type="hidden" name="target" value="search">
             <input type="number" name="orderID" placeholder="Ordre ID ...">
-            <input type="submit">
+            <input type="submit" class="btn btn-primary">
         </form>
         ${order}
     </div>

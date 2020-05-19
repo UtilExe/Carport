@@ -1,6 +1,7 @@
 package PresentationLayer;
 
 import FunctionLayer.Entities.Order;
+import FunctionLayer.Initialisation;
 import FunctionLayer.OrderFacade;
 import FunctionLayer.UniversalSampleException;
 
@@ -13,6 +14,8 @@ public class Searcher extends Command {
         int orderID = Integer.parseInt(request.getParameter("orderID"));
         Order order = OrderFacade.getOrder(orderID);
         request.setAttribute("order", order);
+        Initialisation.initOrders();
+        request.setAttribute("orders", Initialisation.getOrders());
         return "searchOrder";
     }
 }

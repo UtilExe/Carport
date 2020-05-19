@@ -83,6 +83,11 @@ public class Order {
         if(hasPitch) {
             result += ", Taghældning: " + roofPitch;
         }
+        if (approved) {
+            result += ", Godkendt: " + " Ja";
+        } else {
+            result += ", Godkendt: " + " Nej";
+        }
         return "OrderID: " + orderID + ", " + carport.toString() + result + ", Pris: " + price + " DKK, " + "Kundens tlf. nr.: " + tlfNumber;
     }
 }

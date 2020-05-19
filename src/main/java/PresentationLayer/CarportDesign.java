@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * @author Daniel, Emil, Jannich, Jimmy
- * CarportDesign klassen håndterer vejen fra de indtastede Carport mål til den færdige materiale-liste, skitse & carport.
+ * CarportDesign klassen håndterer vejen fra de indtastede Carport mål til den færdige materiale-liste, skitse og carport.
  */
 
 public class CarportDesign extends Command {

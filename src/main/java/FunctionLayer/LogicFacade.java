@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 /**
  * @author Daniel, Emil, Jannich, Jimmy
- * LogicFacaden håndterer processen mellem Præsentationslaget, Funktionslaget og Database-niveau for login & opret af Bruger.
+ * LogicFacaden håndterer processen mellem Præsentationslaget, Funktionslaget og Database-niveau for login og opret af Bruger.
  */
 
 public class LogicFacade {

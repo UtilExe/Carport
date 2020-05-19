@@ -4,6 +4,4 @@ Denne skabelon anvendes på 2. semester på datamatikeruddannelsen i Lyngby og p
 
 ## Dokumentation
 
-Her kan man beskrive hvad projektet består af og hvordan man kan installere det på localhost og på en produktionsserver.
-
-
+Vores Eksamensprojekt består af et Program til Fog, der håndterer bestilling af Carporte, hvor Materialeliste og skitse bl.a. vises.

@@ -37,10 +37,11 @@ public class Redirect extends Command{
             request.setAttribute("roof_pitch", Initialisation.getRoofPitch());
         }
 
-        if(destination.equals("searchOrder") && request.getParameter("orderID") != null) {
+        if(destination.equals("editOrder") && request.getParameter("orderID") != null ) {
             int orderID = Integer.parseInt(request.getParameter("orderID"));
             request.setAttribute("orderID", orderID);
         }
+
         if(destination.equals("admin")) {
             Initialisation.initOrders();
             request.setAttribute("orders", Initialisation.getOrders());

@@ -123,10 +123,7 @@ public class OrderMapperTest {
     }
 
     @Test
-    public void testaddCarportToCustOrder() throws UniversalSampleException {
-        //Carport carport = new Carport(700, 300, 340, "Sjovt-tag");
-        //Order order = new Order(0, carport, true, 200, 300, false, 30, 15000, false, 86756453);
-
+    public void testAddCarportToCustOrder() throws UniversalSampleException {
         // Vi tilføjer en ordre:
         OrderMapper.addCarportToCustOrder(700, 300, 340, true, 200, 200, true, 30, "Sjovt-tag", 15000, 98722412);
 
@@ -168,7 +165,7 @@ public class OrderMapperTest {
     }
 
     @Test
-    public void editOrder() throws UniversalSampleException {
+    public void testEditOrder() throws UniversalSampleException {
         // Vi opdaterer ordren med carport-længden 550
         OrderMapper.editOrder(4, "carport_length", 550);
         CarportHelper result = OrderMapper.getHelper(4);
@@ -178,10 +175,30 @@ public class OrderMapperTest {
     }
 
     @Test (expected = AssertionError.class)
-    public void editOrderNegative() throws UniversalSampleException {
+    public void testEditOrderNegative() throws UniversalSampleException {
         OrderMapper.editOrder(4, "carport_length", 550);
         CarportHelper result = OrderMapper.getHelper(4);
         CarportHelper expected = new CarportHelper(750, 360, 340, 260, 325, 35);
         assertEquals(expected.getCarportLength(), result.getCarportLength());
+    }
+
+    @Test
+    public void testGetOrder() throws UniversalSampleException {
+        // Vi tester i dette tilfælde order ID 2.
+        Order result = OrderMapper.getOrder(2);
+
+        // Vi opretter et Carport objekt, med skurLængden 265, som er det samme som vores order ID 2.
+        CarportHelper expected = new CarportHelper(720, 360, 340, 265, 325, 35);
+        assertEquals(expected.getShedLength(), result.getShedLength());
+    }
+
+    @Test (expected = AssertionError.class)
+    public void testGetOrderNegative() throws UniversalSampleException {
+        // Vi tester i dette tilfælde order ID 2.
+        Order result = OrderMapper.getOrder(2);
+
+        // Vi opretter et Carport objekt, med skurLængden 265, som er det samme som vores order ID 2.
+        CarportHelper expected = new CarportHelper(720, 360, 340, 260, 325, 35);
+        assertEquals(expected.getShedLength(), result.getShedLength());
     }
 }

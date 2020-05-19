@@ -158,7 +158,7 @@ public class OrderMapper {
         Order order = null;
         try {
             Connection con = Connector.connection();
-            String SQL = "SELECT * FROM carport.cust_order WHERE orderID=?;";
+            String SQL = "SELECT * FROM cust_order WHERE orderID=?;";
             PreparedStatement ps = con.prepareStatement(SQL);
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();

@@ -1,0 +1,32 @@
+@startuml
+
+Title Approve Orders
+State StartPage
+
+[*] --> StartPage
+StartPage --> Options
+state Options {
+[*] --> ApproveButton : press the \n "Godkend" btn
+ApproveButton : marks order as approved
+
+[*] --> DeclineButton : press the \n "Afvis" btn
+DeclineButton : marks order as declined (delete)
+
+[*] --> ShowSketch : press the \n "Se plantegning" link
+ShowSketch : shows the two sketches \n at the top of the page
+
+[*] --> ShowMaterialList : press the \n "Se materialeliste" link
+ShowMaterialList : shows the material list \n at the top of the page
+
+[*] --> EditCarport : press the \n "Ret i carporten" link
+EditCarport : updates the order \n with new values
+EditCarport --> editOrder.jsp : enter the parameter \n that should get updated
+editOrder.jsp : the order is updated
+
+}
+
+Options --> [*] : return to admin.jsp
+
+state "admin.jsp" as StartPage
+
+@enduml

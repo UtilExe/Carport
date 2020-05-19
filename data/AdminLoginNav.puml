@@ -1,0 +1,14 @@
+@startuml
+
+Title Login to admin page
+State StartPage
+
+[*] --> StartPage
+StartPage --> Login : in dropdown menu
+Login : Using admin email and pw.
+Login --> StartPage : if email or pw is NOT correct, \n return with error msg.
+Login --> [*] : if email and pw is correct, \n return to admin.jsp
+
+state "index.jsp" as StartPage
+
+@enduml

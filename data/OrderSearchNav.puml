@@ -1,0 +1,15 @@
+@startuml
+
+Title Order search
+State StartPage
+
+[*] --> StartPage
+StartPage --> searchOrder.jsp : press "Søg på Ordre" \n in the nav bar
+searchOrder.jsp : enter the order ID that \n should be looked up
+searchOrder.jsp --> searchOrder.jsp : if order ID doesn't exist in DB, \n returns to same page with no order info
+searchOrder.jsp --> [*] : return to searchOrder.jsp with order info
+
+
+state "admin.jsp" as StartPage
+
+@enduml

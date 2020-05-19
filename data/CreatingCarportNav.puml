@@ -1,0 +1,35 @@
+@startuml
+
+Title Creating carport
+State StartPage
+
+[*] --> StartPage
+StartPage --> CarportPages : Select carport type
+state CarportPages {
+[*] --> CarportFladtTag
+CarportFladtTag : Choosing measures \n and entering phone number
+[*] --> CarportRejsningsTag
+CarportRejsningsTag : Choosing measures \n and entering phone number
+
+note "checking if ''Med redskabsrum'' is checked" as hej
+CarportFladtTag --> hej
+CarportRejsningsTag --> hej
+hej --> HasShed : is checked
+HasShed : adds measure options for the shed
+
+hej --> [*] : is NOT checked
+HasShed --> [*]
+
+}
+
+CarportPages --> StartPage : If all fields aren't filled out, \n return with error msg
+CarportPages --> CarportPages : If shed measures \n are greater than \n carport measures
+CarportPages --> [*] : If everything is entered correctly, \n carport is created and user lands on carportOutput.jsp
+
+
+State "fladttag.jsp" as CarportFladtTag
+State "rejsningstag.jsp" as CarportRejsningsTag
+State "index.jsp" as StartPage
+
+
+@enduml

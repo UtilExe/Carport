@@ -45,7 +45,7 @@ public class MaterialMapper {
             Connection con = Connector.connection();
             String SQL = "SELECT `material_list`.`category`, `material_type`.`type_name`, `material_list`.`description`, " +
                     "`material_list`.`price_unit` FROM material_list INNER JOIN `material_type` " +
-                    "ON `material_type`.`typeID` = `material_list`.`type_id` WHERE `material_list`.`productID`=?;";
+                    "ON `material_type`.`type_id` = `material_list`.`type_id` WHERE `material_list`.`product_id`=?;";
             PreparedStatement ps = con.prepareStatement(SQL);
             ps.setInt(1, ID);
             ResultSet rs = ps.executeQuery();
@@ -78,7 +78,7 @@ public class MaterialMapper {
             Connection con = Connector.connection();
             String SQL = "SELECT `material_list`.`category`, `material_type`.`type_name`, `material_list`.`description`, " +
                     "`material_list`.`unit`, `material_list`.`price_unit` FROM material_list INNER JOIN `material_type` " +
-                    "ON `material_type`.`typeID` = `material_list`.`type_id` WHERE `material_list`.`productID`=?;";
+                    "ON `material_type`.`type_id` = `material_list`.`type_id` WHERE `material_list`.`product_id`=?;";
             PreparedStatement ps = con.prepareStatement(SQL);
             ps.setInt(1, ID);
             ResultSet rs = ps.executeQuery();
@@ -111,7 +111,7 @@ public class MaterialMapper {
 
         try {
             Connection con = Connector.connection();
-            String SQL = "SELECT `amount_pr_unit` FROM carport.material_list WHERE `productID`=?;";
+            String SQL = "SELECT `amount_pr_unit` FROM carport.material_list WHERE `product_id`=?;";
             PreparedStatement ps = con.prepareStatement(SQL);
             ps.setInt(1, ID);
             ResultSet rs = ps.executeQuery();
@@ -139,8 +139,8 @@ public class MaterialMapper {
             String SQL =
                     "SELECT `material_list`.`category`, `material_list`.`unit`, `material_list`.`amount_pr_unit`, " +
                     "`material_type`.`type_name`, `material_list`.`description`, `material_list`.`price_unit` FROM material_list INNER JOIN `material_type` ON " +
-                    "`material_type`.`typeID` = `material_list`.`type_id`" +
-                    " WHERE `material_list`.`productID`=?;";
+                    "`material_type`.`type_id` = `material_list`.`type_id`" +
+                    " WHERE `material_list`.`product_id`=?;";
             PreparedStatement ps = con.prepareStatement(SQL);
             ps.setInt(1, ID);
             ResultSet rs = ps.executeQuery();
@@ -177,7 +177,7 @@ public class MaterialMapper {
 
         try {
             Connection con = Connector.connection();
-            String SQL = "SELECT `description` FROM carport.material_list WHERE `productID`=?;";
+            String SQL = "SELECT `description` FROM carport.material_list WHERE `product_id`=?;";
             PreparedStatement ps = con.prepareStatement(SQL);
             ps.setInt(1, ID);
             ResultSet rs = ps.executeQuery();
@@ -217,7 +217,7 @@ public class MaterialMapper {
             Connection con = Connector.connection();
             String SQL = "SELECT `material_list`.`category`, `material_list`.`unit`, `material_type`.`type_name`, " +
                     "`material_list`.`description`, `material_list`.`price_unit` FROM carport.material_list INNER JOIN `material_type` ON " +
-                    "`material_type`.`typeID` = `material_list`.`type_id` WHERE `material_list`.`productID`=?;";
+                    "`material_type`.`type_id` = `material_list`.`type_id` WHERE `material_list`.`product_id`=?;";
             PreparedStatement ps = con.prepareStatement(SQL);
             ps.setInt(1, ID);
             ResultSet rs = ps.executeQuery();
@@ -269,7 +269,7 @@ public class MaterialMapper {
             Connection con = Connector.connection();
             String SQL = "SELECT `material_list`.`category`, `material_list`.`unit`, `material_type`.`type_name`, " +
                     "`material_list`.`description`, `material_list`.`price_unit` FROM carport.material_list INNER JOIN `material_type` ON " +
-                    "`material_type`.`typeID` = `material_list`.`type_id` WHERE `material_list`.`productID`=?;";
+                    "`material_type`.`type_id` = `material_list`.`type_id` WHERE `material_list`.`product_id`=?;";
             PreparedStatement ps = con.prepareStatement(SQL);
             ps.setInt(1, ID);
             ResultSet rs = ps.executeQuery();
@@ -306,7 +306,7 @@ public class MaterialMapper {
             Connection con = Connector.connection();
             String SQL = "SELECT `material_list`.`category`, `material_list`.`unit`, `material_type`.`type_name`, " +
                     "`material_list`.`description`, `material_list`.`price_unit` FROM carport.material_list INNER JOIN `material_type` ON " +
-                    "`material_type`.`typeID` = `material_list`.`type_id` WHERE `material_list`.`productID`=?;";
+                    "`material_type`.`type_id` = `material_list`.`type_id` WHERE `material_list`.`product_id`=?;";
             PreparedStatement ps = con.prepareStatement(SQL);
             ps.setInt(1, ID);
             ResultSet rs = ps.executeQuery();

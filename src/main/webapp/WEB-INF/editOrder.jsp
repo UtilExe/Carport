@@ -55,11 +55,11 @@
             <label class="custom-control-label" for="carportHeigth">Carport Højde</label>
         </div>
         <div class="custom-control custom-radio">
-            <input type="radio" class="custom-control-input" id="shedLength" name="measure" value="shedLength" required>
+            <input type="radio" class="custom-control-input" id="shedLength" name="measure" value="shed_length" required>
             <label class="custom-control-label" for="shedLength">Skur Længde</label>
         </div>
         <div class="custom-control custom-radio">
-            <input type="radio" class="custom-control-input" id="shedWidth" name="measure" value="shedWidth" required>
+            <input type="radio" class="custom-control-input" id="shedWidth" name="measure" value="shed_width" required>
             <label class="custom-control-label" for="shedWidth">Skur Bredde</label>
         </div>
         <div class="custom-control custom-radio">

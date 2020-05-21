@@ -21,7 +21,7 @@ public class UserMapper {
     public static void createUser(User user) throws UniversalSampleException {
         try {
             Connection con = Connector.connection();
-            String SQL = "INSERT INTO carport.users (name, email, password, mobilNr) VALUES (?, ?, ?, ?)";
+            String SQL = "INSERT INTO carport.users (name, email, password, tlf_number) VALUES (?, ?, ?, ?)";
             PreparedStatement ps = con.prepareStatement( SQL, Statement.RETURN_GENERATED_KEYS );
             ps.setString(1, user.getName());
             ps.setString( 2, user.getEmail());

@@ -22,7 +22,7 @@ public class OrderMapperTest {
     private static Connection testConnection;
     private static String USER = DBLogin.username;
     private static String USERPW = DBLogin.password;
-    private static String DBNAME = "carportTest?serverTimezone=CET&useSSL=false";
+    private static String DBNAME = "carporttest?serverTimezone=CET&useSSL=false";
     private static String HOST = "localhost";
 
     @BeforeClass
@@ -169,6 +169,7 @@ public class OrderMapperTest {
         // Vi opdaterer ordren med carport-længden 550
         CarportHelper result = OrderMapper.getHelper(4);
         OrderMapper.editOrder(4, "carport_length", 550);
+        result.setCarportLength(550);
 
         // Vi forventet dermed at Carport-længden også bliver 550 her:
         CarportHelper expected = new CarportHelper(550, 360, 340, 260, 325, 35);
@@ -179,6 +180,8 @@ public class OrderMapperTest {
     public void testEditOrderNegative() throws UniversalSampleException {
         CarportHelper result = OrderMapper.getHelper(4);
         OrderMapper.editOrder(4, "carport_length", 550);
+        result.setCarportLength(550);
+
         CarportHelper expected = new CarportHelper(720, 360, 340, 260, 325, 35);
         assertEquals(expected.getCarportLength(), result.getCarportLength());
     }
@@ -198,7 +201,7 @@ public class OrderMapperTest {
         // Vi tester i dette tilfælde order ID 2.
         Order result = OrderMapper.getOrder(2);
 
-        // Vi opretter et Carport objekt, med skurLængden 265, som er det samme som vores order ID 2.
+        // Vi opretter et Carport objekt, med skurLængden 260, som ikke er det samme som vores order ID 2.
         CarportHelper expected = new CarportHelper(720, 360, 340, 260, 325, 35);
         assertEquals(expected.getShedLength(), result.getShedLength());
     }

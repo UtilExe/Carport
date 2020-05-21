@@ -23,14 +23,14 @@ public class OrderMapper {
             PreparedStatement ps = con.prepareStatement(SQL);
             ResultSet rs = ps.executeQuery();
             while(rs.next()) {
-                int orderID = rs.getInt("orderID");
+                int orderID = rs.getInt("order_id");
                 int carportLength = rs.getInt("carport_length");
                 int carportWidth = rs.getInt("carport_width");
                 int carportHeight = rs.getInt("carport_height");
-                boolean hasShed = rs.getBoolean("hasShed");
-                int shedWidth = rs.getInt("shedWidth");
-                int shedLength = rs.getInt("shedLength");
-                boolean hasPitch = rs.getBoolean("hasPitch");
+                boolean hasShed = rs.getBoolean("has_shed");
+                int shedWidth = rs.getInt("shed_width");
+                int shedLength = rs.getInt("shed_length");
+                boolean hasPitch = rs.getBoolean("has_pitch");
                 int roofPitch = rs.getInt("roof_pitch");
                 String roofMaterial = rs.getString("roof_material");
                 int price = rs.getInt("price");
@@ -53,7 +53,7 @@ public class OrderMapper {
     public static void approve(int orderID) throws UniversalSampleException {
         try {
             Connection con = Connector.connection();
-            String SQL = "UPDATE cust_order SET approved=1 WHERE orderID=?;";
+            String SQL = "UPDATE cust_order SET approved=1 WHERE order_id=?;";
             PreparedStatement ps = con.prepareStatement(SQL);
             ps.setInt(1, orderID);
             ps.executeUpdate();
@@ -68,7 +68,7 @@ public class OrderMapper {
     public static void removeOrder(int orderID) throws UniversalSampleException {
         try {
             Connection con = Connector.connection();
-            String SQL = "DELETE FROM cust_order WHERE orderID=?;";
+            String SQL = "DELETE FROM cust_order WHERE order_id=?;";
             PreparedStatement ps = con.prepareStatement(SQL);
             ps.setInt(1, orderID);
             ps.executeUpdate();
@@ -84,8 +84,8 @@ public class OrderMapper {
     public static void addCarportToCustOrder(int carportLength, int carportWidth, int carportHeight, boolean hasShed, int shedWidth, int shedLength, boolean hasPitch, int roofPitch, String roofMaterial, int price, int tlfNumber) throws UniversalSampleException {
         try {
             Connection con = Connector.connection();
-            String SQL = "INSERT INTO cust_order (carport_length, carport_width, carport_height, hasShed, shedWidth, " +
-                    "shedLength, hasPitch, roof_pitch, roof_material, price, tlf_number) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            String SQL = "INSERT INTO cust_order (carport_length, carport_width, carport_height, has_shed, shed_width, " +
+                    "shed_length, has_pitch, roof_pitch, roof_material, price, tlf_number) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             PreparedStatement ps = con.prepareStatement( SQL );
             ps.setInt(1, carportLength);
             ps.setInt( 2, carportWidth);
@@ -114,7 +114,7 @@ public class OrderMapper {
         CarportHelper helper = null;
         try {
             Connection con = Connector.connection();
-            String SQL = "SELECT carport_length, carport_width, carport_height, shedWidth, shedLength, roof_pitch FROM cust_order WHERE orderID=?;";
+            String SQL = "SELECT carport_length, carport_width, carport_height, shed_width, shed_length, roof_pitch FROM cust_order WHERE order_id=?;";
             PreparedStatement ps = con.prepareStatement(SQL);
             ps.setInt(1, orderID);
             ResultSet rs = ps.executeQuery();
@@ -122,8 +122,8 @@ public class OrderMapper {
                 int carportLength = rs.getInt("carport_length");
                 int carportWidth = rs.getInt("carport_width");
                 int carportHeight = rs.getInt("carport_height");
-                int shedWidth = rs.getInt("shedWidth");
-                int shedLength = rs.getInt("shedLength");
+                int shedWidth = rs.getInt("shed_width");
+                int shedLength = rs.getInt("shed_length");
                 int carportPitch = rs.getInt("roof_pitch");
                 helper = new CarportHelper(carportLength, carportWidth, carportHeight, shedLength, shedWidth, carportPitch);
             }
@@ -140,7 +140,7 @@ public class OrderMapper {
     public static void editOrder(int orderID, String measure, int amount) throws UniversalSampleException {
         try {
             Connection con = Connector.connection();
-            String SQL = "UPDATE cust_order SET "+measure+"=? WHERE orderID=?;";
+            String SQL = "UPDATE cust_order SET "+measure+"=? WHERE order_id=?;";
             PreparedStatement ps = con.prepareStatement(SQL);
             ps.setInt(1, amount);
             ps.setInt(2, orderID);
@@ -158,20 +158,20 @@ public class OrderMapper {
         Order order = null;
         try {
             Connection con = Connector.connection();
-            String SQL = "SELECT * FROM cust_order WHERE orderID=?;";
+            String SQL = "SELECT * FROM cust_order WHERE order_id=?;";
             PreparedStatement ps = con.prepareStatement(SQL);
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
             while(rs.next()) {
-                int orderID = rs.getInt("orderID");
+                int orderID = rs.getInt("order_id");
                 int carportLength = rs.getInt("carport_length");
                 int carportWidth = rs.getInt("carport_width");
                 int carportHeight = rs.getInt("carport_height");
                 String roofMaterial = rs.getString("roof_material");
-                boolean hasShed = rs.getBoolean("hasShed");
-                int shedWidth = rs.getInt("shedWidth");
-                int shedLength = rs.getInt("shedLength");
-                boolean hasPitch = rs.getBoolean("hasPitch");
+                boolean hasShed = rs.getBoolean("has_shed");
+                int shedWidth = rs.getInt("shed_width");
+                int shedLength = rs.getInt("shed_length");
+                boolean hasPitch = rs.getBoolean("has_pitch");
                 int roofPitch = rs.getInt("roof_pitch");
                 int price = rs.getInt("price");
                 boolean approved = rs.getBoolean("approved");

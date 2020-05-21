@@ -2,8 +2,8 @@ DROP DATABASE IF EXISTS `carport`;
 CREATE SCHEMA `carport`;
 USE `carport`;
 
-DROP SCHEMA IF EXISTS `carportTest`;
-CREATE SCHEMA `carportTest`;
+DROP SCHEMA IF EXISTS `carporttest`;
+CREATE SCHEMA `carporttest`;
 
 CREATE TABLE `carport`.`carport_measures` (
   `description` VARCHAR(45) NOT NULL,
@@ -55,7 +55,7 @@ REFERENCES `carport`.`material_type`(`type_id`));
   `carport_length` INT NOT NULL,
   `carport_width` INT NOT NULL,
   `carport_height` INT NOT NULL,
-  `hasShed` TINYINT NULL,
+  `has_shed` TINYINT NULL,
   `shed_width` INT NULL,
   `shed_length` INT NULL,
   `has_pitch` TINYINT NULL,

@@ -250,6 +250,10 @@ public class CarportHelper {
         return carportLengthCM;
     }
 
+    public void setCarportLength(int carportLengthCM) {
+        this.carportLengthCM = carportLengthCM;
+    }
+
     public int getCarportHeight() {
         return carportHeight;
     }

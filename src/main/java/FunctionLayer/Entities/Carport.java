@@ -19,6 +19,10 @@ public class Carport {
         this.roofMaterial = roofMaterial;
     }
 
+    public void setCarportLength(int carportLength) {
+        this.carportLength = carportLength;
+    }
+
     @Override
     public String toString() {
         return "Caport Længde: " + carportLength + ", Caport Bredde: " + carportWidth + ", Caport Højde: " + carportHeight + ", Tag materiale: " + roofMaterial;

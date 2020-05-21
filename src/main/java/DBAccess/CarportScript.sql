@@ -26,45 +26,45 @@ CREATE TABLE `carport`.`users` (
   `name` VARCHAR(16) NULL,
   `email` VARCHAR(255) NOT NULL,
   `password` VARCHAR(32) NOT NULL,
-  `mobilNr` INT(8) NOT NULL,
+  `tlf_number` INT(8) NOT NULL,
   `create_time` TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
   `saldo` INT(6) NOT NULL DEFAULT 500,
   PRIMARY KEY (`email`));
 
-INSERT INTO `users` (`name`, `email`, `password`, `mobilNr`, `saldo`) VALUES ('Admin', 'admin@admin.com', 'admin', 10101010, 10000);
+INSERT INTO `users` (`name`, `email`, `password`, `tlf_number`, `saldo`) VALUES ('Admin', 'admin@admin.com', 'admin', 10101010, 10000);
 
 CREATE TABLE `carport`.`material_type` (
-`typeID` INT AUTO_INCREMENT,
+`type_id` INT AUTO_INCREMENT,
 `type_name` VARCHAR(45) NOT NULL,
-PRIMARY KEY (`typeID`));
+PRIMARY KEY (`type_id`));
 
 CREATE TABLE `carport`.`material_list` (
-`productID` INT AUTO_INCREMENT,
+`product_id` INT AUTO_INCREMENT,
 `category` VARCHAR(45) NOT NULL,
 `price_unit` float(8) NOT NUll,
 `amount_pr_unit` VARCHAR(45) NULL,
 `unit` VARCHAR(45) NOT NULL,
 `type_id` INT NOT NULL,
 `description` VARCHAR(45) NOT NULL,
-PRIMARY KEY (`productID`),
+PRIMARY KEY (`product_id`),
 FOREIGN KEY (`type_id`)
-REFERENCES `carport`.`material_type`(`typeID`));
+REFERENCES `carport`.`material_type`(`type_id`));
 
   CREATE TABLE `carport`.`cust_order` (
-  `orderID` INT NOT NULL AUTO_INCREMENT,
+  `order_id` INT NOT NULL AUTO_INCREMENT,
   `carport_length` INT NOT NULL,
   `carport_width` INT NOT NULL,
   `carport_height` INT NOT NULL,
   `hasShed` TINYINT NULL,
-  `shedWidth` INT NULL,
-  `shedLength` INT NULL,
-  `hasPitch` TINYINT NULL,
+  `shed_width` INT NULL,
+  `shed_length` INT NULL,
+  `has_pitch` TINYINT NULL,
   `roof_pitch` INT NULL,
   `roof_material` VARCHAR(45) NULL,
   `price` INT NULL,
   `approved` TINYINT NOT NULL DEFAULT 0,
   `tlf_number` INT NOT NULL,
-  PRIMARY KEY (`orderID`));
+  PRIMARY KEY (`order_id`));
   
   CREATE TABLE `carport`.`orderlines` (
   `orderlines_id` INT NOT NULL AUTO_INCREMENT,
@@ -72,9 +72,9 @@ REFERENCES `carport`.`material_type`(`typeID`));
   `product_id` INT NOT NULL,
   PRIMARY KEY (`orderlines_id`),
   FOREIGN KEY (`order_id`)
-  REFERENCES `carport`.`cust_order`(`orderID`),
+  REFERENCES `carport`.`cust_order`(`order_id`),
   FOREIGN KEY (`product_id`)
-  REFERENCES `carport`.`material_list`(`productID`));
+  REFERENCES `carport`.`material_list`(`product_id`));
   
   CREATE TABLE `carport`.`storage` (
   `storage_id` INT NOT NULL AUTO_INCREMENT,
@@ -82,7 +82,7 @@ REFERENCES `carport`.`material_type`(`typeID`));
   `length_cm` INT NOT NULL,
   PRIMARY KEY (`storage_id`),
   FOREIGN KEY (`product_id`)
-  REFERENCES `carport`.`material_list`(`productID`));
+  REFERENCES `carport`.`material_list`(`product_id`));
 
   -- Indsæt data i tabellen:
 INSERT INTO carport_measures (`description`, `measures`) VALUES ('bredde', 240);

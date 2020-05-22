@@ -1,0 +1,47 @@
+@startuml
+
+Title Full page
+State StartPage
+
+[*] --> StartPage
+
+StartPage --> FlatPage : click on one of the pictures
+StartPage --> PitchPage
+
+FlatPage --> OutputPage : submit measures
+PitchPage --> OutputPage
+
+StartPage --> AdminPage : login as "admin@admin.com"
+
+AdminPage --> EditPage : click in navbar
+AdminPage --> SearchPage : click in navbar
+
+EditPage --> AdminPage : submit changes
+
+note "The index.jsp page can be reached from \nall other jsp pages than editOrder.jsp \nand searchOrder.jsp by clicking in the navbar." as indexInfo
+
+note bottom of SearchPage : Can return to admin.jsp in navbar
+
+StartPage : select carport type or login
+FlatPage : create carport with flat roof
+FlatPage : \nHas access to index.jsp in navbar
+PitchPage : create carport with pitched roof
+PitchPage : \nHas access to index.jsp in navbar
+OutputPage : displays sketches and final price
+OutputPage : \nHas access to index.jsp in navbar
+AdminPage : approve orders, decline orders, view sketches, \nview materiallist, view order details
+AdminPage : \nHas access to index.jsp & searchOrder.jsp in navbar
+EditPage : edit carport measures
+EditPage : \nHas access to admin.jsp \n& searchOrder.jsp in navbar
+SearchPage : search for order by ID
+SearchPage : \nHas access to admin.jsp \n& searchOrder.jsp in navbar
+
+state "index.jsp" as StartPage
+state "fladttag.jsp" as FlatPage
+state "rejsningstag.jsp" as PitchPage
+state "admin.jsp" as AdminPage
+state "editOrder.jsp" as EditPage
+state "searchOrder.jsp" as SearchPage
+state "carportOutput.jsp" as OutputPage
+
+@enduml

@@ -10,7 +10,7 @@ public class ValidationValues {
 
     public static int getInteger(String value) {
         int result = 0;
-        if(!(value == null)) {
+        if(!(value == null || value.equals(""))) {
             result = Integer.parseInt(value);
         } else {
             result = -1;

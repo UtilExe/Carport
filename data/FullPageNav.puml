@@ -13,7 +13,7 @@ PitchPage --> OutputPage
 
 StartPage --> AdminPage : login as "admin@admin.com"
 
-AdminPage --> EditPage : click in navbar
+AdminPage --> EditPage : click on link below order
 AdminPage --> SearchPage : click in navbar
 
 EditPage --> AdminPage : submit changes

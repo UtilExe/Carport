@@ -169,10 +169,11 @@ public class OrderMapperTest {
         // Vi opdaterer ordren med carport-længden 550
         CarportHelper result = OrderMapper.getHelper(4);
         OrderMapper.editOrder(4, "carport_length", 550);
-        result.setCarportLength(550);
+        result = OrderMapper.getHelper(4);
 
         // Vi forventet dermed at Carport-længden også bliver 550 her:
         CarportHelper expected = new CarportHelper(550, 360, 340, 260, 325, 35);
+
         assertEquals(expected.getCarportLength(), result.getCarportLength());
     }
 
@@ -180,7 +181,7 @@ public class OrderMapperTest {
     public void testEditOrderNegative() throws UniversalSampleException {
         CarportHelper result = OrderMapper.getHelper(4);
         OrderMapper.editOrder(4, "carport_length", 550);
-        result.setCarportLength(550);
+        result = OrderMapper.getHelper(4);
 
         CarportHelper expected = new CarportHelper(720, 360, 340, 260, 325, 35);
         assertEquals(expected.getCarportLength(), result.getCarportLength());

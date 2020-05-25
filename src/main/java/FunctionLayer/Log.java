@@ -40,7 +40,7 @@ public class Log {
         fh.setFormatter(new VerySimpleFormatter());
         logger.addHandler(fh);
 
-        logger.setLevel(Level.FINEST);   // her sætter vi niveauet for logningen.
+        logger.setLevel(Level.SEVERE);   // her sætter vi niveauet for logningen.
         logger.log(lvl, decription);
 
         fh.close();

@@ -14,10 +14,10 @@ public class Svg {
     private int x;
     private int y;
     private StringBuilder svg = new StringBuilder();
-    private final String headerTemplate = "<svg version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" x=\"%s\" y=\"%s\" height=\"%s\" width=\"%s\" viewBox=\"%s\" preserveAspectRatio=\"xMinYMin\">";
-    private final String rectTemplate = "<rect x=\"%s\" y=\"%s\" width=\"%s\" height=\"%s\" style=\"stroke:#000000; fill: #ffffff\" />";
-    private final String bandTemplate = "<line x1=\"%s\" y1=\"%s\" x2=\"%s\" y2=\"%s\" style=\"stroke:#000000; stroke-dasharray: 5 5;\" />";
-    private final String ArrowLengthTemplate = " <defs>\n"
+    private final String HEADER_TEMPLATE = "<svg version=\"1.1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" x=\"%s\" y=\"%s\" height=\"%s\" width=\"%s\" viewBox=\"%s\" preserveAspectRatio=\"xMinYMin\">";
+    private final String RECT_TEMPLATE = "<rect x=\"%s\" y=\"%s\" width=\"%s\" height=\"%s\" style=\"stroke:#000000; fill: #ffffff\" />";
+    private final String BAND_TEMPLATE = "<line x1=\"%s\" y1=\"%s\" x2=\"%s\" y2=\"%s\" style=\"stroke:#000000; stroke-dasharray: 5 5;\" />";
+    private final String ARROW_LENGTH_TEMPLATE = " <defs>\n"
             + "    <marker id=\"beginArrow" + "\" \n"
             + "    	markerWidth=\"9\" markerHeight=\"9\" \n"
             + "    	refX=\"0\" refY=\"4\" \n"
@@ -36,7 +36,7 @@ public class Svg {
             + "	marker-start: url(#beginArrow" + ");\n"
             + "   marker-end: url(#endArrow" + ");\"/>"
             + " ";
-    private String ArrowWidthTemplate = " "
+    private final String ARROW_WIDTH_TEMPLATE = " "
             + "<defs>\n"
             + "    <marker id=\"beginArrow" + "\" \n"
             + "    	markerWidth=\"9\" markerHeight=\"9\" \n"
@@ -56,7 +56,7 @@ public class Svg {
             + "	marker-start: url(#beginArrow" + ");\n"
             + "   marker-end: url(#endArrow" + ");\"/>"
             + " ";
-    private String textTemplate = "<text style=\"text-anchor: middle\" transform=\"translate(%s,%s) rotate(-90)\">%s cm</text>\n" +
+    private final String TEXT_TEMPLATE = "<text style=\"text-anchor: middle\" transform=\"translate(%s,%s) rotate(-90)\">%s cm</text>\n" +
             "<text style=\"text-anchor: middle\" x=\"%s\" y=\"%s\">%s cm</text>";
 
     public Svg(double width, double height, String viewbox, int x, int y) {
@@ -67,15 +67,15 @@ public class Svg {
         this.viewbox = viewbox;
         this.x = x;
         this.y = y;
-        svg.append(String.format(headerTemplate, x, y, strHeight, strWidth, viewbox));
+        svg.append(String.format(HEADER_TEMPLATE, x, y, strHeight, strWidth, viewbox));
     }
 
-    public void addRect(double x, double y, double width, double height){
+    public void addRect(double x, double y, double width, double height) {
         String strX = ValidationValues.fromDoubleToString(x);
         String strY = ValidationValues.fromDoubleToString(y);
         String strWidth = ValidationValues.fromDoubleToString(width);
         String strHeight = ValidationValues.fromDoubleToString(height);
-        svg.append(String.format(rectTemplate, strX, strY, strWidth, strHeight));
+        svg.append(String.format(RECT_TEMPLATE, strX, strY, strWidth, strHeight));
     }
 
     public void addBand(double x1, double y1, double x2, double y2) {
@@ -83,7 +83,7 @@ public class Svg {
         String strY1 = ValidationValues.fromDoubleToString(y1);
         String strX2 = ValidationValues.fromDoubleToString(x2);
         String strY2 = ValidationValues.fromDoubleToString(y2);
-        svg.append(String.format(bandTemplate, strX1, strY1, strX2, strY2));
+        svg.append(String.format(BAND_TEMPLATE, strX1, strY1, strX2, strY2));
     }
 
     public void addArrowLength(double x1, double y1, double x2, double y2) {
@@ -91,7 +91,7 @@ public class Svg {
         String strY1 = ValidationValues.fromDoubleToString(y1);
         String strX2 = ValidationValues.fromDoubleToString(x2);
         String strY2 = ValidationValues.fromDoubleToString(y2);
-        svg.append(String.format(ArrowLengthTemplate, strX1, strY1, strX2, strY2));
+        svg.append(String.format(ARROW_LENGTH_TEMPLATE, strX1, strY1, strX2, strY2));
     }
 
     public void addArrowWidth(double x1, double y1, double x2, double y2) {
@@ -99,7 +99,7 @@ public class Svg {
         String strY1 = ValidationValues.fromDoubleToString(y1);
         String strX2 = ValidationValues.fromDoubleToString(x2);
         String strY2 = ValidationValues.fromDoubleToString(y2);
-        svg.append(String.format(ArrowWidthTemplate, strX1, strY1, strX2, strY2));
+        svg.append(String.format(ARROW_WIDTH_TEMPLATE, strX1, strY1, strX2, strY2));
     }
 
     public void addText(double x1, double y1, int width, double x2, double y2, int length) {
@@ -107,7 +107,7 @@ public class Svg {
         String strY1 = ValidationValues.fromDoubleToString(y1);
         String strX2 = ValidationValues.fromDoubleToString(x2);
         String strY2 = ValidationValues.fromDoubleToString(y2);
-        svg.append(String.format(textTemplate, strX1, strY1, width, strX2, strY2, length));
+        svg.append(String.format(TEXT_TEMPLATE, strX1, strY1, width, strX2, strY2, length));
     }
 
     public double getWidth() {

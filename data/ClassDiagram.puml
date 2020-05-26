@@ -1,0 +1,377 @@
+@startuml
+
+package "DBAccess" {
+   DBLogin -left-> Connector
+   note right of DBLogin : gitignore file
+   Connector --> CarportMapper
+   Connector --> MaterialMapper
+   Connector --> OrderMapper
+   Connector --> UserMapper
+
+DBLogin : public {static} String username;
+DBLogin : public {static} String password;
+
+Connector : private String URL;
+Connector : private String USERNAME;
+Connector : private String PASSWORD;
+Connector : private {static} Connection singleton;
+Connector : private {static} void setConnection()
+Connector : private {static} void setConnection()
+Connector : public {static} Connection connection()
+Connector : public {static} void setDBCredentials()
+
+CarportMapper : public {static} ArrayList<Integer> getCarportMeasure(String description)
+CarportMapper : public {static} ArrayList<String> getCarportRoof()
+CarportMapper : public {static} ArrayList<Integer> getShedMeasure(String description)
+CarportMapper : public {static} ArrayList<Integer> getRoofPitch()
+
+MaterialMapper : private {static} MaterialCalculator calcPrice;
+MaterialMapper : public {static} ArrayList<Integer> getLengthsFromStorage(int ID)
+MaterialMapper : public {static} ArrayList<String> getRoofData(int ID, int measure, int tmpAmount)
+MaterialMapper : public {static} ArrayList<String> getScrewsAndTilesData(int ID, int tmpAmount)
+MaterialMapper : public {static} int getAmountPrUnit(int ID)
+MaterialMapper : public {static} ArrayList<String> getBandData(int ID, int bandLength, int rolesOfBand)
+MaterialMapper : public {static} ArrayList<Double> getWidthHeightFromDimensionMeasureInCM(int ID)
+MaterialMapper : public {static} ArrayList<String> getPillarData(int ID, int pillarAmount, ArrayList<Double> pillarLengths)
+MaterialMapper : public {static} ArrayList<String> getTransomAndHeadInShedData(int ID, int[] transomsOrHeads)
+MaterialMapper : public {static} ArrayList<String> getPlankData(int ID, int height, int plankAmount)
+
+OrderMapper : public {static} ArrayList<Order> getOrdersThatAreNotApproved()
+OrderMapper : public {static} void approve(int orderID)
+OrderMapper : public {static} void removeOrder(int orderID)
+OrderMapper : public {static} void addCarportToCustOrder(int carportLength, int carportWidth, int carportHeight, boolean hasShed, int shedWidth, int shedLength, boolean hasPitch, int roofPitch, String roofMaterial, int price, int tlfNumber)
+OrderMapper : public {static} CarportHelper getHelper(int orderID)
+OrderMapper : public {static} void editOrder(int orderID, String measure, int amount)
+OrderMapper : public {static} Order getOrder(int id)
+
+UserMapper : public {static} void createUser(User user)
+UserMapper : public {static} User login(String mail, String pw )
+}
+
+
+
+
+package "FunctionLayer" {
+    package "Entities" {
+        Carport : private int carportLength;
+        Carport : private int carportWidth;
+        Carport : private int carportHeight;
+        Carport : private String roofMaterial;
+        Carport : public Carport(int carportLength, int carportWidth, int carportHeight, String roofMaterial)
+        Carport : public void setCarportLength(int carportLength)
+        Carport : @Override public String toString()
+
+        CarportFlat : private boolean hasShed;
+        CarportFlat : private int shedWidth;
+        CarportFlat : private int shedLength;
+        CarportFlat : public CarportFlat(int carportLength, int carportWidth, int carportHeight, String roofMaterial, boolean hasShed, int shedWidth, int shedLength)
+        CarportFlat : public boolean isHasShed()
+        CarportFlat : public void setHasShed(boolean hasShed)
+        CarportFlat : public int getShedWidth()
+        CarportFlat : public void setShedWidth(int shedWidth)
+        CarportFlat : public int getShedLength()
+        CarportFlat : public void setShedLength(int shedLength)
+
+        CarportPitch : private boolean hasShed;
+        CarportPitch : private int shedWidth;
+        CarportPitch : private int shedLength;
+        CarportPitch : private boolean hasPitch;
+        CarportPitch : private int roofPitch;
+        CarportPitch : public CarportPitch(int carportLength, int carportWidth, int carportHeight, String roofMaterial, boolean hasShed, int shedWidth, int shedLength, boolean hasPitch, int roofPitch)
+        CarportPitch : public boolean isHasShed()
+        CarportPitch : public void setHasShed(boolean hasShed)
+        CarportPitch : public int getShedWidth()
+        CarportPitch : public void setShedWidth(int shedWidth)
+        CarportPitch : public int getShedLength()
+        CarportPitch : public void setShedLength(int shedLength)
+        CarportPitch : public int getRoofPitch()
+        CarportPitch : public void setRoofPitch(int roofPitch)
+
+        class ComparatorMaterial
+        interface java.util.Comparator
+        ComparatorMaterial : public int compare(ArrayList<String> o1, ArrayList<String> o2)
+        ComparatorMaterial ..|> java.util.Comparator
+
+        MaterialList : ComparatorMaterial sortAlphabetically;
+        MaterialList : private ArrayList<ArrayList<String>> list;
+        MaterialList : public MaterialList(ArrayList<ArrayList<String>> list)
+        MaterialList : public ArrayList<ArrayList<String>> getList()
+        MaterialList : public void addToList(ArrayList<String> materials)
+        MaterialList : public void sortListAlphabetically()
+
+        Order : private int orderID;
+        Order : private Carport carport;
+        Order : private boolean hasShed;
+        Order : private int shedWidth;
+        Order : private int shedLength;
+        Order : private boolean hasPitch;
+        Order : private int roofPitch;
+        Order : private int price;
+        Order : private boolean isApproved;
+        Order : private int tlfNumber;
+        Order : public Order(int orderID, Carport carport, boolean hasShed, int shedWidth, int shedLength, boolean hasPitch, int roofPitch, int price, boolean isApproved, int tlfNumber)
+        Order : public int getOrderID()
+        Order : public Carport getCarport()
+        Order : public void setCarport(Carport carport)
+        Order : public boolean isHasShed()
+        Order : public void setHasShed(boolean hasShed)
+        Order : public int getShedWidth()
+        Order : public void setShedWidth(int shedWidth)
+        Order : public int getShedLength()
+        Order : public void setShedLength(int shedLength)
+        Order : public int getRoofPitch()
+        Order : public void setRoofPitch(int roofPitch)
+        Order : @Override public String toString()
+
+        Svg : private double width;
+        Svg : private double height;
+        Svg : private String viewbox;
+        Svg : private int x;
+        Svg : private int y;
+        Svg : private StringBuilder svg;
+        Svg : private final String HEADER_TEMPLATE;
+        Svg : private final String RECT_TEMPLATE;
+        Svg : private final String BAND_TEMPLATE;
+        Svg : private final String ARROW_LENGTH_TEMPLATE;
+        Svg : private final String ARROW_WIDTH_TEMPLATE;
+        Svg : private final String TEXT_TEMPLATE;
+        Svg : public Svg(double width, double height, String viewbox, int x, int y)
+        Svg : public void addRect(double x, double y, double width, double height)
+        Svg : public void addBand(double x1, double y1, double x2, double y2)
+        Svg : public void addArrowLength(double x1, double y1, double x2, double y2)
+        Svg : public void addArrowWidth(double x1, double y1, double x2, double y2)
+        Svg : public void addText(double x1, double y1, int width, double x2, double y2, int length)
+        Svg : public double getWidth()
+        Svg : public void setWidth(double width)
+        Svg : public double getHeight()
+        Svg : public void setHeight(double height)
+        Svg : @Override public String toString()
+
+        User : private String name;
+        User : private String email;
+        User : private String password;
+        User : private int mobilNr;
+        User : public User(String name, String email, String password, int mobilNr)
+        User : public User(String email, String password)
+        User : public String getName()
+        User : public void setName(String name)
+        User : public String getEmail()
+        User : public void setEmail(String email)
+        User : public String getPassword()
+        User : public void setPassword(String password)
+        User : public int getMobilNr()
+    }
+
+    CarportMapper --> CarportFacade
+    OrderMapper --> OrderFacade
+    MaterialMapper --> MaterialFacade
+    UserMapper --> LogicFacade
+
+    CarportFacade --> Initialisation
+    OrderFacade --> Initialisation
+    MaterialFacade --> Initialisation
+    LogicFacade --> Initialisation
+
+    CarportFacade : public {static} ArrayList<Integer> getCarportLength()
+    CarportFacade : public {static} ArrayList<Integer> getCarportWidth()
+    CarportFacade : public {static} ArrayList<Integer> getCarportHeight()
+    CarportFacade : public {static} ArrayList<String> getCarportRoof()
+    CarportFacade : public {static} ArrayList<Integer> getShedLength()
+    CarportFacade : public {static} ArrayList<Integer> getShedWidth()
+    CarportFacade : public static ArrayList<Integer> getRoofPitch()
+
+    LogicFacade : public {static} User login(String email, String password)
+    LogicFacade : public {static} User createUser(String name, String email, String password, int mobilNr)
+
+    MaterialFacade : public {static} ArrayList<String> getRoofData(int ID, int measure, int tmpAmount)
+    MaterialFacade : public {static} ArrayList<String> getScrewsAndTilesData(int ID, int tmpAmount)
+    MaterialFacade : public {static} int getAmountPrUnit(int ID)
+    MaterialFacade : public {static} ArrayList<String> getBandData(int ID, int bandLength, int rolesOfBand)
+    MaterialFacade : public {static} ArrayList<Double> getWidthHeightFromDimensionMeasureInCM(int ID)
+    MaterialFacade : public {static} ArrayList<String> getPillarData(int ID, int pillarAmount, ArrayList<Double> pillarLengths)
+    MaterialFacade : public {static} ArrayList<String> getTransomAndHeadInShedData(int ID, int[] transomsOrHeads)
+    MaterialFacade : public {static} ArrayList<String> getPlankData(int ID, int height, int plankAmount)
+
+    OrderFacade : public {static} void addCarportToCustOrder(int carportLength, int carportWidth, int carportHeight, boolean hasShed, int shedWidth, int shedLength, boolean hasPitch, int roofPitch, String roofMaterial, int price, int tlfNumber)
+    OrderFacade : public {static} ArrayList<Order> getOrders()
+    OrderFacade : public {static} void approve(int orderID)
+    OrderFacade : public {static} void removeOrder(int orderID)
+    OrderFacade : public {static} CarportHelper getHelper(int orderID)
+    OrderFacade : public {static} void editOrder(int orderID, String measure, int amount)
+    OrderFacade : public {static} Order getOrder(int orderID)
+
+    CarportHelper : private final int AMOUNT_OF_*name of material*
+    CarportHelper : private final int *name of material*_ID
+    CarportHelper : private int *amount or measure of material*;
+    CarportHelper : private ArrayList<Double> pillarLengths;
+    CarportHelper : private ArrayList<String> *info for material*;
+    CarportHelper : private ArrayList<ArrayList<String>> materials;
+    CarportHelper : private MaterialList allMaterials;
+    CarportHelper : private boolean hasShed = false;
+    CarportHelper : private boolean hasPitch = false;
+    CarportHelper : private boolean invalidInput = false;
+    CarportHelper : private int shedLength;
+    CarportHelper : private int shedWidth;
+    CarportHelper : private int carportPitch;
+    CarportHelper : private int carportLengthCM;
+    CarportHelper : private int carportWidthCM;
+    CarportHelper : private int carportHeight;
+    CarportHelper : public CarportHelper(int carportLengthCM, int carportWidthCM, int carportHeight, int shedLength, int shedWidth, int carportPitch)
+    CarportHelper : public boolean isHasShed()
+    CarportHelper : public boolean isHasPitch()
+    CarportHelper : public int getCarportPitch()
+    CarportHelper : public int getShedLength()
+    CarportHelper : public int getShedWidth()
+    CarportHelper : public int getCarportWidth()
+    CarportHelper : public int getCarportLength()
+    CarportHelper : public void setCarportLength(int carportLengthCM)
+    CarportHelper : public int getCarportHeight()
+    CarportHelper : public boolean isInvalidInput()
+    CarportHelper : public void setHasShed(boolean hasShed)
+    CarportHelper : public void setHasPitch(boolean hasPitch)
+    CarportHelper : public void setInvalidInput(boolean invalidInput)
+    CarportHelper : public ArrayList<String> getAllPriceIndexes()
+    CarportHelper : public void initArrayList()
+    CarportHelper : public MaterialList createMaterialList(boolean hasShed, boolean hasPitch)
+    CarportHelper : ArrayList<Double> *measure for material* = MaterialFacade.getWidthHeightFromDimensionMeasureInCM(*material*_ID);
+    CarportHelper : public String svgDrawingTop(int carportLength, int carportWidth, boolean hasShed)
+    CarportHelper : public String svgDrawingSide(int carportLength, int carportWidth,int carportHeight, boolean hasShed)
+
+    Initialisation : private {static} ArrayList<Integer> carportLengths;
+    Initialisation : private {static} ArrayList<Integer> carportWidths;
+    Initialisation : private {static} ArrayList<Integer> carportHeights;
+    Initialisation : private {static} ArrayList<String> roofs;
+    Initialisation : private {static} ArrayList<Integer> shedLengths;
+    Initialisation : private {static} ArrayList<Integer> shedWidths;
+    Initialisation : private {static} ArrayList<Integer> roofPitch;
+    Initialisation : private {static} ArrayList<Order> orders;
+    Initialisation : public {static} void initLengths()
+    Initialisation : public {static} void initWidth()
+    Initialisation : public {static} void initHeight()
+    Initialisation : public {static} void initRoof()
+    Initialisation : public {static} void initShedLengths()
+    Initialisation : public {static} void initShedWidths()
+    Initialisation : public {static} void initRoofPitch()
+    Initialisation : public {static} void initOrders()
+    Initialisation : public {static} ArrayList<Integer>getCarportLengths()
+    Initialisation : public {static} ArrayList<Integer> getCarportWidths()
+    Initialisation : public {static} ArrayList<Integer> getCarportHeights()
+    Initialisation : public {static} ArrayList<String> getRoofs()
+    Initialisation : public {static} ArrayList<Integer> getShedLengths()
+    Initialisation : public {static} ArrayList<Integer>getShedWidths()
+    Initialisation : public {static} ArrayList<Integer>getRoofPitch()
+    Initialisation : public {static} ArrayList<Order>getOrders()
+
+    Log : private {static} String FILENAME;
+    Log : private {static} String FILEPATH;
+    Log : private {static} String PATH;
+    Log : private Log()
+    Log : private {static} void setLogPath()
+    Log : private {static} void log(Level lvl, String decription)
+    Log : public {static} void severe(String description)
+    Log : public {static} void info(String description)
+    Log : public {static} void finest(String description)
+
+    class VerySimpleFormatter
+    abstract class Formatter
+    VerySimpleFormatter --|> Formatter
+    VerySimpleFormatter : private {static} final String PATTERN;
+    VerySimpleFormatter : @Override public String format(final LogRecord record)
+
+    MaterialCalculator : public int calcPillarAmount(int carportLength, boolean hasShed, int shedLength, int shedWidth, int carportWidth)
+    MaterialCalculator : public int calcRaftAmount(int carportLength, boolean hasPitch)
+    MaterialCalculator : public int calcLengthOfBands(int carportLength, int carportWidth, boolean hasShed, int shedLength)
+    MaterialCalculator : public int calcRolesAmountBand(int bandLength)
+    MaterialCalculator : public ArrayList<Double> calcPillarHeight(int carportHeight, double carportLength, boolean hasShed, int shedLength, boolean hasPitch, int shedWidth, int carportWidth)
+    MaterialCalculator : public int calcRoofTileAmount(int carportLength, int carportWidth)
+    MaterialCalculator : public int calcRoofScrewAmount(int carportLength, int carportWidth, int ID)
+    MaterialCalculator : public int calcUniversalScrews(int carportLength, boolean hasPitch)
+    MaterialCalculator : public int calcPlankAndWaterScrews()
+    MaterialCalculator : public int calcBracketScrews(int carportLength, boolean hasPitch)
+    MaterialCalculator : public int calcCarriageBolts(int carportLength, boolean hasShed, int shedLength, int shedWidth, int carportWidth)
+    MaterialCalculator : public int[] calcTransomsLengthFrontAndBack(int shedWidth)
+    MaterialCalculator : public int[] calcTransomsLengthSides(int shedLength)
+    MaterialCalculator : public int[] calcHeadsInShed(int shedLength)
+    MaterialCalculator : public int calcPlanksForShed(int shedLength, int shedWidth)
+    MaterialCalculator : public int calcOuterScrewsShed(int shedLength, int shedWidth, int ID)
+    MaterialCalculator : public int calcInnerScrewsShed(int shedLength, int shedWidth, int ID)
+    MaterialCalculator : public int calcAngleMount(int shedLength, int shedWidth)
+    MaterialCalculator : public int calcTilesForPitchedRoof()
+    MaterialCalculator : public int calcAmountOfRooflaths(int carportWidth)
+    MaterialCalculator : public int calcAmountOfRooflathScrews(int amountOfRooflaths, int raftAmount, int ID)
+    MaterialCalculator : public int calcPackagesOfTileBindersAndHooks()
+    MaterialCalculator : public int calcAmountOfRoofTileStones(int carportLength)
+    MaterialCalculator : public int calcAmountOfRoofTileStoneBrackets(int amountOfRoofTileStones)
+    MaterialCalculator : public int calcAmountOfToplathHolders(int amountOfRafts)
+    MaterialCalculator : public int calcGavlPlanksLength(int carportWidth, int carportPitch)
+    MaterialCalculator : public int calcAmountOfGavlPlanks()
+    MaterialCalculator : public int calcAmountOfPlanksForGavlMount(int carportWidth)
+    MaterialCalculator : public int calcPlanksForGavlMountLength(int carportWidth, int carportPitch)
+    MaterialCalculator : public int calcPricePrUnit(int unit, double pricePrUnit)
+    MaterialCalculator : public int calcPricePrUnitWithLength(int unit, double pricePrUnit, int amount)
+    MaterialCalculator : public int fullPrice(ArrayList<String> materialInfo)
+    MaterialCalculator : public ArrayList<Integer> calcWoodForMeasure(int materialMeasure, ArrayList<Integer> lengths, int amountOnCarport)
+
+    Operations : public {static} String[] splitterForDimensions(String strFromDB, String regex)
+    Operations : public {static} String addQuotesAround(String input)
+    Operations : public {static} double roundToTwo(double number)
+
+    PathForLog : public {static} String FILENAME;
+    PathForLog : public {static} String FILEPATH;
+
+    class UniversalSampleException
+    abstract class Exception
+    UniversalSampleException --|> Exception
+    UniversalSampleException : public UniversalSampleException(String msg)
+    UniversalSampleException : public {static} void exceptionIfsDB(String exMessage, String methodName)
+    UniversalSampleException : public {static} void exceptionIfLast(String exMessage, String methodName)
+
+    ValidationValues : public {static} int getInteger(String value)
+    ValidationValues : public {static} String fromDoubleToString(double number)
+
+
+}
+
+package "PresentationLayer" {
+    Approve : @Override String execute(HttpServletRequest request, HttpServletResponse response)
+    CarportDesign : @Override String execute(HttpServletRequest request, HttpServletResponse response)
+    Editor : @Override String execute(HttpServletRequest request, HttpServletResponse response)
+    Login : @Override String execute(HttpServletRequest request, HttpServletResponse response)
+    MaterialView : @Override String execute(HttpServletRequest request, HttpServletResponse response)
+    Plan : @Override String execute(HttpServletRequest request, HttpServletResponse response)
+    Redirect : @Override String execute(HttpServletRequest request, HttpServletResponse response)
+    Register : @Override String execute(HttpServletRequest request, HttpServletResponse response)
+    Searcher : @Override String execute(HttpServletRequest request, HttpServletResponse response)
+    UnknownCommand : @Override String execute(HttpServletRequest request, HttpServletResponse response)
+
+    FrontController : protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+    FrontController : @Override protected void doGet(HttpServletRequest request, HttpServletResponse response)
+    FrontController : @Override protected void doPost(HttpServletRequest request, HttpServletResponse response)
+    FrontController : @Override public String getServletInfo()
+    abstract class HttpServlet
+    FrontController --|> HttpServlet
+
+    abstract class Command
+    Command : private {static} HashMap<String, Command> commands;
+    Command : private {static} void initCommands()
+    Command : {static} Command from(HttpServletRequest request)
+    Command : abstract String execute(HttpServletRequest request, HttpServletResponse response)
+    Approve --|> Command
+    CarportDesign --|> Command
+    Editor --|> Command
+    Login --|> Command
+    MaterialView --|> Command
+    Plan --|> Command
+    Redirect --|> Command
+    Register --|> Command
+    Searcher --|> Command
+    UnknownCommand --|> Command
+}
+
+note bottom of DBAccess : DBAccess classes used in FunctionLayer classes
+note bottom of FunctionLayer : FunctionLayer classes used in PresentationLayer classes
+note bottom of Entities : Entities classes used in FunctionLayer classes
+note bottom of PresentationLayer : PresentationLayer classes used on jsp pages
+
+
+@enduml

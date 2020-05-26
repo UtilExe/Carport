@@ -132,8 +132,10 @@ public class MaterialCalculatorTest {
         assertThat(result, hasSize(expected));
 
         hasShed = true;
-        expected = 10;
+        expected = 9;
         result = calculator.calcPillarHeight(carportHeight, carportLength, hasShed, shedLength, hasPitch, shedWidth, carportWidth);
+        assertThat(result, hasSize(expected));
+
     }
 
     @Test (expected = AssertionError.class)
@@ -145,6 +147,7 @@ public class MaterialCalculatorTest {
         hasShed = true;
         expected = 3;
         result = calculator.calcPillarHeight(carportHeight, carportLength, hasShed, shedLength, hasPitch, shedWidth, carportWidth);
+        assertThat(result, hasSize(expected));
     }
 
     @Test

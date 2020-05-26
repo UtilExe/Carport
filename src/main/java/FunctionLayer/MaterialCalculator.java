@@ -728,11 +728,6 @@ public class MaterialCalculator {
                     amountOfWood = 1;
                     break;
                 }
-                if(lengths.get(i)/2 >= materialMeasure) {
-                    tmpResult = lengths.get(i);
-                    amountOfWood = 2;
-                    break;
-                }
             }
         }
         // Vi ganger antal brædder på carporten med antal brædder til én længde.

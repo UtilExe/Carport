@@ -46,7 +46,7 @@ public class UserMapper {
     public static User login(String mail, String pw ) throws UniversalSampleException {
         try {
             Connection con = Connector.connection();
-            String SQL = "SELECT email, password FROM Users "
+            String SQL = "SELECT email, password FROM users "
                     + "WHERE email=? AND password=?";
             PreparedStatement ps = con.prepareStatement( SQL );
             ps.setString( 1, mail );
